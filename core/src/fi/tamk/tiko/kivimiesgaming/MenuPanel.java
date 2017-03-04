@@ -1,9 +1,17 @@
 package fi.tamk.tiko.kivimiesgaming;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
+import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -12,6 +20,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.sun.org.apache.xpath.internal.operations.String;
+
+import java.util.ArrayList;
+
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 /**
  * Created by atter on 04-Mar-17.
@@ -45,9 +57,9 @@ public class MenuPanel {
         menuTable = new Table();
 
         TextButton playButton = new TextButton(screen.getGame().getMyBundle().get("playButton"),
-                screen.getGame().getSkin());
+                screen.getGame().getTextButtonStyle());
         TextButton exitButton = new TextButton(screen.getGame().getMyBundle().get("exitButton"),
-                screen.getGame().getSkin());
+                screen.getGame().getTextButtonStyle());
 
         menuTable.setFillParent(true);
         menuTable.defaults()
@@ -59,31 +71,46 @@ public class MenuPanel {
         menuTable.add(exitButton);
 
         screen.getStage().addActor(menuTable);
+
+        playButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                screen.getGame().setScreen(new RoomSelection(screen.getGame()));
+            }
+        });
+
+        exitButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.exit();
+            }
+        });
+
     }
 
     private void createOtherButtons() {
 
         TextureRegionDrawable finnishImage = new TextureRegionDrawable(
                 new TextureRegion(
-                        new Texture("englishFlag.png")));
+                        new Texture("MENU_flag_fi.png")));
 
         TextureRegionDrawable englishImage = new TextureRegionDrawable(
                 new TextureRegion(
-                        new Texture("englishFlag.png")));
+                        new Texture("MENU_flag_en.png")));
 
         TextureRegionDrawable soundEnabledImage = new TextureRegionDrawable(
                 new TextureRegion(
-                        new Texture("englishFlag.png")));
+                        new Texture("MENU_sound_on.png")));
         TextureRegionDrawable soundDisabledImage = new TextureRegionDrawable(
                 new TextureRegion(
-                        new Texture("englishFlag.png")));
+                        new Texture("MENU_sound_off.png")));
 
         TextureRegionDrawable musicEnabledImage = new TextureRegionDrawable(
                 new TextureRegion(
-                        new Texture("englishFlag.png")));
+                        new Texture("MENU_music_on.png")));
         TextureRegionDrawable musicDisabledImage = new TextureRegionDrawable(
                 new TextureRegion(
-                        new Texture("englishFlag.png")));
+                        new Texture("MENU_music_off.png")));
 
 
         finnishStyle = new Button.ButtonStyle(finnishImage, finnishImage, finnishImage);
@@ -125,9 +152,18 @@ public class MenuPanel {
         Table table = new Table();
         table.setFillParent(true);
         table.bottom();
-        table.add(soundButton).pad(25).padBottom(100).width(buttonSize * soundAspectRatio).height(buttonSize);
-        table.add(musicButton).pad(25).padBottom(100).width(buttonSize * musicAspectRatio).height(buttonSize);
-        table.add(flagButton).pad(25).padBottom(100).width(buttonSize * flagAspectRatio).height(buttonSize);
+        table.add(soundButton)
+                .pad(25).padBottom(100)
+                .width(buttonSize * soundAspectRatio)
+                .height(buttonSize);
+        table.add(musicButton)
+                .pad(25).padBottom(100)
+                .width(buttonSize * musicAspectRatio)
+                .height(buttonSize);
+        table.add(flagButton)
+                .pad(25).padBottom(100)
+                .width(buttonSize * flagAspectRatio)
+                .height(buttonSize);
 
         screen.getStage().addActor(table);
 
@@ -135,10 +171,10 @@ public class MenuPanel {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 if (screen.getGame().getMyBundle().get("language").equals("finnish")) {
-                    flagButton.setStyle(englishStyle);
+                    flagButton.setStyle(finnishStyle);
                     screen.getGame().setEnglish();
                 } else {
-                    flagButton.setStyle(finnishStyle);
+                    flagButton.setStyle(englishStyle);
                     screen.getGame().setFinnish();
                 }
                 menuTable.clearChildren();
@@ -149,13 +185,14 @@ public class MenuPanel {
         soundButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.enableSounds(!AudioManager.isSoundsEnabled());
                 if (AudioManager.isSoundsEnabled()) {
-                    soundButton.setStyle(soundDisabledStyle);
+                    soundButton.setStyle(soundEnabledStyle);
 
                 } else {
-                    soundButton.setStyle(soundEnabledStyle);
+                    soundButton.setStyle(soundDisabledStyle);
                 }
-                AudioManager.enableSounds(!AudioManager.isSoundsEnabled());
+
 
             }
         });
@@ -163,12 +200,13 @@ public class MenuPanel {
         musicButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if (AudioManager.isMusicEnabled()) {
-                    soundButton.setStyle(soundDisabledStyle);
-                } else {
-                    soundButton.setStyle(soundEnabledStyle);
-                }
                 AudioManager.enableMusic(!AudioManager.isMusicEnabled());
+                if (AudioManager.isMusicEnabled()) {
+                    musicButton.setStyle(musicEnabledStyle);
+                } else {
+                    musicButton.setStyle(musicDisabledStyle);
+                }
+
 
             }
         });
