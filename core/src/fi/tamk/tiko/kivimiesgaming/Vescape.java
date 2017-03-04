@@ -117,6 +117,5 @@ public class Vescape extends Game {
 
         textButtonStyle = new TextButton.TextButtonStyle(buttonImage, buttonPressedImage,
                 buttonImage, getButtonFont());
-
     }
 }
