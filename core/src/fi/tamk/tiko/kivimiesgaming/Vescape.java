@@ -4,16 +4,10 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
 
 import java.util.Locale;
@@ -26,16 +20,11 @@ public class Vescape extends Game {
     private SpriteBatch batch;
     private Skin skin;
     private I18NBundle myBundle;
-    private BitmapFont buttonFont;
-    private TextButton.TextButtonStyle textButtonStyle;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         skin = new Skin(Gdx.files.internal("uiskin.json"));
-
-        createTextButtonStyle();
-
         setFinnish();
 
         setScreen(new MainMenu(this));
@@ -68,14 +57,6 @@ public class Vescape extends Game {
         return skin;
     }
 
-    public BitmapFont getButtonFont() {
-        return buttonFont;
-    }
-
-    public TextButton.TextButtonStyle getTextButtonStyle() {
-        return textButtonStyle;
-    }
-
     public I18NBundle getMyBundle() {
         return myBundle;
     }
@@ -97,26 +78,4 @@ public class Vescape extends Game {
 
     }
 
-    private void createTextButtonStyle() {
-        FreeTypeFontGenerator fontGen = new FreeTypeFontGenerator(Gdx.files.internal("tahoma.ttf"));
-
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter =
-                new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 70;
-        parameter.shadowOffsetX = 5;
-
-        buttonFont = fontGen.generateFont(parameter);
-
-        TextureRegionDrawable buttonImage = new TextureRegionDrawable(
-                new TextureRegion(
-                        new Texture("MENU_button.png")));
-
-        TextureRegionDrawable buttonPressedImage = new TextureRegionDrawable(
-                new TextureRegion(
-                        new Texture("MENU_button_pressed.png")));
-
-        textButtonStyle = new TextButton.TextButtonStyle(buttonImage, buttonPressedImage,
-                buttonImage, getButtonFont());
-
-    }
 }
