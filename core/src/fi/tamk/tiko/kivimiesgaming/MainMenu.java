@@ -16,6 +16,8 @@ public class MainMenu extends MyScreen {
     public MainMenu(Vescape game) {
         super(game);
         new MenuPanel(this);
+
+        //background
     }
 
 }

@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.sun.org.apache.xpath.internal.operations.String;
 
 /**
  * Created by atter on 04-Mar-17.
@@ -18,6 +19,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class MenuPanel {
     private MyScreen screen;
+
+    private Table menuTable;
 
     private Button flagButton;
     private Button.ButtonStyle finnishStyle;
@@ -39,7 +42,7 @@ public class MenuPanel {
 
 
     private void createMenuButtons() {
-        Table menuTable = new Table();
+        menuTable = new Table();
 
         TextButton playButton = new TextButton(screen.getGame().getMyBundle().get("playButton"),
                 screen.getGame().getSkin());
@@ -138,6 +141,8 @@ public class MenuPanel {
                     flagButton.setStyle(finnishStyle);
                     screen.getGame().setFinnish();
                 }
+                menuTable.clearChildren();
+                createMenuButtons();
             }
         });
 
@@ -151,6 +156,7 @@ public class MenuPanel {
                     soundButton.setStyle(soundEnabledStyle);
                 }
                 AudioManager.enableSounds(!AudioManager.isSoundsEnabled());
+
             }
         });
 
@@ -163,6 +169,7 @@ public class MenuPanel {
                     soundButton.setStyle(soundEnabledStyle);
                 }
                 AudioManager.enableMusic(!AudioManager.isMusicEnabled());
+
             }
         });
 
