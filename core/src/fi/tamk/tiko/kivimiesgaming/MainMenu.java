@@ -21,9 +21,8 @@ public class MainMenu extends MyScreen {
     public MainMenu(Vescape game) {
         super(game);
 
-        ImageActor bg = new ImageActor(new Texture("englishFlag.png"), Vescape.GUI_VIEWPORT_HEIGHT);
-        bg.setX(-Vescape.GUI_VIEWPORT_WIDTH / 2);
-
+        ImageActor bg = new ImageActor(new Texture("MENU_bg.png"), Vescape.GUI_VIEWPORT_HEIGHT);
+        bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
         /*
         RotateByAction rotateByAction = new RotateByAction();
         rotateByAction.setAmount(10000);
@@ -31,6 +30,7 @@ public class MainMenu extends MyScreen {
         rotateByAction.setInterpolation(Interpolation.elasticOut);
         bg.addAction(rotateByAction);
         */
+
         stage.addActor(bg);
 
         float movementY = 500;
