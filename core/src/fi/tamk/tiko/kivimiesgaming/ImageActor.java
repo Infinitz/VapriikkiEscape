@@ -17,11 +17,11 @@ public class ImageActor extends Actor {
     private float size = 1.0f;
 
     public ImageActor (Texture texture) {
-        setTex(texture);
+        this(texture, texture.getHeight());
     }
 
     public ImageActor (Texture texture, float size) {
-        this(texture);
+        setTex(texture);
         setSize(size);
     }
 

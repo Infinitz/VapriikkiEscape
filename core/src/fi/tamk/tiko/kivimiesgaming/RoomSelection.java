@@ -5,9 +5,13 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+
+import java.util.ArrayList;
 
 /**
  * Created by atter on 04-Mar-17.
@@ -18,6 +22,7 @@ public class RoomSelection extends MyScreen {
     private Group floor1;
     private Group floor2;
 
+    private RoomButton selected;
 
     public RoomSelection(Vescape game) {
         super(game);
@@ -36,7 +41,6 @@ public class RoomSelection extends MyScreen {
     }
 
     boolean gaa = false;
-
     @Override
     protected void update(float dt) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK)) {
@@ -58,10 +62,10 @@ public class RoomSelection extends MyScreen {
                 Vescape.GUI_VIEWPORT_HEIGHT - 2 * offsetY);
 
         float baseSize = 250;
-        ImageActor postalRoom = new RoomButton(game.getRoomData(RoomType.POSTAL), baseSize * 1);
-        ImageActor tammerRoom = new RoomButton(game.getRoomData(RoomType.TAMMER), baseSize * 1.15f);
-        ImageActor tutRoom = new RoomButton(game.getRoomData(RoomType.TUTORIAL), baseSize * 1);
-        ImageActor rockRoom = new RoomButton(game.getRoomData(RoomType.ROCK), baseSize * 1);
+        RoomButton postalRoom = new RoomButton(game.getRoomData(RoomType.POSTAL), baseSize * 1);
+        RoomButton tammerRoom = new RoomButton(game.getRoomData(RoomType.TAMMER), baseSize * 1.15f);
+        RoomButton tutRoom = new RoomButton(game.getRoomData(RoomType.TUTORIAL), baseSize * 1);
+        RoomButton rockRoom = new RoomButton(game.getRoomData(RoomType.ROCK), baseSize * 1);
 
         Group floor1 = new Group();
 
@@ -81,6 +85,39 @@ public class RoomSelection extends MyScreen {
 
         floor1.addActor(tutRoom);
         floor1.addActor(rockRoom);
+
+        //Set listeners
+        postalRoom.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("LOL");
+                selectRoom(((RoomButton)actor));
+            }
+        });
+
+        tammerRoom.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("LOL");
+                selectRoom(((RoomButton)actor));
+            }
+        });
+
+        tutRoom.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("LOL");
+                selectRoom(((RoomButton)actor));
+            }
+        });
+
+        rockRoom.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("LOL");
+                selectRoom(((RoomButton)actor));
+            }
+        });
 
         return floor1;
     }
@@ -141,5 +178,18 @@ public class RoomSelection extends MyScreen {
         moveF2.setInterpolation(Interpolation.pow2);
         floor1.addAction(moveF1);
         floor2.addAction(moveF2);
+    }
+
+    protected void selectRoom(RoomButton room) {
+        if (selected == null)
+            return;
+
+        selected.setSelected(false);
+        selected = room;
+        selected.setSelected(true);
+    }
+
+    protected void toRoomScene() {
+        //new RoomScreen(selected);
     }
 }

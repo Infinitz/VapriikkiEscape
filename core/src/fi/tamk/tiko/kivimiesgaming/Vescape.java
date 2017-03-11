@@ -133,16 +133,20 @@ public class Vescape extends Game {
 
         RoomData temp;
 
-        temp = new RoomData(RoomType.ROCK, new Texture("F1_rock.png"), 0);
+        temp = new RoomData(RoomType.ROCK, new Texture("F1_rock.png"),
+                new Texture("F1_rock_active.png"), 0);
         roomData.put(RoomType.ROCK, temp);
 
-        temp = new RoomData(RoomType.TAMMER, new Texture("F1_tammer.png"), 0);
+        temp = new RoomData(RoomType.TAMMER, new Texture("F1_tammer.png"),
+                new Texture("F1_tammer_active.png"), 0);
         roomData.put(RoomType.TAMMER, temp);
 
-        temp = new RoomData(RoomType.POSTAL, new Texture("F1_postal.png"), 0);
+        temp = new RoomData(RoomType.POSTAL, new Texture("F1_postal.png"),
+                new Texture("F1_postal_active.png"), 0);
         roomData.put(RoomType.POSTAL, temp);
 
-        temp = new RoomData(RoomType.TUTORIAL, new Texture("F1_tutorial.png"), 0);
+        temp = new RoomData(RoomType.TUTORIAL, new Texture("F1_tutorial.png"),
+                new Texture("F1_tutorial_active.png"), 0);
         roomData.put(RoomType.TUTORIAL, temp);
 
         temp = new RoomData(RoomType.POSTALUP, new Texture("F1_tammer.png"), 0);

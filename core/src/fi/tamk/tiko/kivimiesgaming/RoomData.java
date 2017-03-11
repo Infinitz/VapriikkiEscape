@@ -12,13 +12,14 @@ public class RoomData {
 
     private int stars;
     private Texture texture;
+    private Texture selectedTex;
 
-    public RoomData(RoomType type, Texture bgTex, int stars) {
+    public RoomData(RoomType type, Texture tex, Texture selectedTex, int stars) {
         this.type = type;
-        this.texture = bgTex;
+        this.texture = tex;
+        this.selectedTex = selectedTex;
         this.stars = stars;
     }
-
 
     public int getStars() {
         return stars;
@@ -26,5 +27,9 @@ public class RoomData {
 
     public Texture getTexture() {
         return texture;
+    }
+
+    public Texture getSelectedTex() {
+        return selectedTex;
     }
 }
