@@ -33,9 +33,14 @@ public class MyScreen implements Screen {
 
     }
 
+    protected void update(float dt) {
+
+    }
+
     @Override
     public void render(float dt) {
 
+        update(dt);
         stage.act(dt);
 
         Gdx.gl.glClearColor(0, 0, 0, 1);

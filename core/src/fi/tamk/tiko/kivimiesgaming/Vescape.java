@@ -16,6 +16,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
 
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class Vescape extends Game {
@@ -28,13 +31,15 @@ public class Vescape extends Game {
     private I18NBundle myBundle;
     private BitmapFont buttonFont;
     private TextButton.TextButtonStyle textButtonStyle;
+    private HashMap<RoomType, RoomData> roomData;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         skin = new Skin(Gdx.files.internal("uiskin.json"));
-
+        Gdx.input.setCatchBackKey(true);
         createTextButtonStyle();
+        loadRoomData();
 
         setFinnish();
 
@@ -80,6 +85,10 @@ public class Vescape extends Game {
         return myBundle;
     }
 
+    public RoomData getRoomData(RoomType type) {
+        return roomData.get(type);
+    }
+
     public void setFinnish() {
         setLocale(new Locale("fi", "FI"));
     }
@@ -117,5 +126,29 @@ public class Vescape extends Game {
 
         textButtonStyle = new TextButton.TextButtonStyle(buttonImage, buttonPressedImage,
                 buttonImage, getButtonFont());
+    }
+
+    private void loadRoomData() {
+        roomData = new HashMap<RoomType, RoomData>();
+
+        RoomData temp;
+
+        temp = new RoomData(RoomType.ROCK, new Texture("F1_rock.png"), 0);
+        roomData.put(RoomType.ROCK, temp);
+
+        temp = new RoomData(RoomType.TAMMER, new Texture("F1_tammer.png"), 0);
+        roomData.put(RoomType.TAMMER, temp);
+
+        temp = new RoomData(RoomType.POSTAL, new Texture("F1_postal.png"), 0);
+        roomData.put(RoomType.POSTAL, temp);
+
+        temp = new RoomData(RoomType.TUTORIAL, new Texture("F1_tutorial.png"), 0);
+        roomData.put(RoomType.TUTORIAL, temp);
+
+        temp = new RoomData(RoomType.POSTALUP, new Texture("englishFlag.png"), 0);
+        roomData.put(RoomType.POSTALUP, temp);
+
+        temp = new RoomData(RoomType.GAME, new Texture("englishFlag.png"), 0);
+        roomData.put(RoomType.GAME, temp);
     }
 }
