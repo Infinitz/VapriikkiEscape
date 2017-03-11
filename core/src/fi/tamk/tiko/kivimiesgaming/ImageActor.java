@@ -4,17 +4,24 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * Created by atter on 04-Mar-17.
  */
 
 public class ImageActor extends Actor {
+    private ChangeListener listener;
 
     private TextureRegion textureRegion;
     private Texture tex;
     private float aspectRatio = 1.0f;
     private float size = 1.0f;
+
+    private boolean isTouched = false;
+
 
     public ImageActor (Texture texture) {
         this(texture, texture.getHeight());
@@ -23,6 +30,23 @@ public class ImageActor extends Actor {
     public ImageActor (Texture texture, float size) {
         setTex(texture);
         setSize(size);
+
+        addListener(new InputListener(){
+            @Override
+            public void touchUp(InputEvent event, float x, float y,
+                                int pointer, int button) {
+
+            }
+
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y,
+                                     int pointer, int button) {
+                if (listener != null && ImageActor.this != null)
+                    listener.changed(null, ImageActor.this);
+
+                return true;
+            }
+        });
     }
 
     public void setTex(Texture tex) {
@@ -61,6 +85,7 @@ public class ImageActor extends Actor {
         }
         float oldSize = this.size;
         this.size = size;
+        //this.setSize(size * aspectRatio, size);
         onSizeChange(oldSize);
     }
 
@@ -89,6 +114,10 @@ public class ImageActor extends Actor {
                 getSizeY() / 2,
                 getSizeX(), getSizeY(), 1, 1,
                 getRotation());
+    }
+
+    public void setClickListener(ChangeListener listener) {
+        this.listener = listener;
     }
 
 }

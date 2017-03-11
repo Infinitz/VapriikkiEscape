@@ -87,34 +87,30 @@ public class RoomSelection extends MyScreen {
         floor1.addActor(rockRoom);
 
         //Set listeners
-        postalRoom.addListener(new ChangeListener() {
+        postalRoom.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("LOL");
                 selectRoom(((RoomButton)actor));
             }
         });
 
-        tammerRoom.addListener(new ChangeListener() {
+        tammerRoom.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("LOL");
                 selectRoom(((RoomButton)actor));
             }
         });
 
-        tutRoom.addListener(new ChangeListener() {
+        tutRoom.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("LOL");
                 selectRoom(((RoomButton)actor));
             }
         });
 
-        rockRoom.addListener(new ChangeListener() {
+        rockRoom.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("LOL");
                 selectRoom(((RoomButton)actor));
             }
         });
@@ -178,15 +174,20 @@ public class RoomSelection extends MyScreen {
         moveF2.setInterpolation(Interpolation.pow2);
         floor1.addAction(moveF1);
         floor2.addAction(moveF2);
+
+        selectRoom(null);
     }
 
     protected void selectRoom(RoomButton room) {
-        if (selected == null)
-            return;
-
-        selected.setSelected(false);
+        if (selected != null) {
+            selected.setSelected(false);
+        }
         selected = room;
-        selected.setSelected(true);
+        if (selected != null) {
+            selected.setSelected(true);
+        }
+
+
     }
 
     protected void toRoomScene() {

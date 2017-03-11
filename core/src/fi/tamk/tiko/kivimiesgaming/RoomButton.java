@@ -19,4 +19,7 @@ public class RoomButton extends SelectableButton {
         roomData = data;
     }
 
+    public RoomData getRoomData() {
+        return roomData;
+    }
 }

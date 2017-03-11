@@ -32,4 +32,8 @@ public class RoomData {
     public Texture getSelectedTex() {
         return selectedTex;
     }
+
+    public RoomType getType() {
+        return type;
+    }
 }
