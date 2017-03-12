@@ -91,7 +91,9 @@ public class RoomSelection extends MyScreen {
         postalRoom.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                selectRoom(((RoomButton) actor));
+                //selectRoom(((RoomButton) actor));
+                changeFloor(gaa);
+                gaa = !gaa;
             }
         });
 
@@ -165,6 +167,50 @@ public class RoomSelection extends MyScreen {
         floor2.addActor(dollRoom);
 
         floor2.addActor(natureRoom);
+
+        postalRoomUP.setClickListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                //selectRoom(((RoomButton) actor));
+                changeFloor(gaa);
+                gaa = !gaa;
+            }
+        });
+
+        gameRoom.setClickListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                selectRoom(((RoomButton) actor));
+            }
+        });
+
+        iceHockeyRoom.setClickListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                selectRoom(((RoomButton) actor));
+            }
+        });
+
+        mediaRoom.setClickListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                selectRoom(((RoomButton) actor));
+            }
+        });
+
+        dollRoom.setClickListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                selectRoom(((RoomButton) actor));
+            }
+        });
+
+        natureRoom.setClickListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                selectRoom(((RoomButton) actor));
+            }
+        });
 
         return floor2;
     }
