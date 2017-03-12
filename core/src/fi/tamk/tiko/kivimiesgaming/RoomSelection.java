@@ -41,6 +41,7 @@ public class RoomSelection extends MyScreen {
     }
 
     boolean gaa = false;
+
     @Override
     protected void update(float dt) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK)) {
@@ -90,28 +91,28 @@ public class RoomSelection extends MyScreen {
         postalRoom.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                selectRoom(((RoomButton)actor));
+                selectRoom(((RoomButton) actor));
             }
         });
 
         tammerRoom.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                selectRoom(((RoomButton)actor));
+                selectRoom(((RoomButton) actor));
             }
         });
 
         tutRoom.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                selectRoom(((RoomButton)actor));
+                selectRoom(((RoomButton) actor));
             }
         });
 
         rockRoom.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                selectRoom(((RoomButton)actor));
+                selectRoom(((RoomButton) actor));
             }
         });
 
@@ -119,30 +120,42 @@ public class RoomSelection extends MyScreen {
     }
 
     private Group createFloor2() {
-        float baseSize = 200;
+        float baseSize = 250;
+
+        float offsetX = 90;
+        float offsetY = 300;
+
+        Rectangle rect = new Rectangle(offsetX, offsetY,
+                Vescape.GUI_VIEWPORT_WIDTH - 2 * offsetX,
+                Vescape.GUI_VIEWPORT_HEIGHT - 2 * offsetY);
+
+
         ImageActor postalRoomUP = new RoomButton(game.getRoomData(RoomType.POSTALUP), baseSize * 0.8f);
-        ImageActor gameRoom = new RoomButton(game.getRoomData(RoomType.GAME), baseSize * 1);
+        ImageActor gameRoom = new RoomButton(game.getRoomData(RoomType.GAME), baseSize * 1.25f);
         ImageActor iceHockeyRoom = new RoomButton(game.getRoomData(RoomType.ICEHOCKEY),
                 baseSize * 1);
         ImageActor mediaRoom = new RoomButton(game.getRoomData(RoomType.MEDIA), baseSize * 1);
-        ImageActor dollRoom = new RoomButton(game.getRoomData(RoomType.DOLL), baseSize * 1);
-        ImageActor natureRoom = new RoomButton(game.getRoomData(RoomType.NATURE), baseSize * 1);
+        ImageActor dollRoom = new RoomButton(game.getRoomData(RoomType.DOLL), baseSize * 1.25f);
+        ImageActor natureRoom = new RoomButton(game.getRoomData(RoomType.NATURE), baseSize * 1.25f);
 
         Group floor2 = new Group();
 
-        float offsetX = 100;
-        postalRoomUP.setPosition(offsetX, 0);
+        postalRoomUP.setPosition(offsetX * 2, rect.getY());
 
-        gameRoom.setPosition(postalRoomUP.getX() + postalRoomUP.getSizeX() * 8 / 5,
-                postalRoomUP.getSizeY() * 1 / 10);
+        gameRoom.setPosition(postalRoomUP.getX() + postalRoomUP.getSizeX() * 3/2,
+                postalRoomUP.getY() + postalRoomUP.getSizeY() * 1 / 10);
 
-        iceHockeyRoom.setPosition(0, postalRoomUP.getSizeY() * 7 / 5);
+        iceHockeyRoom.setPosition(postalRoomUP.getX() - 75,
+                postalRoomUP.getY() + postalRoomUP.getSizeY() * 7 / 5);
 
-        mediaRoom.setPosition(iceHockeyRoom.getSizeX() * 5 / 2, gameRoom.getSizeY() * 5 / 4);
+        mediaRoom.setPosition(iceHockeyRoom.getX() + iceHockeyRoom.getSizeX() * 10/3,
+                gameRoom.getY() + gameRoom.getSizeY() * 5 / 4);
 
-        dollRoom.setPosition(iceHockeyRoom.getSizeX() + mediaRoom.getSizeX(), postalRoomUP.getSizeY() * 3);
+        dollRoom.setPosition(postalRoomUP.getX(),
+                iceHockeyRoom.getY() + iceHockeyRoom.getSizeY() * 5 / 4);
 
-        natureRoom.setPosition(offsetX, postalRoomUP.getSizeY() + iceHockeyRoom.getSizeY() * 3);
+        natureRoom.setPosition(gameRoom.getX(),
+                mediaRoom.getY() + mediaRoom.getSizeY() * 5 / 4);
 
         floor2.addActor(postalRoomUP);
         floor2.addActor(gameRoom);
