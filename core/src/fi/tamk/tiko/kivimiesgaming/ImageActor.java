@@ -116,7 +116,7 @@ public class ImageActor extends Actor {
             batch.draw(textureRegion, getX(), getY(),
                     getSizeX() / 2,
                     getSizeY() / 2,
-                    getSizeX(), getSizeY(), 1, 1,
+                    getSizeX(), getSizeY(), getScaleX(), getScaleY(),
                     getRotation());
             batch.setColor(c.r, c.g, c.b, 1);
         }

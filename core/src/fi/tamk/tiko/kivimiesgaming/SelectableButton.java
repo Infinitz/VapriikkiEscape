@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class SelectableButton extends ImageActor {
 
-    private boolean selected = false;
+    protected boolean selected = false;
     private Texture otherTex;
 
     public SelectableButton(Texture texture, Texture selected) {
@@ -25,7 +25,7 @@ public class SelectableButton extends ImageActor {
             return;
 
         this.selected = selected;
-
+        onSelect(this.selected);
         //swawpTextures
         Texture temp = getTex();
         setTex(otherTex);
@@ -34,7 +34,7 @@ public class SelectableButton extends ImageActor {
 
     public void select() {
         this.selected = !this.selected;
-
+        onSelect(this.selected);
         //swawpTextures
         Texture temp = getTex();
         setTex(otherTex);
@@ -43,5 +43,9 @@ public class SelectableButton extends ImageActor {
 
     public boolean isSelected() {
         return selected;
+    }
+
+    protected void onSelect(boolean selected) {
+
     }
 }

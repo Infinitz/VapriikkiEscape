@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
@@ -21,15 +22,21 @@ public class RoomSelection extends MyScreen {
 
     private SelectableButton changeFloorButton;
     private SelectableButton timeMachineButton;
-
+    private ImageActor bg;
     private RoomButton selected;
+
+    private OpenMenuButton burgerButton;
 
     public RoomSelection(Vescape game) {
         super(game);
-
-        ImageActor bg = new ImageActor(new Texture("MENU_bg.png"), Vescape.GUI_VIEWPORT_HEIGHT);
+        bg = new ImageActor(new Texture("MENU_bg.png"),
+                Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
+
         stage.addActor(bg);
+
+        bg.addAction(Actions.scaleBy(0.25f, 0.25f,
+                1.75f, Interpolation.pow2Out));
 
         floor1 = createFloor1();
         stage.addActor(floor1);
@@ -38,7 +45,7 @@ public class RoomSelection extends MyScreen {
         floor2.setPosition(floor2.getX(), floor2.getY() + Vescape.GUI_VIEWPORT_HEIGHT);
         stage.addActor(floor2);
         createChangeFloorButton();
-        new OpenMenuButton(this);
+        burgerButton = new OpenMenuButton(this);
     }
 
     public void createChangeFloorButton() {
@@ -76,7 +83,12 @@ public class RoomSelection extends MyScreen {
 
     @Override
     protected void update(float dt) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.BACK)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
+                Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            burgerButton.togglePanel();
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
             game.setScreen(new MainMenu(game));
         }
     }
@@ -108,11 +120,11 @@ public class RoomSelection extends MyScreen {
         rockRoom.setPosition(postalRoom.getX() - rockRoom.getSizeX() * 1 / 5,
                 tutRoom.getY() + tutRoom.getSizeY() * 6 / 5);
 
-        floor1.addActor(postalRoom);
-        floor1.addActor(tammerRoom);
+        floor1.addActor(postalRoom.getRoomElements());
+        floor1.addActor(tammerRoom.getRoomElements());
 
-        floor1.addActor(tutRoom);
-        floor1.addActor(rockRoom);
+        floor1.addActor(tutRoom.getRoomElements());
+        floor1.addActor(rockRoom.getRoomElements());
 
         //Set listeners
         postalRoom.setClickListener(new ChangeListener() {
@@ -157,13 +169,13 @@ public class RoomSelection extends MyScreen {
                 Vescape.GUI_VIEWPORT_HEIGHT - 2 * offsetY);
 
 
-        ImageActor postalRoomUP = new RoomButton(game.getRoomData(RoomType.POSTALUP), baseSize * 0.8f);
-        ImageActor gameRoom = new RoomButton(game.getRoomData(RoomType.GAME), baseSize * 1.25f);
-        ImageActor iceHockeyRoom = new RoomButton(game.getRoomData(RoomType.ICEHOCKEY),
+        RoomButton postalRoomUP = new RoomButton(game.getRoomData(RoomType.POSTALUP), baseSize * 0.8f);
+        RoomButton gameRoom = new RoomButton(game.getRoomData(RoomType.GAME), baseSize * 1.25f);
+        RoomButton iceHockeyRoom = new RoomButton(game.getRoomData(RoomType.ICEHOCKEY),
                 baseSize * 1);
-        ImageActor mediaRoom = new RoomButton(game.getRoomData(RoomType.MEDIA), baseSize * 1);
-        ImageActor dollRoom = new RoomButton(game.getRoomData(RoomType.DOLL), baseSize * 1.5f);
-        ImageActor natureRoom = new RoomButton(game.getRoomData(RoomType.NATURE), baseSize * 1.5f);
+        RoomButton mediaRoom = new RoomButton(game.getRoomData(RoomType.MEDIA), baseSize * 1);
+        RoomButton dollRoom = new RoomButton(game.getRoomData(RoomType.DOLL), baseSize * 1.5f);
+        RoomButton natureRoom = new RoomButton(game.getRoomData(RoomType.NATURE), baseSize * 1.5f);
 
         Group floor2 = new Group();
 
@@ -184,14 +196,14 @@ public class RoomSelection extends MyScreen {
         natureRoom.setPosition(gameRoom.getX(),
                 mediaRoom.getY() + mediaRoom.getSizeY() * 5 / 4);
 
-        floor2.addActor(postalRoomUP);
-        floor2.addActor(gameRoom);
+        floor2.addActor(postalRoomUP.getRoomElements());
+        floor2.addActor(gameRoom.getRoomElements());
 
-        floor2.addActor(iceHockeyRoom);
-        floor2.addActor(mediaRoom);
-        floor2.addActor(dollRoom);
+        floor2.addActor(iceHockeyRoom.getRoomElements());
+        floor2.addActor(mediaRoom.getRoomElements());
+        floor2.addActor(dollRoom.getRoomElements());
 
-        floor2.addActor(natureRoom);
+        floor2.addActor(natureRoom.getRoomElements());
 
         postalRoomUP.setClickListener(new ChangeListener() {
             @Override
@@ -243,19 +255,14 @@ public class RoomSelection extends MyScreen {
         float duration = 0.5f;
         float movement = Vescape.GUI_VIEWPORT_HEIGHT * direction;
 
-        MoveByAction moveF1 = new MoveByAction();
-        MoveByAction moveF2 = new MoveByAction();
+        floor1.addAction(Actions.moveBy(0, movement, duration, Interpolation.pow2));
+        floor2.addAction(Actions.moveBy(0, movement, duration, Interpolation.pow2));
 
-        moveF1.setAmountY(movement);
-        moveF2.setAmountY(movement);
 
-        moveF1.setDuration(duration);
-        moveF2.setDuration(duration);
-
-        moveF1.setInterpolation(Interpolation.pow2);
-        moveF2.setInterpolation(Interpolation.pow2);
-        floor1.addAction(moveF1);
-        floor2.addAction(moveF2);
+        float delta = (bg.getHeight() * bg.getScaleY() - bg.getHeight()) / 2;
+        bg.addAction(Actions.moveBy(0,
+                direction * (bg.getHeight() * bg.getScaleY() - Vescape.GUI_VIEWPORT_HEIGHT - delta),
+                duration, Interpolation.pow2));
 
         selectRoom(null);
     }

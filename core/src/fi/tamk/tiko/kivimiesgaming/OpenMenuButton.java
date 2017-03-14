@@ -19,28 +19,19 @@ public class OpenMenuButton {
     private MyScreen screen;
     private MenuPanel menuPanel;
     private ImageActor screenDarkener;
+    private SelectableButton openMenuButton;
 
     public OpenMenuButton (final MyScreen screen) {
         this.screen = screen;
 
-        SelectableButton openMenuButton = new SelectableButton(new Texture("menurger.png"),
+        openMenuButton = new SelectableButton(new Texture("menurger.png"),
                 new Texture("menurger_pressed.png"),
                 100);
 
         openMenuButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                SelectableButton temp = ((SelectableButton)actor);
-                temp.select();
-                if (temp.isSelected()) {
-                    menuPanel = new MenuPanel(screen);
-                    screenDarkener.setPosition(screenDarkener.getX() - Vescape.GUI_VIEWPORT_WIDTH,
-                            0);
-                } else {
-                    menuPanel.dispose();
-                    screenDarkener.setPosition(screenDarkener.getX() + Vescape.GUI_VIEWPORT_WIDTH,
-                            0);
-                }
+                togglePanel();
             }
         });
 
@@ -57,6 +48,21 @@ public class OpenMenuButton {
 
         screen.getStage().addActor(screenDarkener);
         screen.getStage().addActor(table);
+    }
+
+    public void togglePanel() {
+        boolean enabled = !openMenuButton.isSelected();
+        openMenuButton.setSelected(enabled);
+        if (enabled) {
+            menuPanel = new MenuPanel(screen);
+            screenDarkener.setPosition(screenDarkener.getX() - Vescape.GUI_VIEWPORT_WIDTH,
+                    0);
+        } else {
+            menuPanel.dispose();
+            screenDarkener.setPosition(screenDarkener.getX() + Vescape.GUI_VIEWPORT_WIDTH,
+                    0);
+        }
+
     }
 /*
 
