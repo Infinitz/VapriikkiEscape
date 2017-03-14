@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
@@ -21,6 +22,8 @@ public class RoomSelection extends MyScreen {
 
     private Group floor1;
     private Group floor2;
+
+    private SelectableButton changeFloorButton;
 
     private RoomButton selected;
 
@@ -36,21 +39,36 @@ public class RoomSelection extends MyScreen {
         floor2.setPosition(floor2.getX(), floor2.getY() + Vescape.GUI_VIEWPORT_HEIGHT);
         stage.addActor(floor1);
         stage.addActor(floor2);
+        createChangeFloorButton();
 
         new OpenMenuButton(this);
     }
 
-    boolean gaa = false;
+    public void createChangeFloorButton() {
+        changeFloorButton = new SelectableButton(new Texture("F1.png"),
+                new Texture("F2.png"),
+                175);
+
+        changeFloorButton.setPosition(
+                Vescape.GUI_VIEWPORT_WIDTH / 2 - changeFloorButton.getWidth() / 2,
+                50);
+
+        changeFloorButton.setClickListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                SelectableButton temp = ((SelectableButton)actor);
+                changeFloor(temp.isSelected());
+                temp.select();
+            }
+        });
+
+        stage.addActor(changeFloorButton);
+    }
 
     @Override
     protected void update(float dt) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK)) {
             game.setScreen(new MainMenu(game));
-        }
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            changeFloor(gaa);
-            gaa = !gaa;
         }
     }
 
@@ -91,9 +109,7 @@ public class RoomSelection extends MyScreen {
         postalRoom.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //selectRoom(((RoomButton) actor));
-                changeFloor(gaa);
-                gaa = !gaa;
+                selectRoom(((RoomButton) actor));
             }
         });
 
@@ -171,9 +187,7 @@ public class RoomSelection extends MyScreen {
         postalRoomUP.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //selectRoom(((RoomButton) actor));
-                changeFloor(gaa);
-                gaa = !gaa;
+                selectRoom(((RoomButton) actor));
             }
         });
 

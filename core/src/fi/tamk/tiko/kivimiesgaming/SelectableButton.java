@@ -32,4 +32,17 @@ public class SelectableButton extends ImageActor {
         setTex(otherTex);
         otherTex = temp;
     }
+
+    public void select() {
+        this.selected = !this.selected;
+
+        //swawpTextures
+        Texture temp = getTex();
+        setTex(otherTex);
+        otherTex = temp;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
 }
