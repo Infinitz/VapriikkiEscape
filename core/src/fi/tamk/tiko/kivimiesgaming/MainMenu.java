@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
 import com.badlogic.gdx.scenes.scene2d.actions.RotateByAction;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -23,13 +24,6 @@ public class MainMenu extends MyScreen {
 
         ImageActor bg = new ImageActor(new Texture("MENU_bg.png"), Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
-        /*
-        RotateByAction rotateByAction = new RotateByAction();
-        rotateByAction.setAmount(10000);
-        rotateByAction.setDuration(15);
-        rotateByAction.setInterpolation(Interpolation.elasticOut);
-        bg.addAction(rotateByAction);
-        */
 
         stage.addActor(bg);
 
@@ -38,11 +32,20 @@ public class MainMenu extends MyScreen {
         title.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - title.getSizeX() / 2,
                 Vescape.GUI_VIEWPORT_HEIGHT -  3 * title.getSizeY() / 2 + movementY);
 
+        MoveByAction wait = new MoveByAction();
+        wait = new MoveByAction();
+        wait.setAmount(0, 0);
+        wait.setDuration(0.5f);
+
         MoveByAction moveAction = new MoveByAction();
         moveAction.setAmountY(-movementY);
         moveAction.setDuration(1.25f);
         moveAction.setInterpolation(Interpolation.bounceOut);
-        title.addAction(moveAction);
+
+        SequenceAction seq = new SequenceAction();
+        seq.addAction(wait);
+        seq.addAction(moveAction);
+        title.addAction(seq);
         stage.addActor(title);
 
         new MenuPanel(this);

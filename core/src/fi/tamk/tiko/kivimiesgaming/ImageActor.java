@@ -1,5 +1,6 @@
 package fi.tamk.tiko.kivimiesgaming;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -20,8 +21,8 @@ public class ImageActor extends Actor {
     private float aspectRatio = 1.0f;
     private float size = 1.0f;
 
-    private boolean isTouched = false;
-
+    public boolean renderEnabled = true;
+    public float alpha = 1.0f;
 
     public ImageActor (Texture texture) {
         this(texture, texture.getHeight());
@@ -109,11 +110,16 @@ public class ImageActor extends Actor {
 
     @Override
     public void draw(Batch batch, float alpha) {
-        batch.draw(textureRegion, getX(), getY(),
-                getSizeX() / 2,
-                getSizeY() / 2,
-                getSizeX(), getSizeY(), 1, 1,
-                getRotation());
+        if (renderEnabled) {
+            Color c = batch.getColor();
+            batch.setColor(c.r, c.g, c.b, this.alpha);
+            batch.draw(textureRegion, getX(), getY(),
+                    getSizeX() / 2,
+                    getSizeY() / 2,
+                    getSizeX(), getSizeY(), 1, 1,
+                    getRotation());
+            batch.setColor(c.r, c.g, c.b, 1);
+        }
     }
 
     public void setClickListener(ChangeListener listener) {
