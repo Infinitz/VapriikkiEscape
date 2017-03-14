@@ -34,7 +34,7 @@ public class MainMenu extends MyScreen {
                 Vescape.GUI_VIEWPORT_HEIGHT -  3 * title.getSizeY() / 2 + movementY);
 
         SequenceAction seq = Actions.sequence(
-                Actions.delay(0.3f),
+                Actions.delay(0.4f),
                 Actions.moveBy(0, -movementY, 1.25f, Interpolation.bounceOut));
 
         title.addAction(seq);
