@@ -24,6 +24,7 @@ public class RoomSelection extends MyScreen {
     private Group floor2;
 
     private SelectableButton changeFloorButton;
+    private SelectableButton timeMachineButton;
 
     private RoomButton selected;
 
@@ -35,12 +36,12 @@ public class RoomSelection extends MyScreen {
         stage.addActor(bg);
 
         floor1 = createFloor1();
+        stage.addActor(floor1);
+        createTimeMachineButton();
         floor2 = createFloor2();
         floor2.setPosition(floor2.getX(), floor2.getY() + Vescape.GUI_VIEWPORT_HEIGHT);
-        stage.addActor(floor1);
         stage.addActor(floor2);
         createChangeFloorButton();
-
         new OpenMenuButton(this);
     }
 
@@ -63,6 +64,18 @@ public class RoomSelection extends MyScreen {
         });
 
         stage.addActor(changeFloorButton);
+    }
+
+    public void createTimeMachineButton() {
+        timeMachineButton = new SelectableButton(new Texture("timeMachine.png"),
+                new Texture("timeMachine.png"),
+                250);
+
+        timeMachineButton.setPosition(
+                Vescape.GUI_VIEWPORT_WIDTH / 2 - timeMachineButton.getWidth() / 2,
+                Vescape.GUI_VIEWPORT_HEIGHT / 2 - timeMachineButton.getHeight() / 2);
+
+        stage.addActor(timeMachineButton);
     }
 
     @Override
@@ -153,8 +166,8 @@ public class RoomSelection extends MyScreen {
         ImageActor iceHockeyRoom = new RoomButton(game.getRoomData(RoomType.ICEHOCKEY),
                 baseSize * 1);
         ImageActor mediaRoom = new RoomButton(game.getRoomData(RoomType.MEDIA), baseSize * 1);
-        ImageActor dollRoom = new RoomButton(game.getRoomData(RoomType.DOLL), baseSize * 1.25f);
-        ImageActor natureRoom = new RoomButton(game.getRoomData(RoomType.NATURE), baseSize * 1.25f);
+        ImageActor dollRoom = new RoomButton(game.getRoomData(RoomType.DOLL), baseSize * 1.5f);
+        ImageActor natureRoom = new RoomButton(game.getRoomData(RoomType.NATURE), baseSize * 1.5f);
 
         Group floor2 = new Group();
 
@@ -164,13 +177,13 @@ public class RoomSelection extends MyScreen {
                 postalRoomUP.getY() + postalRoomUP.getSizeY() * 1 / 10);
 
         iceHockeyRoom.setPosition(postalRoomUP.getX() - 75,
-                postalRoomUP.getY() + postalRoomUP.getSizeY() * 7 / 5);
+                postalRoomUP.getY() + postalRoomUP.getSizeY() * 6 / 4);
 
         mediaRoom.setPosition(iceHockeyRoom.getX() + iceHockeyRoom.getSizeX() * 10/3,
                 gameRoom.getY() + gameRoom.getSizeY() * 5 / 4);
 
         dollRoom.setPosition(postalRoomUP.getX(),
-                iceHockeyRoom.getY() + iceHockeyRoom.getSizeY() * 5 / 4);
+                iceHockeyRoom.getY() + iceHockeyRoom.getSizeY() * 6 / 4);
 
         natureRoom.setPosition(gameRoom.getX(),
                 mediaRoom.getY() + mediaRoom.getSizeY() * 5 / 4);
