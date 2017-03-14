@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
 import com.badlogic.gdx.scenes.scene2d.actions.RotateByAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
@@ -32,19 +33,10 @@ public class MainMenu extends MyScreen {
         title.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - title.getSizeX() / 2,
                 Vescape.GUI_VIEWPORT_HEIGHT -  3 * title.getSizeY() / 2 + movementY);
 
-        MoveByAction wait = new MoveByAction();
-        wait = new MoveByAction();
-        wait.setAmount(0, 0);
-        wait.setDuration(0.5f);
+        SequenceAction seq = Actions.sequence(
+                Actions.delay(0.3f),
+                Actions.moveBy(0, -movementY, 1.25f, Interpolation.bounceOut));
 
-        MoveByAction moveAction = new MoveByAction();
-        moveAction.setAmountY(-movementY);
-        moveAction.setDuration(1.25f);
-        moveAction.setInterpolation(Interpolation.bounceOut);
-
-        SequenceAction seq = new SequenceAction();
-        seq.addAction(wait);
-        seq.addAction(moveAction);
         title.addAction(seq);
         stage.addActor(title);
 

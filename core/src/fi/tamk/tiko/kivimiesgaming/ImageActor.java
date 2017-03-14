@@ -112,7 +112,7 @@ public class ImageActor extends Actor {
     public void draw(Batch batch, float alpha) {
         if (renderEnabled) {
             Color c = batch.getColor();
-            batch.setColor(c.r, c.g, c.b, this.alpha);
+            batch.setColor(c.r, c.g, c.b, c.a * this.alpha);
             batch.draw(textureRegion, getX(), getY(),
                     getSizeX() / 2,
                     getSizeY() / 2,
