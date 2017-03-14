@@ -1,7 +1,6 @@
 package fi.tamk.tiko.kivimiesgaming;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
  * Created by atter on 11-Mar-17.

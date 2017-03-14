@@ -1,7 +1,5 @@
 package fi.tamk.tiko.kivimiesgaming;
 
-import com.badlogic.gdx.graphics.Texture;
-
 /**
  * Created by atter on 11-Mar-17.
  */
