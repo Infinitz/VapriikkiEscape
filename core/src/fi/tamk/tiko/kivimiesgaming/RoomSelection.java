@@ -100,10 +100,10 @@ public class RoomSelection extends MyScreen {
         postalRoom.setPosition(rect.getWidth() / 2 + rect.getX() - postalRoom.getSizeX() / 2,
                 rect.getY());
 
-        tammerRoom.setPosition(rect.getX(), postalRoom.getY() + postalRoom.getSizeY());
+        tammerRoom.setPosition(rect.getX(), postalRoom.getY() + postalRoom.getSizeY() * 11/8);
 
         tutRoom.setPosition(postalRoom.getX() + postalRoom.getSizeX(),
-                tammerRoom.getY() + tammerRoom.getSizeY() * 2 / 3);
+                tammerRoom.getY() * 9 / 8);
 
         rockRoom.setPosition(postalRoom.getX() - rockRoom.getSizeX() * 1 / 5,
                 tutRoom.getY() + tutRoom.getSizeY() * 6 / 5);
