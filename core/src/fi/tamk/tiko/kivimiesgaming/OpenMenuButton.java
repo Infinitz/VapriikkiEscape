@@ -17,11 +17,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class OpenMenuButton {
     private MyScreen screen;
+    private MenuPanel menuPanel;
 
     public OpenMenuButton (final MyScreen screen) {
         this.screen = screen;
 
-        TextureRegionDrawable image = new TextureRegionDrawable(
+        /*TextureRegionDrawable image = new TextureRegionDrawable(
                 new TextureRegion(
                         new Texture("menurger.png")));
         TextureRegionDrawable imagePressed = new TextureRegionDrawable(
@@ -33,17 +34,32 @@ public class OpenMenuButton {
 
         Button button = new Button(style);
 
-        button.addListener(new ChangeListener() {
+        */
+
+
+
+        SelectableButton openMenuButton = new SelectableButton(new Texture("menurger.png"),
+                new Texture("menurger_pressed.png"),
+                100);
+
+        openMenuButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                new MenuPanel(screen);
+                SelectableButton temp = ((SelectableButton)actor);
+                temp.select();
+                if (temp.isSelected()) {
+                    menuPanel = new MenuPanel(screen);
+                } else {
+                    menuPanel.dispose();
+                }
             }
         });
 
         Table table = new Table();
         table.setFillParent(true);
         table.top().right();
-        table.add(button).pad(25);
+        table.add(openMenuButton).pad(25);
         screen.getStage().addActor(table);
+
     }
 }

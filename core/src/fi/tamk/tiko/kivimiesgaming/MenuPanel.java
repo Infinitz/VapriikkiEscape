@@ -19,6 +19,7 @@ public class MenuPanel {
     private MyScreen screen;
 
     private Table menuTable;
+    private Table motherTable;
 
     private Button flagButton;
     private Button.ButtonStyle finnishStyle;
@@ -136,23 +137,23 @@ public class MenuPanel {
         float musicAspectRatio = musicButton.getWidth() / musicButton.getHeight();
         float buttonSize = 200;
 
-        Table table = new Table();
-        table.setFillParent(true);
-        table.bottom();
-        table.add(soundButton)
+        motherTable = new Table();
+        motherTable.setFillParent(true);
+        motherTable.bottom();
+        motherTable.add(soundButton)
                 .pad(25).padBottom(100)
                 .width(buttonSize * soundAspectRatio)
                 .height(buttonSize);
-        table.add(musicButton)
+        motherTable.add(musicButton)
                 .pad(25).padBottom(100)
                 .width(buttonSize * musicAspectRatio)
                 .height(buttonSize);
-        table.add(flagButton)
+        motherTable.add(flagButton)
                 .pad(25).padBottom(100)
                 .width(buttonSize * flagAspectRatio)
                 .height(buttonSize);
 
-        screen.getStage().addActor(table);
+        screen.getStage().addActor(motherTable);
 
         flagButton.addListener(new ChangeListener() {
             @Override
@@ -198,5 +199,10 @@ public class MenuPanel {
             }
         });
 
+    }
+
+    public void dispose() {
+        menuTable.remove();
+        motherTable.remove();
     }
 }
