@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
  */
 
 public class MainMenu extends MyScreen {
-
     public MainMenu(Vescape game) {
         super(game);
 
