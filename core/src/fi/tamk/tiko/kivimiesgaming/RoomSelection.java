@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
@@ -25,7 +24,7 @@ public class RoomSelection extends MyScreen {
     private ImageActor bg;
     private RoomButton selected;
 
-    private OpenMenuButton burgerButton;
+    private BurgerButton burgerButton;
 
     public RoomSelection(Vescape game) {
         super(game);
@@ -45,7 +44,7 @@ public class RoomSelection extends MyScreen {
         floor2.setPosition(floor2.getX(), floor2.getY() + Vescape.GUI_VIEWPORT_HEIGHT);
         stage.addActor(floor2);
         createChangeFloorButton();
-        burgerButton = new OpenMenuButton(this);
+        burgerButton = new BurgerButton(this);
     }
 
     public void createChangeFloorButton() {

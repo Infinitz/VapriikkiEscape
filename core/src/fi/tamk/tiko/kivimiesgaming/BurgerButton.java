@@ -1,34 +1,28 @@
 package fi.tamk.tiko.kivimiesgaming;
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 /**
  * Created by atter on 04-Mar-17.
  */
 
-public class OpenMenuButton {
+public class BurgerButton {
     private MyScreen screen;
     private MenuPanel menuPanel;
     private ImageActor screenDarkener;
-    private SelectableButton openMenuButton;
+    private SelectableButton burgerButton;
 
-    public OpenMenuButton (final MyScreen screen) {
+    public BurgerButton(final MyScreen screen) {
         this.screen = screen;
 
-        openMenuButton = new SelectableButton(new Texture("menurger.png"),
+        burgerButton = new SelectableButton(new Texture("menurger.png"),
                 new Texture("menurger_pressed.png"),
                 100);
 
-        openMenuButton.setClickListener(new ChangeListener() {
+        burgerButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 togglePanel();
@@ -38,7 +32,7 @@ public class OpenMenuButton {
         Table table = new Table();
         table.setFillParent(true);
         table.top().right();
-        table.add(openMenuButton).pad(25);
+        table.add(burgerButton).pad(25);
 
 
         screenDarkener = new ImageActor(new Texture("black.png"), Vescape.GUI_VIEWPORT_HEIGHT);
@@ -51,8 +45,8 @@ public class OpenMenuButton {
     }
 
     public void togglePanel() {
-        boolean enabled = !openMenuButton.isSelected();
-        openMenuButton.setSelected(enabled);
+        boolean enabled = !burgerButton.isSelected();
+        burgerButton.setSelected(enabled);
         if (enabled) {
             menuPanel = new MenuPanel(screen);
             screenDarkener.setPosition(screenDarkener.getX() - Vescape.GUI_VIEWPORT_WIDTH,
