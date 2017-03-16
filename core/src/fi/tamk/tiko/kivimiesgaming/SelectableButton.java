@@ -11,6 +11,10 @@ public class SelectableButton extends ImageActor {
     protected boolean selected = false;
     private Texture otherTex;
 
+    public SelectableButton(Texture texture, float size) {
+        this(texture, null, size);
+    }
+
     public SelectableButton(Texture texture, Texture selected) {
         this(texture, selected, texture.getHeight());
     }
@@ -26,19 +30,23 @@ public class SelectableButton extends ImageActor {
 
         this.selected = selected;
         onSelect(this.selected);
-        //swawpTextures
-        Texture temp = getTex();
-        setTex(otherTex);
-        otherTex = temp;
+
+        if (otherTex != null) {
+            Texture temp = getTex();
+            setTex(otherTex);
+            otherTex = temp;
+        }
     }
 
     public void select() {
         this.selected = !this.selected;
         onSelect(this.selected);
-        //swawpTextures
-        Texture temp = getTex();
-        setTex(otherTex);
-        otherTex = temp;
+
+        if (otherTex != null) {
+            Texture temp = getTex();
+            setTex(otherTex);
+            otherTex = temp;
+        }
     }
 
     public boolean isSelected() {
