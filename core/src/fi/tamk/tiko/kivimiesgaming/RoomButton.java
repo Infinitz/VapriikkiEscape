@@ -22,7 +22,7 @@ public class RoomButton extends SelectableButton {
     public RoomButton(RoomData data, float size) {
         super(data.getTexture(), data.getSelectedTex(), size);
         roomData = data;
-        roomIcon = new ImageActor(data.getIconTexture(), data.getIconTexture().getHeight());
+        roomIcon = new ImageActor(data.getIconTexture(), 200);
 
         roomIcon.setTouchable(Touchable.disabled);
 

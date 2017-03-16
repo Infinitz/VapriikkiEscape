@@ -132,7 +132,7 @@ public class Vescape extends Game {
         RoomData temp;
 
         temp = new RoomData(RoomType.ROCK, new Texture("F1_rock.png"),
-                new Texture("F1_rock_active.png"), new Texture("star_full.png"), 0);
+                new Texture("F1_rock_active.png"), new Texture("englishFlag.png"), 0);
         temp.setIconLocalPosition(0.6f, 0.6f);
         roomData.put(RoomType.ROCK, temp);
 
@@ -147,7 +147,7 @@ public class Vescape extends Game {
         roomData.put(RoomType.POSTAL, temp);
 
         temp = new RoomData(RoomType.TUTORIAL, new Texture("F1_tutorial.png"),
-                new Texture("F1_tutorial_active.png"), new Texture("englishFlag.png"), 0);
+                new Texture("F1_tutorial_active.png"), new Texture("map_icons_tutorial.png"), 0);
         temp.setIconLocalPosition(0.15f, 0.15f);
         roomData.put(RoomType.TUTORIAL, temp);
 
