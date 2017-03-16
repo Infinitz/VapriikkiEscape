@@ -22,9 +22,9 @@ public class RoomSelection extends MyScreen {
     private SelectableButton changeFloorButton;
     private SelectableButton timeMachineButton;
     private ImageActor bg;
+    private RoomPopUp roomPopUp;
     private RoomButton selected;
-
-    private BurgerButton burgerButton;
+    private OpenMenuButton burgerButton;
 
     public RoomSelection(Vescape game) {
         super(game);
@@ -44,7 +44,7 @@ public class RoomSelection extends MyScreen {
         floor2.setPosition(floor2.getX(), floor2.getY() + Vescape.GUI_VIEWPORT_HEIGHT);
         stage.addActor(floor2);
         createChangeFloorButton();
-        burgerButton = new BurgerButton(this);
+        burgerButton = new OpenMenuButton(this);
     }
 
     public void createChangeFloorButton() {
@@ -84,7 +84,13 @@ public class RoomSelection extends MyScreen {
     protected void update(float dt) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
                 Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            burgerButton.togglePanel();
+
+            if (roomPopUp != null) {
+                roomPopUp.dispose();
+                roomPopUp = null;
+            } else {
+                burgerButton.togglePanel();
+            }
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
@@ -267,18 +273,19 @@ public class RoomSelection extends MyScreen {
     }
 
     protected void selectRoom(RoomButton room) {
+
         if (selected != null) {
             selected.setSelected(false);
         }
         selected = room;
         if (selected != null) {
             selected.setSelected(true);
+            roomPopUp = new RoomPopUp(this, room.getRoomData());
         }
-
-
     }
 
     protected void toRoomScene() {
         //new RoomScreen(selected);
+
     }
 }
