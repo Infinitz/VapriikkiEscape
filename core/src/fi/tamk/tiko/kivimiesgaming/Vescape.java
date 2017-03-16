@@ -58,6 +58,9 @@ public class Vescape extends Game {
     @Override
     public void dispose() {
         batch.dispose();
+        if (getScreen() != null) {
+            getScreen().dispose();
+        }
     }
 
     public SpriteBatch getBatch() {
