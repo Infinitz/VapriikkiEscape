@@ -47,12 +47,13 @@ public class RoomButton extends SelectableButton {
 
         if (selected) {
             roomIcon.addAction(Actions.parallel(
-                    Actions.moveBy(0, direction * roomIcon.getSizeY(), 0.4f, Interpolation.pow2),
-                    Actions.scaleTo(1.4f, 1.4f, 0.3f)
+                    Actions.moveBy(0, direction * 50, 0.4f, Interpolation.pow2),
+                    Actions.scaleTo(1.3f, 1.3f, 0.3f)
             ));
         } else {
             roomIcon.addAction(Actions.parallel(
-                    Actions.moveBy(0, direction * roomIcon.getSizeY(), 0.8f, Interpolation.bounceOut),
+                    Actions.moveBy(0, direction * 50,
+                            0.8f, Interpolation.bounceOut),
                     Actions.scaleTo(1f, 1f, 0.15f)
             ));
         }

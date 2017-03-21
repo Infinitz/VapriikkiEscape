@@ -20,19 +20,21 @@ public class RoomPopUp {
     private Group elements;
 
 
-    public RoomPopUp(MyScreen screen, RoomData data) {
+    public RoomPopUp(final MyScreen screen, RoomData data) {
 
         screenDarkener = new ImageActor(new Texture("black.png"), Vescape.GUI_VIEWPORT_HEIGHT);
         screenDarkener.alpha = 0.85f;
 
-        elements = new Group();
-
         screenDarkener.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                dispose();
+                ((RoomSelection)screen).selectRoom(null);
             }
         });
+
+        elements = new Group();
+
+
 
         panelBG = new ImageActor(new Texture("riddle_info_box_fill.png"));
         panelBG.alpha = 0.7f;
