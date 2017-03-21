@@ -3,6 +3,7 @@ package fi.tamk.tiko.kivimiesgaming;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -44,6 +45,9 @@ public class RoomPopUp {
         elements.addActor(panelBG);
         elements.addActor(roomName);
 
+        Vescape.setGroupOrigin(elements,
+                Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
+
         elements.setScaleY(0);
         elements.addAction(Actions.scaleTo(1, 1, 0.4f, Interpolation.pow2));
 
@@ -64,4 +68,5 @@ public class RoomPopUp {
                 })
         ));
     }
+
 }

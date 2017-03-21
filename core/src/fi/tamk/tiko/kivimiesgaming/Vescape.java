@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -98,6 +100,16 @@ public class Vescape extends Game {
 
     public void setEnglish() {
         setLocale(null);
+    }
+
+
+    public static void setGroupOrigin(Group g, float x, float y) {
+        float offsetX = g.getX() - x;
+        float offsetY = g.getY() - y;
+        g.setPosition(x, y);
+        for (Actor a: g.getChildren()) {
+            a.setPosition(a.getX() + offsetX, a.getY() + offsetY);
+        }
     }
 
     private void setLocale(Locale locale) {

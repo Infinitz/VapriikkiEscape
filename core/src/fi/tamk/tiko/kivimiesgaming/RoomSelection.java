@@ -36,9 +36,6 @@ public class RoomSelection extends MyScreen {
 
         stage.addActor(bg);
 
-        bg.addAction(Actions.scaleBy(0.25f, 0.25f,
-                1.75f, Interpolation.pow2Out));
-
         floor1 = createFloor1();
         stage.addActor(floor1);
         createTimeMachineButton();
@@ -47,6 +44,22 @@ public class RoomSelection extends MyScreen {
         stage.addActor(floor2);
         createChangeFloorButton();
         burgerButton = new BurgerButton(this);
+
+        float animDuration = 1.5f;
+        bg.addAction(Actions.scaleBy(0.25f, 0.25f,
+                animDuration, Interpolation.pow2Out));
+
+        Vescape.setGroupOrigin(floor1,
+                Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
+        Vescape.setGroupOrigin(floor2,
+                Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
+
+        floor1.setScale(0f);
+        floor2.setScale(0f);
+        floor1.addAction(Actions.scaleTo(1f, 1f,
+                animDuration, Interpolation.pow2Out));
+        floor2.addAction(Actions.scaleTo(1f, 1f,
+                animDuration, Interpolation.pow2Out));
     }
 
     public void createChangeFloorButton() {
