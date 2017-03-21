@@ -137,18 +137,18 @@ public class Vescape extends Game {
         roomData.put(RoomType.ROCK, temp);
 
         temp = new RoomData(RoomType.TAMMER, new Texture("F1_tammer.png"),
-                new Texture("F1_tammer_active.png"), new Texture("englishFlag.png"), 0);
-        temp.setIconLocalPosition(-0.4f, 0);
+                new Texture("F1_tammer_active.png"), new Texture("map_icons_tammerkoski.png"), 0);
+        temp.setIconLocalPosition(-0.5f, 0.1f);
         roomData.put(RoomType.TAMMER, temp);
 
         temp = new RoomData(RoomType.POSTAL, new Texture("F1_postal.png"),
-                new Texture("F1_postal_active.png"), new Texture("englishFlag.png"), 0);
+                new Texture("F1_postal_active.png"), new Texture("map_icons_postal.png"), 0);
         temp.setIconLocalPosition(0.5f, 0.3f);
         roomData.put(RoomType.POSTAL, temp);
 
         temp = new RoomData(RoomType.TUTORIAL, new Texture("F1_tutorial.png"),
                 new Texture("F1_tutorial_active.png"), new Texture("map_icons_tutorial.png"), 0);
-        temp.setIconLocalPosition(0.15f, 0.15f);
+        temp.setIconLocalPosition(0.3f, 0.15f);
         roomData.put(RoomType.TUTORIAL, temp);
 
         temp = new RoomData(RoomType.POSTALUP, new Texture("F2_postal.png"),
@@ -157,13 +157,13 @@ public class Vescape extends Game {
         roomData.put(RoomType.POSTALUP, temp);
 
         temp = new RoomData(RoomType.GAME, new Texture("F2_game.png"),
-                new Texture("F2_game_active.png"), new Texture("englishFlag.png"), 0);
-        temp.setIconLocalPosition(0.4f, 0);
+                new Texture("F2_game_active.png"), new Texture("map_icons_game.png"), 0);
+        temp.setIconLocalPosition(0.4f, -0.2f);
         roomData.put(RoomType.GAME, temp);
 
         temp = new RoomData(RoomType.ICEHOCKEY, new Texture("F2_icehokey.png"),
-                new Texture("F2_icehokey_active.png"), new Texture("englishFlag.png"), 0);
-        temp.setIconLocalPosition(-0.5f, 0.1f);
+                new Texture("F2_icehokey_active.png"), new Texture("map_icons_icehockey.png"), 0);
+        temp.setIconLocalPosition(-0.4f, 0.1f);
         roomData.put(RoomType.ICEHOCKEY, temp);
 
         temp = new RoomData(RoomType.MEDIA, new Texture("F2_media.png"),

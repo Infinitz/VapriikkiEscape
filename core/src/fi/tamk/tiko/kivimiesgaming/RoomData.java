@@ -15,6 +15,7 @@ public class RoomData {
     private Texture selectedTex;
     private Texture iconTexture;
     public float iconLocalPosX, iconLocalPosY = 0;
+    private float iconSize = 200;
 
 
     public RoomData(RoomType type, Texture tex, Texture selectedTex, Texture iconTexture, int stars) {
@@ -59,5 +60,9 @@ public class RoomData {
     public void setIconLocalPosition(float x, float y) {
         iconLocalPosX = x;
         iconLocalPosY = y;
+    }
+
+    public void setIconSize(float size) {
+        iconSize = size;
     }
 }
