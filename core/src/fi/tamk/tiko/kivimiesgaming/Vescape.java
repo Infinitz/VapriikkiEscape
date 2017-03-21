@@ -70,10 +70,6 @@ public class Vescape extends Game {
         return batch;
     }
 
-    public Skin getSkin() {
-        return skin;
-    }
-
     public BitmapFont getButtonFont() {
         return buttonFont;
     }
