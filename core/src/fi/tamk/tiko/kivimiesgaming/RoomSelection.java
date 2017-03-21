@@ -60,6 +60,8 @@ public class RoomSelection extends MyScreen {
                 animDuration, Interpolation.pow2Out));
         floor2.addAction(Actions.scaleTo(1f, 1f,
                 animDuration, Interpolation.pow2Out));
+
+
     }
 
     public void createChangeFloorButton() {
@@ -92,7 +94,15 @@ public class RoomSelection extends MyScreen {
                 Vescape.GUI_VIEWPORT_WIDTH / 2 - timeMachineButton.getWidth() / 2,
                 Vescape.GUI_VIEWPORT_HEIGHT / 2 - timeMachineButton.getHeight() / 2);
 
+        timeMachineButton.setClickListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setScreen(new MainMenu(game));
+            }
+        });
+
         stage.addActor(timeMachineButton);
+
     }
 
     @Override

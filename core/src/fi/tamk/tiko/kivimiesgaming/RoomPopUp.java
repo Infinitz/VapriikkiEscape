@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * Created by atter on 16-Mar-17.
@@ -18,12 +19,20 @@ public class RoomPopUp {
     private ImageActor panelBG;
     private Group elements;
 
+
     public RoomPopUp(MyScreen screen, RoomData data) {
 
         screenDarkener = new ImageActor(new Texture("black.png"), Vescape.GUI_VIEWPORT_HEIGHT);
         screenDarkener.alpha = 0.85f;
 
         elements = new Group();
+
+        screenDarkener.setClickListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                dispose();
+            }
+        });
 
         panelBG = new ImageActor(new Texture("riddle_info_box_fill.png"));
         panelBG.alpha = 0.7f;
@@ -68,5 +77,4 @@ public class RoomPopUp {
                 })
         ));
     }
-
 }
