@@ -160,7 +160,6 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(0.3f, 0.15f);
         roomData.put(RoomType.TUTORIAL, temp);
 
-
         temp = new RoomData(RoomType.GAME, new Texture("F2_game_active.png"),
                 new Texture("F2_game_active.png"), new Texture("map_icons_game.png"), 0);
         temp.setIconLocalPosition(0.4f, -0.2f);
