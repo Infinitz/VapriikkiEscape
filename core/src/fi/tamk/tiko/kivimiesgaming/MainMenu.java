@@ -31,7 +31,7 @@ public class MainMenu extends MyScreen {
         stage.addActor(bg);
 
         float movementY = 500;
-        ImageActor title = new ImageActor(new Texture("englishFlag.png"), 300);
+        ImageActor title = new ImageActor(new Texture("menu_logo.png"), 300);
         title.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - title.getSizeX() / 2,
                 Vescape.GUI_VIEWPORT_HEIGHT -  3 * title.getSizeY() / 2 + movementY);
 
