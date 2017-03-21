@@ -25,6 +25,7 @@ public class Vescape extends Game {
     private Skin skin;
     private I18NBundle myBundle;
     private BitmapFont buttonFont;
+    private BitmapFont fontBig;
     private TextButton.TextButtonStyle textButtonStyle;
     private HashMap<RoomType, RoomData> roomData;
 
@@ -75,6 +76,10 @@ public class Vescape extends Game {
         return buttonFont;
     }
 
+    public BitmapFont getFontBig() {
+        return fontBig;
+    }
+
     public TextButton.TextButtonStyle getTextButtonStyle() {
         return textButtonStyle;
     }
@@ -114,6 +119,10 @@ public class Vescape extends Game {
 
         buttonFont = fontGen.generateFont(parameter);
 
+        parameter.size = 62;
+        parameter.shadowOffsetX = 5;
+        fontBig = fontGen.generateFont(parameter);
+
         TextureRegionDrawable buttonImage = new TextureRegionDrawable(
                 new TextureRegion(
                         new Texture("MENU_button.png")));
@@ -151,10 +160,12 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(0.15f, 0.15f);
         roomData.put(RoomType.TUTORIAL, temp);
 
+        /*
         temp = new RoomData(RoomType.POSTALUP, new Texture("F2_postal.png"),
                 new Texture("F2_postal_active.png"), new Texture("englishFlag.png"), 0);
         temp.setIconLocalPosition(-0.2f, 0.1f);
         roomData.put(RoomType.POSTALUP, temp);
+        */
 
         temp = new RoomData(RoomType.GAME, new Texture("F2_game.png"),
                 new Texture("F2_game_active.png"), new Texture("englishFlag.png"), 0);

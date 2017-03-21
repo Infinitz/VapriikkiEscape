@@ -7,7 +7,9 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
@@ -174,7 +176,10 @@ public class RoomSelection extends MyScreen {
                 Vescape.GUI_VIEWPORT_HEIGHT - 2 * offsetY);
 
 
-        RoomButton postalRoomUP = new RoomButton(game.getRoomData(RoomType.POSTALUP), baseSize * 0.8f);
+
+        ImageActor postalRoomUP = new ImageActor(new Texture("F2_postal.png"), baseSize * 0.8f);
+        postalRoomUP.setTouchable(Touchable.disabled);
+
         RoomButton gameRoom = new RoomButton(game.getRoomData(RoomType.GAME), baseSize * 1.25f);
         RoomButton iceHockeyRoom = new RoomButton(game.getRoomData(RoomType.ICEHOCKEY),
                 baseSize * 1);
@@ -201,7 +206,7 @@ public class RoomSelection extends MyScreen {
         natureRoom.setPosition(gameRoom.getX(),
                 mediaRoom.getY() + mediaRoom.getSizeY() * 5 / 4);
 
-        floor2.addActor(postalRoomUP.getRoomElements());
+        floor2.addActor(postalRoomUP);
         floor2.addActor(gameRoom.getRoomElements());
 
         floor2.addActor(iceHockeyRoom.getRoomElements());
@@ -209,13 +214,6 @@ public class RoomSelection extends MyScreen {
         floor2.addActor(dollRoom.getRoomElements());
 
         floor2.addActor(natureRoom.getRoomElements());
-
-        postalRoomUP.setClickListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                selectRoom(((RoomButton) actor));
-            }
-        });
 
         gameRoom.setClickListener(new ChangeListener() {
             @Override

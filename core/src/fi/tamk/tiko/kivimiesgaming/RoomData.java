@@ -60,4 +60,8 @@ public class RoomData {
         iconLocalPosX = x;
         iconLocalPosY = y;
     }
+
+    public String getTypeAsString() {
+        return RoomType.asString(type);
+    }
 }
