@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
@@ -299,5 +300,39 @@ public class RoomSelection extends MyScreen {
 
     protected void toRoomScene() {
         //new RoomScreen(selected);
+    }
+
+    @Override
+    public TextButton getPanelButton1() {
+        String name = getGame().getMyBundle().get("continueButton");
+
+        TextButton button = new TextButton(name,
+                getGame().getTextButtonStyle());
+
+        button.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                burgerButton.togglePanel();
+            }
+        });
+
+        return button;
+    }
+
+    @Override
+    public TextButton getPanelButton2() {
+        String name = getGame().getMyBundle().get("toMainMenuButton");
+
+        TextButton button = new TextButton(name,
+                getGame().getTextButtonStyle());
+
+        button.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                getGame().setScreen(new MainMenu(getGame()));
+            }
+        });
+
+        return button;
     }
 }

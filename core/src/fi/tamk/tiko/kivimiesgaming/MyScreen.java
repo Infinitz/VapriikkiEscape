@@ -4,14 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 /**
  * Created by atter on 04-Mar-17.
  */
 
-public class MyScreen implements Screen {
+public abstract class MyScreen implements Screen {
 
     protected Vescape game;
     protected Stage stage;
@@ -82,4 +85,7 @@ public class MyScreen implements Screen {
     public Vescape getGame() {
         return game;
     }
+
+    public abstract TextButton getPanelButton1();
+    public abstract TextButton getPanelButton2();
 }

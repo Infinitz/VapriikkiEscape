@@ -43,10 +43,8 @@ public class MenuPanel {
     private void createMenuButtons() {
         menuTable = new Table();
 
-        TextButton playButton = new TextButton(screen.getGame().getMyBundle().get("playButton"),
-                screen.getGame().getTextButtonStyle());
-        TextButton exitButton = new TextButton(screen.getGame().getMyBundle().get("exitButton"),
-                screen.getGame().getTextButtonStyle());
+        TextButton playButton = screen.getPanelButton1();
+        TextButton exitButton = screen.getPanelButton2();
 
         menuTable.setFillParent(true);
         menuTable.defaults()
@@ -58,21 +56,6 @@ public class MenuPanel {
         menuTable.add(exitButton);
 
         screen.getStage().addActor(menuTable);
-
-        playButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                screen.getGame().setScreen(new RoomSelection(screen.getGame()));
-            }
-        });
-
-        exitButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.exit();
-            }
-        });
-
     }
 
     private void createOtherButtons() {
