@@ -29,20 +29,17 @@ public class MainMenu extends MyScreen {
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
 
         stage.addActor(bg);
+        new MenuPanel(this);
 
         float movementY = 500;
         ImageActor title = new ImageActor(new Texture("menu_logo.png"), 300);
         title.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - title.getSizeX() / 2,
                 Vescape.GUI_VIEWPORT_HEIGHT -  3 * title.getSizeY() / 2 + movementY);
+        title.addAction(Actions.sequence(
+                Actions.delay(0.2f),
+                Actions.moveBy(0, -movementY, 1.25f, Interpolation.bounceOut)));
 
-        SequenceAction seq = Actions.sequence(
-                Actions.delay(0.4f),
-                Actions.moveBy(0, -movementY, 1.25f, Interpolation.bounceOut));
-
-        title.addAction(seq);
         stage.addActor(title);
-
-        new MenuPanel(this);
     }
 
     @Override

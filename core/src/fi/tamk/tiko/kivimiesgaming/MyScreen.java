@@ -20,6 +20,7 @@ public abstract class MyScreen implements Screen {
     protected Stage stage;
     protected OrthographicCamera cam;
 
+    private boolean firstUpdate = true;
     public MyScreen(Vescape game) {
         this.game = game;
         cam = new OrthographicCamera();
@@ -50,7 +51,6 @@ public abstract class MyScreen implements Screen {
 
         cam.update();
         stage.draw();
-
     }
 
     @Override
@@ -88,4 +88,5 @@ public abstract class MyScreen implements Screen {
 
     public abstract TextButton getPanelButton1();
     public abstract TextButton getPanelButton2();
+
 }
