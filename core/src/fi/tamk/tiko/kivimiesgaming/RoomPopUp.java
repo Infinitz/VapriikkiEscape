@@ -53,6 +53,9 @@ public class RoomPopUp {
                 panelBG.getY() + panelBG.getSizeY() - roomName.getHeight() - 25);
 
 
+        //Create animated stars for testing
+        //Create room icon
+
         elements.addActor(panelBG);
         elements.addActor(roomName);
 
@@ -65,7 +68,6 @@ public class RoomPopUp {
         screen.getStage().addActor(screenDarkener);
         screen.getStage().addActor(elements);
     }
-
 
     public void dispose() {
         elements.addAction(Actions.sequence(

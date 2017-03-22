@@ -1,6 +1,7 @@
 package fi.tamk.tiko.kivimiesgaming;
 
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -34,6 +35,9 @@ public class RoomButton extends SelectableButton {
     public Group getRoomElements() {
         roomIcon.setPosition(getX() + roomData.iconLocalPosX * getSizeX(),
                 getY() + roomData.iconLocalPosY  * getSizeY());
+        Stars s = new Stars(roomIcon.getX() + roomIcon.getSizeX() / 2,
+                roomIcon.getY(), 1, 2, true);
+        s.addStarsToGroup(roomElements);
         return roomElements;
     }
 
