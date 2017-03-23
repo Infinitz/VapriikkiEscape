@@ -1,6 +1,7 @@
 package fi.tamk.tiko.kivimiesgaming;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -40,6 +41,14 @@ public class MainMenu extends MyScreen {
                 Actions.moveBy(0, -movementY, 1.25f, Interpolation.bounceOut)));
 
         stage.addActor(title);
+    }
+
+    @Override
+    protected void update(float dt) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
+                Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            Gdx.app.exit();
+        }
     }
 
     @Override

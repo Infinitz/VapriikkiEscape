@@ -316,10 +316,6 @@ public class RoomSelection extends MyScreen {
         }
     }
 
-    protected void toRoomScene() {
-        //new RoomScreen(selected);
-    }
-
     @Override
     public TextButton getPanelButton1() {
         String name = getGame().getMyBundle().get("continueButton");
