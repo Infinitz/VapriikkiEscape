@@ -30,12 +30,11 @@ public class RoomPopUp {
         screenDarkener.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((RoomSelection)screen).selectRoom(null);
+                ((RoomSelection) screen).selectRoom(null);
             }
         });
 
         elements = new Group();
-
 
 
         panelBG = new ImageActor(new Texture("riddle_info_box_fill.png"));

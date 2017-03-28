@@ -49,6 +49,7 @@ public class RoomSelection extends MyScreen {
 
         floor1.setScale(0f);
         floor2.setScale(0f);
+        timeMachineButton.setScale(0f);
 
         float animationDelay = 0.25f;
         float animDuration = 1.5f;
@@ -71,6 +72,10 @@ public class RoomSelection extends MyScreen {
                 Actions.delay(animationDelay),
                 Actions.scaleTo(1f, 1f,
                         animDuration, Interpolation.pow2Out)));
+        timeMachineButton.addAction(Actions.sequence(
+                Actions.delay(animationDelay),
+                Actions.scaleTo(1f, 1f,
+                        animDuration, Interpolation.pow2Out)));
     }
 
     public void createChangeFloorButton() {
@@ -85,7 +90,7 @@ public class RoomSelection extends MyScreen {
         changeFloorButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                SelectableButton temp = ((SelectableButton)actor);
+                SelectableButton temp = ((SelectableButton) actor);
                 changeFloor(temp.isSelected());
                 temp.select();
             }
@@ -95,9 +100,9 @@ public class RoomSelection extends MyScreen {
     }
 
     public void createTimeMachineButton() {
-        timeMachineButton = new SelectableButton(new Texture("timeMachine.png"),
-                new Texture("timeMachine.png"),
-                250);
+        timeMachineButton = new SelectableButton(new Texture("map_timeMachine.png"),
+                new Texture("map_timeMachine.png"),
+                200);
 
         timeMachineButton.setPosition(
                 Vescape.GUI_VIEWPORT_WIDTH / 2 - timeMachineButton.getWidth() / 2,
@@ -151,7 +156,7 @@ public class RoomSelection extends MyScreen {
         postalRoom.setPosition(rect.getWidth() / 2 + rect.getX() - postalRoom.getSizeX() / 2,
                 rect.getY());
 
-        tammerRoom.setPosition(rect.getX(), postalRoom.getY() + postalRoom.getSizeY() * 11/8);
+        tammerRoom.setPosition(rect.getX(), postalRoom.getY() + postalRoom.getSizeY() * 11 / 8);
 
         tutRoom.setPosition(postalRoom.getX() + postalRoom.getSizeX(),
                 tammerRoom.getY() * 9 / 8);
@@ -208,7 +213,6 @@ public class RoomSelection extends MyScreen {
                 Vescape.GUI_VIEWPORT_HEIGHT - 2 * offsetY);
 
 
-
         ImageActor postalRoomUP = new ImageActor(new Texture("F2_postal.png"), baseSize * 0.8f);
         postalRoomUP.setTouchable(Touchable.disabled);
 
@@ -223,13 +227,13 @@ public class RoomSelection extends MyScreen {
 
         postalRoomUP.setPosition(offsetX * 2, rect.getY());
 
-        gameRoom.setPosition(postalRoomUP.getX() + postalRoomUP.getSizeX() * 3/2,
+        gameRoom.setPosition(postalRoomUP.getX() + postalRoomUP.getSizeX() * 3 / 2,
                 postalRoomUP.getY() + postalRoomUP.getSizeY() * 1 / 10);
 
         iceHockeyRoom.setPosition(postalRoomUP.getX() - 75,
                 postalRoomUP.getY() + postalRoomUP.getSizeY() * 6 / 4);
 
-        mediaRoom.setPosition(iceHockeyRoom.getX() + iceHockeyRoom.getSizeX() * 10/3,
+        mediaRoom.setPosition(iceHockeyRoom.getX() + iceHockeyRoom.getSizeX() * 10 / 3,
                 gameRoom.getY() + gameRoom.getSizeY() * 5 / 4);
 
         dollRoom.setPosition(postalRoomUP.getX(),

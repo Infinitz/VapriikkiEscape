@@ -33,7 +33,7 @@ public class MenuPanel {
     private Button.ButtonStyle musicEnabledStyle;
     private Button.ButtonStyle musicDisabledStyle;
 
-    public MenuPanel (MyScreen screen) {
+    public MenuPanel(MyScreen screen) {
         this.screen = screen;
         createMenuButtons();
         createOtherButtons();

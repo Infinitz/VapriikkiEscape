@@ -24,15 +24,15 @@ public class ImageActor extends Actor {
     public boolean renderEnabled = true;
     public float alpha = 1.0f;
 
-    public ImageActor (Texture texture) {
+    public ImageActor(Texture texture) {
         this(texture, texture.getHeight());
     }
 
-    public ImageActor (Texture texture, float size) {
+    public ImageActor(Texture texture, float size) {
         setTex(texture);
         setSize(size);
 
-        addListener(new InputListener(){
+        addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y,
                                 int pointer, int button) {
@@ -56,7 +56,7 @@ public class ImageActor extends Actor {
     }
 
     public void setTextureRegion(TextureRegion texReg) {
-        setAspectRatio((float)(texReg.getRegionWidth()) / texReg.getRegionHeight());
+        setAspectRatio((float) (texReg.getRegionWidth()) / texReg.getRegionHeight());
         textureRegion = texReg;
     }
 
