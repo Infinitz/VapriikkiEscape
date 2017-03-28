@@ -13,6 +13,8 @@ public class BurgerButton {
     private MyScreen screen;
     private MenuPanel menuPanel;
     private ImageActor screenDarkener;
+
+    private Table table;
     private SelectableButton burgerButton;
 
     public BurgerButton(final MyScreen screen) {
@@ -29,7 +31,7 @@ public class BurgerButton {
             }
         });
 
-        Table table = new Table();
+        table = new Table();
         table.setFillParent(true);
         table.top().right();
         table.add(burgerButton).pad(25);
@@ -58,32 +60,11 @@ public class BurgerButton {
         }
 
     }
-/*
 
-    private float duration = 1.0f;
-    private float startValue = 0.0f;
-    private float targetValue = 1.0f;
-    private float currentValue = 0.0f;
-    private float fadeStartAlpha = 0.9f;
-    private float fadeDuration = 1.0f;
-    private SequenceAction getAction() {
-        currentValue = startValue;
-        SequenceAction action = new SequenceAction();
-
-        final RunnableAction run = new RunnableAction();
-        run.setRunnable(new Runnable() {
-            @Override
-            public void run() {
-                startValue = MathUtils.lerp(currentValue, targetValue, currentValue / targetValue);
-                if (currentValue / targetValue < 0.99f) {
-                    action.addAction(run);
-                } else {
-                    currentValue = targetValue;
-                }
-            }
-        });
-
-        return action;
+    public void reAddElementsToStage() {
+        screenDarkener.remove();
+        table.remove();
+        screen.getStage().addActor(screenDarkener);
+        screen.getStage().addActor(table);
     }
-    */
 }
