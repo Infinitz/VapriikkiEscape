@@ -39,6 +39,8 @@ public class RoomView extends MyScreen {
         riddlePanel = createNewRiddle(roomData.getRandomRiddle());
 
         TextField textField = new TextField("", getGame().getTextFieldStyle());
+        textField.setPosition(0, 200);
+        textField.setSize(Vescape.GUI_VIEWPORT_WIDTH, 200);
        // textField.
         //ImageActor riddleImage;
         //Arvotus tila
@@ -51,6 +53,7 @@ public class RoomView extends MyScreen {
 
         stage.addActor(bg);
         stage.addActor(riddlePanel);
+        stage.addActor(textField);
         burgerButton = new BurgerButton(this);
     }
 
