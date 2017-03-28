@@ -3,6 +3,7 @@ package fi.tamk.tiko.kivimiesgaming;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -11,14 +12,16 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
@@ -31,7 +34,7 @@ public class Vescape extends Game {
     private static final String RIDDLE_SEPARATOR = "::";
     private static final String RIDDLE_END = ";";
     private static final String RIDDLE_FILE_COMMENT_MARK = "#";
-    private static final String RIDDLE_FILE_NAME = "riddles.txt";
+    private static final String RIDDLE_FILE_PATH = "data/riddles.txt";
 
     private SpriteBatch batch;
     private I18NBundle myBundle;
@@ -252,10 +255,14 @@ public class Vescape extends Game {
 
     private void loadRiddles() {
 
-        System.out.println(Gdx.files.internal(RIDDLE_FILE_NAME).exists());
+        System.out.println(Gdx.files.internal(RIDDLE_FILE_PATH).exists());
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(RIDDLE_FILE_NAME));
+            FileHandle handle = Gdx.files.internal(RIDDLE_FILE_PATH);
+            String text = handle.readString();
+            InputStream is = new ByteArrayInputStream(text.getBytes());
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
             RoomType currentRoom = null;
             for (String line = reader.readLine(); line != null; line = reader.readLine()) {
@@ -302,7 +309,7 @@ public class Vescape extends Game {
 
             reader.close();
         } catch (Exception e) {
-            System.out.println("Unable to load file: " + RIDDLE_FILE_NAME);
+            System.out.println("Unable to load file: " + RIDDLE_FILE_PATH);
         }
 
     }
