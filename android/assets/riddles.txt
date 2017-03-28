@@ -3,13 +3,14 @@
 
 &rockMuseum
 
-0::Kuva.png
-1::Kuva.png
-2::Kuva.png
+kuva.png
+fi::arvotus::vastaus
+en::riddle::answer;
+
+kuva.png
+fi::arvotus::vastaus
+en::riddle::answer;
 
 &postalMuseum
 
-0::Kuva.png
-1::Kuva.png
-2::Kuva.png
 

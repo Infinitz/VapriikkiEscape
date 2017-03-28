@@ -20,12 +20,19 @@ public enum RoomType {
     RoomType(String text) {
         this.text = text;
     }
-
-    public String asString() {
+    @Override
+    public String toString() {
         return this.text;
     }
 
-    public RoomType typeFromString(String enumAsString) {
-        return valueOf(enumAsString);
+    public static RoomType typeFromString(String enumAsString) {
+
+        for (RoomType type: values()) {
+            if (type.text.equalsIgnoreCase(enumAsString)) {
+                return type;
+            }
+        }
+
+        return null;
     }
 }

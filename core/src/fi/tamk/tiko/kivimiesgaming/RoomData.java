@@ -18,7 +18,7 @@ public class RoomData {
     private Texture iconTexture;
     public float iconLocalPosX, iconLocalPosY = 0;
 
-    private ArrayList<Riddle> riddles;
+    public ArrayList<Riddle> riddles;
 
     public RoomData(RoomType type, Texture tex, Texture selectedTex, Texture iconTexture, int stars) {
         this.type = type;
@@ -26,8 +26,10 @@ public class RoomData {
         this.selectedTex = selectedTex;
         this.iconTexture = iconTexture;
         this.stars = stars;
-    }
 
+        riddles = new ArrayList<Riddle>();
+    }
+/*
     public RoomData(RoomType type, Texture tex, Texture selectedTex, Texture iconTexture, int stars,
                     float iconLocalPosX, float iconLocalPosY) {
         this.type = type;
@@ -37,11 +39,7 @@ public class RoomData {
         this.stars = stars;
         this.iconLocalPosX = iconLocalPosX;
         this.iconLocalPosY = iconLocalPosY;
-    }
-
-    public void addRiddle(String riddleData) {
-
-    }
+    }*/
 
     public int getStars() {
         return stars;

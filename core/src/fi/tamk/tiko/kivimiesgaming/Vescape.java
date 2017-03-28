@@ -27,6 +27,7 @@ public class Vescape extends Game {
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
     private static final String ROOM_DATA_MARK = "&";
     private static final String RIDDLE_SEPARATOR = "::";
+    private static final String RIDDLE_END = ";";
     private static final String RIDDLE_FILE_COMMENT_MARK = "#";
     private static final String RIDDLE_FILE_NAME = "riddles.txt";
 
@@ -46,6 +47,13 @@ public class Vescape extends Game {
         createTextButtonStyle();
         loadRoomData();
         loadRiddles();
+
+        for (RoomType key : roomData.keySet()) {
+            System.out.println(key.toString());
+            for (int i = 0; i < roomData.get(key).riddles.size(); ++i) {
+                System.out.println(roomData.get(key).riddles.get(i).toString());
+            }
+        }
 
         setFinnish();
         setScreen(new MainMenu(this));
@@ -210,27 +218,41 @@ public class Vescape extends Game {
             for (String line = reader.readLine(); line != null; line = reader.readLine()) {
 
                 String currentLine = line.trim();
-                System.out.println(line + "  line");
                 if (currentLine.length() == 0) {
                     continue;
                 }
                 if (RIDDLE_FILE_COMMENT_MARK.compareTo(
                         currentLine.substring(0, RIDDLE_FILE_COMMENT_MARK.length())) == 0) {
-                    System.out.println("COMMENT");
                     continue;
                 }
 
                 if (ROOM_DATA_MARK.compareTo(
                         currentLine.substring(0, ROOM_DATA_MARK.length())) == 0) {
-                    currentRoom = RoomType.valueOf(currentLine.substring(ROOM_DATA_MARK.length()));
-                    System.out.println("NEW ROOM");
+
+                    currentRoom = RoomType.typeFromString(
+                            currentLine.substring(ROOM_DATA_MARK.length()));
                     continue;
                 }
 
                 if (currentLine.length() > 0) {
-                    //Create riddle
-                    System.out.println("CREATE RIDDLE");
-                    roomData.get(currentRoom).addRiddle(currentLine);
+                    Riddle riddle = new Riddle(currentLine);
+
+                    while (true) {
+                        currentLine = reader.readLine().trim();
+
+                        boolean riddleEnd = currentLine.endsWith(RIDDLE_END);
+                        if (riddleEnd) {
+                            currentLine = currentLine.substring(0, currentLine.length() - 1);
+                        }
+                        String[] temp = currentLine.split(RIDDLE_SEPARATOR);
+
+                        riddle.addRiddleText(new RiddleTexts(temp[0], temp[1], temp[2]));
+                        if (riddleEnd) {
+                            roomData.get(currentRoom).riddles.add(riddle);
+                            break;
+                        }
+                    }
+
                 }
             }
 
