@@ -349,4 +349,9 @@ public class RoomSelection extends MyScreen {
 
         return button;
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
 }

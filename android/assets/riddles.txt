@@ -3,11 +3,11 @@
 
 &rockMuseum
 
-kuva.png
+englishFlag.png
 fi::arvotus::vastaus
 en::riddle::answer;
 
-kuva.png
+englishFlag.png
 fi::arvotus::vastaus
 en::riddle::answer;
 

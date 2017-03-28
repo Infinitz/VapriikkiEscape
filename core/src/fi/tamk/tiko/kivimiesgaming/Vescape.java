@@ -3,6 +3,7 @@ package fi.tamk.tiko.kivimiesgaming;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
 
@@ -36,6 +38,7 @@ public class Vescape extends Game {
     private BitmapFont buttonFont;
     private BitmapFont fontBig;
     private TextButton.TextButtonStyle textButtonStyle;
+    private TextField.TextFieldStyle textFieldStyle;
     private HashMap<RoomType, RoomData> roomData;
 
     private HashMap<RoomType, ArrayList<Riddle>> riddles;
@@ -44,7 +47,7 @@ public class Vescape extends Game {
     public void create() {
         batch = new SpriteBatch();
         Gdx.input.setCatchBackKey(true);
-        createTextButtonStyle();
+        createStylesAndFonts();
         loadRoomData();
         loadRiddles();
 
@@ -97,6 +100,10 @@ public class Vescape extends Game {
         return textButtonStyle;
     }
 
+    public TextField.TextFieldStyle getTextFieldStyle() {
+        return textFieldStyle;
+    }
+
     public I18NBundle getMyBundle() {
         return myBundle;
     }
@@ -131,7 +138,7 @@ public class Vescape extends Game {
         }
     }
 
-    private void createTextButtonStyle() {
+    private void createStylesAndFonts() {
         FreeTypeFontGenerator fontGen = new FreeTypeFontGenerator(Gdx.files.internal("tahoma.ttf"));
 
         FreeTypeFontGenerator.FreeTypeFontParameter parameter =
@@ -155,6 +162,14 @@ public class Vescape extends Game {
 
         textButtonStyle = new TextButton.TextButtonStyle(buttonImage, buttonPressedImage,
                 buttonImage, getButtonFont());
+
+        TextureRegionDrawable textFieldBG = new TextureRegionDrawable(
+                new TextureRegion(
+                        new Texture("riddle_info_box_fill.png")));
+
+        textFieldStyle = new TextField.TextFieldStyle(fontBig, Color.BLACK,
+                null, null,
+                textFieldBG);
     }
 
     private void loadRoomData() {
@@ -237,6 +252,7 @@ public class Vescape extends Game {
 
     private void loadRiddles() {
 
+        System.out.println(Gdx.files.internal(RIDDLE_FILE_NAME).exists());
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(RIDDLE_FILE_NAME));

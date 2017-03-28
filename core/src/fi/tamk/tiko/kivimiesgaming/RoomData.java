@@ -32,6 +32,11 @@ public class RoomData {
         riddles = new ArrayList<Riddle>();
     }
 
+    public Riddle getRandomRiddle() {
+        int index = (int)(Math.random() * riddles.size());
+        return riddles.get(index);
+    }
+
     public int getStars() {
         return stars;
     }
@@ -46,6 +51,10 @@ public class RoomData {
 
     public Texture getIconTexture() {
         return iconTexture;
+    }
+
+    public Texture getBackground() {
+        return background;
     }
 
     public RoomType getType() {
