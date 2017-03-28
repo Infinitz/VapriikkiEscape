@@ -87,6 +87,7 @@ public abstract class MyScreen implements Screen {
     }
 
     public abstract TextButton getPanelButton1();
+
     public abstract TextButton getPanelButton2();
 
 }

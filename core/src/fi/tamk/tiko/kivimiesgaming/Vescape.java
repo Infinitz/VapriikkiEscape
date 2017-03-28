@@ -118,7 +118,7 @@ public class Vescape extends Game {
         float offsetX = g.getX() - x;
         float offsetY = g.getY() - y;
         g.setPosition(x, y);
-        for (Actor a: g.getChildren()) {
+        for (Actor a : g.getChildren()) {
             a.setPosition(a.getX() + offsetX, a.getY() + offsetY);
         }
     }
