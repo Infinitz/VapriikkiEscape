@@ -2,6 +2,8 @@ package fi.tamk.tiko.kivimiesgaming;
 
 import com.badlogic.gdx.graphics.Texture;
 
+import java.util.ArrayList;
+
 /**
  * Created by atter on 11-Mar-17.
  */
@@ -16,6 +18,7 @@ public class RoomData {
     private Texture iconTexture;
     public float iconLocalPosX, iconLocalPosY = 0;
 
+    private ArrayList<Riddle> riddles;
 
     public RoomData(RoomType type, Texture tex, Texture selectedTex, Texture iconTexture, int stars) {
         this.type = type;
@@ -34,6 +37,10 @@ public class RoomData {
         this.stars = stars;
         this.iconLocalPosX = iconLocalPosX;
         this.iconLocalPosY = iconLocalPosY;
+    }
+
+    public void addRiddle(String riddleData) {
+
     }
 
     public int getStars() {
@@ -59,9 +66,5 @@ public class RoomData {
     public void setIconLocalPosition(float x, float y) {
         iconLocalPosX = x;
         iconLocalPosY = y;
-    }
-
-    public String getTypeAsString() {
-        return RoomType.asString(type);
     }
 }

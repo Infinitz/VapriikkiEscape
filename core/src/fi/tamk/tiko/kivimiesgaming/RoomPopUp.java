@@ -49,7 +49,7 @@ public class RoomPopUp {
         Label.LabelStyle labelStyle = new Label.LabelStyle(screen.getGame().getFontBig(),
                 Color.BLACK);
         Label roomName = new Label(
-                screen.getGame().getMyBundle().get(data.getTypeAsString()),
+                screen.getGame().getMyBundle().get(data.type.asString()),
                 labelStyle);
         roomName.setPosition(panelBG.getX() + (panelBG.getSizeX() - roomName.getWidth()) / 2,
                 panelBG.getY() + panelBG.getSizeY() - roomName.getHeight() - 25);

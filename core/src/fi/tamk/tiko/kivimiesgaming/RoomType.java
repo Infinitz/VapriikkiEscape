@@ -5,30 +5,27 @@ package fi.tamk.tiko.kivimiesgaming;
  */
 
 public enum RoomType {
-    ROCK, POSTAL, TAMMER, TUTORIAL, GAME, MEDIA, NATURE, DOLL, ICEHOCKEY;
+    ROCK("rockMuseum"),
+    POSTAL("postalMuseum"),
+    TAMMER("tammerMuseum"),
+    TUTORIAL("tutorialMuseum"),
+    GAME("gameMuseum"),
+    MEDIA("mediaMuseum"),
+    NATURE("natureMuseum"),
+    DOLL("dollMuseum"),
+    ICEHOCKEY("iceHockeyMuseum");
 
-    public static String asString(RoomType type) {
-        switch (type) {
-            case ROCK:
-                return "rockMuseum";
-            case POSTAL:
-                return "postalMuseum";
-            case TAMMER:
-                return "tammerMuseum";
-            case TUTORIAL:
-                return "tutorialMuseum";
-            case GAME:
-                return "gameMuseum";
-            case MEDIA:
-                return "mediaMuseum";
-            case NATURE:
-                return "natureMuseum";
-            case DOLL:
-                return "dollMuseum";
-            case ICEHOCKEY:
-                return "iceHockeyMuseum";
-        }
+    private String text;
 
-        return "";
+    RoomType(String text) {
+        this.text = text;
+    }
+
+    public String asString() {
+        return this.text;
+    }
+
+    public RoomType typeFromString(String enumAsString) {
+        return valueOf(enumAsString);
     }
 }

@@ -127,35 +127,7 @@ public class Stars {
                 stars[i] = fullStar;
             }
         }
-/*
-        float animDelay = 1;
-        float animLength = 0.7f;
-        for (int i = 0; i < starCount; ++i) {
-            ImageActor fullStar = new ImageActor(starFull,
-                    fullStarSizeMultiplier * starSize * scale);
 
-            fullStar.setPosition(stars[i].getX(), stars[i].getY() + 600);
-            fullStar.setScale(0);
-
-            final ImageActor emptyStar = stars[i];
-            fullStar.addAction(Actions.sequence(
-                    Actions.delay(i * animDelay + emptyStarAnimLength),
-                    Actions.parallel(
-                            Actions.scaleTo(1, 1, animLength, Interpolation.pow3),
-                            Actions.moveTo(stars[i].getX(), stars[i].getY(),
-                                    animLength, Interpolation.pow3)
-                    ),
-                    Actions.run(new Runnable() {
-                        @Override
-                        public void run() {
-                            emptyStar.remove();
-                        }
-                    })
-            ));
-
-            stars[i] = fullStar;
-        }
-        */
     }
 
     public void addStarsToGroup(Group g) {

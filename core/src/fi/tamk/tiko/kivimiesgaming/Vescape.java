@@ -15,6 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -22,25 +25,29 @@ public class Vescape extends Game {
 
     public static final float GUI_VIEWPORT_WIDTH = 900;
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
+    private static final String ROOM_DATA_MARK = "&";
+    private static final String RIDDLE_SEPARATOR = "::";
+    private static final String RIDDLE_FILE_COMMENT_MARK = "#";
+    private static final String RIDDLE_FILE_NAME = "riddles.txt";
 
     private SpriteBatch batch;
-    private Skin skin;
     private I18NBundle myBundle;
     private BitmapFont buttonFont;
     private BitmapFont fontBig;
     private TextButton.TextButtonStyle textButtonStyle;
     private HashMap<RoomType, RoomData> roomData;
 
+    private HashMap<RoomType, ArrayList<Riddle>> riddles;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
-        skin = new Skin(Gdx.files.internal("uiskin.json"));
         Gdx.input.setCatchBackKey(true);
         createTextButtonStyle();
         loadRoomData();
+        loadRiddles();
 
         setFinnish();
-
         setScreen(new MainMenu(this));
     }
 
@@ -95,7 +102,7 @@ public class Vescape extends Game {
     }
 
     public void setEnglish() {
-        setLocale(null);
+        setLocale(new Locale("en", "US"));
     }
 
 
@@ -114,7 +121,6 @@ public class Vescape extends Game {
         } else {
             myBundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"));
         }
-
     }
 
     private void createTextButtonStyle() {
@@ -192,5 +198,47 @@ public class Vescape extends Game {
                 new Texture("F2_nature_active.png"), new Texture("englishFlag.png"), 2);
         temp.setIconLocalPosition(0.15f, 0.3f);
         roomData.put(RoomType.NATURE, temp);
+    }
+
+    private void loadRiddles() {
+
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(RIDDLE_FILE_NAME));
+
+            RoomType currentRoom = null;
+            for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+
+                String currentLine = line.trim();
+                System.out.println(line + "  line");
+                if (currentLine.length() == 0) {
+                    continue;
+                }
+                if (RIDDLE_FILE_COMMENT_MARK.compareTo(
+                        currentLine.substring(0, RIDDLE_FILE_COMMENT_MARK.length())) == 0) {
+                    System.out.println("COMMENT");
+                    continue;
+                }
+
+                if (ROOM_DATA_MARK.compareTo(
+                        currentLine.substring(0, ROOM_DATA_MARK.length())) == 0) {
+                    currentRoom = RoomType.valueOf(currentLine.substring(ROOM_DATA_MARK.length()));
+                    System.out.println("NEW ROOM");
+                    continue;
+                }
+
+                if (currentLine.length() > 0) {
+                    //Create riddle
+                    System.out.println("CREATE RIDDLE");
+                    roomData.get(currentRoom).addRiddle(currentLine);
+                }
+            }
+
+
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("Unable to load file: " + RIDDLE_FILE_NAME);
+        }
+
     }
 }

@@ -1,0 +1,15 @@
+# '#' is comment mark
+#rockMuseum, postalMuseum, tammerMuseum, tutorialMuseum
+
+&rockMuseum
+
+0::Kuva.png
+1::Kuva.png
+2::Kuva.png
+
+&postalMuseum
+
+0::Kuva.png
+1::Kuva.png
+2::Kuva.png
+
