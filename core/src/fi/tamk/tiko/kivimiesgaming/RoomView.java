@@ -39,7 +39,7 @@ public class RoomView extends MyScreen {
         riddlePanel = createNewRiddle(roomData.getRandomRiddle());
 
         TextField textField = new TextField("", getGame().getTextFieldStyle());
-       //( textField.
+       // textField.
         //ImageActor riddleImage;
         //Arvotus tila
             //teksti
