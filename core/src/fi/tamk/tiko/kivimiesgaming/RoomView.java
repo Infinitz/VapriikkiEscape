@@ -19,6 +19,9 @@ public class RoomView extends MyScreen {
         super(game);
         this.roomData = roomData;
         burgerButton = new BurgerButton(this);
+        for (Riddle r : roomData.riddles) {
+            r.load();
+        }
     }
 
     @Override
@@ -63,5 +66,13 @@ public class RoomView extends MyScreen {
         });
 
         return button;
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        for (Riddle r : roomData.riddles) {
+            r.dispose();
+        }
     }
 }

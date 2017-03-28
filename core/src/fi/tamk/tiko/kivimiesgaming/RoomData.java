@@ -16,30 +16,21 @@ public class RoomData {
     private Texture texture;
     private Texture selectedTex;
     private Texture iconTexture;
+    private Texture background;
     public float iconLocalPosX, iconLocalPosY = 0;
 
     public ArrayList<Riddle> riddles;
 
-    public RoomData(RoomType type, Texture tex, Texture selectedTex, Texture iconTexture, int stars) {
+    public RoomData(RoomType type, Texture tex, Texture selectedTex, Texture iconTexture,
+                    Texture background) {
         this.type = type;
         this.texture = tex;
         this.selectedTex = selectedTex;
         this.iconTexture = iconTexture;
-        this.stars = stars;
-
+        this.background = background;
+        stars = 2; //temporary
         riddles = new ArrayList<Riddle>();
     }
-/*
-    public RoomData(RoomType type, Texture tex, Texture selectedTex, Texture iconTexture, int stars,
-                    float iconLocalPosX, float iconLocalPosY) {
-        this.type = type;
-        this.texture = tex;
-        this.selectedTex = selectedTex;
-        this.iconTexture = iconTexture;
-        this.stars = stars;
-        this.iconLocalPosX = iconLocalPosX;
-        this.iconLocalPosY = iconLocalPosY;
-    }*/
 
     public int getStars() {
         return stars;

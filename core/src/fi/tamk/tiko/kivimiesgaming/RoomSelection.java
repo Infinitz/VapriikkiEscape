@@ -238,7 +238,7 @@ public class RoomSelection extends MyScreen {
         natureRoom.setPosition(gameRoom.getX(),
                 mediaRoom.getY() + mediaRoom.getSizeY() * 5 / 4);
 
-        floor2.addActor(postalRoomUP);
+       // floor2.addActor(postalRoomUP);
         floor2.addActor(gameRoom.getRoomElements());
 
         floor2.addActor(iceHockeyRoom.getRoomElements());

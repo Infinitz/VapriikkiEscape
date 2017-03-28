@@ -162,48 +162,75 @@ public class Vescape extends Game {
 
         RoomData temp;
 
-        temp = new RoomData(RoomType.ROCK, new Texture("F1_rock_active.png"),
-                new Texture("F1_rock_active.png"), new Texture("englishFlag.png"), 2);
+        temp = new RoomData(RoomType.ROCK,
+                new Texture("F1_rock_active.png"),
+                new Texture("F1_rock_active.png"),
+                new Texture("map_icons_kivi.png"),
+                new Texture("MENU_bg.png"));
         temp.setIconLocalPosition(0.6f, 0.6f);
         roomData.put(RoomType.ROCK, temp);
 
-        temp = new RoomData(RoomType.TAMMER, new Texture("F1_tammer_active.png"),
-                new Texture("F1_tammer_active.png"), new Texture("map_icons_tammerkoski.png"), 2);
+        temp = new RoomData(RoomType.TAMMER,
+                new Texture("F1_tammer_active.png"),
+                new Texture("F1_tammer_active.png"),
+                new Texture("map_icons_tammerkoski.png"),
+                new Texture("MENU_bg.png"));
         temp.setIconLocalPosition(-0.5f, 0.1f);
         roomData.put(RoomType.TAMMER, temp);
 
-        temp = new RoomData(RoomType.POSTAL, new Texture("F1_postal_active.png"),
-                new Texture("F1_postal_active.png"), new Texture("map_icons_postal.png"), 2);
+        temp = new RoomData(RoomType.POSTAL,
+                new Texture("F1_postal_active.png"),
+                new Texture("F1_postal_active.png"),
+                new Texture("map_icons_postal.png"),
+                new Texture("MENU_bg.png"));
         temp.setIconLocalPosition(0.5f, 0.3f);
         roomData.put(RoomType.POSTAL, temp);
 
-        temp = new RoomData(RoomType.TUTORIAL, new Texture("F1_tutorial_active.png"),
-                new Texture("F1_tutorial_active.png"), new Texture("map_icons_tutorial.png"), 2);
+        temp = new RoomData(RoomType.TUTORIAL,
+                new Texture("F1_tutorial_active.png"),
+                new Texture("F1_tutorial_active.png"),
+                new Texture("map_icons_tutorial.png"),
+                new Texture("MENU_bg.png"));
         temp.setIconLocalPosition(0.3f, 0.15f);
         roomData.put(RoomType.TUTORIAL, temp);
 
-        temp = new RoomData(RoomType.GAME, new Texture("F2_game_active.png"),
-                new Texture("F2_game_active.png"), new Texture("map_icons_game.png"), 2);
+        temp = new RoomData(RoomType.GAME,
+                new Texture("F2_game_active.png"),
+                new Texture("F2_game_active.png"),
+                new Texture("map_icons_game.png"),
+                new Texture("MENU_bg.png"));
         temp.setIconLocalPosition(0.4f, -0.2f);
         roomData.put(RoomType.GAME, temp);
 
-        temp = new RoomData(RoomType.ICEHOCKEY, new Texture("F2_icehokey_active.png"),
-                new Texture("F2_icehokey_active.png"), new Texture("map_icons_icehockey.png"), 2);
+        temp = new RoomData(RoomType.ICEHOCKEY,
+                new Texture("F2_icehokey_active.png"),
+                new Texture("F2_icehokey_active.png"),
+                new Texture("map_icons_icehockey.png"),
+                new Texture("MENU_bg.png"));
         temp.setIconLocalPosition(-0.4f, 0.1f);
         roomData.put(RoomType.ICEHOCKEY, temp);
 
-        temp = new RoomData(RoomType.MEDIA, new Texture("F2_media_active.png"),
-                new Texture("F2_media_active.png"), new Texture("englishFlag.png"), 2);
+        temp = new RoomData(RoomType.MEDIA,
+                new Texture("F2_media_active.png"),
+                new Texture("F2_media_active.png"),
+                new Texture("map_icons_media.png"),
+                new Texture("MENU_bg.png"));
         temp.setIconLocalPosition(0.3f, 0.3f);
         roomData.put(RoomType.MEDIA, temp);
 
-        temp = new RoomData(RoomType.DOLL, new Texture("F2_doll_active.png"),
-                new Texture("F2_doll_active.png"), new Texture("englishFlag.png"), 2);
+        temp = new RoomData(RoomType.DOLL,
+                new Texture("F2_doll_active.png"),
+                new Texture("F2_doll_active.png"),
+                new Texture("map_icons_doll.png"),
+                new Texture("MENU_bg.png"));
         temp.setIconLocalPosition(-0.4f, 0.4f);
         roomData.put(RoomType.DOLL, temp);
 
-        temp = new RoomData(RoomType.NATURE, new Texture("F2_nature_active.png"),
-                new Texture("F2_nature_active.png"), new Texture("englishFlag.png"), 2);
+        temp = new RoomData(RoomType.NATURE,
+                new Texture("F2_nature_active.png"),
+                new Texture("F2_nature_active.png"),
+                new Texture("map_icons_nature.png"),
+                new Texture("MENU_bg.png"));
         temp.setIconLocalPosition(0.15f, 0.3f);
         roomData.put(RoomType.NATURE, temp);
     }
