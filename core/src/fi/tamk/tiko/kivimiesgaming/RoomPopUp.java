@@ -22,7 +22,7 @@ public class RoomPopUp {
     private Group elements;
 
 
-    public RoomPopUp(final MyScreen screen, RoomData data) {
+    public RoomPopUp(final MyScreen screen, final RoomData data) {
 
         screenDarkener = new ImageActor(new Texture("black.png"), Vescape.GUI_VIEWPORT_HEIGHT);
         screenDarkener.alpha = 0.85f;
@@ -77,7 +77,7 @@ public class RoomPopUp {
         enterRoomButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //screen.getGame().setScreen(new RoomView(screen.getGame()));
+                screen.getGame().setScreen(new RoomView(screen.getGame(), data));
             }
         });
 
