@@ -37,7 +37,7 @@ public class RoomPopUp {
         elements = new Group();
 
 
-        panelBG = new ImageActor(new Texture("riddle_info_box_fill.png"));
+        panelBG = new ImageActor(new Texture("map_room_info_box.png"));
         panelBG.alpha = 0.7f;
 
         float panelTargetW = Vescape.GUI_VIEWPORT_WIDTH;
