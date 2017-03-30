@@ -40,6 +40,10 @@ public abstract class MyScreen implements Screen {
 
     }
 
+    public void onStart() {
+
+    }
+
     @Override
     public void render(float dt) {
 

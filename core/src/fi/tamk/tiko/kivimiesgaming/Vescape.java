@@ -73,10 +73,11 @@ public class Vescape extends Game {
     @Override
     public void setScreen(Screen screen) {
         Screen temp = getScreen();
-        super.setScreen(screen);
         if (temp != null) {
             temp.dispose();
         }
+        super.setScreen(screen);
+        ((MyScreen)screen).onStart();
     }
 
     @Override

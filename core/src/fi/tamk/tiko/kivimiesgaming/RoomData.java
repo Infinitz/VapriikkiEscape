@@ -12,7 +12,7 @@ public class RoomData {
 
     public RoomType type;
 
-    private int stars;
+    public int stars;
     private Texture texture;
     private Texture selectedTex;
     private Texture iconTexture;

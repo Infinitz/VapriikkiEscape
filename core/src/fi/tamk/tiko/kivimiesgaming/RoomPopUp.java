@@ -20,25 +20,18 @@ public class RoomPopUp {
     private ImageActor screenDarkener;
     private ImageActor panelBG;
     private Group elements;
-
+    private boolean isInSelectionView;
 
     public RoomPopUp(final MyScreen screen, final RoomData data) {
-
+        isInSelectionView = RoomSelection.class.isAssignableFrom(screen.getClass());
         screenDarkener = new ImageActor(new Texture("black.png"), Vescape.GUI_VIEWPORT_HEIGHT);
         screenDarkener.alpha = 0.85f;
-
-        screenDarkener.setClickListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                ((RoomSelection) screen).selectRoom(null);
-            }
-        });
 
         elements = new Group();
 
 
         panelBG = new ImageActor(new Texture("map_room_info_box.png"));
-        panelBG.alpha = 0.7f;
+        panelBG.alpha = 1f;
 
         float panelTargetW = Vescape.GUI_VIEWPORT_WIDTH;
         panelBG.setSize(panelBG.getSizeY() * (panelTargetW / panelBG.getSizeX()));
@@ -51,34 +44,69 @@ public class RoomPopUp {
                 screen.getGame().getMyBundle().get(data.type.toString()),
                 labelStyle);
         roomName.setPosition(panelBG.getX() + (panelBG.getSizeX() - roomName.getWidth()) / 2,
-                panelBG.getY() + panelBG.getSizeY() - roomName.getHeight() - 25);
+                panelBG.getY() + panelBG.getSizeY() - roomName.getHeight() - 50);
 
 
         ImageActor roomIcon = new ImageActor(data.getIconTexture(), 350);
         roomIcon.setTouchable(Touchable.disabled);
         roomIcon.setPosition(panelBG.getX() + (panelBG.getSizeX() - roomIcon.getSizeX()) / 2,
-                roomName.getY() - roomIcon.getSizeY() - 80);
+                roomName.getY() - roomIcon.getSizeY() - 150);
 
-        TextButton closeButton = new TextButton(screen.getGame().getMyBundle().get("closeButton"),
-                screen.getGame().getTextButtonStyle());
 
-        closeButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                ((RoomSelection)screen).selectRoom(null);
-            }
-        });
+        TextButton enterRoomButton;
+        TextButton closeButton;
+        if (isInSelectionView) {
+            enterRoomButton = new TextButton(
+                    screen.getGame().getMyBundle().get("enterRoomButton"),
+                    screen.getGame().getTextButtonStyle());
 
-        TextButton enterRoomButton = new TextButton(
-                screen.getGame().getMyBundle().get("enterRoomButton"),
-                screen.getGame().getTextButtonStyle());
+            enterRoomButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    screen.getGame().setScreen(new RoomView(screen.getGame(), data));
+                }
+            });
 
-        enterRoomButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                screen.getGame().setScreen(new RoomView(screen.getGame(), data));
-            }
-        });
+            closeButton = new TextButton(screen.getGame().getMyBundle().get("closeButton"),
+                    screen.getGame().getTextButtonStyle());
+
+            closeButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    ((RoomSelection)screen).selectRoom(null);
+                }
+            });
+
+            screenDarkener.setClickListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    ((RoomSelection) screen).selectRoom(null);
+                }
+            });
+        } else {
+
+            enterRoomButton = new TextButton(screen.getGame().getMyBundle().get("continueButton"),
+                    screen.getGame().getTextButtonStyle());
+
+            enterRoomButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    screen.getGame().setScreen(new RoomSelection(screen.getGame()));
+                }
+            });
+
+            closeButton = new TextButton(
+                    screen.getGame().getMyBundle().get("replayButton"),
+                    screen.getGame().getTextButtonStyle());
+
+            closeButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    screen.getGame().setScreen(new RoomView(screen.getGame(), data));
+                }
+            });
+        }
+
 
         float offsetX = 15f;
         float offsetY = 15f;
@@ -104,8 +132,9 @@ public class RoomPopUp {
         Vescape.setGroupOrigin(elements,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
 
+
         Stars s = new Stars(roomIcon.getX() + roomIcon.getSizeX() / 2,
-                roomIcon.getY(), 2.5f, data.getStars(), true);
+                roomIcon.getY(), 2.5f, data.getStars(), !isInSelectionView);
         s.addStarsToGroup(elements);
 
         elements.setScaleY(0);

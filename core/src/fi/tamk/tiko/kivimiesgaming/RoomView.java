@@ -33,10 +33,15 @@ public class RoomView extends MyScreen {
     public RoomView(Vescape game, RoomData roomData) {
         super(game);
         this.roomData = roomData;
+        riddlePanelTexture = new Texture("riddle_info_box_fill.png");
+    }
+
+    @Override
+    public void onStart() {
         for (Riddle r : roomData.riddles) {
             r.load();
         }
-        riddlePanelTexture = new Texture("riddle_info_box_fill.png");
+
         bg = new ImageActor(roomData.getBackground(),
                 Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
@@ -46,10 +51,8 @@ public class RoomView extends MyScreen {
         answerField = new TextField("", getGame().getTextFieldStyle());
         answerField.setPosition(0, 200);
         answerField.setSize(Vescape.GUI_VIEWPORT_WIDTH, 200);
-        //Joku vitun popuppi
+
         // mones monestako arvotuksesta
-
-
 
         answerButton = new TextButton(getGame().getMyBundle().get("answerButton"),
                 getGame().getTextButtonStyle());
@@ -78,6 +81,9 @@ public class RoomView extends MyScreen {
             ++currentRiddle;
             //riddlePanel = createNewRiddle(roomData.getRandomRiddle());
         } else {
+
+
+            return;
             //arvostelu!!
             //JOKU VITUN POPUP -> sieltä sit sinne päin
         }
@@ -97,6 +103,9 @@ public class RoomView extends MyScreen {
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {
+                                if (currentRiddle == TOTAL_RIDDLES) {
+                                    return;
+                                }
                                 riddlePanel = createNewRiddle(roomData.getRandomRiddle());
                                 riddlePanel.setRotation(-45);
                                 riddlePanel.setScale(0.5f);
@@ -116,6 +125,9 @@ public class RoomView extends MyScreen {
                         oldRiddle.remove();
                         answerField.setDisabled(false);
                         answerButton.setDisabled(false);
+                        if (currentRiddle == TOTAL_RIDDLES) {
+                            roomCompleted();
+                        }
                     }
                 })
         ));
@@ -203,5 +215,10 @@ public class RoomView extends MyScreen {
             r.dispose();
         }
         riddlePanelTexture.dispose();
+    }
+
+    private void roomCompleted() {
+        roomData.stars = 3;
+        new RoomPopUp(this, roomData);
     }
 }
