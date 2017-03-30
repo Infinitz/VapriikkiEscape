@@ -12,7 +12,8 @@ public class RoomData {
 
     public RoomType type;
 
-    public int stars;
+    public int highscore = 0;
+    public int latestScore = 0;
     private Texture texture;
     private Texture selectedTex;
     private Texture iconTexture;
@@ -28,17 +29,12 @@ public class RoomData {
         this.selectedTex = selectedTex;
         this.iconTexture = iconTexture;
         this.background = background;
-        stars = 2; //temporary
         riddles = new ArrayList<Riddle>();
     }
 
     public Riddle getRandomRiddle() {
         int index = (int)(Math.random() * riddles.size());
         return riddles.get(index);
-    }
-
-    public int getStars() {
-        return stars;
     }
 
     public Texture getTexture() {

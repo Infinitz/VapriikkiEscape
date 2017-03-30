@@ -132,9 +132,12 @@ public class RoomPopUp {
         Vescape.setGroupOrigin(elements,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
 
-
+        int stars = data.highscore;
+        if (!isInSelectionView) {
+            stars = data.latestScore;
+        }
         Stars s = new Stars(roomIcon.getX() + roomIcon.getSizeX() / 2,
-                roomIcon.getY(), 2.5f, data.getStars(), !isInSelectionView);
+                roomIcon.getY(), 2.5f, stars, !isInSelectionView);
         s.addStarsToGroup(elements);
 
         elements.setScaleY(0);

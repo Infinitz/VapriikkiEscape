@@ -36,7 +36,7 @@ public class RoomButton extends SelectableButton {
         roomIcon.setPosition(getX() + roomData.iconLocalPosX * getSizeX(),
                 getY() + roomData.iconLocalPosY  * getSizeY());
         Stars s = new Stars(roomIcon.getX() + roomIcon.getSizeX() / 2,
-                roomIcon.getY(), 1, roomData.getStars(), false);
+                roomIcon.getY(), 1, roomData.highscore, false);
         s.addStarsToGroup(roomElements);
         return roomElements;
     }

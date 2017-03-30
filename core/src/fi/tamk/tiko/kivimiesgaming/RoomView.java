@@ -20,6 +20,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 public class RoomView extends MyScreen {
     private static final int TOTAL_RIDDLES = 3;
     private RoomData roomData;
+    private Riddle currentRiddle;
+
     private BurgerButton burgerButton;
     private ImageActor bg;
     private Group riddlePanel;
@@ -27,8 +29,8 @@ public class RoomView extends MyScreen {
     private TextField answerField;
     private TextButton answerButton;
 
-    private int currentRiddle = 1;
-    private int correctAnswers = 0;
+    private int currentRiddleCount = 1;
+    private int correctAnswerCount = 0;
 
     public RoomView(Vescape game, RoomData roomData) {
         super(game);
@@ -46,7 +48,7 @@ public class RoomView extends MyScreen {
                 Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
 
-        riddlePanel = createNewRiddle(roomData.getRandomRiddle());
+        riddlePanel = createNewRiddlePanel();
 
         answerField = new TextField("", getGame().getTextFieldStyle());
         answerField.setPosition(0, 200);
@@ -76,16 +78,11 @@ public class RoomView extends MyScreen {
 
     public void answer(String playerAnswer) {
         // check if answer is correct or not
-        
-        if (currentRiddle != TOTAL_RIDDLES) {
-            ++currentRiddle;
-            //riddlePanel = createNewRiddle(roomData.getRandomRiddle());
-        } else {
+        boolean correctAnswer = playerAnswer.equalsIgnoreCase(
+                currentRiddle.getRiddle(getGame().getMyBundle().getLocale().getLanguage()).answer);
 
-
-            return;
-            //arvostelu!!
-            //JOKU VITUN POPUP -> sieltä sit sinne päin
+        if (correctAnswer) {
+            correctAnswerCount++;
         }
 
         answerField.setDisabled(true);
@@ -103,10 +100,10 @@ public class RoomView extends MyScreen {
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {
-                                if (currentRiddle == TOTAL_RIDDLES) {
+                                if (currentRiddleCount == TOTAL_RIDDLES) {
                                     return;
                                 }
-                                riddlePanel = createNewRiddle(roomData.getRandomRiddle());
+                                riddlePanel = createNewRiddlePanel();
                                 riddlePanel.setRotation(-45);
                                 riddlePanel.setScale(0.5f);
                                 riddlePanel.setX(1000);
@@ -122,19 +119,23 @@ public class RoomView extends MyScreen {
                 Actions.run(new Runnable() {
                     @Override
                     public void run() {
+                        System.out.println(currentRiddleCount + "  " + correctAnswerCount + "  " + TOTAL_RIDDLES);
                         oldRiddle.remove();
                         answerField.setDisabled(false);
                         answerButton.setDisabled(false);
-                        if (currentRiddle == TOTAL_RIDDLES) {
+                        if (currentRiddleCount == TOTAL_RIDDLES) {
                             roomCompleted();
                         }
+                        ++currentRiddleCount;
                     }
                 })
         ));
 
     }
 
-    private Group createNewRiddle(Riddle currentRiddle) {
+    private Group createNewRiddlePanel() {
+        currentRiddle = roomData.getRandomRiddle();
+
         ImageActor riddlePanelBg = new ImageActor(riddlePanelTexture);
 
         float panelTargetW = Vescape.GUI_VIEWPORT_WIDTH;
@@ -218,7 +219,10 @@ public class RoomView extends MyScreen {
     }
 
     private void roomCompleted() {
-        roomData.stars = 3;
+        roomData.latestScore = correctAnswerCount;
+        if (roomData.latestScore > roomData.highscore)
+            roomData.highscore = roomData.latestScore;
+
         new RoomPopUp(this, roomData);
     }
 }
