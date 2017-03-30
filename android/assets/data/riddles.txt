@@ -7,10 +7,50 @@ englishFlag.png
 fi::arvotus::vastaus
 en::riddle::answer;
 
+&postalMuseum
+
 englishFlag.png
 fi::arvotus::vastaus
 en::riddle::answer;
 
-&postalMuseum
+&tammerMuseum
 
+englishFlag.png
+fi::arvotus::vastaus
+en::riddle::answer;
 
+&tutorialMuseum
+
+englishFlag.png
+fi::arvotus::vastaus
+en::riddle::answer;
+
+&gameMuseum
+
+englishFlag.png
+fi::arvotus::vastaus
+en::riddle::answer;
+
+&mediaMuseum
+
+englishFlag.png
+fi::arvotus::vastaus
+en::riddle::answer;
+
+&natureMuseum
+
+englishFlag.png
+fi::arvotus::vastaus
+en::riddle::answer;
+
+&dollMuseum
+
+englishFlag.png
+fi::arvotus::vastaus
+en::riddle::answer;
+
+&iceHockeyMuseum
+
+englishFlag.png
+fi::arvotus::vastaus
+en::riddle::answer;
