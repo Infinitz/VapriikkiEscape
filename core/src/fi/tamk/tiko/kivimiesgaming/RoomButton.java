@@ -47,16 +47,14 @@ public class RoomButton extends SelectableButton {
 
     @Override
     protected void onSelect(boolean selected) {
-        int direction = selected ? 1 : -1;
-
         if (selected) {
             roomIcon.addAction(Actions.parallel(
-                    Actions.moveBy(0, direction * 50, 0.4f, Interpolation.pow2),
+                    Actions.moveBy(0, 50, 0.4f, Interpolation.pow2),
                     Actions.scaleTo(1.3f, 1.3f, 0.3f)
             ));
         } else {
             roomIcon.addAction(Actions.parallel(
-                    Actions.moveBy(0, direction * 50,
+                    Actions.moveBy(0, -50,
                             0.8f, Interpolation.bounceOut),
                     Actions.scaleTo(1f, 1f, 0.15f)
             ));
