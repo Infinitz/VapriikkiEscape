@@ -25,6 +25,7 @@ public class RoomView extends MyScreen {
     private Group riddlePanel;
     private Texture riddlePanelTexture;
     private TextField answerField;
+    private TextButton answerButton;
 
     private int currentRiddle = 1;
     private int correctAnswers = 0;
@@ -48,7 +49,9 @@ public class RoomView extends MyScreen {
         //Joku vitun popuppi
         // mones monestako arvotuksesta
 
-        TextButton answerButton = new TextButton(getGame().getMyBundle().get("answerButton"),
+
+
+        answerButton = new TextButton(getGame().getMyBundle().get("answerButton"),
                 getGame().getTextButtonStyle());
 
         answerButton.addListener(new ChangeListener() {
@@ -81,6 +84,7 @@ public class RoomView extends MyScreen {
 
         answerField.setDisabled(true);
         answerField.setText("");
+        answerButton.setDisabled(true);
 
         final float animLength = 0.85f;
         final Group oldRiddle = riddlePanel;
@@ -111,6 +115,7 @@ public class RoomView extends MyScreen {
                     public void run() {
                         oldRiddle.remove();
                         answerField.setDisabled(false);
+                        answerButton.setDisabled(false);
                     }
                 })
         ));
