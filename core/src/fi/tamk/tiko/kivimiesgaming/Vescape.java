@@ -30,6 +30,8 @@ public class Vescape extends Game {
 
     public static final float GUI_VIEWPORT_WIDTH = 900;
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
+    public static final int MAX_CHARS_PER_LINE = 24;
+
     private static final String ROOM_DATA_MARK = "&";
     private static final String RIDDLE_SEPARATOR = "::";
     private static final String RIDDLE_END = ";";
@@ -53,13 +55,6 @@ public class Vescape extends Game {
         createStylesAndFonts();
         loadRoomData();
         loadRiddles();
-
-        for (RoomType key : roomData.keySet()) {
-            System.out.println(key.toString());
-            for (int i = 0; i < roomData.get(key).riddles.size(); ++i) {
-                System.out.println(roomData.get(key).riddles.get(i).toString());
-            }
-        }
 
         setFinnish();
         setScreen(new MainMenu(this));
@@ -256,8 +251,8 @@ public class Vescape extends Game {
 
     private void loadRiddles() {
 
-        System.out.println(Gdx.files.internal(RIDDLE_FILE_PATH).exists());
-
+        int lineIndex = 0;
+        String currentLine = "";
         try {
             FileHandle handle = Gdx.files.internal(RIDDLE_FILE_PATH);
             String text = handle.readString();
@@ -267,8 +262,8 @@ public class Vescape extends Game {
 
             RoomType currentRoom = null;
             for (String line = reader.readLine(); line != null; line = reader.readLine()) {
-
-                String currentLine = line.trim();
+                ++lineIndex;
+                currentLine = line.trim();
                 if (currentLine.length() == 0) {
                     continue;
                 }
@@ -289,6 +284,7 @@ public class Vescape extends Game {
                     Riddle riddle = new Riddle(currentLine);
 
                     while (true) {
+                        ++lineIndex;
                         currentLine = reader.readLine().trim();
 
                         boolean riddleEnd = currentLine.endsWith(RIDDLE_END);
@@ -310,7 +306,9 @@ public class Vescape extends Game {
 
             reader.close();
         } catch (Exception e) {
-            System.out.println("Unable to load file: " + RIDDLE_FILE_PATH);
+            System.out.println("Unable to load file: " + RIDDLE_FILE_PATH + "\n" +
+            "Error in the line: " + lineIndex);
+            System.out.println(currentLine);
         }
 
     }

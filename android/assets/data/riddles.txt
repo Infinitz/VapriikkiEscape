@@ -10,7 +10,7 @@ en::riddle::answer;
 &postalMuseum
 
 englishFlag.png
-fi::arvotus::vastaus
+fi::arasdfasdfa fasdsdfasdfasdfasdfasdfaafsdfasdfasdfasdfasdfasdfsddv::vastaus
 en::riddle::answer;
 
 &tammerMuseum

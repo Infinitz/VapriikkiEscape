@@ -76,7 +76,7 @@ public class RoomView extends MyScreen {
 
     public void answer(String playerAnswer) {
         // check if answer is correct or not
-        System.out.println(playerAnswer);
+        
         if (currentRiddle != TOTAL_RIDDLES) {
             ++currentRiddle;
             //riddlePanel = createNewRiddle(roomData.getRandomRiddle());
