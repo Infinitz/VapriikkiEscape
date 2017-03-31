@@ -3,27 +3,27 @@
 
 &rockMuseum
 
-kivi1.png
+kivi1.jpg
 fi::Mikä on kuvassa olevan asian yleisnimitys?::Koralli
 en::riddle::answer;
 
-kivi2.png
-fi::Kuinka painava kuvassa oleva kivipallo on?::300kg||300
+kivi2.jpg
+fi::Kuinka painava kuvassa oleva kivipallo on?::300kg//300
 en::riddle::answer;
 
-kivi3.png
-fi::Mainitse yksi henkilö, jonka asteikkoa käytetään kiven kovuuden määrittämiseen.::Mohs||Rosiwal
+kivi3.jpg
+fi::Mainitse yksi henkilö, jonka asteikkoa käytetään kiven kovuuden määrittämiseen.::Mohs//Rosiwal
 en::riddle::answer;
 
-kivi4.png
+kivi4.jpg
 fi::Mistä kuvassa oleva Ammoniitti on löydetty?::Madagaskar
 en::riddle::answer;
 
-kivi5.png
+kivi5.jpg
 fi::Mikä on kuvassa näkyvä pörröisen näköinen kivi?::Okeniitti
 en::riddle::answer;
 
-kivi6.png
+kivi6.jpg
 fi::Mikä on Rikkikiisun toinen nimitys?::Pyriitti
 en::riddle::answer;
 
@@ -35,62 +35,87 @@ en::riddle::answer;
 
 &tammerMuseum
 
-koski1.png
+koski1.jpg
 fi::Mitä kuvan mies luettelee ensimmäisenä tarpeelliseksi asiaksi?::Miekka
 en::riddle::answer;
 
-koski3.png
+koski3.jpg
 fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen
 en::riddle::answer;
 
-koski4.png
+koski4.jpg
 fi::Miltä vuodelta kuvassa näkyvä Josef Konsénin vaaka on?::1870
 en::riddle::answer;
 
-koskiV.png
+koskiV.jpg
 fi::Mikä on kuvassa näkyvän auton rekisteritunnuksen kolme viimeistä numeroa?::408
 en::riddle::answer;
 
 &tutorialMuseum
 
-englishFlag.png
-fi::arvotus::vastaus
+tutoriaali1.jpg
+fi::Tervetuloa Vapriikkiin! Mikähän on tämän aulasta löytyvän puodin nimi?::museokauppa
 en::riddle::answer;
+
 
 &gameMuseum
 
-englishFlag.png
-fi::arvotus::vastaus
+peli1.jpg
+fi::Mikä pelistudio on luonut kyseisen pelihahmon?::Rovio Entertainment
+en::riddle::answer;
+
+peli2.jpg
+fi::Mistä elokuvahahmosta tämä peli on tehty?::Uuno Turhapuro
+en::riddle::answer;
+
+peli3.jpg
+fi::Mistä ensimmäiset pajatsot tuotiin Suomeen?::Saksa
 en::riddle::answer;
 
 &mediaMuseum
 
-rup1.png
+rup1.jpg
 fi::Koska ensimmäiset puhelinkioskit ilmestyivät Tampereelle?::1925
 en::riddle::answer;
 
-rup2.png
+rup2.jpg
 fi::Mikä on tämän Nokian puhelimen mallinumero?::8210
 en::riddle::answer;
 
 &natureMuseum
 
-englishFlag.png
-fi::arvotus::vastaus
+#luonto4.jpg
+#fi::Mikä on Pirkanmaan maakuntakalan latinankielinen nimi?::Aspius aspius
+#en::riddle::answer;
+
+#luonto5.jpg
+#fi::Mikä on Pirkanmaan maakuntakivi?::Pallograniitti
+#en::riddle::answer;
+
+luonto1.jpg
+fi::Mikä kasvi tuoksuu näytteessä numero 4?::Suopursu
+en::riddle::answer;
+
+luonto2.jpg
+fi::Mikä hurjan paljon suurennettu perhonen näkyy kuvassa?::Tummaverkkoperhonen
+en::riddle::answer;
+
+luonto3.jpg
+fi::Mille linnulle kyseinen luuranko kuuluu?::Varis
 en::riddle::answer;
 
 &dollMuseum
 
-nukke1.png
+nukke1.jpg
 fi::Mikä on tämän söpön pienen kahvilan nimi?::vastaus
 en::riddle::Jokilinna;
 
 &iceHockeyMuseum
 
-jää1.png
+jää1.jpg
 fi::Minkä entisen SM-liigajoukkueen logo tämä on?::Jokerit
 en::riddle::answer;
 
-jää2.png
+jää2.jpg
 fi::Minkä SM-liigajoukkueen maalivahdin pelipaita 1940-luvulta komeilee kuvassa?::Ilves
 en::riddle::answer;

@@ -78,8 +78,8 @@ public class RoomView extends MyScreen {
 
     public void answer(String playerAnswer) {
         // check if answer is correct or not
-        boolean correctAnswer = playerAnswer.equalsIgnoreCase(
-                currentRiddle.getRiddle(getGame().getMyBundle().getLocale().getLanguage()).answer);
+        boolean correctAnswer = currentRiddle.getRiddle(
+                getGame().getMyBundle().getLocale().getLanguage()).isCorrectAnswer(playerAnswer);
 
         if (correctAnswer) {
             correctAnswerCount++;

@@ -16,7 +16,7 @@ public class Riddle {
     public Texture image;
 
     public Riddle(String imagePath) {
-        this.imagePath = imagePath;
+        this.imagePath = Vescape.RIDDLE_IMAGES_PATH + imagePath;
         riddleTexts = new ArrayList<RiddleTexts>();
     }
 
@@ -41,6 +41,7 @@ public class Riddle {
         image = null;
     }
 
+    /*
     @Override
     public String toString() {
         String temp = imagePath + "\n";
@@ -52,4 +53,5 @@ public class Riddle {
 
         return temp;
     }
+    */
 }

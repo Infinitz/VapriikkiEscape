@@ -8,12 +8,17 @@ public class RiddleTexts {
 
     public String language;
     public String riddle;
-    public String answer;
+    private String[] answers;
 
     public RiddleTexts(String language, String riddle, String answer) {
         this.language = language;
-        this.answer = answer;
-
+        this.answers = answer.split(Vescape.RIDDLE_ANSWER_SEPARATOR);
+        //System.out.println(answer + "  " + answers.length);
+        //System.out.println(answer.split("//"));
+        for (int i = 0; i < answers.length; ++i) {
+            System.out.print(answers[i] + " ");
+            System.out.println();
+        }
         int currentLineStart = 0;
         String riddleText = "";
         while (true) {
@@ -55,5 +60,14 @@ public class RiddleTexts {
             }
         }
         this.riddle = riddleText;
+    }
+
+    public boolean isCorrectAnswer(String answer) {
+        for (int i = 0; i < answers.length; ++i) {
+            if (answers[i].equalsIgnoreCase(answer)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

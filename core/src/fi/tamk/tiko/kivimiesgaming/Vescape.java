@@ -32,11 +32,13 @@ public class Vescape extends Game {
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
     public static final int MAX_CHARS_PER_LINE = 24;
 
-    private static final String ROOM_DATA_MARK = "&";
-    private static final String RIDDLE_SEPARATOR = "::";
-    private static final String RIDDLE_END = ";";
-    private static final String RIDDLE_FILE_COMMENT_MARK = "#";
-    private static final String RIDDLE_FILE_PATH = "data/riddles.txt";
+    public static final String ROOM_DATA_MARK = "&";
+    public static final String RIDDLE_ANSWER_SEPARATOR = "//";
+    public static final String RIDDLE_SEPARATOR = "::";
+    public static final String RIDDLE_END = ";";
+    public static final String RIDDLE_FILE_COMMENT_MARK = "#";
+    public static final String RIDDLE_FILE_PATH = "data/riddles.txt";
+    public static final String RIDDLE_IMAGES_PATH = "riddle_images/";
 
     private SpriteBatch batch;
     private I18NBundle myBundle;
