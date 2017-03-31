@@ -3,8 +3,28 @@
 
 &rockMuseum
 
-englishFlag.png
-fi::arvotus::vastaus
+kivi1.png
+fi::Mikä on kuvassa olevan asian yleisnimitys?::Koralli
+en::riddle::answer;
+
+kivi2.png
+fi::Kuinka painava kuvassa oleva kivipallo on?::300kg||300
+en::riddle::answer;
+
+kivi3.png
+fi::Mainitse yksi henkilö, jonka asteikkoa käytetään kiven kovuuden määrittämiseen.::Mohs||Rosiwal
+en::riddle::answer;
+
+kivi4.png
+fi::Mistä kuvassa oleva Ammoniitti on löydetty?::Madagaskar
+en::riddle::answer;
+
+kivi5.png
+fi::Mikä on kuvassa näkyvä pörröisen näköinen kivi?::Okeniitti
+en::riddle::answer;
+
+kivi6.png
+fi::Mikä on Rikkikiisun toinen nimitys?::Pyriitti
 en::riddle::answer;
 
 &postalMuseum
@@ -15,8 +35,20 @@ en::riddle::answer;
 
 &tammerMuseum
 
-englishFlag.png
-fi::arvotus::vastaus
+koski1.png
+fi::Mitä kuvan mies luettelee ensimmäisenä tarpeelliseksi asiaksi?::Miekka
+en::riddle::answer;
+
+koski3.png
+fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen
+en::riddle::answer;
+
+koski4.png
+fi::Miltä vuodelta kuvassa näkyvä Josef Konsénin vaaka on?::1870
+en::riddle::answer;
+
+koskiV.png
+fi::Mikä on kuvassa näkyvän auton rekisteritunnuksen kolme viimeistä numeroa?::408
 en::riddle::answer;
 
 &tutorialMuseum
@@ -33,8 +65,12 @@ en::riddle::answer;
 
 &mediaMuseum
 
-englishFlag.png
-fi::arvotus::vastaus
+rup1.png
+fi::Koska ensimmäiset puhelinkioskit ilmestyivät Tampereelle?::1925
+en::riddle::answer;
+
+rup2.png
+fi::Mikä on tämän Nokian puhelimen mallinumero?::8210
 en::riddle::answer;
 
 &natureMuseum
@@ -45,12 +81,16 @@ en::riddle::answer;
 
 &dollMuseum
 
-englishFlag.png
-fi::arvotus::vastaus
-en::riddle::answer;
+nukke1.png
+fi::Mikä on tämän söpön pienen kahvilan nimi?::vastaus
+en::riddle::Jokilinna;
 
 &iceHockeyMuseum
 
-englishFlag.png
-fi::arvotus::vastaus
+jää1.png
+fi::Minkä entisen SM-liigajoukkueen logo tämä on?::Jokerit
+en::riddle::answer;
+
+jää2.png
+fi::Minkä SM-liigajoukkueen maalivahdin pelipaita 1940-luvulta komeilee kuvassa?::Ilves
 en::riddle::answer;
