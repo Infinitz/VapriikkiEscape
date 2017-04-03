@@ -51,10 +51,10 @@ public class RoomView extends MyScreen {
         riddlePanelTexture = new Texture("riddle_info_box_fill.png");
         riddlePanelBorderTexture = new Texture("riddle_info_box_border.png");
 
-        emptyAnswerTex = new Texture("druckknopf_nein.png");
-        wrongAnswerTex = new Texture("druckknopf_nein.png");
-        correctAnswerTex = new Texture("druckknopf_ja.png");
-        perfectAnswerTex = new Texture("druckknopf_ja.png");
+        emptyAnswerTex = new Texture("riddle_slot_empty.png");
+        wrongAnswerTex = new Texture("riddle_slot_nope.png");
+        correctAnswerTex = new Texture("riddle_slot_done.png");
+        perfectAnswerTex = new Texture("riddle_slot_done_golden.png");
 
     }
 
@@ -100,7 +100,7 @@ public class RoomView extends MyScreen {
             float x = centerX +
                     (-(answerResults.length / 2f) + 0.5f + i) * (answerResults[i].getSizeX()
                             + answerSlotSpace);
-            System.out.println((-(answerResults.length / 2f) + i) + "  " + centerX);
+
             float y = Vescape.GUI_VIEWPORT_HEIGHT - answerResults[i].getSizeY() - 10;
             answerResults[i].setPosition(x, y);
         }
@@ -140,8 +140,6 @@ public class RoomView extends MyScreen {
             } else {
                 answerResult = new ImageActor(perfectAnswerTex, answerResults[0].getSizeY());
             }
-
-            nextRiddle();
         } else if (!hintUsed){
             hintUsed = true;
             hintsUsedCount++;
@@ -151,19 +149,23 @@ public class RoomView extends MyScreen {
             answerResult = new ImageActor(wrongAnswerTex, answerResults[0].getSizeY());
         }
         if (answerResult != null) {
+            answerField.setDisabled(true);
+            answerField.setText("");
+            answerButton.setDisabled(true);
+
             answerResult.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2,
                     3 * Vescape.GUI_VIEWPORT_HEIGHT / 2);
-            answerResult.setScale(3.5f);
+            answerResult.setScale(5.5f);
             getStage().addActor(answerResult);
             answerResult.addAction(Actions.sequence(
                     Actions.parallel(
                             Actions.moveTo(
                                     Vescape.GUI_VIEWPORT_WIDTH / 2 - answerResult.getSizeX() / 2,
                                     Vescape.GUI_VIEWPORT_HEIGHT / 2 -
-                                            answerResult.getSizeY() / 2, 0.5f,
+                                            answerResult.getSizeY() / 2, 0.45f,
                                     Interpolation.pow2),
-                            Actions.scaleTo(2, 2, 0.65f, Interpolation.bounceOut),
-                            Actions.rotateTo(((float)Math.random() - 0.5f) * 25f)
+                            Actions.scaleTo(3, 3, 0.6f, Interpolation.bounceOut),
+                            Actions.rotateTo(((float)Math.random() - 0.5f) * 40f)
                     ),
                     Actions.delay(0.25f),
 
@@ -186,9 +188,6 @@ public class RoomView extends MyScreen {
 
     private void nextRiddle() {
         hintUsed = false;
-        answerField.setDisabled(true);
-        answerField.setText("");
-        answerButton.setDisabled(true);
 
         final float animLength = 0.85f;
         final Group oldRiddle = riddlePanel;
@@ -324,9 +323,14 @@ public class RoomView extends MyScreen {
     }
 
     private void roomCompleted() {
-        roomData.latestScore = correctAnswerCount;
-        if (roomData.latestScore > roomData.highscore)
+        int score = correctAnswerCount;
+        if (score == 3 && hintsUsedCount > 0) {
+            --score;
+        }
+        roomData.latestScore = score;
+        if (roomData.latestScore > roomData.highscore) {
             roomData.highscore = roomData.latestScore;
+        }
 
         new RoomFinishedPopUp(this, roomData);
     }
