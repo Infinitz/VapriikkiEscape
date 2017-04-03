@@ -26,7 +26,7 @@ public class MainMenu extends MyScreen {
     public MainMenu(Vescape game) {
         super(game);
 
-        ImageActor bg = new ImageActor(new Texture("MENU_bg.png"), Vescape.GUI_VIEWPORT_HEIGHT);
+        ImageActor bg = new ImageActor(new Texture("MENU_bg.jpg"), Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
 
         stage.addActor(bg);

@@ -192,7 +192,7 @@ public class Vescape extends Game {
                 new Texture("F1_rock_active.png"),
                 new Texture("F1_rock_active.png"),
                 new Texture("map_icons_kivi.png"),
-                new Texture("MENU_bg.png"));
+                new Texture("MENU_bg.jpg"));
         temp.setIconLocalPosition(0.6f, 0.6f);
         roomData.put(RoomType.ROCK, temp);
 
@@ -200,7 +200,7 @@ public class Vescape extends Game {
                 new Texture("F1_tammer_active.png"),
                 new Texture("F1_tammer_active.png"),
                 new Texture("map_icons_tammerkoski.png"),
-                new Texture("MENU_bg.png"));
+                new Texture("MENU_bg.jpg"));
         temp.setIconLocalPosition(-0.5f, 0.1f);
         roomData.put(RoomType.TAMMER, temp);
 
@@ -208,7 +208,7 @@ public class Vescape extends Game {
                 new Texture("F1_postal_active.png"),
                 new Texture("F1_postal_active.png"),
                 new Texture("map_icons_postal.png"),
-                new Texture("MENU_bg.png"));
+                new Texture("MENU_bg.jpg"));
         temp.setIconLocalPosition(0.5f, 0.3f);
         roomData.put(RoomType.POSTAL, temp);
 
@@ -216,7 +216,7 @@ public class Vescape extends Game {
                 new Texture("F1_tutorial_active.png"),
                 new Texture("F1_tutorial_active.png"),
                 new Texture("map_icons_tutorial.png"),
-                new Texture("MENU_bg.png"));
+                new Texture("MENU_bg.jpg"));
         temp.setIconLocalPosition(0.3f, 0.15f);
         roomData.put(RoomType.TUTORIAL, temp);
 
@@ -224,7 +224,7 @@ public class Vescape extends Game {
                 new Texture("F2_game_active.png"),
                 new Texture("F2_game_active.png"),
                 new Texture("map_icons_game.png"),
-                new Texture("MENU_bg.png"));
+                new Texture("MENU_bg.jpg"));
         temp.setIconLocalPosition(0.4f, -0.2f);
         roomData.put(RoomType.GAME, temp);
 
@@ -232,7 +232,7 @@ public class Vescape extends Game {
                 new Texture("F2_icehokey_active.png"),
                 new Texture("F2_icehokey_active.png"),
                 new Texture("map_icons_icehockey.png"),
-                new Texture("MENU_bg.png"));
+                new Texture("MENU_bg.jpg"));
         temp.setIconLocalPosition(-0.4f, 0.1f);
         roomData.put(RoomType.ICEHOCKEY, temp);
 
@@ -240,7 +240,7 @@ public class Vescape extends Game {
                 new Texture("F2_media_active.png"),
                 new Texture("F2_media_active.png"),
                 new Texture("map_icons_media.png"),
-                new Texture("MENU_bg.png"));
+                new Texture("MENU_bg.jpg"));
         temp.setIconLocalPosition(0.3f, 0.3f);
         roomData.put(RoomType.MEDIA, temp);
 
@@ -248,7 +248,7 @@ public class Vescape extends Game {
                 new Texture("F2_doll_active.png"),
                 new Texture("F2_doll_active.png"),
                 new Texture("map_icons_doll.png"),
-                new Texture("MENU_bg.png"));
+                new Texture("MENU_bg.jpg"));
         temp.setIconLocalPosition(-0.4f, 0.4f);
         roomData.put(RoomType.DOLL, temp);
 
@@ -256,7 +256,7 @@ public class Vescape extends Game {
                 new Texture("F2_nature_active.png"),
                 new Texture("F2_nature_active.png"),
                 new Texture("map_icons_nature.png"),
-                new Texture("MENU_bg.png"));
+                new Texture("MENU_bg.jpg"));
         temp.setIconLocalPosition(0.15f, 0.3f);
         roomData.put(RoomType.NATURE, temp);
     }

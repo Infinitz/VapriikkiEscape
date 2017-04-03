@@ -32,7 +32,7 @@ public class RoomSelection extends MyScreen {
 
     public RoomSelection(Vescape game) {
         super(game);
-        bg = new ImageActor(new Texture("MENU_bg.png"),
+        bg = new ImageActor(new Texture("MENU_bg.jpg"),
                 Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
 
