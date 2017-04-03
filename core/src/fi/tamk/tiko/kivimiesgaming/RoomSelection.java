@@ -76,6 +76,36 @@ public class RoomSelection extends MyScreen {
                 Actions.delay(animationDelay),
                 Actions.scaleTo(1f, 1f,
                         animDuration, Interpolation.pow2Out)));
+
+        Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(
+                new SimpleDirectionGestureDetector.DirectionListener() {
+
+            @Override
+            public void onUp() {
+                if (changeFloorButton.isSelected()) {
+                    changeFloor(true);
+                    changeFloorButton.select();
+                }
+            }
+
+            @Override
+            public void onRight() {
+
+            }
+
+            @Override
+            public void onLeft() {
+
+            }
+
+            @Override
+            public void onDown() {
+                if (!changeFloorButton.isSelected()) {
+                    changeFloor(false);
+                    changeFloorButton.select();
+                }
+            }
+        }));
     }
 
     public void createChangeFloorButton() {
@@ -353,6 +383,8 @@ public class RoomSelection extends MyScreen {
 
         return button;
     }
+
+
 
     @Override
     public void dispose() {
