@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
@@ -36,18 +38,26 @@ public class ImageActor extends Actor {
             @Override
             public void touchUp(InputEvent event, float x, float y,
                                 int pointer, int button) {
-
+                ImageActor thisActor = ImageActor.this;
+                System.out.println(thisActor.
+                        getStage().toString());
+                System.out.println("thisActor.getX(): " + ((ImageActor)thisActor).getTrueX());
+                System.out.println("thisActor.getY(): " + ((ImageActor)thisActor).getTrueY());
+                System.out.println("X: " + x);
+                System.out.println("Y: " + y);
+                if (listener != null && thisActor == thisActor.
+                        getStage().hit(x + thisActor.getTrueX(), y + thisActor.getTrueY(), true)) {
+                    listener.changed(null, ImageActor.this);
+                }
             }
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y,
                                      int pointer, int button) {
-                if (listener != null && ImageActor.this != null)
-                    listener.changed(null, ImageActor.this);
-
                 return true;
             }
         });
+        setTouchable(Touchable.disabled);
     }
 
     public void setTex(Texture tex) {
@@ -122,8 +132,29 @@ public class ImageActor extends Actor {
         }
     }
 
+    public float getTrueX() {
+        Actor temp = this;
+        float coordX = super.getX();
+        while (temp.getParent() != null) {
+            coordX += temp.getParent().getX();
+            temp = temp.getParent();
+        }
+        return coordX;
+    }
+
+    public float getTrueY() {
+        Actor temp = this;
+        float coordY = super.getY();
+        while (temp.getParent() != null) {
+            coordY += temp.getParent().getY();
+            temp = temp.getParent();
+        }
+        return coordY;
+    }
+
     public void setClickListener(ChangeListener listener) {
         this.listener = listener;
+        setTouchable(Touchable.enabled);
     }
 
 }

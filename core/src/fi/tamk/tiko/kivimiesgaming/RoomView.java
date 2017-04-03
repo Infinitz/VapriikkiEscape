@@ -248,6 +248,6 @@ public class RoomView extends MyScreen {
         if (roomData.latestScore > roomData.highscore)
             roomData.highscore = roomData.latestScore;
 
-        new RoomPopUp(this, roomData);
+        new RoomFinishedPopUp(this, roomData);
     }
 }

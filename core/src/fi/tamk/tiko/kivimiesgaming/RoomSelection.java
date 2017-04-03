@@ -2,6 +2,8 @@ package fi.tamk.tiko.kivimiesgaming;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
@@ -77,35 +79,40 @@ public class RoomSelection extends MyScreen {
                 Actions.scaleTo(1f, 1f,
                         animDuration, Interpolation.pow2Out)));
 
-        Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(
+        InputProcessor inputProcessorOne = new SimpleDirectionGestureDetector(
                 new SimpleDirectionGestureDetector.DirectionListener() {
 
-            @Override
-            public void onUp() {
-                if (changeFloorButton.isSelected()) {
-                    changeFloor(true);
-                    changeFloorButton.select();
-                }
-            }
+                    @Override
+                    public void onUp() {
+                        if (changeFloorButton.isSelected() && roomPopUp == null ) {
+                            changeFloor(true);
+                            changeFloorButton.select();
+                        }
+                    }
 
-            @Override
-            public void onRight() {
+                    @Override
+                    public void onRight() {
 
-            }
+                    }
 
-            @Override
-            public void onLeft() {
+                    @Override
+                    public void onLeft() {
 
-            }
+                    }
 
-            @Override
-            public void onDown() {
-                if (!changeFloorButton.isSelected()) {
-                    changeFloor(false);
-                    changeFloorButton.select();
-                }
-            }
-        }));
+                    @Override
+                    public void onDown() {
+                        if (!changeFloorButton.isSelected() && roomPopUp == null) {
+                            changeFloor(false);
+                            changeFloorButton.select();
+                        }
+                    }
+                });
+        InputMultiplexer inputMultiplexer = new InputMultiplexer();
+        inputMultiplexer.addProcessor(inputProcessorOne);
+        inputMultiplexer.addProcessor(stage);
+        Gdx.input.setInputProcessor(inputMultiplexer);
+
     }
 
     public void createChangeFloorButton() {
@@ -137,13 +144,6 @@ public class RoomSelection extends MyScreen {
         timeMachineButton.setPosition(
                 Vescape.GUI_VIEWPORT_WIDTH / 2 - timeMachineButton.getWidth() / 2,
                 Vescape.GUI_VIEWPORT_HEIGHT / 2 - timeMachineButton.getHeight() / 2);
-
-        timeMachineButton.setClickListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new MainMenu(game));
-            }
-        });
 
         stage.addActor(timeMachineButton);
 
