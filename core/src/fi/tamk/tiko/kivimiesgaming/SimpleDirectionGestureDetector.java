@@ -37,7 +37,7 @@ public class SimpleDirectionGestureDetector extends GestureDetector {
                     directionListener.onLeft();
                 }
             }else{
-                if(velocityY>0){
+                if(velocityY>2000){
                     directionListener.onDown();
                 }else{
                     directionListener.onUp();
@@ -45,6 +45,5 @@ public class SimpleDirectionGestureDetector extends GestureDetector {
             }
             return super.fling(velocityX, velocityY, button);
         }
-
     }
 }
