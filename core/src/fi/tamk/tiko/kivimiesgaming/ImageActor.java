@@ -39,12 +39,6 @@ public class ImageActor extends Actor {
             public void touchUp(InputEvent event, float x, float y,
                                 int pointer, int button) {
                 ImageActor thisActor = ImageActor.this;
-                System.out.println(thisActor.
-                        getStage().toString());
-                System.out.println("thisActor.getX(): " + ((ImageActor)thisActor).getTrueX());
-                System.out.println("thisActor.getY(): " + ((ImageActor)thisActor).getTrueY());
-                System.out.println("X: " + x);
-                System.out.println("Y: " + y);
                 if (listener != null && thisActor == thisActor.
                         getStage().hit(x + thisActor.getTrueX(), y + thisActor.getTrueY(), true)) {
                     listener.changed(null, ImageActor.this);
