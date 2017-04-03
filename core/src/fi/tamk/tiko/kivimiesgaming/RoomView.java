@@ -25,9 +25,11 @@ public class RoomView extends MyScreen {
     private BurgerButton burgerButton;
     private ImageActor bg;
     private Group riddlePanel;
-    private Texture riddlePanelTexture;
     private TextField answerField;
     private TextButton answerButton;
+
+    private Texture riddlePanelTexture;
+    private Texture riddlePanelBorderTexture;
 
     private int currentRiddleCount = 1;
     private int correctAnswerCount = 0;
@@ -36,6 +38,7 @@ public class RoomView extends MyScreen {
         super(game);
         this.roomData = roomData;
         riddlePanelTexture = new Texture("riddle_info_box_fill.png");
+        riddlePanelBorderTexture = new Texture("riddle_info_box_border.png");
     }
 
     @Override
@@ -53,6 +56,25 @@ public class RoomView extends MyScreen {
         answerField = new TextField("", getGame().getTextFieldStyle());
         answerField.setPosition(0, 200);
         answerField.setSize(Vescape.GUI_VIEWPORT_WIDTH, 200);
+        answerField.setOnscreenKeyboard(new TextField.OnscreenKeyboard() {
+            @Override
+            public void show(boolean visible) {
+
+                Gdx.input.getTextInput(new Input.TextInputListener() {
+                    @Override
+                    public void input(String text) {
+                        answerField.setText(text);
+                    }
+
+                    @Override
+                    public void canceled() {
+
+                    }
+                }, getGame().getMyBundle().get("answer"), answerField.getText(),
+                        answerField.getText().length() == 0 ?
+                                getGame().getMyBundle().get("answer") : "");
+            }
+        });
 
         // mones monestako arvotuksesta
 
@@ -143,23 +165,30 @@ public class RoomView extends MyScreen {
         riddlePanelBg.setPosition((Vescape.GUI_VIEWPORT_WIDTH - riddlePanelBg.getSizeX()) / 2,
                 (Vescape.GUI_VIEWPORT_HEIGHT - riddlePanelBg.getSizeY()) - 150);
 
-        ImageActor riddleImage = new ImageActor(currentRiddle.image, riddlePanelBg.getSizeX() / 2);
+        ImageActor riddlePanelBorder =
+                new ImageActor(riddlePanelBorderTexture, riddlePanelBg.getSizeY());
+        riddlePanelBorder.setPosition(riddlePanelBg.getX(), riddlePanelBg.getY());
+
+        ImageActor riddleImage = new ImageActor(currentRiddle.image,
+                2 * riddlePanelBg.getSizeX() / 3);
+
         riddleImage.setPosition(
                 riddlePanelBg.getX() + (riddlePanelBg.getSizeX() - riddleImage.getWidth()) / 2,
                 riddlePanelBg.getY() + riddlePanelBg.getSizeY() - riddleImage.getHeight() - 25);
 
-        Label.LabelStyle labelStyle = new Label.LabelStyle(getGame().getFontBig(),
+        Label.LabelStyle labelStyle = new Label.LabelStyle(getGame().getRiddleFont(),
                 Color.BLACK);
         Label riddleLabel = new Label(
                 currentRiddle.getRiddle(getGame().getMyBundle().getLocale().getLanguage()).riddle,
                 labelStyle);
         riddleLabel.setPosition(
-                riddlePanelBg.getX() + 15,
+                riddlePanelBg.getX() + 30,
                 riddleImage.getY() - riddleLabel.getHeight() - 25);
 
         Group g = new Group();
         g.addActor(riddlePanelBg);
         g.addActor(riddleImage);
+        g.addActor(riddlePanelBorder);
         g.addActor(riddleLabel);
 
         return g;
@@ -216,6 +245,7 @@ public class RoomView extends MyScreen {
             r.dispose();
         }
         riddlePanelTexture.dispose();
+        riddlePanelBorderTexture.dispose();
     }
 
     private void roomCompleted() {

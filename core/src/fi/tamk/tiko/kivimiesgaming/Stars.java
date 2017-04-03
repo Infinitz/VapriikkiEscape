@@ -35,7 +35,7 @@ public class Stars {
     private void createStars(float x, float y, float scale, int starCount) {
         Texture starEmpty = new Texture("star_empty.png");
         Texture starFull = new Texture("star_full.png");
-
+        //Vescape.assets.getStarEmptyTexture();
         stars = new ImageActor[3];
 
         for (int i = 0; i < stars.length; ++i) {

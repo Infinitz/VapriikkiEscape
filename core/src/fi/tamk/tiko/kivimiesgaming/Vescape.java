@@ -30,7 +30,7 @@ public class Vescape extends Game {
 
     public static final float GUI_VIEWPORT_WIDTH = 900;
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
-    public static final int MAX_CHARS_PER_LINE = 24;
+    public static final int MAX_CHARS_PER_LINE = 38;
 
     public static final String ROOM_DATA_MARK = "&";
     public static final String RIDDLE_ANSWER_SEPARATOR = "//";
@@ -44,6 +44,7 @@ public class Vescape extends Game {
     private I18NBundle myBundle;
     private BitmapFont buttonFont;
     private BitmapFont fontBig;
+    private BitmapFont riddleFont;
     private TextButton.TextButtonStyle textButtonStyle;
     private TextField.TextFieldStyle textFieldStyle;
     private HashMap<RoomType, RoomData> roomData;
@@ -97,6 +98,10 @@ public class Vescape extends Game {
         return fontBig;
     }
 
+    public BitmapFont getRiddleFont() {
+        return riddleFont;
+    }
+
     public TextButton.TextButtonStyle getTextButtonStyle() {
         return textButtonStyle;
     }
@@ -144,14 +149,19 @@ public class Vescape extends Game {
 
         FreeTypeFontGenerator.FreeTypeFontParameter parameter =
                 new FreeTypeFontGenerator.FreeTypeFontParameter();
+
         parameter.size = 70;
         parameter.shadowOffsetX = 5;
 
         buttonFont = fontGen.generateFont(parameter);
 
-        parameter.size = 78;
+        parameter.size = 86;
         parameter.shadowOffsetX = 5;
         fontBig = fontGen.generateFont(parameter);
+
+        parameter.size = 50;
+        parameter.shadowOffsetX = 1;
+        riddleFont = fontGen.generateFont(parameter);
 
         TextureRegionDrawable buttonImage = new TextureRegionDrawable(
                 new TextureRegion(

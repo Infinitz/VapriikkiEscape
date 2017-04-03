@@ -29,7 +29,7 @@ en::riddle::answer;
 
 &postalMuseum
 
-englishFlag.png
+nukke1.jpg
 fi::arasdfasdfa fasdsdfasdfasdfasdfasdfaafsdfasdfasdfasdfasdfasdfsddv::vastaus
 en::riddle::answer;
 
@@ -61,7 +61,7 @@ en::riddle::answer;
 &gameMuseum
 
 peli1.jpg
-fi::Mikä pelistudio on luonut kyseisen pelihahmon?::Rovio Entertainment
+fi::Mikä pelistudio on luonut kyseisen pelihahmon?::Rovio Entertainment//Rovio
 en::riddle::answer;
 
 peli2.jpg
