@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
@@ -27,12 +28,21 @@ public class RoomView extends MyScreen {
     private Group riddlePanel;
     private TextField answerField;
     private TextButton answerButton;
+    private ImageActor[] answerSlots;
 
     private Texture riddlePanelTexture;
     private Texture riddlePanelBorderTexture;
 
+    private Texture emptyAnswer;
+    private Texture wrongAnswer;
+    private Texture correctAnswer;
+    private Texture perfectAnswer;
+
+    private boolean hintUsed = false;
+
     private int currentRiddleCount = 1;
     private int correctAnswerCount = 0;
+    private int hintsUsedCount = 0;
 
     public RoomView(Vescape game, RoomData roomData) {
         super(game);
@@ -40,6 +50,12 @@ public class RoomView extends MyScreen {
         //roomData.resetRiddles();
         riddlePanelTexture = new Texture("riddle_info_box_fill.png");
         riddlePanelBorderTexture = new Texture("riddle_info_box_border.png");
+
+        emptyAnswer = new Texture("druckknopf_nein.png");
+        wrongAnswer = new Texture("druckknopf_nein.png");
+        correctAnswer = new Texture("druckknopf_ja.png");
+        perfectAnswer = new Texture("druckknopf_ja.png");
+
     }
 
     @Override
@@ -75,7 +91,17 @@ public class RoomView extends MyScreen {
             }
         });
 
-        // mones monestako arvotuksesta
+        answerSlots = new ImageActor[TOTAL_RIDDLES];
+
+        float answerSlotSpace = 20;
+        for (int i = 0; i < answerSlots.length; ++i) {
+            answerSlots[i] = new ImageActor(emptyAnswer, 100);
+            float centerX = Vescape.GUI_VIEWPORT_WIDTH / 2 - answerSlots[i].getSizeX() / 2;
+            float x = centerX +
+                    ((answerSlots.length / 2f) - i) * (answerSlots[i].getSizeX() + answerSlotSpace);
+            float y = Vescape.GUI_VIEWPORT_HEIGHT - answerSlots[i].getSizeY() - 10;
+            answerSlots[i].setPosition(x, y);
+        }
 
         answerButton = new TextButton(getGame().getMyBundle().get("answerButton"),
                 getGame().getTextButtonStyle());
@@ -91,6 +117,9 @@ public class RoomView extends MyScreen {
                 0);
 
         stage.addActor(bg);
+        for (int i = 0; i < answerSlots.length; ++i) {
+            stage.addActor(answerSlots[i]);
+        }
         stage.addActor(riddlePanel);
         stage.addActor(answerField);
         stage.addActor(answerButton);
@@ -101,10 +130,32 @@ public class RoomView extends MyScreen {
         boolean correctAnswer = currentRiddle.getRiddle(
                 getGame().getMyBundle().getLocale().getLanguage()).isCorrectAnswer(playerAnswer);
 
+        ImageActor answerResult = null;
         if (correctAnswer) {
             correctAnswerCount++;
-        }
+            if (hintUsed) {
+                //correctAnswer
+            } else {
+                //perfectAnswer
+            }
 
+            nextRiddle();
+        } else if (!hintUsed){
+            hintUsed = true;
+            hintsUsedCount++;
+            //if hint not used -> show hint and return;
+            //Open hint popup!
+            return;
+        } else {
+            //WrongAnswer
+            nextRiddle();
+        }
+        if (answerResult != null) {
+            //Anima + nextRiddle
+        }
+    }
+
+    private void nextRiddle() {
         answerField.setDisabled(true);
         answerField.setText("");
         answerButton.setDisabled(true);
@@ -149,7 +200,6 @@ public class RoomView extends MyScreen {
                     }
                 })
         ));
-
     }
 
     private Group createNewRiddlePanel() {
