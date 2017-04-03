@@ -117,6 +117,8 @@ public class RoomPopUp {
 
         screen.getStage().addActor(screenDarkener);
         screen.getStage().addActor(elements);
+
+        panelBG.setTouchable(Touchable.enabled);
     }
 
     public void dispose() {

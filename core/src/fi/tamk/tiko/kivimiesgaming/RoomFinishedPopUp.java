@@ -74,19 +74,17 @@ public class RoomFinishedPopUp {
             }
         });
 
-        float offsetX = 15f;
-        float offsetY = 15f;
-        float buttonW = (panelBG.getSizeX() - 3 * offsetX) / 2;
-        float buttonH = 150f;
+        float offsetX = 50f;
+        float offsetY = 25f;
+        float buttonSize = 200f;
+
         replayButton.setPosition(panelBG.getX() + offsetX,
                 panelBG.getY() + offsetY);
-        replayButton.setWidth(buttonW);
-        replayButton.setHeight(buttonH);
+        replayButton.setSize(buttonSize);
 
-        continueButton.setPosition(panelBG.getX() + 2 * offsetX + buttonW,
+        continueButton.setPosition(panelBG.getSizeX() - 2 * offsetX - continueButton.getSizeX(),
                 panelBG.getY() + offsetY);
-        continueButton.setWidth(buttonW);
-        continueButton.setHeight(buttonH);
+        continueButton.setSize(buttonSize);
 
         elements.addActor(panelBG);
         elements.addActor(replayButton);
