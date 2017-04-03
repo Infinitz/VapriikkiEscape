@@ -37,15 +37,14 @@ public class RoomView extends MyScreen {
     public RoomView(Vescape game, RoomData roomData) {
         super(game);
         this.roomData = roomData;
+        //roomData.resetRiddles();
         riddlePanelTexture = new Texture("riddle_info_box_fill.png");
         riddlePanelBorderTexture = new Texture("riddle_info_box_border.png");
     }
 
     @Override
     public void onStart() {
-        for (Riddle r : roomData.riddles) {
-            r.load();
-        }
+        roomData.loadRiddles();
 
         bg = new ImageActor(roomData.getBackground(),
                 Vescape.GUI_VIEWPORT_HEIGHT);
@@ -99,7 +98,6 @@ public class RoomView extends MyScreen {
     }
 
     public void answer(String playerAnswer) {
-        // check if answer is correct or not
         boolean correctAnswer = currentRiddle.getRiddle(
                 getGame().getMyBundle().getLocale().getLanguage()).isCorrectAnswer(playerAnswer);
 
@@ -141,7 +139,6 @@ public class RoomView extends MyScreen {
                 Actions.run(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println(currentRiddleCount + "  " + correctAnswerCount + "  " + TOTAL_RIDDLES);
                         oldRiddle.remove();
                         answerField.setDisabled(false);
                         answerButton.setDisabled(false);
@@ -241,9 +238,7 @@ public class RoomView extends MyScreen {
     @Override
     public void dispose() {
         super.dispose();
-        for (Riddle r : roomData.riddles) {
-            r.dispose();
-        }
+        roomData.disposeRiddleImages();
         riddlePanelTexture.dispose();
         riddlePanelBorderTexture.dispose();
     }

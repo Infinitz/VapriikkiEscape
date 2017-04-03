@@ -20,7 +20,9 @@ public class RoomData {
     private Texture background;
     public float iconLocalPosX, iconLocalPosY = 0;
 
+    private boolean[] usedRiddle;
     public ArrayList<Riddle> riddles;
+
 
     public RoomData(RoomType type, Texture tex, Texture selectedTex, Texture iconTexture,
                     Texture background) {
@@ -34,7 +36,44 @@ public class RoomData {
 
     public Riddle getRandomRiddle() {
         int index = (int)(Math.random() * riddles.size());
+        int tryCount = 0;
+        while (usedRiddle[index] && tryCount < 10) {
+            index = (int)(Math.random() * riddles.size());
+            ++tryCount;
+        }
+        if (tryCount > 10) {
+            boolean unUsedFound = false;
+            for (int i = 0; i < riddles.size(); ++i) {
+                if (!usedRiddle[i]) {
+                    index = i;
+                    unUsedFound = true;
+                    break;
+                }
+            }
+            if (!unUsedFound) {
+                for (int i = 0; i < riddles.size(); ++i) {
+                    usedRiddle[i] = false;
+                }
+                return getRandomRiddle();
+            }
+        }
+
+        usedRiddle[index] = true;
         return riddles.get(index);
+    }
+
+    public void loadRiddles() {
+        usedRiddle = new boolean[riddles.size()];
+        for (int i = 0; i < riddles.size(); ++i) {
+            riddles.get(i).load();
+            usedRiddle[i] = false;
+        }
+    }
+
+    public void disposeRiddleImages() {
+        for (Riddle r : riddles) {
+            r.dispose();
+        }
     }
 
     public Texture getTexture() {
