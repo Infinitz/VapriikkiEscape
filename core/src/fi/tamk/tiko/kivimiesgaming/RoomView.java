@@ -2,9 +2,9 @@ package fi.tamk.tiko.kivimiesgaming;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -44,23 +44,33 @@ public class RoomView extends MyScreen {
     private int correctAnswerCount = 0;
     private int hintsUsedCount = 0;
 
-    public RoomView(Vescape game, RoomData roomData) {
-        super(game);
+    public RoomView(Vescape game, RoomData roomData, AssetManager assetManager) {
+        super(game, assetManager);
         this.roomData = roomData;
+        assetManager.load("riddle_info_box_fill.png", Texture.class);
+        assetManager.load("riddle_info_box_border.png", Texture.class);
+        assetManager.load("riddle_slot_empty.png", Texture.class);
+        assetManager.load("riddle_slot_nope.png", Texture.class);
+        assetManager.load("riddle_slot_done.png", Texture.class);
+        assetManager.load("riddle_slot_done_golden.png", Texture.class);
+        assetManager.load("riddle_retry_active.png", Texture.class);
+        assetManager.load("riddle_next_active.png", Texture.class);
 
-        riddlePanelTexture = new Texture("riddle_info_box_fill.png");
-        riddlePanelBorderTexture = new Texture("riddle_info_box_border.png");
-
-        emptyAnswerTex = new Texture("riddle_slot_empty.png");
-        wrongAnswerTex = new Texture("riddle_slot_nope.png");
-        correctAnswerTex = new Texture("riddle_slot_done.png");
-        perfectAnswerTex = new Texture("riddle_slot_done_golden.png");
-
+        roomData.loadRiddles(assetManager);
+        roomData.loadTextures();
     }
 
     @Override
-    public void onStart() {
-        roomData.loadRiddles();
+    protected void onAssetsLoaded() {
+
+        riddlePanelTexture = assetManager.get("riddle_info_box_fill.png", Texture.class);
+        riddlePanelBorderTexture = assetManager.get("riddle_info_box_border.png", Texture.class);
+
+        emptyAnswerTex = assetManager.get("riddle_slot_empty.png", Texture.class);
+        wrongAnswerTex = assetManager.get("riddle_slot_nope.png", Texture.class);
+        correctAnswerTex = assetManager.get("riddle_slot_done.png", Texture.class);
+        perfectAnswerTex = assetManager.get("riddle_slot_done_golden.png", Texture.class);
+
 
         bg = new ImageActor(roomData.getBackground(),
                 Vescape.GUI_VIEWPORT_HEIGHT);
@@ -76,16 +86,16 @@ public class RoomView extends MyScreen {
             public void show(boolean visible) {
 
                 Gdx.input.getTextInput(new Input.TextInputListener() {
-                    @Override
-                    public void input(String text) {
-                        answerField.setText(text);
-                    }
+                                           @Override
+                                           public void input(String text) {
+                                               answerField.setText(text);
+                                           }
 
-                    @Override
-                    public void canceled() {
+                                           @Override
+                                           public void canceled() {
 
-                    }
-                }, getGame().getMyBundle().get("answer"), answerField.getText(),
+                                           }
+                                       }, getGame().getMyBundle().get("answer"), answerField.getText(),
                         answerField.getText().length() == 0 ?
                                 getGame().getMyBundle().get("answer") : "");
             }
@@ -126,6 +136,11 @@ public class RoomView extends MyScreen {
         stage.addActor(answerField);
         stage.addActor(answerButton);
         burgerButton = new BurgerButton(this);
+    }
+
+    @Override
+    public void onStart() {
+
     }
 
     public void answer(String playerAnswer) {
@@ -245,7 +260,8 @@ public class RoomView extends MyScreen {
                 new ImageActor(riddlePanelBorderTexture, riddlePanelBg.getSizeY());
         riddlePanelBorder.setPosition(riddlePanelBg.getX(), riddlePanelBg.getY());
 
-        ImageActor riddleImage = new ImageActor(currentRiddle.image,
+        ImageActor riddleImage = new ImageActor(
+                assetManager.get(currentRiddle.imagePath, Texture.class),
                 2 * riddlePanelBg.getSizeX() / 3);
 
         riddleImage.setPosition(
@@ -307,7 +323,7 @@ public class RoomView extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().setScreen(new RoomSelection(getGame()));
+                getGame().setScreen(new RoomSelection(getGame(), assetManager));
             }
         });
 
@@ -317,9 +333,13 @@ public class RoomView extends MyScreen {
     @Override
     public void dispose() {
         super.dispose();
-        roomData.disposeRiddleImages();
-        riddlePanelTexture.dispose();
-        riddlePanelBorderTexture.dispose();
+        roomData.unloadRiddleImages(assetManager);
+        assetManager.unload("riddle_info_box_fill.png");
+        assetManager.unload("riddle_info_box_border.png");
+        assetManager.unload("riddle_slot_empty.png");
+        assetManager.unload("riddle_slot_nope.png");
+        assetManager.unload("riddle_slot_done.png");
+        assetManager.unload("riddle_slot_done_golden.png");
     }
 
     private void roomCompleted() {

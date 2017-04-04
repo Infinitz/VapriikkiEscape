@@ -3,6 +3,7 @@ package fi.tamk.tiko.kivimiesgaming;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,13 +17,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
-
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -40,6 +38,7 @@ public class Vescape extends Game {
     public static final String RIDDLE_FILE_PATH = "data/riddles.txt";
     public static final String RIDDLE_IMAGES_PATH = "riddle_images/";
 
+    private AssetManager assetManager;
     private SpriteBatch batch;
     private I18NBundle myBundle;
     private BitmapFont buttonFont;
@@ -49,22 +48,28 @@ public class Vescape extends Game {
     private TextField.TextFieldStyle textFieldStyle;
     private HashMap<RoomType, RoomData> roomData;
 
-    private HashMap<RoomType, ArrayList<Riddle>> riddles;
+    private boolean initialAssetsLoaded = false;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
+        assetManager = new AssetManager();
         Gdx.input.setCatchBackKey(true);
-        createStylesAndFonts();
-        loadRoomData();
-        loadRiddles();
-
         setFinnish();
-        setScreen(new MainMenu(this));
+        loadGlobalAssets();
     }
 
     @Override
     public void render() {
+        if (!initialAssetsLoaded) {
+            if (assetManager.update()) {
+                initialAssetsLoaded = true;
+                createStylesAndFonts();
+                loadRoomData();
+                loadRiddles();
+                setScreen(new MainMenu(this, assetManager));
+            }
+        }
         super.render();
     }
 
@@ -80,10 +85,11 @@ public class Vescape extends Game {
 
     @Override
     public void dispose() {
-        batch.dispose();
         if (getScreen() != null) {
             getScreen().dispose();
         }
+        batch.dispose();
+        assetManager.dispose();
     }
 
     public SpriteBatch getBatch() {
@@ -144,6 +150,23 @@ public class Vescape extends Game {
         }
     }
 
+    private void loadGlobalAssets() {
+        assetManager.load("MENU_bg.jpg", Texture.class);
+        assetManager.load("MENU_button.png", Texture.class);
+        assetManager.load("MENU_button_pressed.png", Texture.class);
+        assetManager.load("MENU_flag_fi.png", Texture.class);
+        assetManager.load("MENU_flag_en.png", Texture.class);
+        assetManager.load("MENU_sound_on.png", Texture.class);
+        assetManager.load("MENU_sound_off.png", Texture.class);
+        assetManager.load("MENU_music_on.png", Texture.class);
+        assetManager.load("MENU_music_off.png", Texture.class);
+        assetManager.load("riddle_info_box_fill.png", Texture.class);
+        assetManager.load("star_empty.png", Texture.class);
+        assetManager.load("star_full.png", Texture.class);
+        assetManager.load("black.png", Texture.class);
+        assetManager.load("map_room_info_box.png", Texture.class);
+    }
+
     private void createStylesAndFonts() {
         FreeTypeFontGenerator fontGen = new FreeTypeFontGenerator(Gdx.files.internal("tahoma.ttf"));
 
@@ -164,19 +187,16 @@ public class Vescape extends Game {
         riddleFont = fontGen.generateFont(parameter);
 
         TextureRegionDrawable buttonImage = new TextureRegionDrawable(
-                new TextureRegion(
-                        new Texture("MENU_button.png")));
+                new TextureRegion(assetManager.get("MENU_button.png", Texture.class)));
 
         TextureRegionDrawable buttonPressedImage = new TextureRegionDrawable(
-                new TextureRegion(
-                        new Texture("MENU_button_pressed.png")));
+                new TextureRegion(assetManager.get("MENU_button_pressed.png", Texture.class)));
 
         textButtonStyle = new TextButton.TextButtonStyle(buttonImage, buttonPressedImage,
                 buttonImage, getButtonFont());
 
         TextureRegionDrawable textFieldBG = new TextureRegionDrawable(
-                new TextureRegion(
-                        new Texture("riddle_info_box_fill.png")));
+                new TextureRegion(assetManager.get("riddle_info_box_fill.png", Texture.class)));
 
         textFieldStyle = new TextField.TextFieldStyle(fontBig, Color.BLACK,
                 null, null,
@@ -189,74 +209,83 @@ public class Vescape extends Game {
         RoomData temp;
 
         temp = new RoomData(RoomType.ROCK,
-                new Texture("F1_rock_active.png"),
-                new Texture("F1_rock_active.png"),
-                new Texture("map_icons_kivi.png"),
-                new Texture("MENU_bg.jpg"));
+                "F1_rock_active.png",
+                "F1_rock_active.png",
+                "map_icons_kivi.png",
+                "MENU_bg.jpg",
+                assetManager);
         temp.setIconLocalPosition(0.6f, 0.6f);
         roomData.put(RoomType.ROCK, temp);
 
         temp = new RoomData(RoomType.TAMMER,
-                new Texture("F1_tammer_active.png"),
-                new Texture("F1_tammer_active.png"),
-                new Texture("map_icons_tammerkoski.png"),
-                new Texture("MENU_bg.jpg"));
+                "F1_tammer_active.png",
+                "F1_tammer_active.png",
+                "map_icons_tammerkoski.png",
+                "MENU_bg.jpg",
+                assetManager);
         temp.setIconLocalPosition(-0.5f, 0.1f);
         roomData.put(RoomType.TAMMER, temp);
 
         temp = new RoomData(RoomType.POSTAL,
-                new Texture("F1_postal_active.png"),
-                new Texture("F1_postal_active.png"),
-                new Texture("map_icons_postal.png"),
-                new Texture("MENU_bg.jpg"));
+                "F1_postal_active.png",
+                "F1_postal_active.png",
+                "map_icons_postal.png",
+                "MENU_bg.jpg",
+                assetManager);
         temp.setIconLocalPosition(0.5f, 0.3f);
         roomData.put(RoomType.POSTAL, temp);
 
         temp = new RoomData(RoomType.TUTORIAL,
-                new Texture("F1_tutorial_active.png"),
-                new Texture("F1_tutorial_active.png"),
-                new Texture("map_icons_tutorial.png"),
-                new Texture("MENU_bg.jpg"));
+                "F1_tutorial_active.png",
+                "F1_tutorial_active.png",
+                "map_icons_tutorial.png",
+                "MENU_bg.jpg",
+                assetManager);
         temp.setIconLocalPosition(0.3f, 0.15f);
         roomData.put(RoomType.TUTORIAL, temp);
 
         temp = new RoomData(RoomType.GAME,
-                new Texture("F2_game_active.png"),
-                new Texture("F2_game_active.png"),
-                new Texture("map_icons_game.png"),
-                new Texture("MENU_bg.jpg"));
+                "F2_game_active.png",
+                "F2_game_active.png",
+                "map_icons_game.png",
+                "MENU_bg.jpg",
+                assetManager);
         temp.setIconLocalPosition(0.4f, -0.2f);
         roomData.put(RoomType.GAME, temp);
 
         temp = new RoomData(RoomType.ICEHOCKEY,
-                new Texture("F2_icehokey_active.png"),
-                new Texture("F2_icehokey_active.png"),
-                new Texture("map_icons_icehockey.png"),
-                new Texture("MENU_bg.jpg"));
+                "F2_icehokey_active.png",
+                "F2_icehokey_active.png",
+                "map_icons_icehockey.png",
+                "MENU_bg.jpg",
+                assetManager);
         temp.setIconLocalPosition(-0.4f, 0.1f);
         roomData.put(RoomType.ICEHOCKEY, temp);
 
         temp = new RoomData(RoomType.MEDIA,
-                new Texture("F2_media_active.png"),
-                new Texture("F2_media_active.png"),
-                new Texture("map_icons_media.png"),
-                new Texture("MENU_bg.jpg"));
+                "F2_media_active.png",
+                "F2_media_active.png",
+                "map_icons_media.png",
+                "MENU_bg.jpg",
+                        assetManager);
         temp.setIconLocalPosition(0.3f, 0.3f);
         roomData.put(RoomType.MEDIA, temp);
 
         temp = new RoomData(RoomType.DOLL,
-                new Texture("F2_doll_active.png"),
-                new Texture("F2_doll_active.png"),
-                new Texture("map_icons_doll.png"),
-                new Texture("MENU_bg.jpg"));
+                "F2_doll_active.png",
+                "F2_doll_active.png",
+                "map_icons_doll.png",
+                "MENU_bg.jpg",
+                        assetManager);
         temp.setIconLocalPosition(-0.4f, 0.4f);
         roomData.put(RoomType.DOLL, temp);
 
         temp = new RoomData(RoomType.NATURE,
-                new Texture("F2_nature_active.png"),
-                new Texture("F2_nature_active.png"),
-                new Texture("map_icons_nature.png"),
-                new Texture("MENU_bg.jpg"));
+                "F2_nature_active.png",
+                "F2_nature_active.png",
+                "map_icons_nature.png",
+                "MENU_bg.jpg",
+                        assetManager);
         temp.setIconLocalPosition(0.15f, 0.3f);
         roomData.put(RoomType.NATURE, temp);
     }
@@ -298,13 +327,11 @@ public class Vescape extends Game {
                     while (true) {
                         ++lineIndex;
                         currentLine = reader.readLine().trim();
-
                         boolean riddleEnd = currentLine.endsWith(RIDDLE_END);
                         if (riddleEnd) {
                             currentLine = currentLine.substring(0, currentLine.length() - 1);
                         }
                         String[] temp = currentLine.split(RIDDLE_SEPARATOR);
-
                         riddle.addRiddleText(new RiddleTexts(temp[0], temp[1], temp[2]));
                         if (riddleEnd) {
                             roomData.get(currentRoom).riddles.add(riddle);

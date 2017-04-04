@@ -2,6 +2,7 @@ package fi.tamk.tiko.kivimiesgaming;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -19,10 +20,13 @@ public abstract class MyScreen implements Screen {
     protected Vescape game;
     protected Stage stage;
     protected OrthographicCamera cam;
+    protected AssetManager assetManager;
 
-    private boolean firstUpdate = true;
-    public MyScreen(Vescape game) {
+    private boolean assetsLoaded = false;
+
+    public MyScreen(Vescape game, AssetManager assetManager) {
         this.game = game;
+        this.assetManager = assetManager;
         cam = new OrthographicCamera();
         cam.setToOrtho(false, Vescape.GUI_VIEWPORT_WIDTH, Vescape.GUI_VIEWPORT_HEIGHT);
         stage = new Stage(
@@ -36,16 +40,13 @@ public abstract class MyScreen implements Screen {
 
     }
 
-    protected void update(float dt) {
-
-    }
-
-    public void onStart() {
-
-    }
-
     @Override
     public void render(float dt) {
+
+        if (assetManager.update() && !assetsLoaded) {
+            assetsLoaded = true;
+            onAssetsLoaded();
+        }
 
         update(dt);
         stage.act(dt);
@@ -82,6 +83,10 @@ public abstract class MyScreen implements Screen {
         stage.dispose();
     }
 
+    public void onStart() {
+
+    }
+
     public Stage getStage() {
         return stage;
     }
@@ -90,8 +95,17 @@ public abstract class MyScreen implements Screen {
         return game;
     }
 
+    public AssetManager getAssetManager() {
+        return assetManager;
+    }
+
     public abstract TextButton getPanelButton1();
 
     public abstract TextButton getPanelButton2();
 
+    protected void update(float dt) {
+
+    }
+
+    protected abstract void onAssetsLoaded();
 }

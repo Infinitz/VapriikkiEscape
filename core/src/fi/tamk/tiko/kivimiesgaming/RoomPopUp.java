@@ -22,13 +22,16 @@ public class RoomPopUp {
     private Group elements;
 
     public RoomPopUp(final MyScreen screen, final RoomData data) {
-        screenDarkener = new ImageActor(new Texture("black.png"), Vescape.GUI_VIEWPORT_HEIGHT);
+        screenDarkener = new ImageActor(
+                screen.getAssetManager().get("black.png", Texture.class),
+                Vescape.GUI_VIEWPORT_HEIGHT);
         screenDarkener.alpha = 0.85f;
 
         elements = new Group();
 
 
-        panelBG = new ImageActor(new Texture("map_room_info_box.png"));
+        panelBG = new ImageActor(
+                screen.getAssetManager().get("map_room_info_box.png", Texture.class));
         panelBG.alpha = 1f;
 
         float panelTargetW = Vescape.GUI_VIEWPORT_WIDTH;
@@ -61,7 +64,8 @@ public class RoomPopUp {
         enterRoomButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                screen.getGame().setScreen(new RoomView(screen.getGame(), data));
+                screen.getGame().setScreen(new RoomView(
+                        screen.getGame(), data, screen.getAssetManager()));
             }
         });
 
@@ -109,7 +113,7 @@ public class RoomPopUp {
         int stars = data.highscore;
 
         Stars s = new Stars(roomIcon.getX() + roomIcon.getSizeX() / 2,
-                roomIcon.getY(), 2.5f, stars, false);
+                roomIcon.getY(), 2.5f, stars, false, screen.assetManager);
         s.addStarsToGroup(elements);
 
         elements.setScaleY(0);

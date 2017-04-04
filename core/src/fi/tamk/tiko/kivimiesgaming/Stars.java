@@ -1,5 +1,6 @@
 package fi.tamk.tiko.kivimiesgaming;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -16,6 +17,9 @@ import java.util.ArrayList;
 
 public class Stars {
 
+    private Texture starEmptyTex;
+    private Texture starFullTex;
+
     private ArrayList<ImageActor> additionalStars;
     private ImageActor[] stars;
 
@@ -23,7 +27,10 @@ public class Stars {
     private float fullStarSizeMultiplier = 1.15f;
     private float middleStarOffset = 25f;
 
-    public Stars(float x, float y, float scale, int starCount, boolean animated) {
+    public Stars(float x, float y, float scale, int starCount, boolean animated,
+                 AssetManager assets) {
+        starEmptyTex = assets.get("star_empty.png", Texture.class);
+        starFullTex = assets.get("star_full.png", Texture.class);
         additionalStars = new ArrayList<ImageActor>();
         if (animated) {
             createAnimatedStars(x, y, scale, starCount);
@@ -33,16 +40,15 @@ public class Stars {
     }
 
     private void createStars(float x, float y, float scale, int starCount) {
-        Texture starEmpty = new Texture("star_empty.png");
-        Texture starFull = new Texture("star_full.png");
-        //Vescape.assets.getStarEmptyTexture();
+
+
         stars = new ImageActor[3];
 
         for (int i = 0; i < stars.length; ++i) {
             if (starCount > i) {
-                stars[i] = new ImageActor(starFull, fullStarSizeMultiplier * starSize * scale);
+                stars[i] = new ImageActor(starFullTex, fullStarSizeMultiplier * starSize * scale);
             } else {
-                stars[i] = new ImageActor(starEmpty, starSize * scale);
+                stars[i] = new ImageActor(starEmptyTex, starSize * scale);
             }
 
             float startX = x - stars[i].getSizeX() / 8 - 3 * stars[i].getSizeX() / 2;
@@ -59,14 +65,12 @@ public class Stars {
     }
 
     private void createAnimatedStars(float x, float y, float scale, int starCount) {
-        Texture starEmpty = new Texture("star_empty.png");
-        Texture starFull = new Texture("star_full.png");
 
         stars = new ImageActor[3];
 
         float emptyStarAnimLength = 0.75f;
         for (int i = 0; i < stars.length; ++i) {
-            stars[i] = new ImageActor(starEmpty, starSize * scale);
+            stars[i] = new ImageActor(starEmptyTex, starSize * scale);
 
             float startX = x - stars[i].getSizeX() / 8 - 3 * stars[i].getSizeX() / 2;
             float space = stars[i].getSizeX() / 8;
@@ -97,7 +101,7 @@ public class Stars {
                 float animLength = 0.3f;
                 float animDeltaY = 400f;
 
-                ImageActor fullStar = new ImageActor(starFull,
+                ImageActor fullStar = new ImageActor(starFullTex,
                         fullStarSizeMultiplier * starSize * scale);
 
                 fullStar.setPosition(posX, posY - animDeltaY);

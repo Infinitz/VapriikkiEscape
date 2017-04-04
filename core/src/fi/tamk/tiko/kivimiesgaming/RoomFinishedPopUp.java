@@ -23,16 +23,21 @@ public class RoomFinishedPopUp {
     private Texture replayButtonTexture;
 
     public RoomFinishedPopUp(final MyScreen screen, final RoomData data) {
-        continueButtonTexture = new Texture("riddle_next_active.png");
-        replayButtonTexture = new Texture("riddle_retry_active.png");
+        continueButtonTexture = screen.getAssetManager().get(
+                "riddle_next_active.png", Texture.class);
+        replayButtonTexture = screen.getAssetManager().get(
+                "riddle_retry_active.png", Texture.class);
 
-        screenDarkener = new ImageActor(new Texture("black.png"), Vescape.GUI_VIEWPORT_HEIGHT);
+        screenDarkener = new ImageActor(
+                screen.getAssetManager().get("black.png", Texture.class),
+                Vescape.GUI_VIEWPORT_HEIGHT);
         screenDarkener.alpha = 0.85f;
 
         elements = new Group();
 
 
-        panelBG = new ImageActor(new Texture("map_room_info_box.png"));
+        panelBG = new ImageActor(
+                screen.getAssetManager().get("map_room_info_box.png", Texture.class));
         panelBG.alpha = 1f;
 
         float panelTargetW = Vescape.GUI_VIEWPORT_WIDTH;
@@ -61,7 +66,8 @@ public class RoomFinishedPopUp {
         continueButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                screen.getGame().setScreen(new RoomSelection(screen.getGame()));
+                screen.getGame().setScreen(new RoomSelection(
+                        screen.getGame(), screen.getAssetManager()));
             }
         });
 
@@ -70,7 +76,8 @@ public class RoomFinishedPopUp {
         replayButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                screen.getGame().setScreen(new RoomView(screen.getGame(), data));
+                screen.getGame().setScreen(
+                        new RoomView(screen.getGame(), data, screen.getAssetManager()));
             }
         });
 
@@ -99,7 +106,7 @@ public class RoomFinishedPopUp {
         int stars = data.latestScore;
 
         Stars s = new Stars(roomIcon.getX() + roomIcon.getSizeX() / 2,
-                roomIcon.getY(), 2.5f, stars, true);
+                roomIcon.getY(), 2.5f, stars, true, screen.assetManager);
         s.addStarsToGroup(elements);
 
         elements.setScaleY(0);

@@ -1,5 +1,6 @@
 package fi.tamk.tiko.kivimiesgaming;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 
 import java.util.ArrayList;
@@ -14,23 +15,26 @@ public class RoomData {
 
     public int highscore = 0;
     public int latestScore = 0;
-    private Texture texture;
-    private Texture selectedTex;
-    private Texture iconTexture;
-    private Texture background;
+
+    private AssetManager assetManager;
+    private String textureP;
+    private String selectedTexP;
+    private String iconTextureP;
+    private String backgroundP;
     public float iconLocalPosX, iconLocalPosY = 0;
 
     private boolean[] usedRiddle;
     public ArrayList<Riddle> riddles;
 
 
-    public RoomData(RoomType type, Texture tex, Texture selectedTex, Texture iconTexture,
-                    Texture background) {
+    public RoomData(RoomType type, String texP, String selectedTexP, String iconTextureP,
+                    String backgroundP, AssetManager assetManager) {
+        this.assetManager = assetManager;
         this.type = type;
-        this.texture = tex;
-        this.selectedTex = selectedTex;
-        this.iconTexture = iconTexture;
-        this.background = background;
+        this.textureP = texP;
+        this.selectedTexP = selectedTexP;
+        this.iconTextureP = iconTextureP;
+        this.backgroundP = backgroundP;
         riddles = new ArrayList<Riddle>();
     }
 
@@ -62,38 +66,48 @@ public class RoomData {
         return riddles.get(index);
     }
 
-    public void loadRiddles() {
+    public void loadTextures() {
+        assetManager.load(textureP, Texture.class);
+        assetManager.load(selectedTexP, Texture.class);
+        assetManager.load(iconTextureP, Texture.class);
+        assetManager.load(backgroundP, Texture.class);
+    }
+
+    public void unloadTextures() {
+        assetManager.unload(textureP);
+        assetManager.unload(selectedTexP);
+        assetManager.unload(iconTextureP);
+        assetManager.unload(backgroundP);
+    }
+
+    public void loadRiddles(AssetManager assets) {
         usedRiddle = new boolean[riddles.size()];
         for (int i = 0; i < riddles.size(); ++i) {
-            riddles.get(i).load();
+            assets.load(riddles.get(i).imagePath, Texture.class);
             usedRiddle[i] = false;
         }
     }
 
-    public void disposeRiddleImages() {
+    public void unloadRiddleImages(AssetManager assets) {
         for (Riddle r : riddles) {
-            r.dispose();
+            assets.unload(r.imagePath);
         }
     }
 
     public Texture getTexture() {
-        return texture;
+        return assetManager.get(textureP, Texture.class);
     }
 
     public Texture getSelectedTex() {
-        return selectedTex;
+        return assetManager.get(selectedTexP, Texture.class);
     }
 
     public Texture getIconTexture() {
-        return iconTexture;
+        return assetManager.get(iconTextureP, Texture.class);
     }
 
     public Texture getBackground() {
-        return background;
-    }
-
-    public RoomType getType() {
-        return type;
+        return assetManager.get(backgroundP, Texture.class);
     }
 
     public void setIconLocalPosition(float x, float y) {

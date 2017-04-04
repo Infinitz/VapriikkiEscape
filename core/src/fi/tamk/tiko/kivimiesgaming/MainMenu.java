@@ -3,6 +3,7 @@ package fi.tamk.tiko.kivimiesgaming;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
@@ -23,17 +24,24 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
  */
 
 public class MainMenu extends MyScreen {
-    public MainMenu(Vescape game) {
-        super(game);
+    ImageActor bg;
 
-        ImageActor bg = new ImageActor(new Texture("MENU_bg.jpg"), Vescape.GUI_VIEWPORT_HEIGHT);
+    public MainMenu(Vescape game, AssetManager assetManager) {
+        super(game, assetManager);
+        assetManager.load("menu_logo.png", Texture.class);
+    }
+
+    @Override
+    protected void onAssetsLoaded() {
+        bg = new ImageActor(assetManager.get("MENU_bg.jpg", Texture.class),
+                Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
 
         stage.addActor(bg);
         new MenuPanel(this);
 
         float movementY = 500;
-        ImageActor title = new ImageActor(new Texture("menu_logo.png"), 300);
+        ImageActor title = new ImageActor(assetManager.get("menu_logo.png", Texture.class), 300);
         title.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - title.getSizeX() / 2,
                 Vescape.GUI_VIEWPORT_HEIGHT -  3 * title.getSizeY() / 2 + movementY);
         title.addAction(Actions.sequence(
@@ -61,7 +69,7 @@ public class MainMenu extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().setScreen(new RoomSelection(getGame()));
+                getGame().setScreen(new RoomSelection(getGame(), assetManager));
             }
         });
 
@@ -83,5 +91,11 @@ public class MainMenu extends MyScreen {
         });
 
         return button;
+    }
+
+    @Override
+    public void dispose() {
+        assetManager.unload("menu_logo.png");
+        super.dispose();
     }
 }

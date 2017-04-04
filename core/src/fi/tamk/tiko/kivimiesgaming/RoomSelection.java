@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
@@ -32,9 +33,21 @@ public class RoomSelection extends MyScreen {
     private RoomButton selected;
     private BurgerButton burgerButton;
 
-    public RoomSelection(Vescape game) {
-        super(game);
-        bg = new ImageActor(new Texture("MENU_bg.jpg"),
+    public RoomSelection(Vescape game, AssetManager assetManager) {
+        super(game, assetManager);
+        assetManager.load("F1.png", Texture.class);
+        assetManager.load("F2.png", Texture.class);
+        assetManager.load("F2_postal.png", Texture.class);
+        assetManager.load("map_timeMachine.png", Texture.class);
+
+        for (RoomType t : RoomType.values()) {
+            game.getRoomData(t).loadTextures();
+        }
+    }
+
+    @Override
+    protected void onAssetsLoaded() {
+        bg = new ImageActor(assetManager.get("MENU_bg.jpg", Texture.class),
                 Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
 
@@ -116,9 +129,8 @@ public class RoomSelection extends MyScreen {
     }
 
     public void createChangeFloorButton() {
-        changeFloorButton = new SelectableButton(new Texture("F1.png"),
-                new Texture("F2.png"),
-                175);
+        changeFloorButton = new SelectableButton(assetManager.get("F1.png", Texture.class),
+                assetManager.get("F2.png", Texture.class), 175);
 
         changeFloorButton.setPosition(
                 Vescape.GUI_VIEWPORT_WIDTH / 2 - changeFloorButton.getWidth() / 2,
@@ -137,16 +149,17 @@ public class RoomSelection extends MyScreen {
     }
 
     public void createTimeMachineButton() {
-        timeMachineButton = new SelectableButton(new Texture("map_timeMachine.png"),
-                new Texture("map_timeMachine.png"),
+        timeMachineButton = new SelectableButton(
+                assetManager.get("map_timeMachine.png", Texture.class),
+                assetManager.get("map_timeMachine.png", Texture.class),
                 200);
+
 
         timeMachineButton.setPosition(
                 Vescape.GUI_VIEWPORT_WIDTH / 2 - timeMachineButton.getWidth() / 2,
                 Vescape.GUI_VIEWPORT_HEIGHT / 2 - timeMachineButton.getHeight() / 2);
 
         stage.addActor(timeMachineButton);
-
     }
 
     @Override
@@ -163,7 +176,7 @@ public class RoomSelection extends MyScreen {
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
-            game.setScreen(new MainMenu(game));
+            game.setScreen(new MainMenu(game, assetManager));
         }
     }
 
@@ -176,10 +189,14 @@ public class RoomSelection extends MyScreen {
                 Vescape.GUI_VIEWPORT_HEIGHT - 2 * offsetY);
 
         float baseSize = 250;
-        RoomButton postalRoom = new RoomButton(game.getRoomData(RoomType.POSTAL), baseSize * 1);
-        RoomButton tammerRoom = new RoomButton(game.getRoomData(RoomType.TAMMER), baseSize * 1.15f);
-        RoomButton tutRoom = new RoomButton(game.getRoomData(RoomType.TUTORIAL), baseSize * 1);
-        RoomButton rockRoom = new RoomButton(game.getRoomData(RoomType.ROCK), baseSize * 1);
+        RoomButton postalRoom = new RoomButton(
+                game.getRoomData(RoomType.POSTAL), assetManager, baseSize * 1);
+        RoomButton tammerRoom = new RoomButton(
+                game.getRoomData(RoomType.TAMMER), assetManager, baseSize * 1.15f);
+        RoomButton tutRoom = new RoomButton(
+                game.getRoomData(RoomType.TUTORIAL), assetManager, baseSize * 1);
+        RoomButton rockRoom = new RoomButton(
+                game.getRoomData(RoomType.ROCK), assetManager, baseSize * 1);
 
         Group floor1 = new Group();
 
@@ -243,15 +260,20 @@ public class RoomSelection extends MyScreen {
                 Vescape.GUI_VIEWPORT_HEIGHT - 2 * offsetY);
 
 
-        ImageActor postalRoomUP = new ImageActor(new Texture("F2_postal.png"), baseSize * 0.8f);
+        ImageActor postalRoomUP = new ImageActor(assetManager.get("F2_postal.png", Texture.class),
+                baseSize * 0.8f);
         postalRoomUP.setTouchable(Touchable.disabled);
 
-        RoomButton gameRoom = new RoomButton(game.getRoomData(RoomType.GAME), baseSize * 1.25f);
-        RoomButton iceHockeyRoom = new RoomButton(game.getRoomData(RoomType.ICEHOCKEY),
-                baseSize * 1);
-        RoomButton mediaRoom = new RoomButton(game.getRoomData(RoomType.MEDIA), baseSize * 1);
-        RoomButton dollRoom = new RoomButton(game.getRoomData(RoomType.DOLL), baseSize * 1.5f);
-        RoomButton natureRoom = new RoomButton(game.getRoomData(RoomType.NATURE), baseSize * 1.5f);
+        RoomButton gameRoom = new RoomButton(
+                game.getRoomData(RoomType.GAME), assetManager, baseSize * 1.25f);
+        RoomButton iceHockeyRoom = new RoomButton(
+                game.getRoomData(RoomType.ICEHOCKEY), assetManager, baseSize * 1);
+        RoomButton mediaRoom = new RoomButton(
+                game.getRoomData(RoomType.MEDIA), assetManager, baseSize * 1);
+        RoomButton dollRoom = new RoomButton(
+                game.getRoomData(RoomType.DOLL), assetManager, baseSize * 1.5f);
+        RoomButton natureRoom = new RoomButton(
+                game.getRoomData(RoomType.NATURE), assetManager, baseSize * 1.5f);
 
         Group floor2 = new Group();
 
@@ -377,7 +399,7 @@ public class RoomSelection extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().setScreen(new MainMenu(getGame()));
+                getGame().setScreen(new MainMenu(getGame(), assetManager));
             }
         });
 
@@ -388,6 +410,12 @@ public class RoomSelection extends MyScreen {
 
     @Override
     public void dispose() {
+        assetManager.unload("F1.png");
+        assetManager.unload("F2.png");
+        assetManager.unload("map_timeMachine.png");
+        for (RoomType t : RoomType.values()) {
+            game.getRoomData(t).unloadTextures();
+        }
         super.dispose();
     }
 }

@@ -1,6 +1,7 @@
 package fi.tamk.tiko.kivimiesgaming;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -59,29 +60,24 @@ public class MenuPanel {
     }
 
     private void createOtherButtons() {
-
+        AssetManager assets = screen.getAssetManager();
         TextureRegionDrawable finnishImage = new TextureRegionDrawable(
-                new TextureRegion(
-                        new Texture("MENU_flag_fi.png")));
+                new TextureRegion(assets.get("MENU_flag_fi.png", Texture.class)));
 
         TextureRegionDrawable englishImage = new TextureRegionDrawable(
-                new TextureRegion(
-                        new Texture("MENU_flag_en.png")));
+                new TextureRegion(assets.get("MENU_flag_en.png", Texture.class)));
 
         TextureRegionDrawable soundEnabledImage = new TextureRegionDrawable(
-                new TextureRegion(
-                        new Texture("MENU_sound_on.png")));
+                new TextureRegion(assets.get("MENU_sound_on.png", Texture.class)));
+
         TextureRegionDrawable soundDisabledImage = new TextureRegionDrawable(
-                new TextureRegion(
-                        new Texture("MENU_sound_off.png")));
+                new TextureRegion(assets.get("MENU_sound_off.png", Texture.class)));
 
         TextureRegionDrawable musicEnabledImage = new TextureRegionDrawable(
-                new TextureRegion(
-                        new Texture("MENU_music_on.png")));
-        TextureRegionDrawable musicDisabledImage = new TextureRegionDrawable(
-                new TextureRegion(
-                        new Texture("MENU_music_off.png")));
+                new TextureRegion(assets.get("MENU_music_on.png", Texture.class)));
 
+        TextureRegionDrawable musicDisabledImage = new TextureRegionDrawable(
+                new TextureRegion(assets.get("MENU_music_off.png", Texture.class)));
 
         finnishStyle = new Button.ButtonStyle(finnishImage, finnishImage, finnishImage);
         englishStyle = new Button.ButtonStyle(englishImage, englishImage, englishImage);

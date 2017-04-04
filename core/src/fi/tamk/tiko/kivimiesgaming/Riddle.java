@@ -13,8 +13,6 @@ public class Riddle {
     private ArrayList<RiddleTexts> riddleTexts;
     public String imagePath;
 
-    public Texture image;
-
     public Riddle(String imagePath) {
         this.imagePath = Vescape.RIDDLE_IMAGES_PATH + imagePath;
         riddleTexts = new ArrayList<RiddleTexts>();
@@ -31,27 +29,4 @@ public class Riddle {
         }
         return riddleTexts.get(0);
     }
-
-    public void load() {
-        image = new Texture(imagePath);
-    }
-
-    public void dispose() {
-        image.dispose();
-        image = null;
-    }
-
-    /*
-    @Override
-    public String toString() {
-        String temp = imagePath + "\n";
-
-        for (int i = 0; i < riddleTexts.size(); ++i) {
-            temp += riddleTexts.get(i).language + riddleTexts.get(i).riddle +
-                    riddleTexts.get(i).answer + "\n";
-        }
-
-        return temp;
-    }
-    */
 }
