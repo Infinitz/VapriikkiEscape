@@ -168,6 +168,7 @@ public class Vescape extends Game {
 
         assetManager.load("menurger.png", Texture.class);
         assetManager.load("menurger_pressed.png", Texture.class);
+        assetManager.load("riddle_answer_box.jpg", Texture.class);
     }
 
     private void createStylesAndFonts() {
@@ -199,10 +200,14 @@ public class Vescape extends Game {
                 buttonImage, getButtonFont());
 
         TextureRegionDrawable textFieldBG = new TextureRegionDrawable(
-                new TextureRegion(assetManager.get("riddle_info_box_fill.png", Texture.class)));
+                new TextureRegion(assetManager.get("riddle_answer_box.jpg", Texture.class)));
 
-        textFieldStyle = new TextField.TextFieldStyle(fontBig, Color.BLACK,
-                null, null,
+        TextureRegionDrawable textFieldCursor = new TextureRegionDrawable(
+                new TextureRegion(assetManager.get("menurger.png", Texture.class)));
+
+
+        textFieldStyle = new TextField.TextFieldStyle(riddleFont, Color.BLACK,
+                textFieldCursor, null,
                 textFieldBG);
     }
 
@@ -215,7 +220,7 @@ public class Vescape extends Game {
                 "F1_rock_active.png",
                 "F1_rock_active.png",
                 "map_icons_kivi.png",
-                "MENU_bg.jpg",
+                "bg_kivi.jpg",
                 assetManager);
         temp.setIconLocalPosition(0.6f, 0.6f);
         roomData.put(RoomType.ROCK, temp);
@@ -224,7 +229,7 @@ public class Vescape extends Game {
                 "F1_tammer_active.png",
                 "F1_tammer_active.png",
                 "map_icons_tammerkoski.png",
-                "MENU_bg.jpg",
+                "bg_tammer.jpg",
                 assetManager);
         temp.setIconLocalPosition(-0.5f, 0.1f);
         roomData.put(RoomType.TAMMER, temp);
@@ -242,7 +247,7 @@ public class Vescape extends Game {
                 "F1_tutorial_active.png",
                 "F1_tutorial_active.png",
                 "map_icons_tutorial.png",
-                "MENU_bg.jpg",
+                "bg_tutorial.jpg",
                 assetManager);
         temp.setIconLocalPosition(0.3f, 0.15f);
         roomData.put(RoomType.TUTORIAL, temp);

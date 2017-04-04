@@ -78,8 +78,6 @@ public class RoomView extends MyScreen {
                 Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
 
-        riddlePanel = createNewRiddlePanel();
-
         answerField = new TextField("", getGame().getTextFieldStyle());
         answerField.setPosition(0, 200);
         answerField.setSize(Vescape.GUI_VIEWPORT_WIDTH, 200);
@@ -130,14 +128,25 @@ public class RoomView extends MyScreen {
         answerButton.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - answerButton.getWidth() / 2,
                 0);
 
+
+        float animLength = 0.6f;
+        float deltaY = 450f;
         stage.addActor(bg);
         for (int i = 0; i < answerResults.length; ++i) {
             stage.addActor(answerResults[i]);
+            answerResults[i].setPosition(answerResults[i].getX(), answerResults[i].getY() + deltaY);
+            answerResults[i].addAction(Actions.moveBy(0, -deltaY, animLength, Interpolation.pow2));
         }
-        stage.addActor(riddlePanel);
+        answerField.setPosition(answerField.getX(), answerField.getY() - deltaY);
+        answerField.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
+
+        answerButton.setPosition(answerButton.getX(), answerButton.getY() - deltaY);
+        answerButton.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
+
         stage.addActor(answerField);
         stage.addActor(answerButton);
         burgerButton = new BurgerButton(this);
+        createNewPanelWithAnimation(animLength);
     }
 
     @Override
@@ -220,16 +229,7 @@ public class RoomView extends MyScreen {
                                 if (currentRiddleCount == TOTAL_RIDDLES - 1) {
                                     return;
                                 }
-                                riddlePanel = createNewRiddlePanel();
-                                riddlePanel.setRotation(-45);
-                                riddlePanel.setScale(0.5f);
-                                riddlePanel.setX(1000);
-                                riddlePanel.addAction(Actions.parallel(
-                                        Actions.scaleTo(1f, 1f, animLength, Interpolation.pow2),
-                                        Actions.rotateBy(45, animLength, Interpolation.pow2),
-                                        Actions.moveBy(-1000f, 0, animLength, Interpolation.pow2)));
-                                getStage().addActor(riddlePanel);
-                                burgerButton.reAddElementsToStage();
+                                createNewPanelWithAnimation(animLength);
                             }
                         })
                 ),
@@ -248,7 +248,20 @@ public class RoomView extends MyScreen {
         ));
     }
 
-    private Group createNewRiddlePanel() {
+    private void createNewPanelWithAnimation(float animLength) {
+        createNewRiddlePanel();
+        riddlePanel.setRotation(-45);
+        riddlePanel.setScale(0.5f);
+        riddlePanel.setX(1000);
+        riddlePanel.addAction(Actions.parallel(
+                Actions.scaleTo(1f, 1f, animLength, Interpolation.pow2),
+                Actions.rotateBy(45, animLength, Interpolation.pow2),
+                Actions.moveBy(-1000f, 0, animLength, Interpolation.pow2)));
+        getStage().addActor(riddlePanel);
+        burgerButton.reAddElementsToStage();
+    }
+
+    private void createNewRiddlePanel() {
         currentRiddle = roomData.getRandomRiddle();
 
         ImageActor riddlePanelBg = new ImageActor(riddlePanelTexture);
@@ -284,8 +297,7 @@ public class RoomView extends MyScreen {
         g.addActor(riddleImage);
         g.addActor(riddlePanelBorder);
         g.addActor(riddleLabel);
-
-        return g;
+        riddlePanel = g;
     }
 
     @Override
@@ -368,7 +380,7 @@ public class RoomView extends MyScreen {
     }
 
     private void updateTexts() {
-        answerButton.setText(getGame().getMyBundle().get("answer"));
+        answerButton.setText(getGame().getMyBundle().get("answerButton"));
         if (riddleLabel != null) {
             riddleLabel.setText(currentRiddle.getRiddle(
                     getGame().getMyBundle().getLocale().getLanguage()).riddle);
