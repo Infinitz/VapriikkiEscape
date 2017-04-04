@@ -168,7 +168,6 @@ public class Vescape extends Game {
 
         assetManager.load("menurger.png", Texture.class);
         assetManager.load("menurger_pressed.png", Texture.class);
-        assetManager.load("riddle_answer_box.jpg", Texture.class);
     }
 
     private void createStylesAndFonts() {
@@ -199,16 +198,13 @@ public class Vescape extends Game {
         textButtonStyle = new TextButton.TextButtonStyle(buttonImage, buttonPressedImage,
                 buttonImage, getButtonFont());
 
-        TextureRegionDrawable textFieldBG = new TextureRegionDrawable(
-                new TextureRegion(assetManager.get("riddle_answer_box.jpg", Texture.class)));
-
         TextureRegionDrawable textFieldCursor = new TextureRegionDrawable(
                 new TextureRegion(assetManager.get("menurger.png", Texture.class)));
 
 
         textFieldStyle = new TextField.TextFieldStyle(riddleFont, Color.BLACK,
                 textFieldCursor, null,
-                textFieldBG);
+                null);
     }
 
     private void loadRoomData() {

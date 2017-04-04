@@ -7,12 +7,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
+import com.badlogic.gdx.utils.Align;
 
 /**
  * Created by atter on 22-Mar-17.
@@ -29,6 +32,8 @@ public class RoomView extends MyScreen {
     private TextField answerField;
     private TextButton answerButton;
     private Label riddleLabel;
+    private ImageActor touchDetector;
+    private ImageActor answerFieldBG;
 
     private ImageActor[] answerResults;
 
@@ -49,6 +54,7 @@ public class RoomView extends MyScreen {
     public RoomView(Vescape game, RoomData roomData, AssetManager assetManager) {
         super(game, assetManager);
         this.roomData = roomData;
+        assetManager.load("riddle_answer_box.jpg", Texture.class);
         assetManager.load("riddle_info_box_fill.png", Texture.class);
         assetManager.load("riddle_info_box_border.png", Texture.class);
         assetManager.load("riddle_slot_empty.png", Texture.class);
@@ -64,6 +70,15 @@ public class RoomView extends MyScreen {
 
     @Override
     protected void onAssetsLoaded() {
+        touchDetector = new ImageActor(assetManager.get("black.png", Texture.class),
+                Vescape.GUI_VIEWPORT_HEIGHT);
+        touchDetector.alpha = 0f;
+        touchDetector.setClickListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                enableKeyboard(false);
+            }
+        });
 
         riddlePanelTexture = assetManager.get("riddle_info_box_fill.png", Texture.class);
         riddlePanelBorderTexture = assetManager.get("riddle_info_box_border.png", Texture.class);
@@ -78,13 +93,23 @@ public class RoomView extends MyScreen {
                 Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
 
+        answerFieldBG = new ImageActor(
+                assetManager.get("riddle_answer_box.jpg", Texture.class), 200);
+
+        answerFieldBG.setPosition(0, 200);
+        float answerFieldPadding = 30f;
         answerField = new TextField("", getGame().getTextFieldStyle());
-        answerField.setPosition(0, 200);
-        answerField.setSize(Vescape.GUI_VIEWPORT_WIDTH, 200);
+        answerField.setPosition(answerFieldPadding, 200);
+        answerField.setSize(answerFieldBG.getSizeX() - answerFieldPadding, 200);
+        answerField.setAlignment(Align.center);
+
         answerField.setOnscreenKeyboard(new TextField.OnscreenKeyboard() {
+
             @Override
             public void show(boolean visible) {
+                enableKeyboard(true);
 
+        /*
                 Gdx.input.getTextInput(new Input.TextInputListener() {
                                            @Override
                                            public void input(String text) {
@@ -97,7 +122,7 @@ public class RoomView extends MyScreen {
                                            }
                                        }, getGame().getMyBundle().get("answer"), answerField.getText(),
                         answerField.getText().length() == 0 ?
-                                getGame().getMyBundle().get("answer") : "");
+                                getGame().getMyBundle().get("answer") : "");*/
             }
         });
 
@@ -121,6 +146,9 @@ public class RoomView extends MyScreen {
         answerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                if (touchDetector.getStage() != null) {
+                    enableKeyboard(false);
+                }
                 answer(answerField.getText());
             }
         });
@@ -137,28 +165,35 @@ public class RoomView extends MyScreen {
             answerResults[i].setPosition(answerResults[i].getX(), answerResults[i].getY() + deltaY);
             answerResults[i].addAction(Actions.moveBy(0, -deltaY, animLength, Interpolation.pow2));
         }
+        answerFieldBG.setPosition(answerFieldBG.getX(), answerFieldBG.getY() - deltaY);
+        answerFieldBG.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
+
         answerField.setPosition(answerField.getX(), answerField.getY() - deltaY);
         answerField.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
 
         answerButton.setPosition(answerButton.getX(), answerButton.getY() - deltaY);
         answerButton.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
 
+
+        stage.addActor(answerFieldBG);
         stage.addActor(answerField);
         stage.addActor(answerButton);
         burgerButton = new BurgerButton(this);
         createNewPanelWithAnimation(animLength);
+
     }
 
     @Override
     public void onStart() {
-
+        Gdx.input.setOnscreenKeyboardVisible(false);
     }
+
 
     public void answer(String playerAnswer) {
         boolean correctAnswer = currentRiddle.getRiddle(
                 getGame().getMyBundle().getLocale().getLanguage()).isCorrectAnswer(playerAnswer);
 
-        ImageActor answerResult = null;
+        ImageActor answerResult;
         if (correctAnswer) {
             correctAnswerCount++;
             if (hintUsed) {
@@ -307,14 +342,22 @@ public class RoomView extends MyScreen {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
                 Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+
             if (currentRiddleCount == TOTAL_RIDDLES) {
                 getGame().setScreen(new RoomSelection(
                         getGame(), assetManager));
+            } else if (touchDetector.getStage() != null) {
+                enableKeyboard(false);
             } else {
                 burgerButton.togglePanel();
             }
 
         }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+            enableKeyboard(false);
+        }
+
         if (burgerButton.isOpen()) {
             updateTexts();
         }
@@ -364,6 +407,33 @@ public class RoomView extends MyScreen {
         assetManager.unload("riddle_slot_nope.png");
         assetManager.unload("riddle_slot_done.png");
         assetManager.unload("riddle_slot_done_golden.png");
+    }
+
+    private void enableKeyboard(boolean enabled) {
+        if (touchDetector.getStage() != null && enabled)
+            return;
+
+
+        Gdx.input.setOnscreenKeyboardVisible(enabled);
+        if (enabled) {
+            stage.addActor(touchDetector);
+            answerField.remove();
+            stage.addActor(answerField);
+        } else {
+            touchDetector.remove();
+        }
+
+        int direction = enabled ? 1 : -1;
+        float movement = direction * (
+                Vescape.GUI_VIEWPORT_HEIGHT / 2 - answerButton.getHeight() - 150);
+        float animTime = 0.3f;
+
+        answerField.addAction(Actions.moveBy(0, movement,
+                animTime, Interpolation.pow2));
+        answerFieldBG.addAction(Actions.moveBy(0, movement,
+                animTime, Interpolation.pow2));
+        riddlePanel.addAction(Actions.moveBy(0, movement,
+                animTime, Interpolation.pow2));
     }
 
     private void roomCompleted() {

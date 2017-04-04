@@ -20,6 +20,7 @@ public enum RoomType {
     RoomType(String text) {
         this.text = text;
     }
+
     @Override
     public String toString() {
         return this.text;
