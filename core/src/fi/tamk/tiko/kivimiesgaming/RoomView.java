@@ -295,8 +295,13 @@ public class RoomView extends MyScreen {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
                 Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            if (currentRiddleCount == TOTAL_RIDDLES) {
+                getGame().setScreen(new RoomSelection(
+                        getGame(), assetManager));
+            } else {
+                burgerButton.togglePanel();
+            }
 
-            burgerButton.togglePanel();
         }
         if (burgerButton.isOpen()) {
             updateTexts();

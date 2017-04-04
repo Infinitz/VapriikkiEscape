@@ -21,8 +21,10 @@ public class BurgerButton {
     public BurgerButton(final MyScreen screen) {
         this.screen = screen;
 
-        burgerButton = new SelectableButton(new Texture("menurger.png"),
-                new Texture("menurger_pressed.png"),
+        burgerButton = new SelectableButton(screen.getAssetManager().
+                get("menurger.png", Texture.class),
+                screen.getAssetManager().
+                        get("menurger_pressed.png", Texture.class),
                 100);
 
         burgerButton.setClickListener(new ChangeListener() {
@@ -38,7 +40,8 @@ public class BurgerButton {
         table.add(burgerButton).pad(25);
 
 
-        screenDarkener = new ImageActor(new Texture("black.png"), Vescape.GUI_VIEWPORT_HEIGHT);
+        screenDarkener = new ImageActor(screen.getAssetManager().
+                get("black.png", Texture.class), Vescape.GUI_VIEWPORT_HEIGHT);
 
         screenDarkener.alpha = 0.85f;
         screenDarkener.setX(Vescape.GUI_VIEWPORT_WIDTH);

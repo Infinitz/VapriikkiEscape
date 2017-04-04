@@ -165,6 +165,9 @@ public class Vescape extends Game {
         assetManager.load("star_full.png", Texture.class);
         assetManager.load("black.png", Texture.class);
         assetManager.load("map_room_info_box.png", Texture.class);
+
+        assetManager.load("menurger.png", Texture.class);
+        assetManager.load("menurger_pressed.png", Texture.class);
     }
 
     private void createStylesAndFonts() {
