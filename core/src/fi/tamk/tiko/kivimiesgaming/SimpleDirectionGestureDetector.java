@@ -1,5 +1,6 @@
 package fi.tamk.tiko.kivimiesgaming;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.input.GestureDetector;
 
 /**
@@ -7,6 +8,7 @@ import com.badlogic.gdx.input.GestureDetector;
  */
 
 public class SimpleDirectionGestureDetector extends GestureDetector {
+
     public interface DirectionListener {
         void onLeft();
 
@@ -30,18 +32,20 @@ public class SimpleDirectionGestureDetector extends GestureDetector {
 
         @Override
         public boolean fling(float velocityX, float velocityY, int button) {
+            float deviceVelocity = Gdx.graphics.getHeight() * 1.5f;
             if(Math.abs(velocityX)>Math.abs(velocityY)){
                 if(velocityX>0){
                     directionListener.onRight();
                 }else{
                     directionListener.onLeft();
                 }
-            }else{
-                if(velocityY>2000){
+            }else if (Math.abs(velocityY)>Math.abs(deviceVelocity)){
+                if(velocityY > 0){
                     directionListener.onDown();
                 }else{
                     directionListener.onUp();
                 }
+                System.out.println(velocityY);
             }
             return super.fling(velocityX, velocityY, button);
         }
