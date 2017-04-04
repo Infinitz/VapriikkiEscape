@@ -347,11 +347,26 @@ public class RoomSelection extends MyScreen {
     private void changeFloor(boolean up) {
         int direction = up ? 1 : -1;
         float duration = 0.5f;
-        float movement = Vescape.GUI_VIEWPORT_HEIGHT * direction;
+        final float movement = Vescape.GUI_VIEWPORT_HEIGHT * direction;
 
         floor1.addAction(Actions.moveBy(0, movement, duration, Interpolation.pow2));
         floor2.addAction(Actions.moveBy(0, movement, duration, Interpolation.pow2));
-
+        timeMachineButton.addAction(Actions.sequence(
+                Actions.parallel(
+                        Actions.moveBy(0, movement, duration, Interpolation.pow2),
+                        Actions.scaleTo(0, 0, duration),
+                        Actions.rotateBy(360, duration)
+                ),
+                Actions.run(new Runnable() {
+                    @Override
+                    public void run() {
+                        timeMachineButton.moveBy(0, -movement);
+                    }
+                }),
+                Actions.parallel(
+                        Actions.scaleTo(1, 1, duration / 2, Interpolation.bounceOut),
+                        Actions.rotateBy(360, duration / 3, Interpolation.bounceOut))
+                ));
 
         float delta = (bg.getHeight() * bg.getScaleY() - bg.getHeight()) / 2;
         bg.addAction(Actions.moveBy(0,
