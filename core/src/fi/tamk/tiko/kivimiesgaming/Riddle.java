@@ -24,7 +24,7 @@ public class Riddle {
 
     public RiddleTexts getRiddle(String language) {
         for (int i = 0; i < riddleTexts.size(); ++i) {
-            if (language == riddleTexts.get(i).language)
+            if (language.equalsIgnoreCase(riddleTexts.get(i).language))
                 return riddleTexts.get(i);
         }
         return riddleTexts.get(0);

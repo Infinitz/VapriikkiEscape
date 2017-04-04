@@ -17,11 +17,11 @@ public class RiddleTexts {
         int currentLineStart = 0;
         String riddleText = "";
         while (true) {
-            //rivi
+
             int currentIndex =  currentLineStart + Vescape.MAX_CHARS_PER_LINE;
 
             if (currentIndex >= riddle.length()) {
-                currentIndex = riddle.length() - 1;
+                currentIndex = riddle.length();
                 riddleText += riddle.substring(currentLineStart,
                         currentIndex);
                 break;
@@ -38,7 +38,7 @@ public class RiddleTexts {
                     currentIndex = currentLineStart + Vescape.MAX_CHARS_PER_LINE - 1;
 
                     if (currentIndex >= riddle.length()) {
-                        currentIndex = riddle.length() - 1;
+                        currentIndex = riddle.length();
 
                         riddleText += riddle.substring(currentLineStart,
                                 currentIndex);
