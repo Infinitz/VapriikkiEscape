@@ -46,7 +46,7 @@ public class RoomView extends MyScreen {
     private Texture perfectAnswerTex;
 
     private boolean hintUsed = false;
-
+    private boolean keyboardEnabled = false;
     private int currentRiddleCount = 0;
     private int correctAnswerCount = 0;
     private int hintsUsedCount = 0;
@@ -72,6 +72,7 @@ public class RoomView extends MyScreen {
     protected void onAssetsLoaded() {
         touchDetector = new ImageActor(assetManager.get("black.png", Texture.class),
                 Vescape.GUI_VIEWPORT_HEIGHT);
+        touchDetector.setPosition(Vescape.GUI_VIEWPORT_WIDTH, 0);
         touchDetector.alpha = 0f;
         touchDetector.setClickListener(new ChangeListener() {
             @Override
@@ -94,13 +95,15 @@ public class RoomView extends MyScreen {
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
 
         answerFieldBG = new ImageActor(
-                assetManager.get("riddle_answer_box.jpg", Texture.class), 200);
+                assetManager.get("riddle_answer_box.jpg", Texture.class));
+        answerFieldBG.setSize(answerFieldBG.getSizeY() *
+                (Vescape.GUI_VIEWPORT_WIDTH / answerFieldBG.getSizeX()));
 
         answerFieldBG.setPosition(0, 200);
         float answerFieldPadding = 30f;
         answerField = new TextField("", getGame().getTextFieldStyle());
         answerField.setPosition(answerFieldPadding, 200);
-        answerField.setSize(answerFieldBG.getSizeX() - answerFieldPadding, 200);
+        answerField.setSize(answerFieldBG.getSizeX() - 2 * answerFieldPadding, 200);
         answerField.setAlignment(Align.center);
 
         answerField.setOnscreenKeyboard(new TextField.OnscreenKeyboard() {
@@ -146,7 +149,7 @@ public class RoomView extends MyScreen {
         answerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if (touchDetector.getStage() != null) {
+                if (keyboardEnabled) {
                     enableKeyboard(false);
                 }
                 answer(answerField.getText());
@@ -157,7 +160,7 @@ public class RoomView extends MyScreen {
                 0);
 
 
-        float animLength = 0.6f;
+        float animLength = 0.85f;
         float deltaY = 450f;
         stage.addActor(bg);
         for (int i = 0; i < answerResults.length; ++i) {
@@ -176,16 +179,16 @@ public class RoomView extends MyScreen {
 
 
         stage.addActor(answerFieldBG);
-        stage.addActor(answerField);
         stage.addActor(answerButton);
         burgerButton = new BurgerButton(this);
+        stage.addActor(touchDetector);
+        stage.addActor(answerField);
         createNewPanelWithAnimation(animLength);
 
     }
 
     @Override
     public void onStart() {
-        Gdx.input.setOnscreenKeyboardVisible(false);
     }
 
 
@@ -216,17 +219,17 @@ public class RoomView extends MyScreen {
 
         answerResult.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2,
                 3 * Vescape.GUI_VIEWPORT_HEIGHT / 2);
-        answerResult.setScale(5.5f);
+        answerResult.setScale(10f);
         getStage().addActor(answerResult);
         answerResult.addAction(Actions.sequence(
                 Actions.parallel(
                         Actions.moveTo(
                                 Vescape.GUI_VIEWPORT_WIDTH / 2 - answerResult.getSizeX() / 2,
                                 Vescape.GUI_VIEWPORT_HEIGHT / 2 -
-                                        answerResult.getSizeY() / 2, 0.45f,
+                                        answerResult.getSizeY() / 2, 0.3f,
                                 Interpolation.pow2),
-                        Actions.scaleTo(3, 3, 0.6f, Interpolation.bounceOut),
-                        Actions.rotateTo(((float)Math.random() - 0.5f) * 40f)
+                        Actions.scaleTo(3.5f, 3.5f, 0.6f, Interpolation.bounceOut),
+                        Actions.rotateTo(((float)Math.random() - 0.5f) * 25f, 0.35f)
                 ),
                 Actions.delay(0.25f),
 
@@ -346,7 +349,7 @@ public class RoomView extends MyScreen {
             if (currentRiddleCount == TOTAL_RIDDLES) {
                 getGame().setScreen(new RoomSelection(
                         getGame(), assetManager));
-            } else if (touchDetector.getStage() != null) {
+            } else if (keyboardEnabled) {
                 enableKeyboard(false);
             } else {
                 burgerButton.togglePanel();
@@ -410,17 +413,16 @@ public class RoomView extends MyScreen {
     }
 
     private void enableKeyboard(boolean enabled) {
-        if (touchDetector.getStage() != null && enabled)
+        Gdx.input.setOnscreenKeyboardVisible(enabled);
+        if (keyboardEnabled == enabled)
             return;
 
+        keyboardEnabled = enabled;
 
-        Gdx.input.setOnscreenKeyboardVisible(enabled);
         if (enabled) {
-            stage.addActor(touchDetector);
-            answerField.remove();
-            stage.addActor(answerField);
+            touchDetector.setPosition(0, 0);
         } else {
-            touchDetector.remove();
+            touchDetector.setPosition(Vescape.GUI_VIEWPORT_WIDTH, 0);
         }
 
         int direction = enabled ? 1 : -1;
