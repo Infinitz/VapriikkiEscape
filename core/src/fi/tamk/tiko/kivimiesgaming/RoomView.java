@@ -28,6 +28,8 @@ public class RoomView extends MyScreen {
     private Group riddlePanel;
     private TextField answerField;
     private TextButton answerButton;
+    private Label riddleLabel;
+
     private ImageActor[] answerResults;
 
     private Texture riddlePanelTexture;
@@ -163,42 +165,42 @@ public class RoomView extends MyScreen {
         } else {
             answerResult = new ImageActor(wrongAnswerTex, answerResults[0].getSizeY());
         }
-        if (answerResult != null) {
-            answerField.setDisabled(true);
-            answerField.setText("");
-            answerButton.setDisabled(true);
 
-            answerResult.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2,
-                    3 * Vescape.GUI_VIEWPORT_HEIGHT / 2);
-            answerResult.setScale(5.5f);
-            getStage().addActor(answerResult);
-            answerResult.addAction(Actions.sequence(
-                    Actions.parallel(
-                            Actions.moveTo(
-                                    Vescape.GUI_VIEWPORT_WIDTH / 2 - answerResult.getSizeX() / 2,
-                                    Vescape.GUI_VIEWPORT_HEIGHT / 2 -
-                                            answerResult.getSizeY() / 2, 0.45f,
-                                    Interpolation.pow2),
-                            Actions.scaleTo(3, 3, 0.6f, Interpolation.bounceOut),
-                            Actions.rotateTo(((float)Math.random() - 0.5f) * 40f)
-                    ),
-                    Actions.delay(0.25f),
+        answerField.setDisabled(true);
+        answerField.setText("");
+        answerButton.setDisabled(true);
 
-                    Actions.run(new Runnable() {
-                        @Override
-                        public void run() {
-                            nextRiddle();
-                        }
-                    }),
-                    Actions.parallel(
-                            Actions.moveTo(answerResults[currentRiddleCount].getX(),
-                                    answerResults[currentRiddleCount].getY(),
-                                    0.75f, Interpolation.pow2),
-                            Actions.scaleTo(1, 1, 0.5f),
-                            Actions.rotateTo(0, 0.5f)
-                    )
-            ));
-        }
+        answerResult.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2,
+                3 * Vescape.GUI_VIEWPORT_HEIGHT / 2);
+        answerResult.setScale(5.5f);
+        getStage().addActor(answerResult);
+        answerResult.addAction(Actions.sequence(
+                Actions.parallel(
+                        Actions.moveTo(
+                                Vescape.GUI_VIEWPORT_WIDTH / 2 - answerResult.getSizeX() / 2,
+                                Vescape.GUI_VIEWPORT_HEIGHT / 2 -
+                                        answerResult.getSizeY() / 2, 0.45f,
+                                Interpolation.pow2),
+                        Actions.scaleTo(3, 3, 0.6f, Interpolation.bounceOut),
+                        Actions.rotateTo(((float)Math.random() - 0.5f) * 40f)
+                ),
+                Actions.delay(0.25f),
+
+                Actions.run(new Runnable() {
+                    @Override
+                    public void run() {
+                        nextRiddle();
+                    }
+                }),
+                Actions.parallel(
+                        Actions.moveTo(answerResults[currentRiddleCount].getX(),
+                                answerResults[currentRiddleCount].getY(),
+                                0.75f, Interpolation.pow2),
+                        Actions.scaleTo(1, 1, 0.5f),
+                        Actions.rotateTo(0, 0.5f)
+                )
+        ));
+
     }
 
     private void nextRiddle() {
@@ -270,7 +272,7 @@ public class RoomView extends MyScreen {
 
         Label.LabelStyle labelStyle = new Label.LabelStyle(getGame().getRiddleFont(),
                 Color.BLACK);
-        Label riddleLabel = new Label(
+        riddleLabel = new Label(
                 currentRiddle.getRiddle(getGame().getMyBundle().getLocale().getLanguage()).riddle,
                 labelStyle);
         riddleLabel.setPosition(
@@ -288,11 +290,16 @@ public class RoomView extends MyScreen {
 
     @Override
     protected void update(float dt) {
+        if (!assetsLoaded)
+            return;
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
                 Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 
             burgerButton.togglePanel();
-
+        }
+        if (burgerButton.isOpen()) {
+            updateTexts();
         }
     }
 
@@ -353,5 +360,13 @@ public class RoomView extends MyScreen {
         }
 
         new RoomFinishedPopUp(this, roomData);
+    }
+
+    private void updateTexts() {
+        answerButton.setText(getGame().getMyBundle().get("answer"));
+        if (riddleLabel != null) {
+            riddleLabel.setText(currentRiddle.getRiddle(
+                    getGame().getMyBundle().getLocale().getLanguage()).riddle);
+        }
     }
 }

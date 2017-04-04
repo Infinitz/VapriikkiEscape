@@ -16,6 +16,7 @@ public class BurgerButton {
 
     private Table table;
     private SelectableButton burgerButton;
+    private boolean isOpen = false;
 
     public BurgerButton(final MyScreen screen) {
         this.screen = screen;
@@ -59,6 +60,10 @@ public class BurgerButton {
                     0);
         }
 
+    }
+
+    public boolean isOpen() {
+        return burgerButton.isSelected();
     }
 
     public void reAddElementsToStage() {

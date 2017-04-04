@@ -22,7 +22,7 @@ public abstract class MyScreen implements Screen {
     protected OrthographicCamera cam;
     protected AssetManager assetManager;
 
-    private boolean assetsLoaded = false;
+    protected boolean assetsLoaded = false;
 
     public MyScreen(Vescape game, AssetManager assetManager) {
         this.game = game;

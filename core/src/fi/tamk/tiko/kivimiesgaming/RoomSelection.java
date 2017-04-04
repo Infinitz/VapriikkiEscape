@@ -164,6 +164,9 @@ public class RoomSelection extends MyScreen {
 
     @Override
     protected void update(float dt) {
+        if (!assetsLoaded)
+            return;
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
                 Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 
