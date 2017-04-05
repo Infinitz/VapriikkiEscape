@@ -40,7 +40,7 @@ fi::Mitä kuvan mies luettelee ensimmäisenä tarpeelliseksi asiaksi?::Miekka
 en::riddle::answer;
 
 koski3.jpg
-fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen
+fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen//Juice
 en::riddle::answer;
 
 koski4.jpg
@@ -65,11 +65,11 @@ fi::Mikä pelistudio on luonut kyseisen pelihahmon?::Rovio Entertainment//Rovio
 en::riddle::answer;
 
 peli2.jpg
-fi::Mistä elokuvahahmosta tämä peli on tehty?::Uuno Turhapuro
+fi::Mistä elokuvahahmosta tämä peli on tehty?::Uuno Turhapuro//Uuno//Turhapuro
 en::riddle::answer;
 
 peli3.jpg
-fi::Mistä ensimmäiset pajatsot tuotiin Suomeen?::Saksa
+fi::Mistä ensimmäiset pajatsot tuotiin Suomeen?::Saksa//Saksasta
 en::riddle::answer;
 
 &mediaMuseum

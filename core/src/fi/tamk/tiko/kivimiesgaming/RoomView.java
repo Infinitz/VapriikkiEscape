@@ -62,7 +62,7 @@ public class RoomView extends MyScreen {
         assetManager.load("riddle_slot_done.png", Texture.class);
         assetManager.load("riddle_slot_done_golden.png", Texture.class);
         assetManager.load("riddle_retry_active.png", Texture.class);
-        assetManager.load("riddle_next_active.png", Texture.class);
+        //assetManager.load("riddle_next_active.png", Texture.class);
 
         roomData.loadRiddles(assetManager);
         roomData.loadTextures();
@@ -181,8 +181,8 @@ public class RoomView extends MyScreen {
         stage.addActor(answerFieldBG);
         stage.addActor(answerButton);
         burgerButton = new BurgerButton(this);
-        stage.addActor(touchDetector);
         stage.addActor(answerField);
+        stage.addActor(touchDetector);
         createNewPanelWithAnimation(animLength);
 
     }
