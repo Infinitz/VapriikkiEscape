@@ -82,6 +82,10 @@ rup2.jpg
 fi::Mikä on tämän Nokian puhelimen mallinumero?::8210
 en::riddle::answer;
 
+rup3.jpg
+fi::A007, mitähän se mahtaa tarkoittaa...::Loppu//Loppua
+en::riddle::answer;
+
 &natureMuseum
 
 #luonto4.jpg
