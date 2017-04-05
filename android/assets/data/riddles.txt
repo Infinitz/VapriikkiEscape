@@ -16,7 +16,7 @@ fi::Mainitse yksi henkilö, jonka asteikkoa käytetään kiven kovuuden määrit
 en::riddle::answer::hint;
 
 kivi4.jpg
-fi::Mistä kuvassa oleva Ammoniitti on löydetty?::Madagaskar::MA__G___A_
+fi::Mistä kuvassa oleva Ammoniitti on löydetty?::Madagaskar::MA_ _G_ _ _A_
 en::riddle::answer::hint;
 
 kivi5.jpg
@@ -24,7 +24,7 @@ fi::Mikä on kuvassa näkyvä pörröisen näköinen kivi?::Okeniitti::Kivi on m
 en::riddle::answer::hint;
 
 kivi6.jpg
-fi::Mikä on Rikkikiisun toinen nimitys?::Pyriitti::P____TT_
+fi::Mikä on Rikkikiisun toinen nimitys?::Pyriitti::P_ _ _ _TT_
 en::riddle::answer::hint;
 
 &postalMuseum
@@ -101,7 +101,7 @@ fi::Mikä kasvi tuoksuu näytteessä numero 4?::Suopursu::Vastauksen löydät tu
 en::riddle::answer::hint;
 
 luonto2.jpg
-fi::Mikä hurjan paljon suurennettu perhonen näkyy kuvassa?::Tummaverkkoperhonen::T_ _ _ _ v _ _ _ _ _ perhonen
+fi::Mikä hurjan paljon suurennettu perhonen näkyy kuvassa?::Tummaverkkoperhonen::T_ _ _ _ v _ _ _ _ _perhonen
 en::riddle::answer::hint;
 
 luonto3.jpg
@@ -111,7 +111,7 @@ en::riddle::answer::hint;
 &dollMuseum
 
 nukke1.jpg
-fi::Mikä on tämän söpön pienen kahvilan nimi?::Jokilinna::J___L___A
+fi::Mikä on tämän söpön pienen kahvilan nimi?::Jokilinna::J_ _ _L_ _ _A
 en::riddle::Jokilinna::hint;
 
 &iceHockeyMuseum

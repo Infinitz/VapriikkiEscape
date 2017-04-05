@@ -45,7 +45,6 @@ public class SimpleDirectionGestureDetector extends GestureDetector {
                 }else{
                     directionListener.onUp();
                 }
-                System.out.println(velocityY);
             }
             return super.fling(velocityX, velocityY, button);
         }

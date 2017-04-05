@@ -15,7 +15,7 @@ public class RiddleTexts {
         this.language = language;
         this.answers = answer.split(Vescape.RIDDLE_ANSWER_SEPARATOR);
         this.riddle = Utilities.splitTextIntoLines(riddle, Vescape.MAX_CHARS_PER_LINE);
-        this.hint = hint;
+        this.hint = Utilities.splitTextIntoLines(hint, Vescape.MAX_CHARS_PER_LINE);;
     }
 
     public boolean isCorrectAnswer(String answer) {

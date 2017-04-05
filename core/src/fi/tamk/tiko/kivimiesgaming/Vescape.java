@@ -344,7 +344,7 @@ public class Vescape extends Game {
                             currentLine = currentLine.substring(0, currentLine.length() - 1);
                         }
                         String[] temp = currentLine.split(RIDDLE_SEPARATOR);
-                        riddle.addRiddleText(new RiddleTexts(temp[0], temp[1], temp[2], ""));
+                        riddle.addRiddleText(new RiddleTexts(temp[0], temp[1], temp[2], temp[3]));
                         if (riddleEnd) {
                             roomData.get(currentRoom).riddles.add(riddle);
                             break;

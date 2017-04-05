@@ -53,6 +53,7 @@ public class RoomView extends MyScreen {
 
     private boolean hintUsed = false;
     private boolean keyboardEnabled = false;
+    private boolean hintPanelEnabled = false;
     private int currentRiddleCount = 0;
     private int correctAnswerCount = 0;
     private int hintsUsedCount = 0;
@@ -94,12 +95,7 @@ public class RoomView extends MyScreen {
                 if (keyboardEnabled) {
                     enableKeyboard(false);
                 } else {
-                    enabledHintPanel(false);
-                    if (!hintUsed) {
-                        hintUsed = true;
-                        hintsUsedCount++;
-                    }
-
+                    closeHintPanel();
                 }
 
             }
@@ -136,21 +132,6 @@ public class RoomView extends MyScreen {
             @Override
             public void show(boolean visible) {
                 enableKeyboard(true);
-
-        /*
-                Gdx.input.getTextInput(new Input.TextInputListener() {
-                                           @Override
-                                           public void input(String text) {
-                                               answerField.setText(text);
-                                           }
-
-                                           @Override
-                                           public void canceled() {
-
-                                           }
-                                       }, getGame().getMyBundle().get("answer"), answerField.getText(),
-                        answerField.getText().length() == 0 ?
-                                getGame().getMyBundle().get("answer") : "");*/
             }
         });
 
@@ -192,17 +173,7 @@ public class RoomView extends MyScreen {
                 (Vescape.GUI_VIEWPORT_WIDTH / hintPanelBG.getSizeX()));
         hintPanelBG.setY(Vescape.GUI_VIEWPORT_HEIGHT / 2 - hintPanelBG.getSizeY() / 2 - 320);
         hintPanel.setY(hintPanel.getY() - hintPanelAnimMovement);
-        hintLabel = new Label(
-                Utilities.splitTextIntoLines("JAAS!!!!",
-                        Vescape.MAX_CHARS_PER_LINE),
-                labelStyle);
-        hintLabel.setPosition(
-                hintPanelBG.getX() + hintPanelBG.getSizeX() / 2 - hintLabel.getWidth() / 2,
-                hintPanelBG.getY() + hintPanelBG.getSizeY() / 2);
-
         hintPanel.addActor(hintPanelBG);
-        hintPanel.addActor(hintLabel);
-        //hintButton
 
         hintButton = new ImageActor(assetManager.get("riddle_hint.png", Texture.class), 150f);
         hintButton.setPosition(
@@ -411,9 +382,12 @@ public class RoomView extends MyScreen {
                         getGame(), assetManager));
             } else if (keyboardEnabled) {
                 enableKeyboard(false);
+            } else if (hintPanelEnabled) {
+                closeHintPanel();
             } else {
                 burgerButton.togglePanel();
             }
+
 
         }
 
@@ -473,13 +447,18 @@ public class RoomView extends MyScreen {
     }
 
     private void enabledHintPanel(boolean enabled) {
-
+        hintPanelEnabled = enabled;
         if (enabled) {
+
+            if (hintLabel != null) {
+                hintLabel.remove();
+            }
+            hintLabel = new Label(currentRiddle.getRiddle(
+                    getGame().getMyBundle().getLocale().getLanguage()).hint, labelStyle);
             hintLabel.setPosition(
                     hintPanelBG.getX() + hintPanelBG.getSizeX() / 2 - hintLabel.getWidth() / 2,
-                    hintPanelBG.getY() + hintPanelBG.getSizeY() / 2);
-            hintLabel.setText(currentRiddle.getRiddle(
-                    getGame().getMyBundle().getLocale().getLanguage()).hint);
+                    hintPanelBG.getY() + hintPanelBG.getSizeY() / 2 - hintLabel.getHeight() / 4);
+            hintPanel.addActor(hintLabel);
             hintPanel.remove();
             stage.addActor(hintPanel);
             hintPanel.addAction(Actions.moveBy(0, hintPanelAnimMovement, 0.5f, Interpolation.pow2));
@@ -491,7 +470,8 @@ public class RoomView extends MyScreen {
             if (!hintUsed) {
                 hintButton.addAction(
                         Actions.moveBy(-hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
-            }hintPanel.addAction(
+            }
+            hintPanel.addAction(
                     Actions.moveBy(0, -hintPanelAnimMovement, 0.5f, Interpolation.pow2));
             touchDetector.setPosition(Vescape.GUI_VIEWPORT_WIDTH, 0);
         }
@@ -546,5 +526,12 @@ public class RoomView extends MyScreen {
         }
     }
 
+    private void closeHintPanel() {
+        enabledHintPanel(false);
+        if (!hintUsed) {
+            hintUsed = true;
+            hintsUsedCount++;
+        }
+    }
 
 }
