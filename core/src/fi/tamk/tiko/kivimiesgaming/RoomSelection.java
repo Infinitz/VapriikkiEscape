@@ -62,22 +62,23 @@ public class RoomSelection extends MyScreen {
         createChangeFloorButton();
         burgerButton = new BurgerButton(this);
 
-        floor1.setScale(0f);
-        floor2.setScale(0f);
-        timeMachineButton.setScale(0f);
 
-        float animationDelay = 0.25f;
-        float animDuration = 1.5f;
-        bg.addAction(Actions.sequence(
-                Actions.delay(animationDelay),
-                Actions.scaleBy(0.25f, 0.25f,
-                        animDuration, Interpolation.pow2Out)));
 
         Vescape.setGroupOrigin(floor1,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
         Vescape.setGroupOrigin(floor2,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
 
+        floor1.setScale(0f);
+        floor2.setScale(0f);
+        timeMachineButton.setScale(0f);
+
+        float animationDelay = 0.25f;
+        float animDuration = 1f;
+        bg.addAction(Actions.sequence(
+                Actions.delay(animationDelay),
+                Actions.scaleBy(0.25f, 0.25f,
+                        animDuration, Interpolation.pow2Out)));
 
         floor1.addAction(Actions.sequence(
                 Actions.delay(animationDelay),
