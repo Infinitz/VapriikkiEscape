@@ -4,7 +4,7 @@
 &rockMuseum
 
 kivi1.jpg
-fi::Mikä on kuvassa olevan asian yleisnimitys?::Koralli::K__A__I
+fi::Mikä on kuvassa olevan asian yleisnimitys?::Koralli::K_ _A_ _I
 en::riddle::answer::hint;
 
 kivi2.jpg

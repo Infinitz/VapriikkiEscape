@@ -246,8 +246,11 @@ public class RoomView extends MyScreen {
                     new ImageActor(wrongAnswerTex, answerResultSlots[0].getSizeY());
         }
 
-        hintButton.addAction(
-                Actions.moveBy(hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
+        if (hintUsed) {
+            hintButton.addAction(
+                    Actions.moveBy(hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
+        }
+
 
         answerField.setDisabled(true);
         answerField.setText("");
