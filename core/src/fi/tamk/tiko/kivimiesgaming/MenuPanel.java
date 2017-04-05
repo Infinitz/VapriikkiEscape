@@ -93,9 +93,9 @@ public class MenuPanel {
 
 
         if (screen.getGame().getMyBundle().get("language").equals("finnish")) {
-            flagButton = new Button(englishStyle);
-        } else {
             flagButton = new Button(finnishStyle);
+        } else {
+            flagButton = new Button(englishStyle);
         }
 
         if (AudioManager.isSoundsEnabled()) {
@@ -138,10 +138,10 @@ public class MenuPanel {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 if (screen.getGame().getMyBundle().get("language").equals("finnish")) {
-                    flagButton.setStyle(finnishStyle);
+                    flagButton.setStyle(englishStyle);
                     screen.getGame().setEnglish();
                 } else {
-                    flagButton.setStyle(englishStyle);
+                    flagButton.setStyle(finnishStyle);
                     screen.getGame().setFinnish();
                 }
                 menuTable.clearChildren();
