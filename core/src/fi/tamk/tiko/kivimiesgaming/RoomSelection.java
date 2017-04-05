@@ -351,11 +351,12 @@ public class RoomSelection extends MyScreen {
 
         floor1.addAction(Actions.moveBy(0, movement, duration, Interpolation.pow2));
         floor2.addAction(Actions.moveBy(0, movement, duration, Interpolation.pow2));
+
         timeMachineButton.addAction(Actions.sequence(
                 Actions.parallel(
                         Actions.moveBy(0, movement, duration, Interpolation.pow2),
                         Actions.scaleTo(0, 0, duration),
-                        Actions.rotateBy(360, duration)
+                        Actions.rotateBy(180, duration)
                 ),
                 Actions.run(new Runnable() {
                     @Override
@@ -364,8 +365,8 @@ public class RoomSelection extends MyScreen {
                     }
                 }),
                 Actions.parallel(
-                        Actions.scaleTo(1, 1, duration / 2, Interpolation.bounceOut),
-                        Actions.rotateBy(360, duration / 5, Interpolation.bounceOut))
+                        Actions.scaleTo(1, 1, duration / 2, Interpolation.pow2),
+                        Actions.rotateBy(180, duration / 3, Interpolation.pow2))
                 ));
 
         float delta = (bg.getHeight() * bg.getScaleY() - bg.getHeight()) / 2;
