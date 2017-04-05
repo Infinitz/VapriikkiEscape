@@ -57,6 +57,9 @@ public class RoomView extends MyScreen {
     private int correctAnswerCount = 0;
     private int hintsUsedCount = 0;
 
+    private float hintButtonAnimMovement = 300f;
+    private float hintPanelAnimMovement = 700f;
+
     public RoomView(Vescape game, RoomData roomData, AssetManager assetManager) {
         super(game, assetManager);
         this.roomData = roomData;
@@ -92,6 +95,11 @@ public class RoomView extends MyScreen {
                     enableKeyboard(false);
                 } else {
                     enabledHintPanel(false);
+                    if (!hintUsed) {
+                        hintUsed = true;
+                        hintsUsedCount++;
+                    }
+
                 }
 
             }
@@ -176,14 +184,14 @@ public class RoomView extends MyScreen {
         answerButton.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - answerButton.getWidth() / 2,
                 0);
 
-        //hintpanel
+
         hintPanel = new Group();
         hintPanelBG = new ImageActor(
                 assetManager.get("riddle_confirm_box.png", Texture.class));
         hintPanelBG.setSize(hintPanelBG.getSizeY() *
                 (Vescape.GUI_VIEWPORT_WIDTH / hintPanelBG.getSizeX()));
         hintPanelBG.setY(Vescape.GUI_VIEWPORT_HEIGHT / 2 - hintPanelBG.getSizeY() / 2 - 320);
-
+        hintPanel.setY(hintPanel.getY() - hintPanelAnimMovement);
         hintLabel = new Label(
                 Utilities.splitTextIntoLines("JAAS!!!!",
                         Vescape.MAX_CHARS_PER_LINE),
@@ -205,10 +213,6 @@ public class RoomView extends MyScreen {
         hintButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if (!hintUsed) {
-                    ++hintsUsedCount;
-                    hintUsed = true;
-                }
                 enabledHintPanel(true);
             }
         });
@@ -224,15 +228,15 @@ public class RoomView extends MyScreen {
         answerFieldBG.setPosition(answerFieldBG.getX(), answerFieldBG.getY() - deltaY);
         answerFieldBG.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
 
-
-        hintButton.setPosition(hintButton.getX(), hintButton.getY() - deltaY);
-        hintButton.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
+        hintButton.setPosition(hintButton.getX() + hintButtonAnimMovement, hintButton.getY());
 
         answerField.setPosition(answerField.getX(), answerField.getY() - deltaY);
         answerField.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
 
         answerButton.setPosition(answerButton.getX(), answerButton.getY() - deltaY);
         answerButton.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
+
+
 
         stage.addActor(answerFieldBG);
         stage.addActor(answerButton);
@@ -262,13 +266,14 @@ public class RoomView extends MyScreen {
                 answerResult = new ImageActor(perfectAnswerTex, answerResults[0].getSizeY());
             }
         } else if (!hintUsed){
-            hintUsed = true;
-            hintsUsedCount++;
             enabledHintPanel(true);
             return;
         } else {
             answerResult = new ImageActor(wrongAnswerTex, answerResults[0].getSizeY());
         }
+
+        hintButton.addAction(
+                Actions.moveBy(hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
 
         answerField.setDisabled(true);
         answerField.setText("");
@@ -468,18 +473,26 @@ public class RoomView extends MyScreen {
     }
 
     private void enabledHintPanel(boolean enabled) {
+
         if (enabled) {
             hintLabel.setPosition(
                     hintPanelBG.getX() + hintPanelBG.getSizeX() / 2 - hintLabel.getWidth() / 2,
                     hintPanelBG.getY() + hintPanelBG.getSizeY() / 2);
             hintLabel.setText(currentRiddle.getRiddle(
                     getGame().getMyBundle().getLocale().getLanguage()).hint);
+            hintPanel.remove();
             stage.addActor(hintPanel);
+            hintPanel.addAction(Actions.moveBy(0, hintPanelAnimMovement, 0.5f, Interpolation.pow2));
             touchDetector.remove();
             stage.addActor(touchDetector);
             touchDetector.setPosition(0, 0);
+
         } else {
-            hintPanel.remove();
+            if (!hintUsed) {
+                hintButton.addAction(
+                        Actions.moveBy(-hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
+            }hintPanel.addAction(
+                    Actions.moveBy(0, -hintPanelAnimMovement, 0.5f, Interpolation.pow2));
             touchDetector.setPosition(Vescape.GUI_VIEWPORT_WIDTH, 0);
         }
     }
