@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.Align;
  */
 
 public class RoomView extends MyScreen {
-    private static final int TOTAL_RIDDLES = 3;
+
     private RoomData roomData;
     private Riddle currentRiddle;
 
@@ -62,7 +62,7 @@ public class RoomView extends MyScreen {
         assetManager.load("riddle_slot_done.png", Texture.class);
         assetManager.load("riddle_slot_done_golden.png", Texture.class);
         assetManager.load("riddle_retry_active.png", Texture.class);
-        //assetManager.load("riddle_next_active.png", Texture.class);
+        assetManager.load("riddle_next_active.png", Texture.class);
 
         roomData.loadRiddles(assetManager);
         roomData.loadTextures();
@@ -105,6 +105,7 @@ public class RoomView extends MyScreen {
         answerField.setPosition(answerFieldPadding, 200);
         answerField.setSize(answerFieldBG.getSizeX() - 2 * answerFieldPadding, 200);
         answerField.setAlignment(Align.center);
+        answerField.setMaxLength(Vescape.MAX_CHARS_IN_ANSWER);
 
         answerField.setOnscreenKeyboard(new TextField.OnscreenKeyboard() {
 
@@ -129,7 +130,7 @@ public class RoomView extends MyScreen {
             }
         });
 
-        answerResults = new ImageActor[TOTAL_RIDDLES];
+        answerResults = new ImageActor[Vescape.TOTAL_RIDDLES_ROOM];
 
         float answerSlotSpace = 20;
         for (int i = 0; i < answerResults.length; ++i) {
@@ -264,7 +265,7 @@ public class RoomView extends MyScreen {
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {
-                                if (currentRiddleCount == TOTAL_RIDDLES - 1) {
+                                if (currentRiddleCount == Vescape.TOTAL_RIDDLES_ROOM - 1) {
                                     return;
                                 }
                                 createNewPanelWithAnimation(animLength);
@@ -277,7 +278,7 @@ public class RoomView extends MyScreen {
                         oldRiddle.remove();
                         answerField.setDisabled(false);
                         answerButton.setDisabled(false);
-                        if (currentRiddleCount == TOTAL_RIDDLES - 1) {
+                        if (currentRiddleCount == Vescape.TOTAL_RIDDLES_ROOM - 1) {
                             roomCompleted();
                         }
                         ++currentRiddleCount;
@@ -346,7 +347,7 @@ public class RoomView extends MyScreen {
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
                 Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 
-            if (currentRiddleCount == TOTAL_RIDDLES) {
+            if (currentRiddleCount == Vescape.TOTAL_RIDDLES_ROOM) {
                 getGame().setScreen(new RoomSelection(
                         getGame(), assetManager));
             } else if (keyboardEnabled) {
