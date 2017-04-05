@@ -4,118 +4,122 @@
 &rockMuseum
 
 kivi1.jpg
-fi::Mikä on kuvassa olevan asian yleisnimitys?::Koralli
-en::riddle::answer;
+fi::Mikä on kuvassa olevan asian yleisnimitys?::Koralli::K__A__I
+en::riddle::answer::hint;
 
 kivi2.jpg
-fi::Kuinka painava kuvassa oleva kivipallo on?::300kg//300
-en::riddle::answer;
+fi::Kuinka painava kuvassa oleva kivipallo on?::300kg//300::Painoa löytyy useita satoja kiloja
+en::riddle::answer::hint;
 
 kivi3.jpg
-fi::Mainitse yksi henkilö, jonka asteikkoa käytetään kiven kovuuden määrittämiseen.::Mohs//Rosiwal
-en::riddle::answer;
+fi::Mainitse yksi henkilö, jonka asteikkoa käytetään kiven kovuuden määrittämiseen.::Mohs//Rosiwal::Etsi kuvassa näkyvä kivi ja tutki ympäristöä tarkemmin!
+en::riddle::answer::hint;
 
 kivi4.jpg
-fi::Mistä kuvassa oleva Ammoniitti on löydetty?::Madagaskar
-en::riddle::answer;
+fi::Mistä kuvassa oleva Ammoniitti on löydetty?::Madagaskar::MA__G___A_
+en::riddle::answer::hint;
 
 kivi5.jpg
-fi::Mikä on kuvassa näkyvä pörröisen näköinen kivi?::Okeniitti
-en::riddle::answer;
+fi::Mikä on kuvassa näkyvä pörröisen näköinen kivi?::Okeniitti::Kivi on melko pieni, tutki näyttelyä tarkemmin!
+en::riddle::answer::hint;
 
 kivi6.jpg
-fi::Mikä on Rikkikiisun toinen nimitys?::Pyriitti
-en::riddle::answer;
+fi::Mikä on Rikkikiisun toinen nimitys?::Pyriitti::P____TT_
+en::riddle::answer::hint;
 
 &postalMuseum
 
 nukke1.jpg
-fi::arasdfasdfa fasdsdfasdfasdfasdfasdfaafsdfasdfasdfasdfasdfasdfsddv::vastaus
-en::riddle::answer;
+fi::arasdfasdfa fasdsdfasdfasdfasdfasdfaafsdfasdfasdfasdfasdfasdfsddv::vastaus::hint
+en::riddle::answer::hint;
 
 &tammerMuseum
 
 koski1.jpg
-fi::Mitä kuvan mies luettelee ensimmäisenä tarpeelliseksi asiaksi?::Miekka
-en::riddle::answer;
+fi::Mitä kuvan mies luettelee ensimmäisenä tarpeelliseksi asiaksi?::Miekka::Etsi näyttelyn sisäänkäynnin läheltä sarjakuva, jossa kyseiset henkilöt esiintyvät.
+en::riddle::answer::hint;
 
 koski3.jpg
-fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen//Juice
-en::riddle::answer;
+fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen//Juice::Henkilö on jo edesmennyt suomalainen tunnettu muusikko
+en::riddle::answer::hint;
 
 koski4.jpg
-fi::Miltä vuodelta kuvassa näkyvä Josef Konsénin vaaka on?::1870
-en::riddle::answer;
+fi::Miltä vuodelta kuvassa näkyvä Josef Konsénin vaaka on?::1870::Etsi vaaka ja tutki ympäristöä tarkemmin!
+en::riddle::answer::hint;
 
 koskiV.jpg
-fi::Mikä on kuvassa näkyvän auton rekisteritunnuksen kolme viimeistä numeroa?::408
-en::riddle::answer;
+fi::Mikä on kuvassa näkyvän auton rekisteritunnuksen kolme viimeistä numeroa?::408::Auto on kaahannut näyttelyn ulkopuolelle käytävään…
+en::riddle::answer::hint;
 
 &tutorialMuseum
 
 tutoriaali1.jpg
-fi::Tervetuloa Vapriikkiin! Mikähän on tämän aulasta löytyvän puodin nimi?::museokauppa
-en::riddle::answer;
+fi::Tervetuloa Vapriikkiin! Mikähän on tämän aulasta löytyvän puodin nimi?::museokauppa::Puoti löytyy heti pääovien vierestä
+en::riddle::answer::hint;
 
 
 &gameMuseum
 
 peli1.jpg
-fi::Mikä pelistudio on luonut kyseisen pelihahmon?::Rovio Entertainment//Rovio
-en::riddle::answer;
+fi::Mikä pelistudio on luonut kyseisen pelihahmon?::Rovio Entertainment//Rovio::Studio on suomalainen, vaikka nimen toinen osa onkin englanninkielinen
+en::riddle::answer::hint;
 
 peli2.jpg
-fi::Mistä elokuvahahmosta tämä peli on tehty?::Uuno Turhapuro//Uuno//Turhapuro
-en::riddle::answer;
+fi::Mistä elokuvahahmosta tämä peli on tehty?::Uuno Turhapuro//Uuno//Turhapuro::Tämä peli on vuodelta 1986
+en::riddle::answer::hint;
 
 peli3.jpg
-fi::Mistä ensimmäiset pajatsot tuotiin Suomeen?::Saksa//Saksasta
-en::riddle::answer;
+fi::Mistä ensimmäiset pajatsot tuotiin Suomeen?::Saksa//Saksasta::Kyseinen maa löytyy Euroopasta
+en::riddle::answer::hint;
 
 &mediaMuseum
 
 rup1.jpg
-fi::Koska ensimmäiset puhelinkioskit ilmestyivät Tampereelle?::1925
-en::riddle::answer;
+fi::Koska ensimmäiset puhelinkioskit ilmestyivät Tampereelle?::1925::Ne yleistyivät 1900-luvun alussa, mutta Tampereelle ne tulivat pari vuosikymmentä myöhemmin…
+en::riddle::answer::hint;
 
 rup2.jpg
-fi::Mikä on tämän Nokian puhelimen mallinumero?::8210
-en::riddle::answer;
+fi::Mikä on tämän Nokian puhelimen mallinumero?::8210::Puhelin on vuodelta 1999
+en::riddle::answer::hint;
+
+rup3.jpg
+fi::A007, mitähän se mahtaa tarkoittaa...::Loppu//Loppua::Etsi Rupriikista koodiavain
+en::riddle::answer::hint;
 
 &natureMuseum
 
 #luonto4.jpg
-#fi::Mikä on Pirkanmaan maakuntakalan latinankielinen nimi?::Aspius aspius
-#en::riddle::answer;
+#fi::Mikä on Pirkanmaan maakuntakalan latinankielinen nimi?::Aspius aspius::Kala on suomeksi Toutain
+#en::riddle::answer::hint;
 
 #luonto5.jpg
-#fi::Mikä on Pirkanmaan maakuntakivi?::Pallograniitti
-#en::riddle::answer;
+#fi::Mikä on Pirkanmaan maakuntakivi?::Pallograniitti::Tämä kivi on karannut luonnontieteellisestä museosta ja se on viimeksi havaittu lähellä Rupriikin sisäänkäyntiä…
+#en::riddle::answer::hint;
 
 luonto1.jpg
-fi::Mikä kasvi tuoksuu näytteessä numero 4?::Suopursu
-en::riddle::answer;
+fi::Mikä kasvi tuoksuu näytteessä numero 4?::Suopursu::Vastauksen löydät tuoksupullojen läheisyydestä.
+en::riddle::answer::hint;
 
 luonto2.jpg
-fi::Mikä hurjan paljon suurennettu perhonen näkyy kuvassa?::Tummaverkkoperhonen
-en::riddle::answer;
+fi::Mikä hurjan paljon suurennettu perhonen näkyy kuvassa?::Tummaverkkoperhonen::T_ _ _ _ v _ _ _ _ _ perhonen
+en::riddle::answer::hint;
 
 luonto3.jpg
-fi::Mille linnulle kyseinen luuranko kuuluu?::Varis
-en::riddle::answer;
+fi::Mille linnulle kyseinen luuranko kuuluu?::Varis::??
+en::riddle::answer::hint;
 
 &dollMuseum
 
 nukke1.jpg
-fi::Mikä on tämän söpön pienen kahvilan nimi?::vastaus
-en::riddle::Jokilinna;
+fi::Mikä on tämän söpön pienen kahvilan nimi?::Jokilinna::J___L___A
+en::riddle::Jokilinna::hint;
 
 &iceHockeyMuseum
 
 jää1.jpg
-fi::Minkä entisen SM-liigajoukkueen logo tämä on?::Jokerit
-en::riddle::answer;
+fi::Minkä entisen SM-liigajoukkueen logo tämä on?::Jokerit::Joukkue on kotoisin Helsingistä
+en::riddle::answer::hint;
 
 jää2.jpg
-fi::Minkä SM-liigajoukkueen maalivahdin pelipaita 1940-luvulta komeilee kuvassa?::Ilves
-en::riddle::answer;
+fi::Minkä SM-liigajoukkueen maalivahdin pelipaita 1940-luvulta komeilee kuvassa?::Ilves::Joukkue on kotoisin Tampereelta
+en::riddle::answer::hint;
