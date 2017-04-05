@@ -13,48 +13,7 @@ public class RiddleTexts {
     public RiddleTexts(String language, String riddle, String answer) {
         this.language = language;
         this.answers = answer.split(Vescape.RIDDLE_ANSWER_SEPARATOR);
-
-        int currentLineStart = 0;
-        String riddleText = "";
-        while (true) {
-
-            int currentIndex =  currentLineStart + Vescape.MAX_CHARS_PER_LINE;
-
-            if (currentIndex >= riddle.length()) {
-                currentIndex = riddle.length();
-                riddleText += riddle.substring(currentLineStart,
-                        currentIndex);
-                break;
-            }
-
-            while (true) {
-                if (riddle.charAt(currentIndex) == ' ') {
-                    riddleText += riddle.substring(currentLineStart,
-                            currentIndex) + "\n";
-                    currentLineStart = currentIndex + 1;
-                    break;
-                } else if (currentIndex == currentLineStart) {
-
-                    currentIndex = currentLineStart + Vescape.MAX_CHARS_PER_LINE - 1;
-
-                    if (currentIndex >= riddle.length()) {
-                        currentIndex = riddle.length();
-
-                        riddleText += riddle.substring(currentLineStart,
-                                currentIndex);
-                        break;
-                    } else {
-                        riddleText += riddle.substring(currentLineStart,
-                                currentIndex) + "\n";
-                        currentLineStart = currentIndex + 1;
-
-                        break;
-                    }
-                }
-                --currentIndex;
-            }
-        }
-        this.riddle = riddleText;
+        this.riddle = Utilities.splitTextIntoLines(riddle, Vescape.MAX_CHARS_PER_LINE);
     }
 
     public boolean isCorrectAnswer(String answer) {

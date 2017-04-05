@@ -26,17 +26,21 @@ public class RoomView extends MyScreen {
     private RoomData roomData;
     private Riddle currentRiddle;
 
+    private Group riddlePanel;
+    private Label riddleLabel;
+
+    private Group hintPanel;
+    private Label hintLabel;
+
     private BurgerButton burgerButton;
     private ImageActor bg;
-    private Group riddlePanel;
     private TextField answerField;
     private TextButton answerButton;
-    private Label riddleLabel;
     private ImageActor touchDetector;
     private ImageActor answerFieldBG;
-
     private ImageActor[] answerResults;
 
+    private Label.LabelStyle labelStyle;
     private Texture riddlePanelTexture;
     private Texture riddlePanelBorderTexture;
 
@@ -63,9 +67,13 @@ public class RoomView extends MyScreen {
         assetManager.load("riddle_slot_done_golden.png", Texture.class);
         assetManager.load("riddle_retry_active.png", Texture.class);
         assetManager.load("riddle_next_active.png", Texture.class);
+        assetManager.load("riddle_confirm_box.png", Texture.class);
 
         roomData.loadRiddles(assetManager);
         roomData.loadTextures();
+
+        labelStyle = new Label.LabelStyle(getGame().getRiddleFont(),
+                Color.BLACK);
     }
 
     @Override
@@ -158,8 +166,27 @@ public class RoomView extends MyScreen {
         });
         answerButton.setSize(Vescape.GUI_VIEWPORT_WIDTH / 2, 175);
         answerButton.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - answerButton.getWidth() / 2,
-                0);
+                15);
 
+        //hintpanel
+        hintPanel = new Group();
+        ImageActor hintPanelBG = new ImageActor(
+                assetManager.get("riddle_confirm_box.png", Texture.class));
+        hintPanelBG.setSize(hintPanelBG.getSizeY() *
+                (Vescape.GUI_VIEWPORT_WIDTH / hintPanelBG.getSizeX()));
+        hintPanelBG.setY(Vescape.GUI_VIEWPORT_HEIGHT / 2 - hintPanelBG.getSizeY() / 2 + 200);
+
+        hintLabel = new Label(
+                Utilities.splitTextIntoLines("JAAS!!!!",
+                        Vescape.MAX_CHARS_PER_LINE),
+                labelStyle);
+        hintLabel.setPosition(
+                hintPanelBG.getX() + hintPanelBG.getSizeX() / 2 - hintLabel.getWidth() / 2,
+                hintPanelBG.getY() + hintPanelBG.getSizeY() / 2);
+
+        hintPanel.addActor(hintPanelBG);
+        hintPanel.addActor(hintLabel);
+        //hintButton
 
         float animLength = 0.85f;
         float deltaY = 450f;
@@ -177,7 +204,6 @@ public class RoomView extends MyScreen {
 
         answerButton.setPosition(answerButton.getX(), answerButton.getY() - deltaY);
         answerButton.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
-
 
         stage.addActor(answerFieldBG);
         stage.addActor(answerButton);
@@ -208,7 +234,7 @@ public class RoomView extends MyScreen {
         } else if (!hintUsed){
             hintUsed = true;
             hintsUsedCount++;
-            //Open hint popup!
+            stage.addActor(hintPanel);
             return;
         } else {
             answerResult = new ImageActor(wrongAnswerTex, answerResults[0].getSizeY());
@@ -322,8 +348,6 @@ public class RoomView extends MyScreen {
                 riddlePanelBg.getX() + (riddlePanelBg.getSizeX() - riddleImage.getWidth()) / 2,
                 riddlePanelBg.getY() + riddlePanelBg.getSizeY() - riddleImage.getHeight() - 25);
 
-        Label.LabelStyle labelStyle = new Label.LabelStyle(getGame().getRiddleFont(),
-                Color.BLACK);
         riddleLabel = new Label(
                 currentRiddle.getRiddle(getGame().getMyBundle().getLocale().getLanguage()).riddle,
                 labelStyle);
@@ -458,5 +482,9 @@ public class RoomView extends MyScreen {
             riddleLabel.setText(currentRiddle.getRiddle(
                     getGame().getMyBundle().getLocale().getLanguage()).riddle);
         }
+    }
+
+    private void enabledHintPanel(boolean enabled) {
+
     }
 }
