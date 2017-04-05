@@ -8,12 +8,14 @@ public class RiddleTexts {
 
     public String language;
     public String riddle;
+    public String hint;
     private String[] answers;
 
-    public RiddleTexts(String language, String riddle, String answer) {
+    public RiddleTexts(String language, String riddle, String answer, String hint) {
         this.language = language;
         this.answers = answer.split(Vescape.RIDDLE_ANSWER_SEPARATOR);
         this.riddle = Utilities.splitTextIntoLines(riddle, Vescape.MAX_CHARS_PER_LINE);
+        this.hint = hint;
     }
 
     public boolean isCorrectAnswer(String answer) {

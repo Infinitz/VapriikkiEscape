@@ -28,7 +28,7 @@ public class Vescape extends Game {
 
     public static final float GUI_VIEWPORT_WIDTH = 900;
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
-    public static final int MAX_CHARS_PER_LINE = 38;
+    public static final int MAX_CHARS_PER_LINE = 36;
     public static final int MAX_CHARS_IN_ANSWER = 20;
     public static final int TOTAL_RIDDLES_ROOM = 3;
 
@@ -344,7 +344,7 @@ public class Vescape extends Game {
                             currentLine = currentLine.substring(0, currentLine.length() - 1);
                         }
                         String[] temp = currentLine.split(RIDDLE_SEPARATOR);
-                        riddle.addRiddleText(new RiddleTexts(temp[0], temp[1], temp[2]));
+                        riddle.addRiddleText(new RiddleTexts(temp[0], temp[1], temp[2], ""));
                         if (riddleEnd) {
                             roomData.get(currentRoom).riddles.add(riddle);
                             break;

@@ -30,7 +30,9 @@ public class RoomView extends MyScreen {
     private Label riddleLabel;
 
     private Group hintPanel;
+    private ImageActor hintPanelBG;
     private Label hintLabel;
+    private ImageActor hintButton;
 
     private BurgerButton burgerButton;
     private ImageActor bg;
@@ -85,7 +87,12 @@ public class RoomView extends MyScreen {
         touchDetector.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                enableKeyboard(false);
+                if (keyboardEnabled) {
+                    enableKeyboard(false);
+                } else {
+                    enabledHintPanel(false);
+                }
+
             }
         });
 
@@ -110,7 +117,7 @@ public class RoomView extends MyScreen {
         answerFieldBG.setPosition(0, 200);
         float answerFieldPadding = 30f;
         answerField = new TextField("", getGame().getTextFieldStyle());
-        answerField.setPosition(answerFieldPadding, 200);
+        answerField.setPosition(answerFieldPadding, 180);
         answerField.setSize(answerFieldBG.getSizeX() - 2 * answerFieldPadding, 200);
         answerField.setAlignment(Align.center);
         answerField.setMaxLength(Vescape.MAX_CHARS_IN_ANSWER);
@@ -166,15 +173,15 @@ public class RoomView extends MyScreen {
         });
         answerButton.setSize(Vescape.GUI_VIEWPORT_WIDTH / 2, 175);
         answerButton.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - answerButton.getWidth() / 2,
-                15);
+                0);
 
         //hintpanel
         hintPanel = new Group();
-        ImageActor hintPanelBG = new ImageActor(
+        hintPanelBG = new ImageActor(
                 assetManager.get("riddle_confirm_box.png", Texture.class));
         hintPanelBG.setSize(hintPanelBG.getSizeY() *
                 (Vescape.GUI_VIEWPORT_WIDTH / hintPanelBG.getSizeX()));
-        hintPanelBG.setY(Vescape.GUI_VIEWPORT_HEIGHT / 2 - hintPanelBG.getSizeY() / 2 + 200);
+        hintPanelBG.setY(Vescape.GUI_VIEWPORT_HEIGHT / 2 - hintPanelBG.getSizeY() / 2 - 320);
 
         hintLabel = new Label(
                 Utilities.splitTextIntoLines("JAAS!!!!",
@@ -187,6 +194,8 @@ public class RoomView extends MyScreen {
         hintPanel.addActor(hintPanelBG);
         hintPanel.addActor(hintLabel);
         //hintButton
+
+        hintButton = new ImageActor(assetManager.get("riddle_confirm_box.png", Texture.class));
 
         float animLength = 0.85f;
         float deltaY = 450f;
@@ -234,7 +243,7 @@ public class RoomView extends MyScreen {
         } else if (!hintUsed){
             hintUsed = true;
             hintsUsedCount++;
-            stage.addActor(hintPanel);
+            enabledHintPanel(true);
             return;
         } else {
             answerResult = new ImageActor(wrongAnswerTex, answerResults[0].getSizeY());
@@ -331,10 +340,10 @@ public class RoomView extends MyScreen {
 
         ImageActor riddlePanelBg = new ImageActor(riddlePanelTexture);
 
-        float panelTargetW = Vescape.GUI_VIEWPORT_WIDTH;
+        float panelTargetW = Vescape.GUI_VIEWPORT_WIDTH - 50;
         riddlePanelBg.setSize(riddlePanelBg.getSizeY() * (panelTargetW / riddlePanelBg.getSizeX()));
         riddlePanelBg.setPosition((Vescape.GUI_VIEWPORT_WIDTH - riddlePanelBg.getSizeX()) / 2,
-                (Vescape.GUI_VIEWPORT_HEIGHT - riddlePanelBg.getSizeY()) - 150);
+                (Vescape.GUI_VIEWPORT_HEIGHT - riddlePanelBg.getSizeY()) - 130);
 
         ImageActor riddlePanelBorder =
                 new ImageActor(riddlePanelBorderTexture, riddlePanelBg.getSizeY());
@@ -437,6 +446,23 @@ public class RoomView extends MyScreen {
         assetManager.unload("riddle_slot_done_golden.png");
     }
 
+    private void enabledHintPanel(boolean enabled) {
+        if (enabled) {
+            hintLabel.setPosition(
+                    hintPanelBG.getX() + hintPanelBG.getSizeX() / 2 - hintLabel.getWidth() / 2,
+                    hintPanelBG.getY() + hintPanelBG.getSizeY() / 2);
+            hintLabel.setText(currentRiddle.getRiddle(
+                    getGame().getMyBundle().getLocale().getLanguage()).hint);
+            stage.addActor(hintPanel);
+            touchDetector.remove();
+            stage.addActor(touchDetector);
+            touchDetector.setPosition(0, 0);
+        } else {
+            hintPanel.remove();
+            touchDetector.setPosition(Vescape.GUI_VIEWPORT_WIDTH, 0);
+        }
+    }
+
     private void enableKeyboard(boolean enabled) {
         Gdx.input.setOnscreenKeyboardVisible(enabled);
         if (keyboardEnabled == enabled)
@@ -484,7 +510,5 @@ public class RoomView extends MyScreen {
         }
     }
 
-    private void enabledHintPanel(boolean enabled) {
 
-    }
 }
