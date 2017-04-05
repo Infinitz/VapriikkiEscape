@@ -365,7 +365,7 @@ public class RoomSelection extends MyScreen {
                 }),
                 Actions.parallel(
                         Actions.scaleTo(1, 1, duration / 2, Interpolation.bounceOut),
-                        Actions.rotateBy(360, duration / 4, Interpolation.bounceOut))
+                        Actions.rotateBy(360, duration / 5, Interpolation.bounceOut))
                 ));
 
         float delta = (bg.getHeight() * bg.getScaleY() - bg.getHeight()) / 2;

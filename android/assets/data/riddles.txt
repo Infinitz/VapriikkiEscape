@@ -37,19 +37,19 @@ en::riddle::answer::hint;
 
 koski1.jpg
 fi::Mitä kuvan mies luettelee ensimmäisenä tarpeelliseksi asiaksi?::Miekka::Etsi näyttelyn sisäänkäynnin läheltä sarjakuva, jossa kyseiset henkilöt esiintyvät.
-en::riddle::answer::hint;
+en::What word is missing from the picture?::Miekka::You will find the comic near the entrance to the exhibition.;
 
 koski3.jpg
 fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen//Juice::Henkilö on jo edesmennyt suomalainen tunnettu muusikko
-en::riddle::answer::hint;
+en::Who is playing the guitar in the picture?::Juice Leskinen::The person was a famous finnish musician.;
 
 koski4.jpg
 fi::Miltä vuodelta kuvassa näkyvä Josef Konsénin vaaka on?::1870::Etsi vaaka ja tutki ympäristöä tarkemmin!
-en::riddle::answer::hint;
+en::In what year was this Josef Konsén’s scale made?::1870::Find the scale and study your surroundings!;
 
 koskiV.jpg
 fi::Mikä on kuvassa näkyvän auton rekisteritunnuksen kolme viimeistä numeroa?::408::Auto on kaahannut näyttelyn ulkopuolelle käytävään…
-en::riddle::answer::hint;
+en::What are the last three numbers in the car’s license plate?::408::The car has been driven to the hallway outside the exhibition.;
 
 &tutorialMuseum
 
