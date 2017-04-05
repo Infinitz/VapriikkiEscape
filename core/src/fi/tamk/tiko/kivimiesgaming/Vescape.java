@@ -29,6 +29,8 @@ public class Vescape extends Game {
     public static final float GUI_VIEWPORT_WIDTH = 900;
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
     public static final int MAX_CHARS_PER_LINE = 38;
+    public static final int MAX_CHARS_IN_ANSWER = 20;
+    public static final int TOTAL_RIDDLES_ROOM = 3;
 
     public static final String ROOM_DATA_MARK = "&";
     public static final String RIDDLE_ANSWER_SEPARATOR = "//";
@@ -44,6 +46,7 @@ public class Vescape extends Game {
     private BitmapFont buttonFont;
     private BitmapFont fontBig;
     private BitmapFont riddleFont;
+    private BitmapFont answerFieldFont;
     private TextButton.TextButtonStyle textButtonStyle;
     private TextField.TextFieldStyle textFieldStyle;
     private HashMap<RoomType, RoomData> roomData;
@@ -165,6 +168,7 @@ public class Vescape extends Game {
         assetManager.load("star_full.png", Texture.class);
         assetManager.load("black.png", Texture.class);
         assetManager.load("map_room_info_box.png", Texture.class);
+        assetManager.load("indicator_line.jpg", Texture.class);
 
         assetManager.load("menurger.png", Texture.class);
         assetManager.load("menurger_pressed.png", Texture.class);
@@ -189,6 +193,10 @@ public class Vescape extends Game {
         parameter.shadowOffsetX = 1;
         riddleFont = fontGen.generateFont(parameter);
 
+        parameter.size = 80;
+        parameter.shadowOffsetX = 1;
+        answerFieldFont = fontGen.generateFont(parameter);
+
         TextureRegionDrawable buttonImage = new TextureRegionDrawable(
                 new TextureRegion(assetManager.get("MENU_button.png", Texture.class)));
 
@@ -199,10 +207,10 @@ public class Vescape extends Game {
                 buttonImage, getButtonFont());
 
         TextureRegionDrawable textFieldCursor = new TextureRegionDrawable(
-                new TextureRegion(assetManager.get("menurger.png", Texture.class)));
+                new TextureRegion(assetManager.get("indicator_line.jpg", Texture.class)));
 
 
-        textFieldStyle = new TextField.TextFieldStyle(riddleFont, Color.BLACK,
+        textFieldStyle = new TextField.TextFieldStyle(answerFieldFont, Color.BLACK,
                 textFieldCursor, null,
                 null);
     }
@@ -234,7 +242,7 @@ public class Vescape extends Game {
                 "F1_postal_active.png",
                 "F1_postal_active.png",
                 "map_icons_postal.png",
-                "MENU_bg.jpg",
+                "bg_postal.jpg",
                 assetManager);
         temp.setIconLocalPosition(0.5f, 0.3f);
         roomData.put(RoomType.POSTAL, temp);
@@ -288,7 +296,7 @@ public class Vescape extends Game {
                 "F2_nature_active.png",
                 "F2_nature_active.png",
                 "map_icons_nature.png",
-                "MENU_bg.jpg",
+                "bg_nature.jpg",
                         assetManager);
         temp.setIconLocalPosition(0.15f, 0.3f);
         roomData.put(RoomType.NATURE, temp);
