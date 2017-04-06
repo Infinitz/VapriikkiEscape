@@ -32,7 +32,7 @@ public class SimpleDirectionGestureDetector extends GestureDetector {
 
         @Override
         public boolean fling(float velocityX, float velocityY, int button) {
-            float deviceVelocity = Gdx.graphics.getHeight() * 1.5f;
+            float deviceVelocity = Gdx.graphics.getHeight() * 1.25f;
             if(Math.abs(velocityX)>Math.abs(velocityY)){
                 if(velocityX>0){
                     directionListener.onRight();
