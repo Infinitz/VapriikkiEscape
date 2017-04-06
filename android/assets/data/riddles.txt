@@ -51,6 +51,10 @@ koskiV.jpg
 fi::Mikä on kuvassa näkyvän auton rekisteritunnuksen kolme viimeistä numeroa?::408::Auto on kaahannut näyttelyn ulkopuolelle käytävään…
 en::What are the last three numbers in the car’s license plate?::408::The car has been driven to the hallway outside the exhibition.;
 
+Pormestari.jpg
+fi::Missä virassa kuvan uniformua käytettiin?::Pormestari//Pormestarin::Fredrik Procopé käytti tätä 1860-luvulla
+en::In what position was the uniform used?::Mayor//The mayor::Fredrik Procopé used this in 1860s.;
+
 &tutorialMuseum
 
 tutoriaali1.jpg
