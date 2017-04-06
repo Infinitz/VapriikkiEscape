@@ -134,6 +134,8 @@ public class RoomView extends MyScreen {
                 enableKeyboard(true);
             }
         });
+        stage.setKeyboardFocus(answerField);
+
 
         answerResultSlots = new ImageActor[Vescape.TOTAL_RIDDLES_ROOM];
         answerResults = new ImageActor[Vescape.TOTAL_RIDDLES_ROOM];
