@@ -400,6 +400,7 @@ public class RoomView extends MyScreen {
         if (burgerButton.isOpen()) {
             updateTexts();
         }
+        answerField.setCursorPosition(answerField.getText().length());
     }
 
     @Override
@@ -480,6 +481,7 @@ public class RoomView extends MyScreen {
 
     private void enableKeyboard(boolean enabled) {
         Gdx.input.setOnscreenKeyboardVisible(enabled);
+
         if (keyboardEnabled == enabled)
             return;
 
@@ -519,11 +521,11 @@ public class RoomView extends MyScreen {
 
     private void roomCompleted() {
         int score = correctAnswerCount;
-        float rawScore = (float) correctAnswerCount - hintsUsedCount * 0.33f;
-        score = (int)Math.ceil((rawScore / Vescape.TOTAL_RIDDLES_ROOM) * 3);
-        /*if (score == 3 && hintsUsedCount > 0) {
+        float rawScore = (float) correctAnswerCount - hintsUsedCount * Vescape.HINT_PENALTY;
+        //score = (int)Math.round((rawScore / Vescape.TOTAL_RIDDLES_ROOM) * 3);
+        if (score == 3 && hintsUsedCount > 0) {
             --score;
-        }*/
+        }
         roomData.latestScore = score;
         if (roomData.latestScore > roomData.highscore) {
             roomData.highscore = roomData.latestScore;

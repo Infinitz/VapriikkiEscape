@@ -31,6 +31,7 @@ public class Vescape extends Game {
     public static final int MAX_CHARS_PER_LINE = 36;
     public static final int MAX_CHARS_IN_ANSWER = 20;
     public static final int TOTAL_RIDDLES_ROOM = 3;
+    public static final float HINT_PENALTY = 0.33f;
 
     public static final String ROOM_DATA_MARK = "&";
     public static final String RIDDLE_ANSWER_SEPARATOR = "//";
