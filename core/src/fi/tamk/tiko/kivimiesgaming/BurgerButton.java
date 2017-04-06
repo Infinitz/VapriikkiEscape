@@ -25,7 +25,7 @@ public class BurgerButton {
                 get("menurger.png", Texture.class),
                 screen.getAssetManager().
                         get("menurger_pressed.png", Texture.class),
-                100);
+                150);
 
         burgerButton.setClickListener(new ChangeListener() {
             @Override

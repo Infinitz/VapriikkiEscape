@@ -51,7 +51,7 @@ public class MenuPanel {
         menuTable.defaults()
                 .width(Vescape.GUI_VIEWPORT_WIDTH / 2)
                 .height(175)
-                .space(25);
+                .space(70);
         menuTable.add(playButton);
         menuTable.row();
         menuTable.add(exitButton);
