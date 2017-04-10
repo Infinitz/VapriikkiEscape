@@ -72,6 +72,7 @@ public class MainMenu extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 getGame().setScreen(new RoomSelection(getGame(), assetManager));
             }
         });

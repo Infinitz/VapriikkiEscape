@@ -402,6 +402,7 @@ public class RoomSelection extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 burgerButton.togglePanel();
             }
         });
@@ -419,6 +420,7 @@ public class RoomSelection extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 getGame().setScreen(new MainMenu(getGame(), assetManager));
             }
         });

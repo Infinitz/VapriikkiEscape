@@ -64,6 +64,7 @@ public class RoomPopUp {
         enterRoomButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 screen.getGame().setScreen(new RoomView(
                         screen.getGame(), data, screen.getAssetManager()));
             }
@@ -75,6 +76,7 @@ public class RoomPopUp {
         closeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 ((RoomSelection)screen).selectRoom(null);
             }
         });
@@ -123,9 +125,12 @@ public class RoomPopUp {
         screen.getStage().addActor(elements);
 
         panelBG.setTouchable(Touchable.enabled);
+
+        AudioManager.playSound("panel_open.wav");
     }
 
     public void dispose() {
+        AudioManager.playSound("panel_close.wav");
         elements.addAction(Actions.sequence(
                 Actions.scaleTo(1, 0, 0.3f, Interpolation.pow2),
                 Actions.run(new Runnable() {

@@ -146,6 +146,7 @@ public class MenuPanel {
                 }
                 menuTable.clearChildren();
                 createMenuButtons();
+                AudioManager.playSound("button_toggle.wav");
             }
         });
 
@@ -159,7 +160,7 @@ public class MenuPanel {
                 } else {
                     soundButton.setStyle(soundDisabledStyle);
                 }
-
+                AudioManager.playSound("button_toggle.wav");
 
             }
         });
@@ -173,8 +174,7 @@ public class MenuPanel {
                 } else {
                     musicButton.setStyle(musicDisabledStyle);
                 }
-
-
+                AudioManager.playSound("button_toggle.wav");
             }
         });
 

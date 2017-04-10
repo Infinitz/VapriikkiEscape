@@ -66,6 +66,7 @@ public class RoomFinishedPopUp {
         continueButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 screen.getGame().setScreen(new RoomSelection(
                         screen.getGame(), screen.getAssetManager()));
             }
@@ -76,6 +77,7 @@ public class RoomFinishedPopUp {
         replayButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 screen.getGame().setScreen(
                         new RoomView(screen.getGame(), data, screen.getAssetManager()));
             }
@@ -115,9 +117,11 @@ public class RoomFinishedPopUp {
         screen.getStage().addActor(screenDarkener);
         screenDarkener.setTouchable(Touchable.enabled);
         screen.getStage().addActor(elements);
+        AudioManager.playSound("panel_open.wav");
     }
 
     public void dispose() {
+        AudioManager.playSound("panel_close.wav");
         elements.addAction(Actions.sequence(
                 Actions.scaleTo(1, 0, 0.3f, Interpolation.pow2),
                 Actions.run(new Runnable() {

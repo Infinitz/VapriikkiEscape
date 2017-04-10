@@ -1,9 +1,12 @@
 package fi.tamk.tiko.kivimiesgaming;
 
+import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -30,7 +33,7 @@ public class Vescape extends Game {
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
     public static final int MAX_CHARS_PER_LINE = 36;
     public static final int MAX_CHARS_IN_ANSWER = 20;
-    public static final int TOTAL_RIDDLES_ROOM = 3;
+    public static final int TOTAL_RIDDLES_ROOM = 5;
     public static final float HINT_PENALTY = 0.33f;
 
     public static final String ROOM_DATA_MARK = "&";
@@ -58,6 +61,7 @@ public class Vescape extends Game {
     public void create() {
         batch = new SpriteBatch();
         assetManager = new AssetManager();
+        new AudioManager(assetManager);
         Gdx.input.setCatchBackKey(true);
         setFinnish();
         loadGlobalAssets();
@@ -71,6 +75,7 @@ public class Vescape extends Game {
                 createStylesAndFonts();
                 loadRoomData();
                 loadRiddles();
+                AudioManager.playMusic("music_bg.mp3");
                 setScreen(new MainMenu(this, assetManager));
             }
         }
@@ -173,6 +178,15 @@ public class Vescape extends Game {
 
         assetManager.load("menurger.png", Texture.class);
         assetManager.load("menurger_pressed.png", Texture.class);
+
+
+        assetManager.load("music_bg.mp3", Music.class);
+
+        assetManager.load("button_press.wav", Sound.class);
+        assetManager.load("button_toggle.wav", Sound.class);
+        assetManager.load("panel_open.wav", Sound.class);
+        assetManager.load("panel_close.wav", Sound.class);
+
     }
 
     private void createStylesAndFonts() {

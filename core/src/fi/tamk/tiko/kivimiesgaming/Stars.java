@@ -41,7 +41,6 @@ public class Stars {
 
     private void createStars(float x, float y, float scale, int starCount) {
 
-
         stars = new ImageActor[3];
 
         for (int i = 0; i < stars.length; ++i) {
@@ -96,8 +95,8 @@ public class Stars {
             additionalStars.add(stars[i]);
 
             if (i < starCount) {
-                float animDelay = 1;
-                float preAnimLength = 1f;
+                float animDelay = 0.9f;
+                float preAnimLength = 0.6f;
                 float animLength = 0.3f;
                 float animDeltaY = 400f;
 
@@ -110,6 +109,12 @@ public class Stars {
                 final ImageActor emptyStar = stars[i];
                 fullStar.addAction(Actions.sequence(
                         Actions.delay(i * animDelay + emptyStarAnimLength),
+                        Actions.run(new Runnable() {
+                            @Override
+                            public void run() {
+                                AudioManager.playSound("star_enter.wav");
+                            }
+                        }),
                         Actions.parallel(
                                 Actions.scaleTo(5f / 4, 5f / 4, preAnimLength, Interpolation.pow3),
                                 Actions.moveTo(posX, posY + animDeltaY,
@@ -118,7 +123,13 @@ public class Stars {
                         Actions.parallel(
                                 Actions.scaleTo(1, 1, animLength, Interpolation.pow3),
                                 Actions.moveTo(posX, posY,
-                                        animLength / 2, Interpolation.pow3)
+                                        animLength / 2, Interpolation.pow3),
+                                Actions.run(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AudioManager.playSound("star_hit.wav");
+                                    }
+                                })
                         ),
                         Actions.run(new Runnable() {
                             @Override

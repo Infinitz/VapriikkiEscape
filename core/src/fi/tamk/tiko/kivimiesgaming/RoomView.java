@@ -3,6 +3,7 @@ package fi.tamk.tiko.kivimiesgaming;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
@@ -77,6 +78,14 @@ public class RoomView extends MyScreen {
         assetManager.load("riddle_confirm_box.png", Texture.class);
         assetManager.load("riddle_hint.png", Texture.class);
 
+        assetManager.load("star_enter.wav", Sound.class);
+        assetManager.load("star_hit.wav", Sound.class);
+
+        assetManager.load("answer_perfect.wav", Sound.class);
+        //assetManager.load("answer_right.wav", Sound.class);
+        assetManager.load("answer_wrong.wav", Sound.class);
+
+        assetManager.load("answer_result_hit.wav", Sound.class);
         roomData.loadRiddles(assetManager);
         roomData.loadTextures();
 
@@ -157,6 +166,7 @@ public class RoomView extends MyScreen {
         answerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 if (keyboardEnabled) {
                     enableKeyboard(false);
                 }
@@ -234,9 +244,11 @@ public class RoomView extends MyScreen {
         if (correctAnswer) {
             correctAnswerCount++;
             if (hintUsed) {
+                //AudioManager.playSound("answer_right.wav");
                 answerResults[currentRiddleCount] =
                         new ImageActor(correctAnswerTex, answerResultSlots[0].getSizeY());
             } else {
+                AudioManager.playSound("answer_perfect.wav");
                 answerResults[currentRiddleCount] =
                         new ImageActor(perfectAnswerTex, answerResultSlots[0].getSizeY());
             }
@@ -244,6 +256,7 @@ public class RoomView extends MyScreen {
             enabledHintPanel(true);
             return;
         } else {
+            AudioManager.playSound("answer_wrong.wav");
             answerResults[currentRiddleCount] =
                     new ImageActor(wrongAnswerTex, answerResultSlots[0].getSizeY());
         }
@@ -271,7 +284,16 @@ public class RoomView extends MyScreen {
                                         answerResults[currentRiddleCount].getSizeY() / 2, 0.3f,
                                 Interpolation.pow2),
                         Actions.scaleTo(3.5f, 3.5f, 0.6f, Interpolation.bounceOut),
-                        Actions.rotateTo(((float)Math.random() - 0.5f) * 25f, 0.35f)
+                        Actions.rotateTo(((float)Math.random() - 0.5f) * 25f, 0.35f),
+                        Actions.sequence(
+                                Actions.delay(0.25f),
+                                Actions.run(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AudioManager.playSound("answer_result_hit.wav");
+                                    }
+                                })
+                                )
                 ),
                 Actions.delay(0.25f),
 
@@ -415,6 +437,7 @@ public class RoomView extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 burgerButton.togglePanel();
             }
         });
@@ -432,6 +455,7 @@ public class RoomView extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 getGame().setScreen(new RoomSelection(getGame(), assetManager));
             }
         });
@@ -448,6 +472,15 @@ public class RoomView extends MyScreen {
         assetManager.unload("riddle_slot_nope.png");
         assetManager.unload("riddle_slot_done.png");
         assetManager.unload("riddle_slot_done_golden.png");
+
+        assetManager.unload("star_enter.wav");
+        assetManager.unload("star_hit.wav");
+
+        assetManager.unload("answer_perfect.wav");
+        //assetManager.unload("answer_right.wav");
+        assetManager.unload("answer_wrong.wav");
+
+        assetManager.unload("answer_result_hit.wav");
     }
 
     private void enabledHintPanel(boolean enabled) {
@@ -491,6 +524,7 @@ public class RoomView extends MyScreen {
 
         if (enabled) {
             touchDetector.setPosition(0, 0);
+
             for (int i = 0; i < Vescape.TOTAL_RIDDLES_ROOM; ++i) {
                 answerResultSlots[i].remove();
                 stage.addActor(answerResultSlots[i]);
@@ -502,6 +536,9 @@ public class RoomView extends MyScreen {
             }
 
             burgerButton.reAddElementsToStage();
+            touchDetector.remove();
+            stage.addActor(touchDetector);
+
         } else {
             touchDetector.setPosition(Vescape.GUI_VIEWPORT_WIDTH, 0);
         }

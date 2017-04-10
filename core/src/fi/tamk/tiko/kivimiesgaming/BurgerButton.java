@@ -2,6 +2,7 @@ package fi.tamk.tiko.kivimiesgaming;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
@@ -43,6 +44,7 @@ public class BurgerButton {
         screenDarkener = new ImageActor(screen.getAssetManager().
                 get("black.png", Texture.class), Vescape.GUI_VIEWPORT_HEIGHT);
 
+        screenDarkener.setTouchable(Touchable.enabled);
         screenDarkener.alpha = 0.85f;
         screenDarkener.setX(Vescape.GUI_VIEWPORT_WIDTH);
 
@@ -51,6 +53,7 @@ public class BurgerButton {
     }
 
     public void togglePanel() {
+        AudioManager.playSound("button_toggle.wav");
         boolean enabled = !burgerButton.isSelected();
         burgerButton.setSelected(enabled);
         if (enabled) {
