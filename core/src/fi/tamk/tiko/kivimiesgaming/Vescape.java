@@ -71,12 +71,15 @@ public class Vescape extends Game {
         scoresPref = Gdx.app.getPreferences("scores");
         Gdx.input.setCatchBackKey(true);
 
-        if (settingsPref.getString("language", "finnish").equalsIgnoreCase("finnish")) {
+        String language = Locale.getDefault().getLanguage().equalsIgnoreCase("fi")
+                ? "finnish" : "english";
+        if (settingsPref.getString("language", language).equalsIgnoreCase("finnish")) {
             setFinnish();
-        } else if (settingsPref.getString("language").equalsIgnoreCase("english")) {
+        } else if (settingsPref.getString("language", language).equalsIgnoreCase("english")) {
             setEnglish();
         }
         loadGlobalAssets();
+        System.out.println();
     }
 
     @Override
