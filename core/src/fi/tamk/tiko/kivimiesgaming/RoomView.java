@@ -31,7 +31,7 @@ public class RoomView extends MyScreen {
     private Group hintPanel;
     private ImageActor hintPanelBG;
     private Label hintLabel;
-    private ImageActor hintButton;
+    private Group hintGroup;
 
     private BurgerButton burgerButton;
     private ImageActor bg;
@@ -77,6 +77,7 @@ public class RoomView extends MyScreen {
         assetManager.load("riddle_next_active.png", Texture.class);
         assetManager.load("riddle_confirm_box.png", Texture.class);
         assetManager.load("riddle_hint.png", Texture.class);
+        assetManager.load("hint_glow.png", Texture.class);
 
         assetManager.load("star_enter.wav", Sound.class);
         assetManager.load("star_hit.wav", Sound.class);
@@ -187,18 +188,40 @@ public class RoomView extends MyScreen {
         hintPanel.setY(hintPanel.getY() - hintPanelAnimMovement);
         hintPanel.addActor(hintPanelBG);
 
-        hintButton = new ImageActor(assetManager.get("riddle_hint.png", Texture.class), 150f);
+        hintGroup = new Group();
+        ImageActor hintButton = new ImageActor(assetManager.get("riddle_hint.png", Texture.class), 150f);
         hintButton.setPosition(
                 Vescape.GUI_VIEWPORT_WIDTH - hintButton.getSizeX() - 25,
                 answerFieldBG.getY() + answerFieldBG.getSizeY()
         );
-
         hintButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 enabledHintPanel(true);
             }
         });
+
+        ImageActor hintGlow = new ImageActor(
+                assetManager.get("hint_glow.png", Texture.class), hintButton.getSizeY() * 1.5f);
+
+        hintGlow.setPosition(
+                hintButton.getX() - hintGlow.getSizeX() / 2  + hintButton.getSizeX() / 2,
+                hintButton.getY() - hintGlow.getSizeY() / 2 + hintButton.getSizeY() / 2 + 25
+        );
+
+        hintGroup.addActor(hintButton);
+        hintGroup.addActor(hintGlow);
+        hintGlow.addAction(Actions.forever(
+                Actions.parallel(
+                        Actions.sequence(
+                                Actions.scaleTo(1.1f, 1.1f, 1),
+                                Actions.scaleTo(0.8f, 0.8f, 1)
+                        ),
+                        Actions.rotateBy(120, 2)
+                )
+
+
+        ));
 
         float animLength = 0.85f;
         float deltaY = 450f;
@@ -211,7 +234,7 @@ public class RoomView extends MyScreen {
         answerFieldBG.setPosition(answerFieldBG.getX(), answerFieldBG.getY() - deltaY);
         answerFieldBG.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
 
-        hintButton.setPosition(hintButton.getX() + hintButtonAnimMovement, hintButton.getY());
+        hintGroup.setX(hintButtonAnimMovement);
 
         answerField.setPosition(answerField.getX(), answerField.getY() - deltaY);
         answerField.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
@@ -225,7 +248,7 @@ public class RoomView extends MyScreen {
         stage.addActor(answerButton);
         burgerButton = new BurgerButton(this);
         stage.addActor(answerField);
-        stage.addActor(hintButton);
+        stage.addActor(hintGroup);
         stage.addActor(touchDetector);
         createNewPanelWithAnimation(animLength);
 
@@ -253,7 +276,7 @@ public class RoomView extends MyScreen {
                         new ImageActor(perfectAnswerTex, answerResultSlots[0].getSizeY());
             }
         } else if (!hintUsed){
-            hintButton.addAction(
+            hintGroup.addAction(
                     Actions.moveBy(-hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
             hintUsed = true;
             hintsUsedCount++;
@@ -265,7 +288,7 @@ public class RoomView extends MyScreen {
         }
 
         if (hintUsed) {
-            hintButton.addAction(
+            hintGroup.addAction(
                     Actions.moveBy(hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
         }
 
@@ -363,6 +386,8 @@ public class RoomView extends MyScreen {
                 Actions.rotateBy(45, animLength, Interpolation.pow2),
                 Actions.moveBy(-1000f, 0, animLength, Interpolation.pow2)));
         getStage().addActor(riddlePanel);
+        hintGroup.remove();
+        stage.addActor(hintGroup);
         burgerButton.reAddElementsToStage();
     }
 
@@ -473,6 +498,7 @@ public class RoomView extends MyScreen {
         assetManager.unload("riddle_slot_nope.png");
         assetManager.unload("riddle_slot_done.png");
         assetManager.unload("riddle_slot_done_golden.png");
+        assetManager.unload("hint_glow.png");
 
         assetManager.unload("star_enter.wav");
         assetManager.unload("star_hit.wav");
@@ -551,7 +577,7 @@ public class RoomView extends MyScreen {
                 animTime, Interpolation.pow2));
         riddlePanel.addAction(Actions.moveBy(0, movement,
                 animTime, Interpolation.pow2));
-        hintButton.addAction(Actions.moveBy(0, movement,
+        hintGroup.addAction(Actions.moveBy(0, movement,
                 animTime, Interpolation.pow2));
     }
 

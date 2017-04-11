@@ -15,10 +15,13 @@ public class RoomData {
 
     public int highscore = 0;
     public int latestScore = 0;
+    public int starsToUnlock = 0;
+    public boolean isLocked = true;
+    public boolean unlockAnimation = false;
 
     private AssetManager assetManager;
-    private String textureP;
-    private String selectedTexP;
+    private String lockedTexPath;
+    private String unlockedTexPath;
     private String iconTextureP;
     private String backgroundP;
     public float iconLocalPosX, iconLocalPosY = 0;
@@ -27,12 +30,14 @@ public class RoomData {
     public ArrayList<Riddle> riddles;
 
 
-    public RoomData(RoomType type, String texP, String selectedTexP, String iconTextureP,
+    public RoomData(RoomType type, int starsToUnlock, String texP,
+                    String selectedTexP, String iconTextureP,
                     String backgroundP, AssetManager assetManager) {
+        this.starsToUnlock = starsToUnlock;
         this.assetManager = assetManager;
         this.type = type;
-        this.textureP = texP;
-        this.selectedTexP = selectedTexP;
+        this.lockedTexPath = texP;
+        this.unlockedTexPath = selectedTexP;
         this.iconTextureP = iconTextureP;
         this.backgroundP = backgroundP;
         riddles = new ArrayList<Riddle>();
@@ -67,15 +72,15 @@ public class RoomData {
     }
 
     public void loadTextures() {
-        assetManager.load(textureP, Texture.class);
-        assetManager.load(selectedTexP, Texture.class);
+        assetManager.load(lockedTexPath, Texture.class);
+        assetManager.load(unlockedTexPath, Texture.class);
         assetManager.load(iconTextureP, Texture.class);
         assetManager.load(backgroundP, Texture.class);
     }
 
     public void unloadTextures() {
-        assetManager.unload(textureP);
-        assetManager.unload(selectedTexP);
+        assetManager.unload(lockedTexPath);
+        assetManager.unload(unlockedTexPath);
         assetManager.unload(iconTextureP);
         assetManager.unload(backgroundP);
     }
@@ -94,12 +99,12 @@ public class RoomData {
         }
     }
 
-    public Texture getTexture() {
-        return assetManager.get(textureP, Texture.class);
+    public Texture getLockedTexture() {
+        return assetManager.get(lockedTexPath, Texture.class);
     }
 
-    public Texture getSelectedTex() {
-        return assetManager.get(selectedTexP, Texture.class);
+    public Texture getUnlockedTexture() {
+        return assetManager.get(unlockedTexPath, Texture.class);
     }
 
     public Texture getIconTexture() {

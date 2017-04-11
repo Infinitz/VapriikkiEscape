@@ -33,6 +33,8 @@ public class RoomSelection extends MyScreen {
     private RoomButton selected;
     private BurgerButton burgerButton;
 
+    private int totalStars = 0;
+
     public RoomSelection(Vescape game, AssetManager assetManager) {
         super(game, assetManager);
         assetManager.load("F1.png", Texture.class);
@@ -42,6 +44,13 @@ public class RoomSelection extends MyScreen {
 
         for (RoomType t : RoomType.values()) {
             game.getRoomData(t).loadTextures();
+            totalStars += game.getRoomData(t).highscore;
+        }
+        for (RoomType t : RoomType.values()) {
+            boolean locked = totalStars < game.getRoomData(t).starsToUnlock;
+            boolean unlockAnimation = game.getRoomData(t).isLocked != locked;
+            game.getRoomData(t).isLocked = locked;
+            game.getRoomData(t).unlockAnimation = unlockAnimation;
         }
     }
 
@@ -192,15 +201,24 @@ public class RoomSelection extends MyScreen {
                 Vescape.GUI_VIEWPORT_WIDTH - 2 * offsetX,
                 Vescape.GUI_VIEWPORT_HEIGHT - 2 * offsetY);
 
+        RoomData data;
         float baseSize = 250;
+
+        data = game.getRoomData(RoomType.POSTAL);
         RoomButton postalRoom = new RoomButton(
-                game.getRoomData(RoomType.POSTAL), assetManager, baseSize * 1);
+                data, assetManager, baseSize * 1);
+
+        data = game.getRoomData(RoomType.TAMMER);
         RoomButton tammerRoom = new RoomButton(
-                game.getRoomData(RoomType.TAMMER), assetManager, baseSize * 1.15f);
+                data, assetManager, baseSize * 1.15f);
+
+        data = game.getRoomData(RoomType.TUTORIAL);
         RoomButton tutRoom = new RoomButton(
-                game.getRoomData(RoomType.TUTORIAL), assetManager, baseSize * 1);
+                data, assetManager, baseSize * 1);
+
+        data = game.getRoomData(RoomType.ROCK);
         RoomButton rockRoom = new RoomButton(
-                game.getRoomData(RoomType.ROCK), assetManager, baseSize * 1);
+                data, assetManager, baseSize * 1);
 
         Group floor1 = new Group();
 
@@ -268,16 +286,26 @@ public class RoomSelection extends MyScreen {
                 baseSize * 0.8f);
         postalRoomUP.setTouchable(Touchable.disabled);
 
+        RoomData data;
+        data = game.getRoomData(RoomType.GAME);
         RoomButton gameRoom = new RoomButton(
-                game.getRoomData(RoomType.GAME), assetManager, baseSize * 1.25f);
+                data, assetManager, baseSize * 1.25f);
+
+        data = game.getRoomData(RoomType.ICEHOCKEY);
         RoomButton iceHockeyRoom = new RoomButton(
-                game.getRoomData(RoomType.ICEHOCKEY), assetManager, baseSize * 1);
+                data, assetManager, baseSize * 1);
+
+        data = game.getRoomData(RoomType.MEDIA);
         RoomButton mediaRoom = new RoomButton(
-                game.getRoomData(RoomType.MEDIA), assetManager, baseSize * 1);
+                data, assetManager, baseSize * 1);
+
+        data = game.getRoomData(RoomType.DOLL);
         RoomButton dollRoom = new RoomButton(
-                game.getRoomData(RoomType.DOLL), assetManager, baseSize * 1.5f);
+                data, assetManager, baseSize * 1.5f);
+
+        data = game.getRoomData(RoomType.NATURE);
         RoomButton natureRoom = new RoomButton(
-                game.getRoomData(RoomType.NATURE), assetManager, baseSize * 1.5f);
+                data, assetManager, baseSize * 1.5f);
 
         Group floor2 = new Group();
 

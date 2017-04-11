@@ -268,8 +268,8 @@ public class Vescape extends Game {
 
         RoomData temp;
 
-        temp = new RoomData(RoomType.ROCK,
-                "F1_rock_active.png",
+        temp = new RoomData(RoomType.ROCK, 2,
+                "F1_rock.png",
                 "F1_rock_active.png",
                 "map_icons_kivi.png",
                 "bg_kivi.jpg",
@@ -277,8 +277,8 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(0.6f, 0.6f);
         roomData.put(RoomType.ROCK, temp);
 
-        temp = new RoomData(RoomType.TAMMER,
-                "F1_tammer_active.png",
+        temp = new RoomData(RoomType.TAMMER, 0,
+                "F1_tammer.png",
                 "F1_tammer_active.png",
                 "map_icons_tammerkoski.png",
                 "bg_tammer.jpg",
@@ -286,8 +286,8 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(-0.5f, 0.1f);
         roomData.put(RoomType.TAMMER, temp);
 
-        temp = new RoomData(RoomType.POSTAL,
-                "F1_postal_active.png",
+        temp = new RoomData(RoomType.POSTAL, 0,
+                "F1_postal.png",
                 "F1_postal_active.png",
                 "map_icons_postal.png",
                 "bg_postal.jpg",
@@ -295,8 +295,8 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(0.5f, 0.3f);
         roomData.put(RoomType.POSTAL, temp);
 
-        temp = new RoomData(RoomType.TUTORIAL,
-                "F1_tutorial_active.png",
+        temp = new RoomData(RoomType.TUTORIAL, 0,
+                "F1_tutorial.png",
                 "F1_tutorial_active.png",
                 "map_icons_tutorial.png",
                 "bg_tutorial.jpg",
@@ -304,8 +304,8 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(0.3f, 0.15f);
         roomData.put(RoomType.TUTORIAL, temp);
 
-        temp = new RoomData(RoomType.GAME,
-                "F2_game_active.png",
+        temp = new RoomData(RoomType.GAME, 0,
+                "F2_game.png",
                 "F2_game_active.png",
                 "map_icons_game.png",
                 "bg_game.jpg",
@@ -313,8 +313,8 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(0.4f, -0.2f);
         roomData.put(RoomType.GAME, temp);
 
-        temp = new RoomData(RoomType.ICEHOCKEY,
-                "F2_icehokey_active.png",
+        temp = new RoomData(RoomType.ICEHOCKEY, 0,
+                "F2_icehokey.png",
                 "F2_icehokey_active.png",
                 "map_icons_icehockey.png",
                 "bg_hockey.jpg",
@@ -322,17 +322,17 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(-0.4f, 0.1f);
         roomData.put(RoomType.ICEHOCKEY, temp);
 
-        temp = new RoomData(RoomType.MEDIA,
-                "F2_media_active.png",
+        temp = new RoomData(RoomType.MEDIA, 0,
+                "F2_media.png",
                 "F2_media_active.png",
                 "map_icons_media.png",
-                "MENU_bg.jpg",
+                "bg_media.jpg",
                         assetManager);
         temp.setIconLocalPosition(0.3f, 0.3f);
         roomData.put(RoomType.MEDIA, temp);
 
-        temp = new RoomData(RoomType.DOLL,
-                "F2_doll_active.png",
+        temp = new RoomData(RoomType.DOLL, 0,
+                "F2_doll.png",
                 "F2_doll_active.png",
                 "map_icons_doll.png",
                 "bg_doll.jpg",
@@ -340,8 +340,8 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(-0.4f, 0.4f);
         roomData.put(RoomType.DOLL, temp);
 
-        temp = new RoomData(RoomType.NATURE,
-                "F2_nature_active.png",
+        temp = new RoomData(RoomType.NATURE, 0,
+                "F2_nature.png",
                 "F2_nature_active.png",
                 "map_icons_nature.png",
                 "bg_nature.jpg",
@@ -417,7 +417,7 @@ public class Vescape extends Game {
         if (scores.length() == 0) {
             return;
         }
-
+        //Count if locked
         String[] scoreArray = scores.split(";");
         for (int i = 0; i < scoreArray.length; ++i) {
             String[] temp = scoreArray[i].split(":");
