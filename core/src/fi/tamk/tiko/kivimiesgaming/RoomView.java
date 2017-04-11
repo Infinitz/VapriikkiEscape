@@ -256,6 +256,7 @@ public class RoomView extends MyScreen {
             hintButton.addAction(
                     Actions.moveBy(-hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
             hintUsed = true;
+            hintsUsedCount++;
             return;
         } else {
             AudioManager.playSound("answer_wrong.wav");
@@ -415,8 +416,6 @@ public class RoomView extends MyScreen {
             } else {
                 burgerButton.togglePanel();
             }
-
-
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
@@ -558,11 +557,9 @@ public class RoomView extends MyScreen {
 
     private void roomCompleted() {
         int score = correctAnswerCount;
-        float rawScore = (float) correctAnswerCount - hintsUsedCount * Vescape.HINT_PENALTY;
-        //score = (int)Math.round((rawScore / Vescape.TOTAL_RIDDLES_ROOM) * 3);
-        if (score == 3 && hintsUsedCount > 0) {
-            --score;
-        }
+        float rawScore = (float) correctAnswerCount - hintsUsedCount * Vescape.HINT_PENALTY + 0.33f;
+        score = (int)Math.round((rawScore / Vescape.TOTAL_RIDDLES_ROOM) * 3);
+
         roomData.latestScore = score;
         if (roomData.latestScore > roomData.highscore) {
             roomData.highscore = roomData.latestScore;
@@ -582,10 +579,6 @@ public class RoomView extends MyScreen {
 
     private void closeHintPanel() {
         enabledHintPanel(false);
-        if (!hintUsed) {
-            hintUsed = true;
-            hintsUsedCount++;
-        }
     }
 
 }
