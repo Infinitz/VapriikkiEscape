@@ -26,7 +26,9 @@ public class RoomSelection extends MyScreen {
     private Group floor1;
     private Group floor2;
 
-    private SelectableButton changeFloorButton;
+    private ImageActor changeFloorButtonUp;
+    private ImageActor changeFloorButtonDown;
+    private boolean isDownStairs = true;
     private SelectableButton timeMachineButton;
     private ImageActor bg;
     private RoomPopUp roomPopUp;
@@ -37,8 +39,8 @@ public class RoomSelection extends MyScreen {
 
     public RoomSelection(Vescape game, AssetManager assetManager) {
         super(game, assetManager);
-        assetManager.load("F1.png", Texture.class);
-        assetManager.load("F2.png", Texture.class);
+        assetManager.load("floor_navi_up.png", Texture.class);
+        assetManager.load("floor_navi_down.png", Texture.class);
         assetManager.load("F2_postal.png", Texture.class);
         assetManager.load("map_timeMachine.png", Texture.class);
         assetManager.load("map_lock.png", Texture.class);
@@ -70,7 +72,7 @@ public class RoomSelection extends MyScreen {
         floor2 = createFloor2();
         floor2.setPosition(floor2.getX(), floor2.getY() + Vescape.GUI_VIEWPORT_HEIGHT);
         stage.addActor(floor2);
-        createChangeFloorButton();
+        createChangeFloorButtons();
         burgerButton = new BurgerButton(this);
 
 
@@ -109,9 +111,8 @@ public class RoomSelection extends MyScreen {
 
                     @Override
                     public void onUp() {
-                        if (changeFloorButton.isSelected() && roomPopUp == null ) {
+                        if (!isDownStairs) {
                             changeFloor(true);
-                            changeFloorButton.select();
                         }
                     }
 
@@ -127,9 +128,8 @@ public class RoomSelection extends MyScreen {
 
                     @Override
                     public void onDown() {
-                        if (!changeFloorButton.isSelected() && roomPopUp == null) {
+                        if (isDownStairs) {
                             changeFloor(false);
-                            changeFloorButton.select();
                         }
                     }
                 });
@@ -140,24 +140,46 @@ public class RoomSelection extends MyScreen {
 
     }
 
-    public void createChangeFloorButton() {
-        changeFloorButton = new SelectableButton(assetManager.get("F1.png", Texture.class),
-                assetManager.get("F2.png", Texture.class), 175);
+    public void createChangeFloorButtons() {
+        changeFloorButtonUp = new ImageActor(assetManager.get("floor_navi_up.png",
+                Texture.class),
+                150);
 
-        changeFloorButton.setPosition(
-                Vescape.GUI_VIEWPORT_WIDTH / 2 - changeFloorButton.getWidth() / 2,
+        changeFloorButtonDown = new ImageActor(assetManager.get("floor_navi_down.png",
+                Texture.class),
+                150);
+
+        changeFloorButtonUp.setPosition(
+                2 * Vescape.GUI_VIEWPORT_WIDTH / 3 - changeFloorButtonUp.getWidth() / 2,
                 50);
 
-        changeFloorButton.setClickListener(new ChangeListener() {
+        changeFloorButtonDown.setPosition(
+                Vescape.GUI_VIEWPORT_WIDTH / 3 - changeFloorButtonDown.getWidth() / 2,
+                30);
+
+        changeFloorButtonDown.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                SelectableButton temp = ((SelectableButton) actor);
-                changeFloor(temp.isSelected());
-                temp.select();
+                if (!isDownStairs) {
+                    changeFloor(true);
+                }
             }
         });
 
-        stage.addActor(changeFloorButton);
+        changeFloorButtonDown.alpha = 0.5f;
+        changeFloorButtonDown.setTouchable(Touchable.disabled);
+
+        changeFloorButtonUp.setClickListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if (isDownStairs) {
+                    changeFloor(false);
+                }
+            }
+        });
+
+        stage.addActor(changeFloorButtonDown);
+        stage.addActor(changeFloorButtonUp);
     }
 
     public void createTimeMachineButton() {
@@ -375,8 +397,9 @@ public class RoomSelection extends MyScreen {
         return floor2;
     }
 
-    private void changeFloor(boolean up) {
-        int direction = up ? 1 : -1;
+    private void changeFloor(boolean down) {
+        isDownStairs = down;
+        int direction = down ? 1 : -1;
         float duration = 0.5f;
         final float movement = Vescape.GUI_VIEWPORT_HEIGHT * direction;
 
@@ -398,12 +421,24 @@ public class RoomSelection extends MyScreen {
                 Actions.parallel(
                         Actions.scaleTo(1, 1, duration / 2, Interpolation.pow2),
                         Actions.rotateBy(180, duration / 3, Interpolation.pow2))
-                ));
+        ));
 
         float delta = (bg.getHeight() * bg.getScaleY() - bg.getHeight()) / 2;
         bg.addAction(Actions.moveBy(0,
                 direction * (bg.getHeight() * bg.getScaleY() - Vescape.GUI_VIEWPORT_HEIGHT - delta),
                 duration, Interpolation.pow2));
+
+        if (down) {
+            changeFloorButtonDown.alpha = 0.5f;
+            changeFloorButtonUp.alpha = 1f;
+            changeFloorButtonDown.setTouchable(Touchable.disabled);
+            changeFloorButtonUp.setTouchable(Touchable.enabled);
+        } else {
+            changeFloorButtonUp.alpha = 0.5f;
+            changeFloorButtonDown.alpha = 1f;
+            changeFloorButtonDown.setTouchable(Touchable.enabled);
+            changeFloorButtonUp.setTouchable(Touchable.disabled);
+        }
 
         selectRoom(null);
     }
@@ -462,8 +497,8 @@ public class RoomSelection extends MyScreen {
 
     @Override
     public void dispose() {
-        assetManager.unload("F1.png");
-        assetManager.unload("F2.png");
+        assetManager.unload("floor_navi_up.png");
+        assetManager.unload("floor_navi_down.png");
         assetManager.unload("map_timeMachine.png");
         assetManager.unload("map_lock.png");
         assetManager.unload("map_lock_unlocked.png");
