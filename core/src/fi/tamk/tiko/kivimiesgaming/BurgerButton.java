@@ -3,6 +3,7 @@ package fi.tamk.tiko.kivimiesgaming;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
@@ -13,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 public class BurgerButton {
     private MyScreen screen;
     private MenuPanel menuPanel;
-    private ImageActor screenDarkener;
+    private ScreenDarkener screenDarkener;
 
     private Table table;
     private SelectableButton burgerButton;
@@ -41,12 +42,8 @@ public class BurgerButton {
         table.add(burgerButton).pad(25);
 
 
-        screenDarkener = new ImageActor(screen.getAssetManager().
-                get("black.png", Texture.class), Vescape.GUI_VIEWPORT_HEIGHT);
-
-        screenDarkener.setTouchable(Touchable.enabled);
-        screenDarkener.alpha = 0.85f;
-        screenDarkener.setX(Vescape.GUI_VIEWPORT_WIDTH);
+        screenDarkener = new ScreenDarkener(screen.getAssetManager().
+                get("black.png", Texture.class));
 
         screen.getStage().addActor(screenDarkener);
         screen.getStage().addActor(table);
@@ -58,12 +55,11 @@ public class BurgerButton {
         burgerButton.setSelected(enabled);
         if (enabled) {
             menuPanel = new MenuPanel(screen);
-            screenDarkener.setPosition(screenDarkener.getX() - Vescape.GUI_VIEWPORT_WIDTH,
-                    0);
+            screenDarkener.enable(true);
+
         } else {
             menuPanel.dispose();
-            screenDarkener.setPosition(screenDarkener.getX() + Vescape.GUI_VIEWPORT_WIDTH,
-                    0);
+            screenDarkener.enable(false);
         }
 
     }
