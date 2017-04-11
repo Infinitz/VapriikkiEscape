@@ -1,10 +1,15 @@
 package fi.tamk.tiko.kivimiesgaming;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 /**
  * Created by atter on 11-Mar-17.
@@ -17,6 +22,8 @@ public class RoomButton extends SelectableButton {
     private ImageActor roomIcon;
     private Group roomElements;
 
+    private ImageActor lock;
+
     public RoomButton(RoomData data, AssetManager assetManager, float size) {
         super(data.getLockedTexture(), data.getUnlockedTexture(), size);
         this.assetManager = assetManager;
@@ -27,15 +34,16 @@ public class RoomButton extends SelectableButton {
         roomElements.addActor(this);
         roomElements.addActor(roomIcon);
 
-        if (!data.isLocked) {
-            if (data.unlockAnimation) {
-                unlockAnimation();
-
-            } else {
-                setTex(data.getUnlockedTexture());
-            }
+        if (!data.unlockAnimation && !data.isLocked) {
+            setTex(data.getUnlockedTexture());
         } else {
             setTouchable(Touchable.disabled);
+            lock = new ImageActor(assetManager.get("map_lock.png", Texture.class), 100f);
+
+            roomElements.addActor(lock);
+            if (data.unlockAnimation) {
+                unlockAnimation();
+            }
         }
     }
 
@@ -47,6 +55,9 @@ public class RoomButton extends SelectableButton {
             Stars s = new Stars(roomIcon.getX() + roomIcon.getSizeX() / 2,
                     roomIcon.getY(), 1, roomData.highscore, false, assetManager);
             s.addStarsToGroup(roomElements);
+        } else {
+            setTouchable(Touchable.disabled);
+            lock.setPosition(roomIcon.getX(), roomIcon.getY());
         }
 
         return roomElements;
@@ -74,44 +85,80 @@ public class RoomButton extends SelectableButton {
 
     public void unlockAnimation() {
         if (roomData.unlockAnimation) {
-            addAction(Actions.sequence(
+            SequenceAction shakeAction = new SequenceAction();
+            float shakeTime = 1f;
+            float moveTime = 0.033f;
+            float maxMovement = 1f;
+            float t = 0;
+            float maxDelta = 10f;
+            float xDelta = 0;
+            float yDelta = 0;
+            while (t < shakeTime) {
+                float xMov = ((float)Math.random() -
+                        MathUtils.lerp(0, 1, xDelta / maxDelta)) * maxMovement;
+                float yMov = ((float)Math.random() -
+                        MathUtils.lerp(0, 1, yDelta / maxDelta)) * maxMovement;
+
+                xDelta += xMov;
+                yDelta += yMov;
+
+                shakeAction.addAction(Actions.moveBy(
+                        xMov, yMov, moveTime));
+
+                maxMovement *= 1.1f;
+                t += moveTime;
+            }
+            lock.addAction(Actions.sequence(
                     Actions.delay(1f),
                     Actions.parallel(
-                            Actions.moveBy(0, -50, 1.5f, Interpolation.pow2),
-                            Actions.scaleTo(0.9f, 0.9f, 1.5f, Interpolation.pow2)
+                            Actions.parallel(
+                                    Actions.moveBy(0, -25, 1f, Interpolation.pow2),
+                                    Actions.scaleTo(0.5f, 0.5f, 1f, Interpolation.pow2)
+                            ),
+                            shakeAction
                     ),
+
                     Actions.parallel(
                             Actions.moveBy(0, 75, 0.3f, Interpolation.pow2),
-                            Actions.scaleTo(1.15f, 1.15f, 0.3f, Interpolation.pow2)
+                            Actions.scaleTo(1.15f, 1.15f, 0.6f, Interpolation.bounce),
+                            Actions.sequence(
+                                    Actions.delay(0.3f),
+                                    Actions.run(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            setTex(roomData.getUnlockedTexture());
+                                            setTouchable(Touchable.enabled);
+                                            roomData.unlockAnimation = false;
+                                            Stars s = new Stars(
+                                                    roomIcon.getX() + roomIcon.getSizeX() / 2,
+                                                    roomIcon.getY(), 1,
+                                                    roomData.highscore, false, assetManager);
+                                            s.addStarsToGroup(roomElements);
+                                            lock.setTex(assetManager.get(
+                                                    "map_lock_unlocked.png", Texture.class));
+                                        }
+                                    })
+                            )
                     ),
-                    Actions.run(new Runnable() {
-                        @Override
-                        public void run() {
-                            setTex(roomData.getUnlockedTexture());
-                            setTouchable(Touchable.enabled);
-                            roomData.unlockAnimation = false;
-                            Stars s = new Stars(roomIcon.getX() + roomIcon.getSizeX() / 2,
-                                    roomIcon.getY(), 1, roomData.highscore, false, assetManager);
-                            s.addStarsToGroup(roomElements);
-                            roomIcon.addAction(
-                                    Actions.sequence(
-                                            Actions.parallel(
-                                                    Actions.scaleTo(1.1f, 1.1f, 0.1f),
-                                                    Actions.moveBy(15, 15, 0.1f)
-                                            ),
-                                            Actions.delay(0.15f),
-                                            Actions.parallel(
-                                                    Actions.scaleTo(1f, 1f, 1f),
-                                                    Actions.moveBy(-15, -15, 1f)
-                                            )
+                    Actions.sequence(
 
-                            ));
-                        }
-                    }),
-                    Actions.delay(0.25f),
-                    Actions.parallel(
-                            Actions.moveBy(0, -25, 1f, Interpolation.pow2),
-                            Actions.scaleTo(1f, 1f, 1f, Interpolation.pow2)
+                            Actions.parallel(
+                                    Actions.scaleTo(1.2f, 1.2f, 2f),
+                                    Actions.moveBy(25, 50, 2f),
+                                    Actions.rotateBy(-45, 2f),
+                                    Actions.repeat(50, Actions.run(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            lock.alpha -= 0.02f;
+                                        }
+                                    }))
+                            ),
+                            Actions.run(new Runnable() {
+                                @Override
+                                public void run() {
+                                    lock.remove();
+                                }
+                            })
                     )
             ));
         }

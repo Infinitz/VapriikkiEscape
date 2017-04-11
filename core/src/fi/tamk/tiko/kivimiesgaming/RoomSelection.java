@@ -41,6 +41,8 @@ public class RoomSelection extends MyScreen {
         assetManager.load("F2.png", Texture.class);
         assetManager.load("F2_postal.png", Texture.class);
         assetManager.load("map_timeMachine.png", Texture.class);
+        assetManager.load("map_lock.png", Texture.class);
+        assetManager.load("map_lock_unlocked.png", Texture.class);
 
         for (RoomType t : RoomType.values()) {
             game.getRoomData(t).loadTextures();
@@ -233,12 +235,6 @@ public class RoomSelection extends MyScreen {
         rockRoom.setPosition(postalRoom.getX() - rockRoom.getSizeX() * 1 / 5,
                 tutRoom.getY() + tutRoom.getSizeY() * 6 / 5);
 
-        floor1.addActor(postalRoom.getRoomElements());
-        floor1.addActor(tammerRoom.getRoomElements());
-
-        floor1.addActor(tutRoom.getRoomElements());
-        floor1.addActor(rockRoom.getRoomElements());
-
         //Set listeners
         postalRoom.setClickListener(new ChangeListener() {
             @Override
@@ -267,6 +263,12 @@ public class RoomSelection extends MyScreen {
                 selectRoom(((RoomButton) actor));
             }
         });
+
+        floor1.addActor(postalRoom.getRoomElements());
+        floor1.addActor(tammerRoom.getRoomElements());
+
+        floor1.addActor(tutRoom.getRoomElements());
+        floor1.addActor(rockRoom.getRoomElements());
 
         return floor1;
     }
@@ -326,15 +328,6 @@ public class RoomSelection extends MyScreen {
         natureRoom.setPosition(gameRoom.getX(),
                 mediaRoom.getY() + mediaRoom.getSizeY() * 5 / 4);
 
-       // floor2.addActor(postalRoomUP);
-        floor2.addActor(gameRoom.getRoomElements());
-
-        floor2.addActor(iceHockeyRoom.getRoomElements());
-        floor2.addActor(mediaRoom.getRoomElements());
-        floor2.addActor(dollRoom.getRoomElements());
-
-        floor2.addActor(natureRoom.getRoomElements());
-
         gameRoom.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -369,6 +362,15 @@ public class RoomSelection extends MyScreen {
                 selectRoom(((RoomButton) actor));
             }
         });
+
+        // floor2.addActor(postalRoomUP);
+        floor2.addActor(gameRoom.getRoomElements());
+
+        floor2.addActor(iceHockeyRoom.getRoomElements());
+        floor2.addActor(mediaRoom.getRoomElements());
+        floor2.addActor(dollRoom.getRoomElements());
+
+        floor2.addActor(natureRoom.getRoomElements());
 
         return floor2;
     }
@@ -463,6 +465,9 @@ public class RoomSelection extends MyScreen {
         assetManager.unload("F1.png");
         assetManager.unload("F2.png");
         assetManager.unload("map_timeMachine.png");
+        assetManager.unload("map_lock.png");
+        assetManager.unload("map_lock_unlocked.png");
+
         for (RoomType t : RoomType.values()) {
             game.getRoomData(t).unloadTextures();
         }

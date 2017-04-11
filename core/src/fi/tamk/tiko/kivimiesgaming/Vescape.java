@@ -1,6 +1,5 @@
 package fi.tamk.tiko.kivimiesgaming;
 
-import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
