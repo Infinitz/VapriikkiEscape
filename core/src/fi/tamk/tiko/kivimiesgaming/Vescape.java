@@ -32,7 +32,7 @@ public class Vescape extends Game {
 
     public static final float GUI_VIEWPORT_WIDTH = 900;
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
-    public static final int MAX_CHARS_PER_LINE = 36;
+    public static final int MAX_CHARS_PER_LINE = 33;
     public static final int MAX_CHARS_IN_ANSWER = 20;
     public static final int TOTAL_RIDDLES_ROOM = 5;
     public static final float HINT_PENALTY = 0.33f;
@@ -79,7 +79,6 @@ public class Vescape extends Game {
             setEnglish();
         }
         loadGlobalAssets();
-        System.out.println();
     }
 
     @Override
@@ -309,7 +308,7 @@ public class Vescape extends Game {
                 "F2_game_active.png",
                 "F2_game_active.png",
                 "map_icons_game.png",
-                "MENU_bg.jpg",
+                "bg_game.jpg",
                 assetManager);
         temp.setIconLocalPosition(0.4f, -0.2f);
         roomData.put(RoomType.GAME, temp);
@@ -318,7 +317,7 @@ public class Vescape extends Game {
                 "F2_icehokey_active.png",
                 "F2_icehokey_active.png",
                 "map_icons_icehockey.png",
-                "MENU_bg.jpg",
+                "bg_hockey.jpg",
                 assetManager);
         temp.setIconLocalPosition(-0.4f, 0.1f);
         roomData.put(RoomType.ICEHOCKEY, temp);
@@ -336,7 +335,7 @@ public class Vescape extends Game {
                 "F2_doll_active.png",
                 "F2_doll_active.png",
                 "map_icons_doll.png",
-                "MENU_bg.jpg",
+                "bg_doll.jpg",
                         assetManager);
         temp.setIconLocalPosition(-0.4f, 0.4f);
         roomData.put(RoomType.DOLL, temp);

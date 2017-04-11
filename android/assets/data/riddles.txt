@@ -30,7 +30,7 @@ en::riddle::answer::hint;
 &postalMuseum
 
 nukke1.jpg
-fi::arasdfasdfa fasdsdfasdfasdfasdfasdfaafsdfasdfasdfasdfasdfasdfsddv::vastaus::hint
+fi::WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW::vastaus::hint
 en::riddle::answer::hint;
 
 &tammerMuseum
