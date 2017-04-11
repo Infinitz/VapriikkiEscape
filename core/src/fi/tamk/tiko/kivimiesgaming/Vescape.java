@@ -45,6 +45,8 @@ public class Vescape extends Game {
     public static final String RIDDLE_FILE_PATH = "data/riddles.txt";
     public static final String RIDDLE_IMAGES_PATH = "riddle_images/";
 
+    private Preferences settingsPref;
+    private Preferences scoresPref;
     private AssetManager assetManager;
     private SpriteBatch batch;
     private I18NBundle myBundle;
@@ -56,8 +58,7 @@ public class Vescape extends Game {
     private TextField.TextFieldStyle textFieldStyle;
     private HashMap<RoomType, RoomData> roomData;
 
-    private Preferences settingsPref;
-    private Preferences scoresPref;
+
 
     private boolean initialAssetsLoaded = false;
 
@@ -108,12 +109,6 @@ public class Vescape extends Game {
 
     @Override
     public void dispose() {
-        settingsPref.putBoolean("musicEnabled", AudioManager.isMusicEnabled());
-        settingsPref.putBoolean("soundEnabled", AudioManager.isSoundsEnabled());
-        settingsPref.putString("language", myBundle.get("language"));
-        settingsPref.flush();
-
-        saveScores();
 
         if (getScreen() != null) {
             getScreen().dispose();
@@ -162,6 +157,21 @@ public class Vescape extends Game {
         setLocale(new Locale("en", "US"));
     }
 
+    public void saveSettings() {
+        settingsPref.putBoolean("musicEnabled", AudioManager.isMusicEnabled());
+        settingsPref.putBoolean("soundEnabled", AudioManager.isSoundsEnabled());
+        settingsPref.putString("language", myBundle.get("language"));
+        settingsPref.flush();
+    }
+
+    public void saveScores() {
+        String scores = "";
+        for (RoomType key : roomData.keySet()) {
+            scores += key.toString() + ":" + roomData.get(key).highscore + ";";
+        }
+        scoresPref.putString("scores", scores);
+        scoresPref.flush();
+    }
 
     public static void setGroupOrigin(Group g, float x, float y) {
         float offsetX = g.getX() - x;
@@ -398,15 +408,6 @@ public class Vescape extends Game {
             System.out.println(currentLine);
         }
 
-    }
-
-    private void saveScores() {
-        String scores = "";
-        for (RoomType key : roomData.keySet()) {
-            scores += key.toString() + ":" + roomData.get(key).highscore + ";";
-        }
-        scoresPref.putString("scores", scores);
-        scoresPref.flush();
     }
 
     private void loadScores() {

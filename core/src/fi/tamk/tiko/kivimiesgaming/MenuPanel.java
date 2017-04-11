@@ -144,6 +144,7 @@ public class MenuPanel {
                     flagButton.setStyle(finnishStyle);
                     screen.getGame().setFinnish();
                 }
+                screen.getGame().saveSettings();
                 menuTable.clearChildren();
                 createMenuButtons();
                 AudioManager.playSound("button_toggle.wav");
@@ -160,6 +161,7 @@ public class MenuPanel {
                 } else {
                     soundButton.setStyle(soundDisabledStyle);
                 }
+                screen.getGame().saveSettings();
                 AudioManager.playSound("button_toggle.wav");
 
             }
@@ -174,6 +176,7 @@ public class MenuPanel {
                 } else {
                     musicButton.setStyle(musicDisabledStyle);
                 }
+                screen.getGame().saveSettings();
                 AudioManager.playSound("button_toggle.wav");
             }
         });

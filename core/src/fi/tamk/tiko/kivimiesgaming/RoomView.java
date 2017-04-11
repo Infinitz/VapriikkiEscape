@@ -253,7 +253,9 @@ public class RoomView extends MyScreen {
                         new ImageActor(perfectAnswerTex, answerResultSlots[0].getSizeY());
             }
         } else if (!hintUsed){
-            enabledHintPanel(true);
+            hintButton.addAction(
+                    Actions.moveBy(-hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
+            hintUsed = true;
             return;
         } else {
             AudioManager.playSound("answer_wrong.wav");
@@ -504,10 +506,6 @@ public class RoomView extends MyScreen {
             touchDetector.setPosition(0, 0);
 
         } else {
-            if (!hintUsed) {
-                hintButton.addAction(
-                        Actions.moveBy(-hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
-            }
             hintPanel.addAction(
                     Actions.moveBy(0, -hintPanelAnimMovement, 0.5f, Interpolation.pow2));
             touchDetector.setPosition(Vescape.GUI_VIEWPORT_WIDTH, 0);
@@ -571,6 +569,7 @@ public class RoomView extends MyScreen {
         }
 
         new RoomFinishedPopUp(this, roomData);
+        getGame().saveScores();
     }
 
     private void updateTexts() {
