@@ -3,6 +3,7 @@ package fi.tamk.tiko.kivimiesgaming;
 import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
@@ -55,6 +56,9 @@ public class Vescape extends Game {
     private TextField.TextFieldStyle textFieldStyle;
     private HashMap<RoomType, RoomData> roomData;
 
+    private Preferences settingsPref;
+    private Preferences scoresPref;
+
     private boolean initialAssetsLoaded = false;
 
     @Override
@@ -62,8 +66,15 @@ public class Vescape extends Game {
         batch = new SpriteBatch();
         assetManager = new AssetManager();
         new AudioManager(assetManager);
+        settingsPref = Gdx.app.getPreferences("settings");
+        scoresPref = Gdx.app.getPreferences("scores");
         Gdx.input.setCatchBackKey(true);
-        setFinnish();
+
+        if (settingsPref.getString("language", "finnish").equalsIgnoreCase("finnish")) {
+            setFinnish();
+        } else if (settingsPref.getString("language").equalsIgnoreCase("english")) {
+            setEnglish();
+        }
         loadGlobalAssets();
     }
 
@@ -75,7 +86,10 @@ public class Vescape extends Game {
                 createStylesAndFonts();
                 loadRoomData();
                 loadRiddles();
+                loadScores();
                 AudioManager.playMusic("music_bg.mp3");
+                AudioManager.enableMusic(settingsPref.getBoolean("musicEnabled", true));
+                AudioManager.enableSounds(settingsPref.getBoolean("soundEnabled", true));
                 setScreen(new MainMenu(this, assetManager));
             }
         }
@@ -94,6 +108,13 @@ public class Vescape extends Game {
 
     @Override
     public void dispose() {
+        settingsPref.putBoolean("musicEnabled", AudioManager.isMusicEnabled());
+        settingsPref.putBoolean("soundEnabled", AudioManager.isSoundsEnabled());
+        settingsPref.putString("language", myBundle.get("language"));
+        settingsPref.flush();
+
+        saveScores();
+
         if (getScreen() != null) {
             getScreen().dispose();
         }
@@ -375,6 +396,31 @@ public class Vescape extends Game {
             System.out.println("Unable to load file: " + RIDDLE_FILE_PATH + "\n" +
             "Error in the line: " + lineIndex);
             System.out.println(currentLine);
+        }
+
+    }
+
+    private void saveScores() {
+        String scores = "";
+        for (RoomType key : roomData.keySet()) {
+            scores += key.toString() + ":" + roomData.get(key).highscore + ";";
+        }
+        scoresPref.putString("scores", scores);
+        scoresPref.flush();
+    }
+
+    private void loadScores() {
+        String scores = scoresPref.getString("scores", "");
+        if (scores.length() == 0) {
+            return;
+        }
+
+        String[] scoreArray = scores.split(";");
+        for (int i = 0; i < scoreArray.length; ++i) {
+            String[] temp = scoreArray[i].split(":");
+            String name = temp[0];
+            int score = Integer.parseInt(temp[1]);
+            roomData.get(RoomType.typeFromString(name)).highscore = score;
         }
 
     }
