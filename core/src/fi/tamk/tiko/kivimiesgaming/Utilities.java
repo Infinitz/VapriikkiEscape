@@ -11,7 +11,7 @@ public class Utilities {
         String splittedString = "";
         while (true) {
 
-            int currentIndex =  currentLineStart + Vescape.MAX_CHARS_PER_LINE;
+            int currentIndex =  currentLineStart + charsPerLine;
 
             if (currentIndex >= str.length()) {
                 currentIndex = str.length();
@@ -28,7 +28,7 @@ public class Utilities {
                     break;
                 } else if (currentIndex == currentLineStart) {
 
-                    currentIndex = currentLineStart + Vescape.MAX_CHARS_PER_LINE - 1;
+                    currentIndex = currentLineStart + charsPerLine - 1;
 
                     if (currentIndex >= str.length()) {
                         currentIndex = str.length();

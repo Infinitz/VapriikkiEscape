@@ -267,6 +267,7 @@ public class RoomView extends MyScreen {
         if (correctAnswer) {
             correctAnswerCount++;
             if (hintUsed) {
+                hintsUsedCount++;
                 //AudioManager.playSound("answer_right.wav");
                 answerResults[currentRiddleCount] =
                         new ImageActor(correctAnswerTex, answerResultSlots[0].getSizeY());
@@ -279,7 +280,7 @@ public class RoomView extends MyScreen {
             hintGroup.addAction(
                     Actions.moveBy(-hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
             hintUsed = true;
-            hintsUsedCount++;
+
             return;
         } else {
             AudioManager.playSound("answer_wrong.wav");
@@ -582,10 +583,9 @@ public class RoomView extends MyScreen {
     }
 
     private void roomCompleted() {
-        int score = correctAnswerCount;
         float rawScore = (float) correctAnswerCount - hintsUsedCount * Vescape.HINT_PENALTY + 0.33f;
-        score = (int)Math.round((rawScore / Vescape.TOTAL_RIDDLES_ROOM) * 3);
-
+        int score = (int)Math.round((rawScore / Vescape.TOTAL_RIDDLES_ROOM) * 3);
+        System.out.println(rawScore + "  " + (rawScore / Vescape.TOTAL_RIDDLES_ROOM) * 3 + "  " + score) ;
         roomData.latestScore = score;
         if (roomData.latestScore > roomData.highscore) {
             roomData.highscore = roomData.latestScore;
