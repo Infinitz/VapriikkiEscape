@@ -43,24 +43,35 @@ public class Stars {
 
         stars = new ImageActor[3];
 
+        float emptyStarAnimLength = 0.75f;
         for (int i = 0; i < stars.length; ++i) {
+            Texture temp = starEmptyTex;
             if (starCount > i) {
-                stars[i] = new ImageActor(starFullTex, fullStarSizeMultiplier * starSize * scale);
-            } else {
-                stars[i] = new ImageActor(starEmptyTex, starSize * scale);
+                temp = starFullTex;
             }
+            stars[i] = new ImageActor(temp, starSize * scale);
 
             float startX = x - stars[i].getSizeX() / 8 - 3 * stars[i].getSizeX() / 2;
             float space = stars[i].getSizeX() / 8;
 
+            float posX = startX + i * stars[i].getSizeX() + i * space;
+            float posY = y - stars[i].getSizeY();
+
+            if (i == 1)
+                posY -= middleStarOffset;
+
             stars[i].setPosition(
-                    startX + i * stars[i].getSizeX() + i * space,
-                    y - stars[i].getSizeY());
+                    posX,
+                    posY - 300f);
 
+            stars[i].setScale(0);
             stars[i].setTouchable(Touchable.disabled);
+            stars[i].addAction(Actions.parallel(
+                    Actions.scaleTo(1, 1, emptyStarAnimLength, Interpolation.pow3),
+                    Actions.moveTo(posX, posY,
+                            emptyStarAnimLength, Interpolation.pow3)
+            ));
         }
-
-        stars[1].setY(stars[1].getY() - middleStarOffset);
     }
 
     private void createAnimatedStars(float x, float y, float scale, int starCount) {

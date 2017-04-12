@@ -22,19 +22,19 @@ public class ScreenDarkener extends ImageActor {
         if (enabled) {
             setPosition(getX() - Vescape.GUI_VIEWPORT_WIDTH,
                     0);
-            addAction(Actions.repeat(14, Actions.run(new Runnable() {
+            addAction(Actions.repeat(10, Actions.run(new Runnable() {
                         @Override
                         public void run() {
-                            alpha += 0.06f;
+                            alpha += 0.08f;
                         }
                     })
             ));
         } else {
             addAction(Actions.sequence(
-                    Actions.repeat(14, Actions.run(new Runnable() {
+                    Actions.repeat(10, Actions.run(new Runnable() {
                         @Override
                         public void run() {
-                            alpha -= 0.06f;
+                            alpha -= 0.08f;
                         }
                     })),
                     Actions.run(new Runnable() {
