@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
@@ -45,6 +46,8 @@ public class RoomSelection extends MyScreen {
         assetManager.load("map_timeMachine.png", Texture.class);
         assetManager.load("map_lock.png", Texture.class);
         assetManager.load("map_lock_unlocked.png", Texture.class);
+
+        assetManager.load("unlock_lock.wav", Sound.class);
 
         for (RoomType t : RoomType.values()) {
             game.getRoomData(t).loadTextures();
@@ -502,6 +505,7 @@ public class RoomSelection extends MyScreen {
         assetManager.unload("map_timeMachine.png");
         assetManager.unload("map_lock.png");
         assetManager.unload("map_lock_unlocked.png");
+        assetManager.unload("unlock_lock.wav");
 
         for (RoomType t : RoomType.values()) {
             game.getRoomData(t).unloadTextures();

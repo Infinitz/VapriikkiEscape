@@ -86,11 +86,11 @@ public class RoomButton extends SelectableButton {
     public void unlockAnimation() {
         if (roomData.unlockAnimation) {
             SequenceAction shakeAction = new SequenceAction();
-            float shakeTime = 1f;
+            float shakeTime = 1.1f;
             float moveTime = 0.033f;
             float maxMovement = 1f;
             float t = 0;
-            float maxDelta = 10f;
+            float maxDelta = 8f;
             float xDelta = 0;
             float yDelta = 0;
             while (t < shakeTime) {
@@ -105,22 +105,31 @@ public class RoomButton extends SelectableButton {
                 shakeAction.addAction(Actions.moveBy(
                         xMov, yMov, moveTime));
 
-                maxMovement *= 1.1f;
+                maxMovement *= 1.05f;
                 t += moveTime;
             }
+
             lock.addAction(Actions.sequence(
                     Actions.delay(1f),
+                    Actions.sequence(
+                            Actions.run(new Runnable() {
+                                @Override
+                                public void run() {
+                                    AudioManager.playSound("unlock_lock.wav");
+                                }
+                            })
+                    ),
                     Actions.parallel(
                             Actions.parallel(
-                                    Actions.moveBy(0, -25, 1f, Interpolation.pow2),
-                                    Actions.scaleTo(0.5f, 0.5f, 1f, Interpolation.pow2)
+                                    Actions.moveBy(10, 10, 0.3f, Interpolation.pow2),
+                                    Actions.scaleTo(0.5f, 0.5f, 0.3f, Interpolation.pow2)
                             ),
                             shakeAction
                     ),
 
                     Actions.parallel(
-                            Actions.moveBy(0, 75, 0.3f, Interpolation.pow2),
-                            Actions.scaleTo(1.15f, 1.15f, 0.6f, Interpolation.bounce),
+                            Actions.moveBy(0, 75, 0.2f, Interpolation.pow2),
+                            Actions.scaleTo(1.25f, 1.25f, 0.45f, Interpolation.bounce),
                             Actions.sequence(
                                     Actions.delay(0.3f),
                                     Actions.run(new Runnable() {
@@ -143,7 +152,7 @@ public class RoomButton extends SelectableButton {
                     Actions.sequence(
 
                             Actions.parallel(
-                                    Actions.scaleTo(1.2f, 1.2f, 2f),
+                                    Actions.scaleTo(1.35f, 1.35f, 2f),
                                     Actions.moveBy(25, 50, 2f),
                                     Actions.rotateBy(-45, 2f),
                                     Actions.repeat(50, Actions.run(new Runnable() {
