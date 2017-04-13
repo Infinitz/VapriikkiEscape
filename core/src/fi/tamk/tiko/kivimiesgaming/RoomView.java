@@ -584,8 +584,7 @@ public class RoomView extends MyScreen {
 
     private void roomCompleted() {
         float rawScore = (float) correctAnswerCount - hintsUsedCount * Vescape.HINT_PENALTY + 0.33f;
-        int score = (int)Math.round((rawScore / Vescape.TOTAL_RIDDLES_ROOM) * 3);
-        System.out.println(rawScore + "  " + (rawScore / Vescape.TOTAL_RIDDLES_ROOM) * 3 + "  " + score) ;
+        int score = Math.round((rawScore / Vescape.TOTAL_RIDDLES_ROOM) * 3);
         roomData.latestScore = score;
         if (roomData.latestScore > roomData.highscore) {
             roomData.highscore = roomData.latestScore;

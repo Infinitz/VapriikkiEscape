@@ -268,7 +268,7 @@ public class Vescape extends Game {
 
         RoomData temp;
 
-        temp = new RoomData(RoomType.ROCK, 2,
+        temp = new RoomData(RoomType.ROCK, 1,
                 "F1_rock.png",
                 "F1_rock_active.png",
                 "map_icons_kivi.png",
@@ -277,7 +277,7 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(0.6f, 0.6f);
         roomData.put(RoomType.ROCK, temp);
 
-        temp = new RoomData(RoomType.TAMMER, 0,
+        temp = new RoomData(RoomType.TAMMER, 1,
                 "F1_tammer.png",
                 "F1_tammer_active.png",
                 "map_icons_tammerkoski.png",
@@ -286,7 +286,7 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(-0.5f, 0.1f);
         roomData.put(RoomType.TAMMER, temp);
 
-        temp = new RoomData(RoomType.POSTAL, 0,
+        temp = new RoomData(RoomType.POSTAL, 1,
                 "F1_postal.png",
                 "F1_postal_active.png",
                 "map_icons_postal.png",
@@ -304,7 +304,7 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(0.3f, 0.15f);
         roomData.put(RoomType.TUTORIAL, temp);
 
-        temp = new RoomData(RoomType.GAME, 0,
+        temp = new RoomData(RoomType.GAME, 1,
                 "F2_game.png",
                 "F2_game_active.png",
                 "map_icons_game.png",
@@ -313,7 +313,7 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(0.4f, -0.2f);
         roomData.put(RoomType.GAME, temp);
 
-        temp = new RoomData(RoomType.ICEHOCKEY, 0,
+        temp = new RoomData(RoomType.ICEHOCKEY, 1,
                 "F2_icehokey.png",
                 "F2_icehokey_active.png",
                 "map_icons_icehockey.png",
@@ -322,7 +322,7 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(-0.4f, 0.1f);
         roomData.put(RoomType.ICEHOCKEY, temp);
 
-        temp = new RoomData(RoomType.MEDIA, 0,
+        temp = new RoomData(RoomType.MEDIA, 1,
                 "F2_media.png",
                 "F2_media_active.png",
                 "map_icons_media.png",
@@ -331,7 +331,7 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(0.3f, 0.3f);
         roomData.put(RoomType.MEDIA, temp);
 
-        temp = new RoomData(RoomType.DOLL, 0,
+        temp = new RoomData(RoomType.DOLL, 1,
                 "F2_doll.png",
                 "F2_doll_active.png",
                 "map_icons_doll.png",
@@ -340,7 +340,7 @@ public class Vescape extends Game {
         temp.setIconLocalPosition(-0.4f, 0.4f);
         roomData.put(RoomType.DOLL, temp);
 
-        temp = new RoomData(RoomType.NATURE, 0,
+        temp = new RoomData(RoomType.NATURE, 1,
                 "F2_nature.png",
                 "F2_nature_active.png",
                 "map_icons_nature.png",
