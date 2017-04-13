@@ -98,7 +98,6 @@ public class RoomButton extends SelectableButton {
                         MathUtils.lerp(0, 1, xDelta / maxDelta)) * maxMovement;
                 float yMov = ((float)Math.random() -
                         MathUtils.lerp(0, 1, yDelta / maxDelta)) * maxMovement;
-
                 xDelta += xMov;
                 yDelta += yMov;
 

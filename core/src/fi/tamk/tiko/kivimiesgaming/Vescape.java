@@ -56,6 +56,7 @@ public class Vescape extends Game {
     private TextButton.TextButtonStyle textButtonStyle;
     private TextField.TextFieldStyle textFieldStyle;
     private HashMap<RoomType, RoomData> roomData;
+    private MachinePart[] machineParts;
 
 
 
@@ -149,6 +150,10 @@ public class Vescape extends Game {
 
     public RoomData getRoomData(RoomType type) {
         return roomData.get(type);
+    }
+
+    public MachinePart[] getMachineParts() {
+        return machineParts;
     }
 
     public void setFinnish() {
@@ -430,5 +435,12 @@ public class Vescape extends Game {
         for (RoomType t : roomData.keySet()) {
             roomData.get(t).isLocked = totalScore < roomData.get(t).starsToUnlock;
         }
+
+        machineParts = new MachinePart[5];
+        machineParts[0] = new MachinePart(1, totalScore, "englishFlag.png");
+        machineParts[1] = new MachinePart(4, totalScore, "englishFlag.png");
+        machineParts[2] = new MachinePart(9, totalScore, "englishFlag.png");
+        machineParts[3] = new MachinePart(14, totalScore, "englishFlag.png");
+        machineParts[4] = new MachinePart(21, totalScore, "englishFlag.png");
     }
 }
