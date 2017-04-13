@@ -414,17 +414,21 @@ public class Vescape extends Game {
 
     private void loadScores() {
         String scores = scoresPref.getString("scores", "");
-        if (scores.length() == 0) {
-            return;
+        if (scores.length() > 0) {
+            String[] scoreArray = scores.split(";");
+            for (int i = 0; i < scoreArray.length; ++i) {
+                String[] temp = scoreArray[i].split(":");
+                String name = temp[0];
+                int score = Integer.parseInt(temp[1]);
+                roomData.get(RoomType.typeFromString(name)).highscore = score;
+            }
         }
-        //Count if locked
-        String[] scoreArray = scores.split(";");
-        for (int i = 0; i < scoreArray.length; ++i) {
-            String[] temp = scoreArray[i].split(":");
-            String name = temp[0];
-            int score = Integer.parseInt(temp[1]);
-            roomData.get(RoomType.typeFromString(name)).highscore = score;
+        int totalScore = 0;
+        for (RoomType t : roomData.keySet()) {
+            totalScore += roomData.get(t).highscore;
         }
-
+        for (RoomType t : roomData.keySet()) {
+            roomData.get(t).isLocked = totalScore < roomData.get(t).starsToUnlock;
+        }
     }
 }
