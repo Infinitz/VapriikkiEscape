@@ -106,7 +106,8 @@ public class RoomSelection extends MyScreen {
                 final ImageActor part = new ImageActor(
                         assetManager.get(game.getMachineParts()[i].getImagePath(), Texture.class),
                         500);
-                part.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT);
+                part.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - part.getSizeX() / 2,
+                        Vescape.GUI_VIEWPORT_HEIGHT);
                 stage.addActor(part);
                 part.addAction(Actions.sequence(
                         Actions.delay(animDuration * 1.1f),
@@ -140,6 +141,7 @@ public class RoomSelection extends MyScreen {
                 Actions.delay(animationDelay),
                 Actions.scaleBy(0.25f, 0.25f,
                         animDuration, Interpolation.pow2Out)));
+
         floor1.addAction(Actions.sequence(
                 Actions.delay(animationDelay),
                 Actions.scaleTo(1f, 1f,
