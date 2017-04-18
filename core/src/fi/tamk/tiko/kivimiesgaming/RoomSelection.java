@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
@@ -46,15 +47,22 @@ public class RoomSelection extends MyScreen {
         assetManager.load("map_lock.png", Texture.class);
         assetManager.load("map_lock_unlocked.png", Texture.class);
 
+        assetManager.load("unlock_lock.wav", Sound.class);
+
         for (RoomType t : RoomType.values()) {
             game.getRoomData(t).loadTextures();
             totalStars += game.getRoomData(t).highscore;
         }
+
         for (RoomType t : RoomType.values()) {
             boolean locked = totalStars < game.getRoomData(t).starsToUnlock;
             boolean unlockAnimation = game.getRoomData(t).isLocked != locked;
             game.getRoomData(t).isLocked = locked;
             game.getRoomData(t).unlockAnimation = unlockAnimation;
+        }
+
+        for (int i = 0; i < game.getMachineParts().length; ++i) {
+            assetManager.load(game.getMachineParts()[i].getImagePath(), Texture.class);
         }
     }
 
@@ -75,19 +83,49 @@ public class RoomSelection extends MyScreen {
         createChangeFloorButtons();
         burgerButton = new BurgerButton(this);
 
-
-
         Vescape.setGroupOrigin(floor1,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
         Vescape.setGroupOrigin(floor2,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
 
+        float animationDelay = 0.25f;
+        float animDuration = 1f;
+
+        for (int i = 0; i < game.getMachineParts().length; ++i) {
+            if (totalStars < game.getMachineParts()[i].getStarsToUnlock()) {
+                break;
+            }
+
+            if (!game.getMachineParts()[i].unlocked) {
+                final ImageActor part = new ImageActor(
+                        assetManager.get(game.getMachineParts()[i].getImagePath(), Texture.class),
+                        200);
+                part.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT);
+                part.setScale(2.5f);
+                stage.addActor(part);
+                part.addAction(Actions.sequence(
+                        Actions.delay(animDuration * 1.1f),
+                        Actions.parallel(
+                                Actions.moveTo(timeMachineButton.getX(), timeMachineButton.getY(),
+                                        1.25f, Interpolation.bounceOut),
+                                Actions.scaleTo(0, 0, 1.5f, Interpolation.pow2)
+                        ),
+                        Actions.run(new Runnable() {
+                            @Override
+                            public void run() {
+                                part.remove();
+                            }
+                        })
+                        ));
+
+                game.getMachineParts()[i].unlocked = true;
+            }
+        }
+
         floor1.setScale(0f);
         floor2.setScale(0f);
         timeMachineButton.setScale(0f);
 
-        float animationDelay = 0.25f;
-        float animDuration = 1f;
         bg.addAction(Actions.sequence(
                 Actions.delay(animationDelay),
                 Actions.scaleBy(0.25f, 0.25f,
@@ -502,6 +540,11 @@ public class RoomSelection extends MyScreen {
         assetManager.unload("map_timeMachine.png");
         assetManager.unload("map_lock.png");
         assetManager.unload("map_lock_unlocked.png");
+        assetManager.unload("unlock_lock.wav");
+
+        for (int i = 0; i < game.getMachineParts().length; ++i) {
+            assetManager.unload(game.getMachineParts()[i].getImagePath());
+        }
 
         for (RoomType t : RoomType.values()) {
             game.getRoomData(t).unloadTextures();

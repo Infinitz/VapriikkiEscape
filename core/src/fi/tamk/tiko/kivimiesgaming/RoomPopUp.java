@@ -17,16 +17,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class RoomPopUp {
 
-    private ImageActor screenDarkener;
+    private ScreenDarkener screenDarkener;
     private ImageActor panelBG;
     private Group elements;
 
     public RoomPopUp(final MyScreen screen, final RoomData data) {
-        screenDarkener = new ImageActor(
-                screen.getAssetManager().get("black.png", Texture.class),
-                Vescape.GUI_VIEWPORT_HEIGHT);
-        screenDarkener.alpha = 0.85f;
-
+        screenDarkener =
+                new ScreenDarkener(screen.getAssetManager().get("black.png", Texture.class));
+        screenDarkener.enable(true);
         elements = new Group();
 
 
@@ -132,7 +130,14 @@ public class RoomPopUp {
     public void dispose() {
         AudioManager.playSound("panel_close.wav");
         elements.addAction(Actions.sequence(
+                Actions.parallel(
                 Actions.scaleTo(1, 0, 0.3f, Interpolation.pow2),
+                        Actions.run(new Runnable() {
+                            @Override
+                            public void run() {
+                                screenDarkener.enable(false);
+                            }
+                        })),
                 Actions.run(new Runnable() {
                     @Override
                     public void run() {
