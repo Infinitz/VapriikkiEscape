@@ -35,7 +35,7 @@ public class AudioManager {
         if (enabled) {
             assetManager.get(currentMusic, Music.class).play();
         } else {
-            assetManager.get(currentMusic, Music.class).stop();
+            assetManager.get(currentMusic, Music.class).pause();
         }
     }
 

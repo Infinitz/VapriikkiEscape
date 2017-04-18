@@ -41,9 +41,6 @@ public class RoomButton extends SelectableButton {
             lock = new ImageActor(assetManager.get("map_lock.png", Texture.class), 100f);
 
             roomElements.addActor(lock);
-            if (data.unlockAnimation) {
-                unlockAnimation();
-            }
         }
     }
 
@@ -109,7 +106,6 @@ public class RoomButton extends SelectableButton {
             }
 
             lock.addAction(Actions.sequence(
-                    Actions.delay(1f),
                     Actions.sequence(
                             Actions.run(new Runnable() {
                                 @Override

@@ -17,6 +17,9 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Array;
+
+import java.util.ArrayList;
 
 /**
  * Created by atter on 04-Mar-17.
@@ -26,6 +29,8 @@ public class RoomSelection extends MyScreen {
 
     private Group floor1;
     private Group floor2;
+
+    private ArrayList<RoomButton> roomButtons;
 
     private ImageActor changeFloorButtonUp;
     private ImageActor changeFloorButtonDown;
@@ -74,6 +79,7 @@ public class RoomSelection extends MyScreen {
 
         stage.addActor(bg);
 
+        roomButtons = new ArrayList<RoomButton>();
         floor1 = createFloor1();
         stage.addActor(floor1);
         createTimeMachineButton();
@@ -99,14 +105,15 @@ public class RoomSelection extends MyScreen {
             if (!game.getMachineParts()[i].unlocked) {
                 final ImageActor part = new ImageActor(
                         assetManager.get(game.getMachineParts()[i].getImagePath(), Texture.class),
-                        200);
+                        500);
                 part.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT);
-                part.setScale(2.5f);
                 stage.addActor(part);
                 part.addAction(Actions.sequence(
                         Actions.delay(animDuration * 1.1f),
                         Actions.parallel(
-                                Actions.moveTo(timeMachineButton.getX(), timeMachineButton.getY(),
+                                Actions.moveTo(
+                                        timeMachineButton.getX() - timeMachineButton.getSizeX() / 2,
+                                        timeMachineButton.getY() - timeMachineButton.getSizeY() / 2,
                                         1.25f, Interpolation.bounceOut),
                                 Actions.scaleTo(0, 0, 1.5f, Interpolation.pow2)
                         ),
@@ -114,6 +121,9 @@ public class RoomSelection extends MyScreen {
                             @Override
                             public void run() {
                                 part.remove();
+                                for (int i = 0; i < roomButtons.size(); ++i) {
+                                    roomButtons.get(i).unlockAnimation();
+                                }
                             }
                         })
                         ));
@@ -130,7 +140,6 @@ public class RoomSelection extends MyScreen {
                 Actions.delay(animationDelay),
                 Actions.scaleBy(0.25f, 0.25f,
                         animDuration, Interpolation.pow2Out)));
-
         floor1.addAction(Actions.sequence(
                 Actions.delay(animationDelay),
                 Actions.scaleTo(1f, 1f,
@@ -284,6 +293,11 @@ public class RoomSelection extends MyScreen {
 
         Group floor1 = new Group();
 
+        roomButtons.add(postalRoom);
+        roomButtons.add(tammerRoom);
+        roomButtons.add(tutRoom);
+        roomButtons.add(rockRoom);
+
         postalRoom.setPosition(rect.getWidth() / 2 + rect.getX() - postalRoom.getSizeX() / 2,
                 rect.getY());
 
@@ -370,6 +384,12 @@ public class RoomSelection extends MyScreen {
                 data, assetManager, baseSize * 1.5f);
 
         Group floor2 = new Group();
+
+        roomButtons.add(gameRoom);
+        roomButtons.add(iceHockeyRoom);
+        roomButtons.add(mediaRoom);
+        roomButtons.add(dollRoom);
+        roomButtons.add(natureRoom);
 
         postalRoomUP.setPosition(offsetX * 2, rect.getY());
 
