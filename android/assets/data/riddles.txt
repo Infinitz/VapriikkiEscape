@@ -56,7 +56,7 @@ fi::Missä virassa kuvan uniformua käytettiin?::Pormestari//Pormestarin::Fredri
 en::In what position was the uniform used?::Mayor//The mayor::Fredrik Procopé used this in 1860s.;
 
 koski5.jpg
-fi::Mikä karannut eläin kuvassa olevan henkilön piti ottaa kiinni?::porsas::vihjekuva on osa isompaa sarjakuvaa
+fi::Mikä karannut eläin kuvassa olevan henkilön piti ottaa kiinni?::porsas//possu//sika//emakko//karju//potsi//imisä//orasa::vihjekuva on osa isompaa sarjakuvaa
 en::riddle::answer::hint;
 
 koski6.jpg
