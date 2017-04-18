@@ -40,6 +40,7 @@ public class Vescape extends Game {
     public static final String RIDDLE_ANSWER_SEPARATOR = "//";
     public static final String RIDDLE_SEPARATOR = "::";
     public static final String RIDDLE_END = ";";
+    public static final String LAST_RIDDLE_END = "@";
     public static final String RIDDLE_FILE_COMMENT_MARK = "#";
     public static final String RIDDLE_FILE_PATH = "data/riddles.txt";
     public static final String RIDDLE_IMAGES_PATH = "riddle_images/";
@@ -393,13 +394,17 @@ public class Vescape extends Game {
                         ++lineIndex;
                         currentLine = reader.readLine().trim();
                         boolean riddleEnd = currentLine.endsWith(RIDDLE_END);
-                        if (riddleEnd) {
+                        boolean lastRiddle = currentLine.endsWith(LAST_RIDDLE_END);
+                        if (riddleEnd ||lastRiddle) {
                             currentLine = currentLine.substring(0, currentLine.length() - 1);
                         }
                         String[] temp = currentLine.split(RIDDLE_SEPARATOR);
                         riddle.addRiddleText(new RiddleTexts(temp[0], temp[1], temp[2], temp[3]));
                         if (riddleEnd) {
                             roomData.get(currentRoom).riddles.add(riddle);
+                            break;
+                        } else if (lastRiddle) {
+                            roomData.get(currentRoom).lastRiddle = riddle;
                             break;
                         }
                     }

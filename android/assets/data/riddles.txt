@@ -49,7 +49,7 @@ en::In what year was this Josef Konsén’s scale made?::1870::Find the scale an
 
 koskiV.jpg
 fi::Mikä on kuvassa näkyvän auton rekisteritunnuksen kolme viimeistä numeroa?::408::Auto on kaahannut näyttelyn ulkopuolelle käytävään…
-en::What are the last three numbers in the car’s license plate?::408::The car has been driven to the hallway outside the exhibition.;
+en::What are the last three numbers in the car’s license plate?::408::The car has been driven to the hallway outside the exhibition.@
 
 Pormestari.jpg
 fi::Missä virassa kuvan uniformua käytettiin?::Pormestari//Pormestarin::Fredrik Procopé käytti tätä 1860-luvulla

@@ -3,28 +3,33 @@ package fi.tamk.tiko.kivimiesgaming;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
 
 /**
  * Created by atter on 04-Mar-17.
  */
 
 public class ImageActor extends Actor {
+
+    public boolean renderEnabled = true;
+    public float alpha = 1.0f;
+
     private ChangeListener listener;
 
     private TextureRegion textureRegion;
     private Texture tex;
+
     private float aspectRatio = 1.0f;
     private float size = 1.0f;
-
-    public boolean renderEnabled = true;
-    public float alpha = 1.0f;
 
     public ImageActor(Texture texture) {
         this(texture, texture.getHeight());
@@ -90,7 +95,6 @@ public class ImageActor extends Actor {
         }
         float oldSize = this.size;
         this.size = size;
-        //this.setSize(size * aspectRatio, size);
         onSizeChange(oldSize);
     }
 
@@ -115,6 +119,7 @@ public class ImageActor extends Actor {
     @Override
     public void draw(Batch batch, float alpha) {
         if (renderEnabled) {
+
             Color c = batch.getColor();
             batch.setColor(c.r, c.g, c.b, c.a * this.alpha);
             batch.draw(textureRegion, getX(), getY(),
@@ -123,6 +128,7 @@ public class ImageActor extends Actor {
                     getSizeX(), getSizeY(), getScaleX(), getScaleY(),
                     getRotation());
             batch.setColor(c.r, c.g, c.b, 1);
+
         }
     }
 
@@ -150,5 +156,4 @@ public class ImageActor extends Actor {
         this.listener = listener;
         setTouchable(Touchable.enabled);
     }
-
 }

@@ -28,7 +28,7 @@ public class RoomData {
 
     private boolean[] usedRiddle;
     public ArrayList<Riddle> riddles;
-
+    public Riddle lastRiddle;
 
     public RoomData(RoomType type, int starsToUnlock, String texP,
                     String selectedTexP, String iconTextureP,
@@ -91,12 +91,13 @@ public class RoomData {
             assets.load(riddles.get(i).imagePath, Texture.class);
             usedRiddle[i] = false;
         }
-    }
+        assets.load(lastRiddle.imagePath, Texture.class);    }
 
     public void unloadRiddleImages(AssetManager assets) {
         for (Riddle r : riddles) {
             assets.unload(r.imagePath);
         }
+        assets.unload(lastRiddle.imagePath);
     }
 
     public Texture getLockedTexture() {

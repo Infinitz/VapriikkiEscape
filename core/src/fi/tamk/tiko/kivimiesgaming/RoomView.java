@@ -393,7 +393,11 @@ public class RoomView extends MyScreen {
     }
 
     private void createNewRiddlePanel() {
-        currentRiddle = roomData.getRandomRiddle();
+        if (currentRiddleCount == Vescape.TOTAL_RIDDLES_ROOM - 2) {
+            currentRiddle = roomData.lastRiddle;
+        } else {
+            currentRiddle = roomData.getRandomRiddle();
+        }
 
         ImageActor riddlePanelBg = new ImageActor(riddlePanelTexture);
 
