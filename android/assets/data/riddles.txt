@@ -55,6 +55,18 @@ Pormestari.jpg
 fi::Missä virassa kuvan uniformua käytettiin?::Pormestari//Pormestarin::Fredrik Procopé käytti tätä 1860-luvulla
 en::In what position was the uniform used?::Mayor//The mayor::Fredrik Procopé used this in 1860s.;
 
+koski5.jpg
+fi::Mikä karannut eläin kuvassa olevan henkilön piti ottaa kiinni?::porsas::vihjekuva on osa isompaa sarjakuvaa
+en::riddle::answer::hint;
+
+koski6.jpg
+fi::Mikä on kuvassa olevan henkilön nimi?::Väinö Hakkila//Väinö//Hakkila::Herran kuva on osana isompaa kuvakollaasia näyttelyn seinällä.
+en::riddle::answer::hint;
+
+koski7.jpg
+fi::Minkä kauppakeskuksen pienoismalli on kuvassa?::Koskikeskus::Kyseinen kauppakeskus sijaitsee Tampereen keskustassa.
+en::riddle::answer::hint;
+
 &tutorialMuseum
 
 tutoriaali1.jpg
