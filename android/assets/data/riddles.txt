@@ -110,7 +110,7 @@ en::riddle::answer::hint;
 
 #luonto5.jpg
 #fi::Mikä on Pirkanmaan maakuntakivi?::Pallograniitti::Tämä kivi on karannut luonnontieteellisestä museosta ja se on viimeksi havaittu lähellä Rupriikin sisäänkäyntiä…
-#en::riddle::answer::hint;
+#en::riddle::answer::hint@
 
 luonto1.jpg
 fi::Mikä kasvi tuoksuu näytteessä numero 4?::Suopursu::Vastauksen löydät tuoksupullojen läheisyydestä.
