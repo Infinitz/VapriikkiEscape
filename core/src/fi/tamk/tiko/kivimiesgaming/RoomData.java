@@ -91,7 +91,8 @@ public class RoomData {
             assets.load(riddles.get(i).imagePath, Texture.class);
             usedRiddle[i] = false;
         }
-        assets.load(lastRiddle.imagePath, Texture.class);    }
+        assets.load(lastRiddle.imagePath, Texture.class);
+    }
 
     public void unloadRiddleImages(AssetManager assets) {
         for (Riddle r : riddles) {

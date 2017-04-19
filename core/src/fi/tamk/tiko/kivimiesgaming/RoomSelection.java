@@ -9,15 +9,12 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Array;
 
 import java.util.ArrayList;
 
@@ -41,6 +38,9 @@ public class RoomSelection extends MyScreen {
     private RoomButton selected;
     private BurgerButton burgerButton;
 
+    private ArrayList<String> loadedShipMachineTextures;
+
+
     private int totalStars = 0;
 
     public RoomSelection(Vescape game, AssetManager assetManager) {
@@ -48,7 +48,6 @@ public class RoomSelection extends MyScreen {
         assetManager.load("floor_navi_up.png", Texture.class);
         assetManager.load("floor_navi_down.png", Texture.class);
         assetManager.load("F2_postal.png", Texture.class);
-        assetManager.load("map_timeMachine.png", Texture.class);
         assetManager.load("map_lock.png", Texture.class);
         assetManager.load("map_lock_unlocked.png", Texture.class);
 
@@ -66,8 +65,25 @@ public class RoomSelection extends MyScreen {
             game.getRoomData(t).unlockAnimation = unlockAnimation;
         }
 
+        //Load space part textures
+        loadedShipMachineTextures = new ArrayList<String>();
         for (int i = 0; i < game.getMachineParts().length; ++i) {
-            assetManager.load(game.getMachineParts()[i].getImagePath(), Texture.class);
+            if (!game.getMachineParts()[i].unlocked) {
+
+                loadedShipMachineTextures.add(game.getMachineParts()[i].getPartImagePath());
+                loadedShipMachineTextures.add(game.getMachineParts()[i].getShipImagePath());
+
+                if (i > 0) {
+                    loadedShipMachineTextures.add(game.getMachineParts()[i - 1].getShipImagePath());
+                } else {
+                    loadedShipMachineTextures.add("time_machine_parts/time_machine_0.png");
+                }
+                break;
+            }
+        }
+
+        for (int i = 0; i < loadedShipMachineTextures.size(); ++i) {
+            assetManager.load(loadedShipMachineTextures.get(i), Texture.class);
         }
     }
 
@@ -103,13 +119,14 @@ public class RoomSelection extends MyScreen {
             }
 
             if (!game.getMachineParts()[i].unlocked) {
-                final ImageActor part = new ImageActor(
-                        assetManager.get(game.getMachineParts()[i].getImagePath(), Texture.class),
+                final MachinePart machinePart = game.getMachineParts()[i];
+                final ImageActor partActor = new ImageActor(
+                        assetManager.get(machinePart.getPartImagePath(), Texture.class),
                         500);
-                part.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - part.getSizeX() / 2,
+                partActor.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - partActor.getSizeX() / 2,
                         Vescape.GUI_VIEWPORT_HEIGHT);
-                stage.addActor(part);
-                part.addAction(Actions.sequence(
+                stage.addActor(partActor);
+                partActor.addAction(Actions.sequence(
                         Actions.delay(animDuration * 1.1f),
                         Actions.parallel(
                                 Actions.moveTo(
@@ -121,7 +138,10 @@ public class RoomSelection extends MyScreen {
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {
-                                part.remove();
+                                partActor.remove();
+                                timeMachineButton.setTex(
+                                        assetManager.get(machinePart.getShipImagePath(),
+                                                Texture.class));
                                 for (int i = 0; i < roomButtons.size(); ++i) {
                                     roomButtons.get(i).unlockAnimation();
                                 }
@@ -130,6 +150,7 @@ public class RoomSelection extends MyScreen {
                         ));
 
                 game.getMachineParts()[i].unlocked = true;
+                break;
             }
         }
 
@@ -232,9 +253,21 @@ public class RoomSelection extends MyScreen {
     }
 
     public void createTimeMachineButton() {
+        String timeMachineTexPath = "";
+        for (int i = 0; i < game.getMachineParts().length; ++i) {
+            if (!game.getMachineParts()[i].unlocked) {
+                if (i > 0) {
+                    timeMachineTexPath = game.getMachineParts()[i - 1].getShipImagePath();
+                } else {
+                    timeMachineTexPath = "time_machine_parts/time_machine_0.png";
+                }
+                break;
+            }
+        }
+
         timeMachineButton = new SelectableButton(
-                assetManager.get("map_timeMachine.png", Texture.class),
-                assetManager.get("map_timeMachine.png", Texture.class),
+                assetManager.get(timeMachineTexPath, Texture.class),
+                assetManager.get(timeMachineTexPath, Texture.class),
                 200);
 
 
@@ -559,15 +592,14 @@ public class RoomSelection extends MyScreen {
     public void dispose() {
         assetManager.unload("floor_navi_up.png");
         assetManager.unload("floor_navi_down.png");
-        assetManager.unload("map_timeMachine.png");
+
         assetManager.unload("map_lock.png");
         assetManager.unload("map_lock_unlocked.png");
         assetManager.unload("unlock_lock.wav");
 
-        for (int i = 0; i < game.getMachineParts().length; ++i) {
-            assetManager.unload(game.getMachineParts()[i].getImagePath());
+        for (int i = 0; i < loadedShipMachineTextures.size(); ++i) {
+            assetManager.unload(loadedShipMachineTextures.get(i));
         }
-
         for (RoomType t : RoomType.values()) {
             game.getRoomData(t).unloadTextures();
         }

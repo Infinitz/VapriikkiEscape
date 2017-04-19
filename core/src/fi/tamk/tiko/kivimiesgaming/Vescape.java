@@ -442,10 +442,24 @@ public class Vescape extends Game {
         }
 
         machineParts = new MachinePart[5];
-        machineParts[0] = new MachinePart(1, totalScore, "englishFlag.png");
-        machineParts[1] = new MachinePart(4, totalScore, "englishFlag.png");
-        machineParts[2] = new MachinePart(9, totalScore, "englishFlag.png");
-        machineParts[3] = new MachinePart(14, totalScore, "englishFlag.png");
-        machineParts[4] = new MachinePart(21, totalScore, "englishFlag.png");
+        machineParts[0] = new MachinePart(1, totalScore,
+                "time_machine_parts/time_machine_part_1.png",
+                "time_machine_parts/time_machine_1.png");
+
+        machineParts[1] = new MachinePart(4, totalScore,
+                "time_machine_parts/time_machine_part_2.png",
+                "time_machine_parts/time_machine_2.png");
+
+        machineParts[2] = new MachinePart(9, totalScore,
+                "time_machine_parts/time_machine_part_3.png",
+                "time_machine_parts/time_machine_3.png");
+
+        machineParts[3] = new MachinePart(14, totalScore,
+                "time_machine_parts/time_machine_part_4.png",
+                "time_machine_parts/time_machine_4.png");
+
+        machineParts[4] = new MachinePart(21, totalScore,
+                "time_machine_parts/time_machine_part_5.png",
+                "time_machine_parts/time_machine_5.png");
     }
 }
