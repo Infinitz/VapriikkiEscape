@@ -69,6 +69,14 @@ posti6.jpg
 fi::Minkä nimisessä huoneessa henkilö selvittää postin historiaa?::Postikino::Huoneen nimi lukee sen sisäänkäynnin yhteydessä
 en::What is the name of this room where you can learn about the history of finnish post office::Postikino::You can find the name at the entrance to the room;
 
+posti7.jpg
+fi::Kuka istuu ikkunan ääressä?::Edvard Neovius//Edvard//Neovius::Kuvassa on pienoismalli hänen kodistan vuonna 1899
+en::Who is sitting by the window?::Edvard Neovius//Edvard//Neovius::The picture is a miniature version of their home in 1899;
+
+posti8.jpg
+fi::Minkä vuosisadan postireitti on kuvassa?::1700::Vastaus löytyy huoneen sisäänkäynnin yläpuolelta
+en::During which century was this post route used?::1700//1700s//18th century//18th::You can find the answer above the entrance to this little room;
+
 &tammerMuseum
 
 koski1.jpg
