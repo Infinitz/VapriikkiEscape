@@ -45,9 +45,29 @@ en::riddle::answer::hint;
 
 &postalMuseum
 
-nukke1.jpg
-fi::WWWWWWWWWWW WWWWWWWWWWWWW WWWWWWWWWWWWWWWWWW::vastaus::hint
-en::riddle::answer::hint;
+posti1.jpg
+fi::Kuka asuu täällä?::Akseli Gallen-Kallela//Akseli::Henkilön koti näytti tältä vuonna 1899
+en::Who lives here?::Akseli Gallen-Kallela//Akseli::Their house looked like this in 1899;
+
+posti2.jpg
+fi::Minkä merkkinen oli Suomen postin ensimmäinen auto?::Adler//Adler 1911::Auto on aika kookas
+en::What model was the first postal car used in Finland?::Adler//Adler 1911::The car is quite large;
+
+posti3.jpg
+fi::Monta postiljoonia oli Suomessa vuonna 1827?::46::Tällä postiljoonia on muutama kaveri rivissä
+en::How many postmen were in Finland in 1827?::46::This postman has a couple of friends standing in a line;
+
+posti4.jpg
+fi::Kuinka monta kiloa hevonen jaksaa kantaa?::70//70kg::Hevosen kantokyky löytyy seinällä olevasta taulusta
+en::How much weight can the horse carry in kilograms?::70//70kg::You can find information about the horse on the wall;
+
+posti5.jpg
+fi::Minkä merkkisellä ajoneuvolla postiljooni kulki vuonna 1956?::tunturi//tunturi-mopedi::Pyörän merkki lukee sen kyljessä
+en::What model was this postman's vehicle in 1956?::tunturi//tunturi-mopedi::You can find the model on the side of his bike;
+
+posti6.jpg
+fi::Minkä nimisessä huoneessa henkilö selvittää postin historiaa?::Postikino::Huoneen nimi lukee sen sisäänkäynnin yhteydessä
+en::What is the name of this room where you can learn about the history of finnish post office::Postikino::You can find the name at the entrance to the room;
 
 &tammerMuseum
 
