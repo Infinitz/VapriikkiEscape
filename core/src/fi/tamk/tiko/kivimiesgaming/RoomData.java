@@ -91,14 +91,18 @@ public class RoomData {
             assets.load(riddles.get(i).imagePath, Texture.class);
             usedRiddle[i] = false;
         }
-        assets.load(lastRiddle.imagePath, Texture.class);
+        if (lastRiddle != null) {
+            assets.load(lastRiddle.imagePath, Texture.class);
+        }
     }
 
     public void unloadRiddleImages(AssetManager assets) {
         for (Riddle r : riddles) {
             assets.unload(r.imagePath);
         }
-        assets.unload(lastRiddle.imagePath);
+        if (lastRiddle != null) {
+            assets.unload(lastRiddle.imagePath);
+        }
     }
 
     public Texture getLockedTexture() {
