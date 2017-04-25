@@ -68,7 +68,7 @@ public class RoomSelection extends MyScreen {
         //Load space part textures
         loadedShipMachineTextures = new ArrayList<String>();
         for (int i = 0; i < game.getMachineParts().length; ++i) {
-            if (!game.getMachineParts()[i].unlocked) {
+            if (!game.getMachineParts()[i].unlocked || i == game.getMachineParts().length - 1) {
 
                 loadedShipMachineTextures.add(game.getMachineParts()[i].getPartImagePath());
                 loadedShipMachineTextures.add(game.getMachineParts()[i].getShipImagePath());
@@ -257,11 +257,14 @@ public class RoomSelection extends MyScreen {
         for (int i = 0; i < game.getMachineParts().length; ++i) {
             if (!game.getMachineParts()[i].unlocked) {
                 if (i > 0) {
+                    System.out.println("LADATTU " + game.getMachineParts()[i - 1].getShipImagePath());
                     timeMachineTexPath = game.getMachineParts()[i - 1].getShipImagePath();
                 } else {
                     timeMachineTexPath = "time_machine_parts/time_machine_0.png";
                 }
                 break;
+            } else if (i == game.getMachineParts().length - 1) {
+                timeMachineTexPath = game.getMachineParts()[i].getShipImagePath();
             }
         }
 

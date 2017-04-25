@@ -27,6 +27,22 @@ kivi6.jpg
 fi::Mikä on Rikkikiisun toinen nimitys?::Pyriitti::P_ _ _ _TT_
 en::riddle::answer::hint;
 
+kivi7.jpg
+fi::Mistä kaupungista tämä kivi on peräisin?::Viitasaari::Vaikka kävellessä tuleekin katsoa eteensä, nyt kannattaa vilkuilla myös lattiaa
+en::riddle::answer::hint;
+
+kivi8.jpg
+fi::Mikä kivi on kuvassa?::laavakivi::L _ _ _ _ K _ _ I
+en::riddle::answer::hint;
+
+kivi9.jpg
+fi::Mikä on tämä violetti kivi?::ametisti::A _ _ _ _ _ _ I
+en::riddle::answer::hint;
+
+kivi10.jpg
+fi::Tämä kivi on harmaa… mikä?::graniitti::Vaikka kävellessä tuleekin katsoa eteensä, nyt kannattaa vilkuilla myös lattiaa
+en::riddle::answer::hint;
+
 &postalMuseum
 
 nukke1.jpg
@@ -39,6 +55,10 @@ koski1.jpg
 fi::Mitä kuvan mies luettelee ensimmäisenä tarpeelliseksi asiaksi?::Miekka::Etsi näyttelyn sisäänkäynnin läheltä sarjakuva, jossa kyseiset henkilöt esiintyvät.
 en::What word is missing from the picture?::Miekka::You will find the comic near the entrance to the exhibition.;
 
+koski2.jpg
+fi::Kuvassa näkyy kahden jääkiekkojoukkueen logot, Ilves ja… mikäs se toinen olikaan?::Tappara::Tämä tamperelaisjoukkue pelasi keväällä 2017 liigan finaalissa viidettä kertaa peräkkäin.
+en::riddle::answer::hint;
+
 koski3.jpg
 fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen//Juice::Henkilö on jo edesmennyt suomalainen tunnettu muusikko
 en::Who is playing the guitar in the picture?::Juice Leskinen::The person was a famous finnish musician.;
@@ -46,14 +66,6 @@ en::Who is playing the guitar in the picture?::Juice Leskinen::The person was a 
 koski4.jpg
 fi::Miltä vuodelta kuvassa näkyvä Josef Konsénin vaaka on?::1870::Etsi vaaka ja tutki ympäristöä tarkemmin!
 en::In what year was this Josef Konsén’s scale made?::1870::Find the scale and study your surroundings!;
-
-koskiV.jpg
-fi::Mikä on kuvassa näkyvän auton rekisteritunnuksen kolme viimeistä numeroa?::408::Auto on kaahannut näyttelyn ulkopuolelle käytävään…
-en::What are the last three numbers in the car’s license plate?::408::The car has been driven to the hallway outside the exhibition.@
-
-Pormestari.jpg
-fi::Missä virassa kuvan uniformua käytettiin?::Pormestari//Pormestarin::Fredrik Procopé käytti tätä 1860-luvulla
-en::In what position was the uniform used?::Mayor//The mayor::Fredrik Procopé used this in 1860s.;
 
 koski5.jpg
 fi::Mikä karannut eläin kuvassa olevan henkilön piti ottaa kiinni?::porsas//possu//sika//emakko//karju//potsi//imisä//orasa::vihjekuva on osa isompaa sarjakuvaa
@@ -67,12 +79,27 @@ koski7.jpg
 fi::Minkä kauppakeskuksen pienoismalli on kuvassa?::Koskikeskus::Kyseinen kauppakeskus sijaitsee Tampereen keskustassa.
 en::riddle::answer::hint;
 
+koski8.jpg
+fi::Miltä vuodelta kuvassa oleva kartiohammaspyörän ratas on?::2009::Luitko rattaan päällä olevan tietoiskun varmasti huolella?
+en::riddle::answer::hint;
+
+koski9.jpg
+fi::Kuinka monta taloa on kuvan pienoismallissa?::3100::Kierrä pienoismallia kunnes löydät kuvassa näkyvän lapun.
+en::riddle::answer::hint;
+
+Pormestari.jpg
+fi::Missä virassa kuvan uniformua käytettiin?::Pormestari//Pormestarin::Fredrik Procopé käytti tätä 1860-luvulla
+en::In what position was the uniform used?::Mayor//The mayor::Fredrik Procopé used this in 1860s.;
+
+koskiV.jpg
+fi::Mikä on kuvassa näkyvän auton rekisteritunnuksen kolme viimeistä numeroa?::408::Auto on kaahannut näyttelyn ulkopuolelle käytävään…
+en::What are the last three numbers in the car’s license plate?::408::The car has been driven to the hallway outside the exhibition.@
+
 &tutorialMuseum
 
 tutoriaali1.jpg
 fi::Tervetuloa Vapriikkiin! Mikähän on tämän aulasta löytyvän puodin nimi?::museokauppa::Puoti löytyy heti pääovien vierestä
 en::riddle::answer::hint;
-
 
 &gameMuseum
 
@@ -86,6 +113,30 @@ en::riddle::answer::hint;
 
 peli3.jpg
 fi::Mistä ensimmäiset pajatsot tuotiin Suomeen?::Saksa//Saksasta::Kyseinen maa löytyy Euroopasta
+en::riddle::answer::hint;
+
+peli4.jpg
+fi::Mikä on tämän pelin nimi?::sampo::S _ _ _ _
+en::riddle::answer::hint;
+
+peli5.jpg
+fi::Mikä pelihahmo näkyy kuvassa?::Hugo::H _ _ _
+en::riddle::answer::hint;
+
+peli6.jpg
+fi::Minkä nimisen pelisarjan toista osaa tämä juliste mainostaa?::Max Payne::Etsi kuvassa näkyvä vitriini.
+en::riddle::answer::hint;
+
+peli7.jpg
+fi::Minkä nimisen pelin suunnittelumateriaalia näkyy kuvassa?::Tower Bloxx::T _ _ _ R   B _ _ X X
+en::riddle::answer::hint;
+
+peli8.jpg
+fi::Minkä nimiselle pelintekijälle kuvan palkinto on myönnetty?::Kloonigames::K _ _ _ _ I G _ _ _ S
+en::riddle::answer::hint;
+
+peli9.jpg
+fi::Minkä pelin konseptitaidetta nämä ovat?::Badland::B _ _ L _ _ D
 en::riddle::answer::hint;
 
 &mediaMuseum
@@ -102,15 +153,35 @@ rup3.jpg
 fi::A007, mitähän se mahtaa tarkoittaa...::Loppu//Loppua::Etsi Rupriikista koodiavain
 en::riddle::answer::hint;
 
+rup4.jpg
+fi::Minkä niminen esine näkyy kuvassa?::vasaralävistin::V _ _ _ _ _ L _ _ _ _ _ _ N
+en::riddle::answer::hint;
+
+rup5.jpg
+fi::Mikä on tämä mikrofonin ja kaiuttimen yhdistävä esine?::voileimasinpuhelin::V _ _ L E _ _ _ _ _ N P _ _ _ _ _ N
+en::riddle::answer::hint;
+
+rup6.jpg
+fi::Mikä esine näkyy kuvassa?::polaroid land camera//polaroid//polaroid-kamera//polaroid kamera::Se on eräänlainen kamera
+en::riddle::answer::hint;
+
+rup7.jpg
+fi::Minkä sarjan kirjoituskone tämä on?::Royal//royal 10//royal10::Nimi lukee myös kirjoituskoneen päällä
+en::riddle::answer::hint;
+
+rup8.jpg
+fi::Mikä on tämän pöytäpuhelimen nimi?::vääräsääri::englanniksi se on ”bandy-legs”
+en::riddle::answer::hint;
+
+rup9.jpg
+fi::Mikä on tämän laitteen nimi?::kipinä::K _ _ _ _ Ä
+en::riddle::answer::hint;
+
+rup10.jpg
+fi::Minkä merkkinen laite on kuvassa?::Vistacom::V _ _ _ _ C _ M
+en::riddle::answer::hint;
+
 &natureMuseum
-
-#luonto4.jpg
-#fi::Mikä on Pirkanmaan maakuntakalan latinankielinen nimi?::Aspius aspius::Kala on suomeksi Toutain
-#en::riddle::answer::hint;
-
-#luonto5.jpg
-#fi::Mikä on Pirkanmaan maakuntakivi?::Pallograniitti::Tämä kivi on karannut luonnontieteellisestä museosta ja se on viimeksi havaittu lähellä Rupriikin sisäänkäyntiä…
-#en::riddle::answer::hint@
 
 luonto1.jpg
 fi::Mikä kasvi tuoksuu näytteessä numero 4?::Suopursu::Vastauksen löydät tuoksupullojen läheisyydestä.
@@ -124,11 +195,75 @@ luonto3.jpg
 fi::Mille linnulle kyseinen luuranko kuuluu?::Varis::??
 en::riddle::answer::hint;
 
+#luonto4.jpg
+#fi::Mikä on Pirkanmaan maakuntakalan latinankielinen nimi?::Aspius aspius::Kala on suomeksi Toutain
+#en::riddle::answer::hint;
+
+luonto6.jpg
+fi::Mikä on tämä puu?::Mänty::Tämä puu on Suomessakin luonnonvaraisena kasvava havupuu.
+en::riddle::answer::hint;
+
+luonto7.jpg
+fi::Tämä pääkallo kuuluu karhulle. Mikä on karhun latinankielinen nimi?::Ursus arctos::U _ _ _ S   A _ _ _ _ S
+en::riddle::answer::hint;
+
+luonto8.jpg
+fi::Kuvan puu on rauduskoivu. Vaan miten se sanotaan englanniksi?::Silver birch::S _ _ _ _ r   b _ _ _ h
+en::This tree is rauduskoivu, how do you say it in english?::Silver birch::S _ _ _ _ r   b _ _ _ h;
+
+luonto9.jpg
+fi::Mikä lintu on kuvassa?::Isokoskelo::I _ _ K _ _ _ _ _ O
+en::riddle::answer::hint;
+
+luonto10.jpg
+fi::Kuinka pitkä on harmaalokin siipiväli senttimetreinä?::130//130cm::Näyttelystä löytyy kuvassa näkyvä seinä, jossa on mainittu useiden eri lintujen siipivälejä.
+en::riddle::answer::hint;
+
+luonto11.jpg
+fi::Kuvan eläin on metsäjänis. Mikä se on englanniksi?::Mountain hare::M _ _ _ T _ _ N   H _ _ E
+en::This animal is called metsäjänis in finnish. What is it called in english?::Mountain hare::M _ _ _ t _ _ n   h _ _ e;
+
+#luonto5.jpg
+#fi::Mikä on Pirkanmaan maakuntakivi?::Pallograniitti::Tämä kivi on karannut luonnontieteellisestä museosta ja se on viimeksi havaittu lähellä Rupriikin sisäänkäyntiä…
+#en::riddle::answer::hint@
+
 &dollMuseum
 
 nukke1.jpg
 fi::Mikä on tämän söpön pienen kahvilan nimi?::Jokilinna::J_ _ _L_ _ _A
 en::riddle::Jokilinna::hint;
+
+nukke2.jpg
+fi::Gunvor Ekroosin rakas nukke on kadonnut. Mikä on nuken nimi?::Erik::Etsi kuvassa näkyvä puinen seinä
+en::riddle::answer::hint;
+
+nukke3.jpg
+fi::Mikä on tämän nurkkauksen nimi?::nukkestudio::Täällä voit kuvata oman nukkesi!
+en::riddle::answer::hint;
+
+nukke4.jpg
+fi::Mistä maasta nämä maailman pienimmät nuket ovat kotoisin?::Meksiko::Nämä miniatyyrinuket ovat 1960-luvulta.
+en::riddle::answer::hint;
+
+nukke5.jpg
+fi::Mikä nukke tämä on?::räsynukke::R _ _ _ NUKKE
+en::riddle::answer::hint;
+
+nukke6.jpg
+fi::Minä vuonna tämä nukke on löydetty?::1968::Tämä pannumyssynukke löydettiin Haiharan kartanon vintiltä.
+en::riddle::answer::hint;
+
+nukke7.jpg
+fi::Mikä nimi tälle biskviiposliininukelle on annettu?::Mariann::M _ _ _ _ N N
+en::riddle::answer::hint;
+
+nukke8.jpg
+fi::Kuka on valmistanut nämä nuket?::Anneli Kuronen//anneli//kuronen::Nämä käsinuket ovat peräisin Haiharan nukketeatterista
+en::riddle::answer::hint;
+
+nukke9.jpg
+fi::Kuinka monta erilaista hahmoa kuuluu tähän näyttelyyn?::5000::Löydät vastauksen Nukkekekkerien toiselta sisäänkäynniltä
+en::riddle::answer::hint;
 
 &iceHockeyMuseum
 
@@ -139,3 +274,32 @@ en::riddle::answer::hint;
 jää2.jpg
 fi::Minkä SM-liigajoukkueen maalivahdin pelipaita 1940-luvulta komeilee kuvassa?::Ilves::Joukkue on kotoisin Tampereelta
 en::riddle::answer::hint;
+
+jää3.jpg
+fi::Minkä niminen malja kuvassa on?::Aurora Borealis::Se on naisten SM-sarjan voittopokaali
+en::riddle::answer::hint;
+
+jää4.jpg
+fi::Mikä kirja on kuvassa?::sääntökirja::Kirja liittyy tuomarina toimimiseen
+en::riddle::answer::hint;
+
+jää5.jpg
+fi::Kenen muistokiekko tämä on?::Pekka Rautakallio//pekka//Rautakallio::Kyseessä on suomalainen jääkiekkoilija.
+en::riddle::answer::hint;
+
+jää6.jpg
+fi::Miltä vuodelta tämä mitali on?::2006::2 0 0 _
+en::riddle::answer::hint;
+
+jää7.jpg
+fi::Minkä vuoden maailmanmestaruusjoukkuetta näkyy kuvassa?::1995::Tänä vuonna Suomi voitti ensimmäisen jääkiekon maailmanmestaruuden
+en::riddle::answer::hint;
+
+jää8.jpg
+fi::Miltä vuodelta tämä palkinto on?::2008::2 0 0 _
+en::riddle::answer::hint;
+
+jää9.jpg
+fi::Mikä jääkiekkojoukkue näkyy kuvassa?::Ässät//porin ässät::Tämä porilainen joukkue pelaa liigassa.
+en::riddle::answer::hint;
+
