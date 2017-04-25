@@ -45,10 +45,11 @@ public class RoomFinishedPopUp {
                 (Vescape.GUI_VIEWPORT_HEIGHT - panelBG.getSizeY()) / 2);
 
         Label.LabelStyle labelStyle = new Label.LabelStyle(screen.getGame().getFontBig(),
-                Color.BLACK);
-        Label roomName = new Label(
-                screen.getGame().getMyBundle().get(data.type.toString()),
-                labelStyle);
+                new Color(1f, 1f, 1f, 0.9f));
+        String roomNameString = Utilities.splitTextIntoLines(
+                screen.getGame().getMyBundle().get(data.type.toString()).toUpperCase(), 19);
+        Label roomName = new Label(roomNameString, labelStyle);
+
         roomName.setPosition(panelBG.getX() + (panelBG.getSizeX() - roomName.getWidth()) / 2,
                 panelBG.getY() + panelBG.getSizeY() - roomName.getHeight() - 50);
 
