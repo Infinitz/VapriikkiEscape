@@ -69,6 +69,10 @@ posti6.jpg
 fi::Minkä nimisessä huoneessa henkilö selvittää postin historiaa?::Postikino::Huoneen nimi lukee sen sisäänkäynnin yhteydessä
 en::What is the name of this room where you can learn about the history of finnish post office::Postikino::You can find the name at the entrance to the room;
 
+posti10.jpg
+fi::Mitä välinettä postinkuljettajat käyttivät 1850-luvulta raipan ja aisakellon lisäksi?::pistooli//pistoolia::Nämä esineet sijaitsevat postinkuljettajien läheisyydessä.
+en::What equipment postmen used in the 1850s in addition to a whip and a bell?::pistols//pistol::You can find these items near the postmen;
+
 &tammerMuseum
 
 koski1.jpg
