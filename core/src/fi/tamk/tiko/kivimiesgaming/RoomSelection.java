@@ -257,7 +257,6 @@ public class RoomSelection extends MyScreen {
         for (int i = 0; i < game.getMachineParts().length; ++i) {
             if (!game.getMachineParts()[i].unlocked) {
                 if (i > 0) {
-                    System.out.println("LADATTU " + game.getMachineParts()[i - 1].getShipImagePath());
                     timeMachineTexPath = game.getMachineParts()[i - 1].getShipImagePath();
                 } else {
                     timeMachineTexPath = "time_machine_parts/time_machine_0.png";
