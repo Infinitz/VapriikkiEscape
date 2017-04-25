@@ -393,7 +393,7 @@ public class RoomView extends MyScreen {
     }
 
     private void createNewRiddlePanel() {
-        if (currentRiddleCount == Vescape.TOTAL_RIDDLES_ROOM - 2) {
+        if (currentRiddleCount == Vescape.TOTAL_RIDDLES_ROOM - 2 && roomData.lastRiddle != null) {
             currentRiddle = roomData.lastRiddle;
         } else {
             currentRiddle = roomData.getRandomRiddle();
@@ -600,9 +600,23 @@ public class RoomView extends MyScreen {
 
     private void updateTexts() {
         answerButton.setText(getGame().getMyBundle().get("answerButton"));
-        if (riddleLabel != null) {
-            riddleLabel.setText(currentRiddle.getRiddle(
-                    getGame().getMyBundle().getLocale().getLanguage()).riddle);
+
+        String updatedRiddleText = currentRiddle.getRiddle(
+                getGame().getMyBundle().getLocale().getLanguage()).riddle;
+
+        if (riddleLabel != null &&
+                !riddleLabel.getText().toString().equalsIgnoreCase(updatedRiddleText)) {
+
+            float oldX = riddleLabel.getX();
+            float oldY = riddleLabel.getY();
+            float oldH = riddleLabel.getHeight();
+            riddleLabel.remove();
+            riddleLabel = new Label(updatedRiddleText, labelStyle);
+            riddleLabel.setPosition(
+                    oldX,
+                    oldY - riddleLabel.getHeight() + oldH );
+            riddlePanel.addActor(riddleLabel);
+
         }
     }
 

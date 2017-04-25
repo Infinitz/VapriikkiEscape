@@ -38,10 +38,10 @@ public class RoomPopUp {
                 (Vescape.GUI_VIEWPORT_HEIGHT - panelBG.getSizeY()) / 2);
 
         Label.LabelStyle labelStyle = new Label.LabelStyle(screen.getGame().getFontBig(),
-                Color.BLACK);
-        Label roomName = new Label(
-                screen.getGame().getMyBundle().get(data.type.toString()),
-                labelStyle);
+                new Color(1f, 1f, 1f, 0.9f));
+        String roomNameString = Utilities.splitTextIntoLines(
+                screen.getGame().getMyBundle().get(data.type.toString()).toUpperCase(), 19);
+        Label roomName = new Label(roomNameString, labelStyle);
         roomName.setPosition(panelBG.getX() + (panelBG.getSizeX() - roomName.getWidth()) / 2,
                 panelBG.getY() + panelBG.getSizeY() - roomName.getHeight() - 50);
 
@@ -49,7 +49,7 @@ public class RoomPopUp {
         ImageActor roomIcon = new ImageActor(data.getIconTexture(), 350);
         roomIcon.setTouchable(Touchable.disabled);
         roomIcon.setPosition(panelBG.getX() + (panelBG.getSizeX() - roomIcon.getSizeX()) / 2,
-                roomName.getY() - roomIcon.getSizeY() - 150);
+                panelBG.getY() + panelBG.getSizeY() - roomIcon.getSizeY() - 275);
 
 
         TextButton enterRoomButton;

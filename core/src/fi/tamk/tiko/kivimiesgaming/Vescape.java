@@ -31,7 +31,7 @@ public class Vescape extends Game {
 
     public static final float GUI_VIEWPORT_WIDTH = 900;
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
-    public static final int MAX_CHARS_PER_LINE = 33;
+    public static final int MAX_CHARS_PER_LINE = 29;
     public static final int MAX_CHARS_IN_ANSWER = 20;
     public static final int TOTAL_RIDDLES_ROOM = 5;
     public static final float HINT_PENALTY = 0.33f;
@@ -229,19 +229,22 @@ public class Vescape extends Game {
     }
 
     private void createStylesAndFonts() {
-        FreeTypeFontGenerator fontGen = new FreeTypeFontGenerator(Gdx.files.internal("tahoma.ttf"));
-
+        FreeTypeFontGenerator fontGen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/ITCKRIST.TTF"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter =
                 new FreeTypeFontGenerator.FreeTypeFontParameter();
 
-        parameter.size = 70;
-        parameter.shadowOffsetX = 5;
+        fontGen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/GOTHICBI.ttf"));
 
+        parameter.size = 75;
+        parameter.shadowOffsetX = 3;
+        parameter.borderColor = Color.BLACK;
+        fontBig = fontGen.generateFont(parameter);
+
+        fontGen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/GOTHICI.ttf"));
+        parameter.size = 65;
+        parameter.shadowOffsetX = 0;
         buttonFont = fontGen.generateFont(parameter);
 
-        parameter.size = 86;
-        parameter.shadowOffsetX = 5;
-        fontBig = fontGen.generateFont(parameter);
 
         parameter.size = 50;
         parameter.shadowOffsetX = 1;
