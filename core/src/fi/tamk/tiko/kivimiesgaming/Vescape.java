@@ -229,7 +229,8 @@ public class Vescape extends Game {
     }
 
     private void createStylesAndFonts() {
-        FreeTypeFontGenerator fontGen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/GOTHICBI.TTF"));
+        FreeTypeFontGenerator fontGen =
+                new FreeTypeFontGenerator(Gdx.files.internal("fonts/GOTHICBI.TTF"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter =
                 new FreeTypeFontGenerator.FreeTypeFontParameter();
 
