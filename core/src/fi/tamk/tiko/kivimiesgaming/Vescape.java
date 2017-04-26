@@ -31,7 +31,7 @@ public class Vescape extends Game {
 
     public static final float GUI_VIEWPORT_WIDTH = 900;
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
-    public static final int MAX_CHARS_PER_LINE = 29;
+    public static final int MAX_CHARS_PER_LINE = 30;
     public static final int MAX_CHARS_IN_ANSWER = 20;
     public static final int TOTAL_RIDDLES_ROOM = 5;
     public static final float HINT_PENALTY = 0.33f;
