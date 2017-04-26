@@ -79,7 +79,7 @@ en::During which century was this post route used?::1700//1700s//18th century//1
 
 posti9.jpg
 fi::Millä nimellä jatkosodan aikana tehtyjä käsitöitä kutsuttiin?:: puhdetyö//sota-ajan puhdetyö::Posti museosta löytyy osio sota-ajan postiesineille.
-en::What are these wartime hand crafted items called by?:: handicraft//wartime handicraft::You can find these near other wartime artifacts.;
+en::What are these wartime hand crafted items called by?::handicraft//wartime handicraft::You can find these near other wartime artifacts.;
 
 posti10.jpg
 fi::Mitä välinettä postinkuljettajat käyttivät 1850-luvulta raipan ja aisakellon lisäksi?::pistooli//pistoolia::Nämä esineet sijaitsevat postinkuljettajien läheisyydessä.

@@ -311,7 +311,6 @@ public class RoomView extends MyScreen {
 
         answerField.setDisabled(true);
         answerField.setText("");
-        answerButton.setDisabled(true);
 
         answerResults[currentRiddleCount].setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2,
                 3 * Vescape.GUI_VIEWPORT_HEIGHT / 2);
@@ -382,7 +381,6 @@ public class RoomView extends MyScreen {
                     public void run() {
                         oldRiddle.remove();
                         answerField.setDisabled(false);
-                        answerButton.setDisabled(false);
                         if (currentRiddleCount == Vescape.TOTAL_RIDDLES_ROOM - 1) {
                             roomCompleted();
                         }
