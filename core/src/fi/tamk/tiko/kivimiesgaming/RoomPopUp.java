@@ -63,8 +63,14 @@ public class RoomPopUp {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
-                screen.getGame().setScreen(new RoomView(
-                        screen.getGame(), data, screen.getAssetManager()));
+                if (data.type == RoomType.TUTORIAL) {
+                    screen.getGame().setScreen(new TutorialRoomView(
+                            screen.getGame(), data, screen.getAssetManager()));
+                } else {
+                    screen.getGame().setScreen(new RoomView(
+                            screen.getGame(), data, screen.getAssetManager()));
+                }
+
             }
         });
 

@@ -139,7 +139,7 @@ en::Welcome to museum Vapriikki! What is this shop called?::museokauppa::The sho
 
 tutorial2.jpg
 fi::Entäpä mikä näyttely on muiden tilojen puolella?::postimuseo//posti::Tienviitat löytyvät aulan portaiden läheisyydestä.
-en::Next, which exhibition is on the left side with the business rooms?::postimuseo//posti//postal//postal museum::The signs are near the straircase in the lobby.;
+en::Next, which exhibition is on the left side with the business rooms?::postimuseo//posti//postal//postal museum::The signs are near the straircase in the lobby.@
 
 &gameMuseum
 

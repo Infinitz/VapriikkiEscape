@@ -281,7 +281,89 @@ public class Vescape extends Game {
         roomData = new HashMap<RoomType, RoomData>();
 
         RoomData temp;
+        //1, 4, 9, 14, 21
+        /* Progress test
+        temp = new RoomData(RoomType.ROCK, 1,
+                "F1_rock.png",
+                "F1_rock_active.png",
+                "map_icons_kivi.png",
+                "bg_kivi.jpg",
+                assetManager);
+        temp.setIconLocalPosition(0.6f, 0.6f);
+        roomData.put(RoomType.ROCK, temp);
 
+        temp = new RoomData(RoomType.TAMMER, 1,
+                "F1_tammer.png",
+                "F1_tammer_active.png",
+                "map_icons_tammerkoski.png",
+                "bg_tammer.jpg",
+                assetManager);
+        temp.setIconLocalPosition(-0.5f, 0.1f);
+        roomData.put(RoomType.TAMMER, temp);
+
+        temp = new RoomData(RoomType.POSTAL, 4,
+                "F1_postal.png",
+                "F1_postal_active.png",
+                "map_icons_postal.png",
+                "bg_postal.jpg",
+                assetManager);
+        temp.setIconLocalPosition(0.5f, 0.3f);
+        roomData.put(RoomType.POSTAL, temp);
+
+        temp = new RoomData(RoomType.TUTORIAL, 0,
+                "F1_tutorial.png",
+                "F1_tutorial_active.png",
+                "map_icons_tutorial.png",
+                "bg_tutorial.jpg",
+                assetManager);
+        temp.setIconLocalPosition(0.3f, 0.15f);
+        roomData.put(RoomType.TUTORIAL, temp);
+
+        temp = new RoomData(RoomType.GAME, 21,
+                "F2_game.png",
+                "F2_game_active.png",
+                "map_icons_game.png",
+                "bg_game.jpg",
+                assetManager);
+        temp.setIconLocalPosition(0.4f, -0.2f);
+        roomData.put(RoomType.GAME, temp);
+
+        temp = new RoomData(RoomType.ICEHOCKEY, 14,
+                "F2_icehokey.png",
+                "F2_icehokey_active.png",
+                "map_icons_icehockey.png",
+                "bg_hockey.jpg",
+                assetManager);
+        temp.setIconLocalPosition(-0.4f, 0.1f);
+        roomData.put(RoomType.ICEHOCKEY, temp);
+
+        temp = new RoomData(RoomType.MEDIA, 14,
+                "F2_media.png",
+                "F2_media_active.png",
+                "map_icons_media.png",
+                "bg_media.jpg",
+                assetManager);
+        temp.setIconLocalPosition(0.3f, 0.3f);
+        roomData.put(RoomType.MEDIA, temp);
+
+        temp = new RoomData(RoomType.DOLL, 9,
+                "F2_doll.png",
+                "F2_doll_active.png",
+                "map_icons_doll.png",
+                "bg_doll.jpg",
+                assetManager);
+        temp.setIconLocalPosition(-0.4f, 0.4f);
+        roomData.put(RoomType.DOLL, temp);
+
+        temp = new RoomData(RoomType.NATURE, 9,
+                "F2_nature.png",
+                "F2_nature_active.png",
+                "map_icons_nature.png",
+                "bg_nature.jpg",
+                assetManager);
+        temp.setIconLocalPosition(0.15f, 0.3f);
+        roomData.put(RoomType.NATURE, temp);
+        */
         temp = new RoomData(RoomType.ROCK, 1,
                 "F1_rock.png",
                 "F1_rock_active.png",
@@ -362,6 +444,8 @@ public class Vescape extends Game {
                         assetManager);
         temp.setIconLocalPosition(0.15f, 0.3f);
         roomData.put(RoomType.NATURE, temp);
+
+
     }
 
     private void loadRiddles() {

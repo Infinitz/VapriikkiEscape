@@ -22,6 +22,8 @@ import com.badlogic.gdx.utils.Align;
 
 public class RoomView extends MyScreen {
 
+    protected int riddlesInRoom = 0;
+
     private RoomData roomData;
     private Riddle currentRiddle;
 
@@ -92,6 +94,8 @@ public class RoomView extends MyScreen {
 
         labelStyle = new Label.LabelStyle(getGame().getRiddleFont(),
                 Color.BLACK);
+
+        riddlesInRoom = Vescape.TOTAL_RIDDLES_ROOM;
     }
 
     @Override
@@ -147,8 +151,8 @@ public class RoomView extends MyScreen {
         stage.setKeyboardFocus(answerField);
 
 
-        answerResultSlots = new ImageActor[Vescape.TOTAL_RIDDLES_ROOM];
-        answerResults = new ImageActor[Vescape.TOTAL_RIDDLES_ROOM];
+        answerResultSlots = new ImageActor[riddlesInRoom];
+        answerResults = new ImageActor[riddlesInRoom];
         float answerSlotSpace = 20;
         for (int i = 0; i < answerResultSlots.length; ++i) {
             answerResultSlots[i] = new ImageActor(emptyAnswerTex, 100);
@@ -295,15 +299,16 @@ public class RoomView extends MyScreen {
                 getGame().getMyBundle().getLocale().getLanguage()).isCorrectAnswer(playerAnswer);
 
         if (correctAnswer) {
+            ++currentRiddleCount;
             correctAnswerCount++;
             if (hintUsed) {
                 hintsUsedCount++;
                 //AudioManager.playSound("answer_right.wav");
-                answerResults[currentRiddleCount] =
+                answerResults[currentRiddleCount - 1] =
                         new ImageActor(correctAnswerTex, answerResultSlots[0].getSizeY());
             } else {
                 AudioManager.playSound("answer_perfect.wav");
-                answerResults[currentRiddleCount] =
+                answerResults[currentRiddleCount - 1] =
                         new ImageActor(perfectAnswerTex, answerResultSlots[0].getSizeY());
             }
         } else if (!hintUsed){
@@ -313,8 +318,9 @@ public class RoomView extends MyScreen {
 
             return;
         } else {
+            ++currentRiddleCount;
             AudioManager.playSound("answer_wrong.wav");
-            answerResults[currentRiddleCount] =
+            answerResults[currentRiddleCount - 1] =
                     new ImageActor(wrongAnswerTex, answerResultSlots[0].getSizeY());
         }
 
@@ -327,17 +333,17 @@ public class RoomView extends MyScreen {
         answerField.setDisabled(true);
         answerField.setText("");
 
-        answerResults[currentRiddleCount].setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2,
+        answerResults[currentRiddleCount - 1].setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2,
                 3 * Vescape.GUI_VIEWPORT_HEIGHT / 2);
-        answerResults[currentRiddleCount].setScale(10f);
-        getStage().addActor(answerResults[currentRiddleCount]);
-        answerResults[currentRiddleCount].addAction(Actions.sequence(
+        answerResults[currentRiddleCount - 1].setScale(10f);
+        getStage().addActor(answerResults[currentRiddleCount - 1]);
+        answerResults[currentRiddleCount - 1].addAction(Actions.sequence(
                 Actions.parallel(
                         Actions.moveTo(
                                 Vescape.GUI_VIEWPORT_WIDTH / 2 -
-                                        answerResults[currentRiddleCount].getSizeX() / 2,
+                                        answerResults[currentRiddleCount - 1].getSizeX() / 2,
                                 Vescape.GUI_VIEWPORT_HEIGHT / 2 -
-                                        answerResults[currentRiddleCount].getSizeY() / 2, 0.3f,
+                                        answerResults[currentRiddleCount - 1].getSizeY() / 2, 0.3f,
                                 Interpolation.pow2),
                         Actions.scaleTo(3.5f, 3.5f, 0.6f, Interpolation.bounceOut),
                         Actions.rotateTo(((float)Math.random() - 0.5f) * 25f, 0.35f),
@@ -360,8 +366,8 @@ public class RoomView extends MyScreen {
                     }
                 }),
                 Actions.parallel(
-                        Actions.moveTo(answerResultSlots[currentRiddleCount].getX(),
-                                answerResultSlots[currentRiddleCount].getY(),
+                        Actions.moveTo(answerResultSlots[currentRiddleCount - 1].getX(),
+                                answerResultSlots[currentRiddleCount - 1].getY(),
                                 0.75f, Interpolation.pow2),
                         Actions.scaleTo(1, 1, 0.5f),
                         Actions.rotateTo(0, 0.5f)
@@ -384,7 +390,7 @@ public class RoomView extends MyScreen {
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {
-                                if (currentRiddleCount == Vescape.TOTAL_RIDDLES_ROOM - 1) {
+                                if (currentRiddleCount == riddlesInRoom) {
                                     return;
                                 }
                                 createNewPanelWithAnimation(animLength);
@@ -395,11 +401,11 @@ public class RoomView extends MyScreen {
                     @Override
                     public void run() {
                         oldRiddle.remove();
+                        System.out.println(currentRiddleCount);
                         answerField.setDisabled(false);
-                        if (currentRiddleCount == Vescape.TOTAL_RIDDLES_ROOM - 1) {
+                        if (currentRiddleCount == riddlesInRoom) {
                             roomCompleted();
                         }
-                        ++currentRiddleCount;
                     }
                 })
         ));
@@ -421,7 +427,7 @@ public class RoomView extends MyScreen {
     }
 
     private void createNewRiddlePanel() {
-        if (currentRiddleCount == Vescape.TOTAL_RIDDLES_ROOM - 2 && roomData.lastRiddle != null) {
+        if (currentRiddleCount == riddlesInRoom - 1 && roomData.lastRiddle != null) {
             currentRiddle = roomData.lastRiddle;
         } else {
             currentRiddle = roomData.getRandomRiddle();
@@ -464,7 +470,7 @@ public class RoomView extends MyScreen {
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
                 Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 
-            if (currentRiddleCount == Vescape.TOTAL_RIDDLES_ROOM) {
+            if (currentRiddleCount == riddlesInRoom) {
                 getGame().setScreen(new RoomSelection(
                         getGame(), assetManager));
             } else if (keyboardEnabled) {
@@ -581,7 +587,7 @@ public class RoomView extends MyScreen {
         if (enabled) {
             touchDetector.setPosition(0, 0);
 
-            for (int i = 0; i < Vescape.TOTAL_RIDDLES_ROOM; ++i) {
+            for (int i = 0; i < riddlesInRoom; ++i) {
                 answerResultSlots[i].remove();
                 stage.addActor(answerResultSlots[i]);
                 if (answerResults[i] != null) {
@@ -616,7 +622,7 @@ public class RoomView extends MyScreen {
 
     private void roomCompleted() {
         float rawScore = (float) correctAnswerCount - hintsUsedCount * Vescape.HINT_PENALTY + 0.33f;
-        int score = Math.round((rawScore / Vescape.TOTAL_RIDDLES_ROOM) * 3);
+        int score = Math.round((rawScore / riddlesInRoom) * 3);
         roomData.latestScore = score;
 
         new RoomFinishedPopUp(this, roomData);

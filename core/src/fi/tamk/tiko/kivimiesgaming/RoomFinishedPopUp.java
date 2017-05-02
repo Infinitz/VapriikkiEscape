@@ -78,8 +78,13 @@ public class RoomFinishedPopUp {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
-                screen.getGame().setScreen(
-                        new RoomView(screen.getGame(), data, screen.getAssetManager()));
+                if (data.type == RoomType.TUTORIAL) {
+                    screen.getGame().setScreen(new TutorialRoomView(
+                            screen.getGame(), data, screen.getAssetManager()));
+                } else {
+                    screen.getGame().setScreen(new RoomView(
+                            screen.getGame(), data, screen.getAssetManager()));
+                }
             }
         });
 
@@ -125,12 +130,14 @@ public class RoomFinishedPopUp {
             int temp = data.latestScore - data.highscore;
             data.highscore = data.latestScore;
             progressBar.animatedStepProgress(temp);
+            Vescape.lastTotalStars += temp;
         }
 
         screen.getStage().addActor(screenDarkener);
         screenDarkener.setTouchable(Touchable.enabled);
         screen.getStage().addActor(elements);
         AudioManager.playSound("panel_open.wav");
+
     }
 
     public void dispose() {
