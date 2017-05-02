@@ -57,7 +57,7 @@ public class RoomSelection extends MyScreen {
             game.getRoomData(t).loadTextures();
             totalStars += game.getRoomData(t).highscore;
         }
-        totalStars = 100; ///////////////
+
         for (RoomType t : RoomType.values()) {
             boolean locked = totalStars < game.getRoomData(t).starsToUnlock;
             boolean unlockAnimation = game.getRoomData(t).isLocked != locked;

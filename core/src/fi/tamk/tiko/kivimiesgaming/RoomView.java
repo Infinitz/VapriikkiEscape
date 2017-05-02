@@ -163,7 +163,8 @@ public class RoomView extends MyScreen {
 
         answerButton = new TextButton(getGame().getMyBundle().get("answerButton"),
                 getGame().getTextButtonStyle());
-
+        answerButton.setDisabled(true);
+        answerButton.setColor(0.2f, 0f, 0.2f, 0.5f);
         answerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -172,12 +173,26 @@ public class RoomView extends MyScreen {
                     enableKeyboard(false);
                 }
                 answer(answerField.getText());
+                answerField.setText("");
+                answerButton.setDisabled(true);
+                answerButton.setColor(0.2f, 0f, 0.2f, 0.5f);
             }
         });
         answerButton.setSize(Vescape.GUI_VIEWPORT_WIDTH / 2, 175);
         answerButton.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - answerButton.getWidth() / 2,
                 0);
-
+        answerField.setTextFieldListener(new TextField.TextFieldListener() {
+            @Override
+            public void keyTyped(TextField textField, char c) {
+                if (textField.getText().length() == 0) {
+                    answerButton.setDisabled(true);
+                    answerButton.setColor(0.2f, 0f, 0.2f, 0.5f);
+                } else {
+                    answerButton.setDisabled(false);
+                    answerButton.setColor(1, 1, 1, 1f);
+                }
+            }
+        });
 
         hintPanel = new Group();
         hintPanelBG = new ImageActor(
@@ -296,7 +311,6 @@ public class RoomView extends MyScreen {
 
         answerField.setDisabled(true);
         answerField.setText("");
-        answerButton.setDisabled(true);
 
         answerResults[currentRiddleCount].setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2,
                 3 * Vescape.GUI_VIEWPORT_HEIGHT / 2);
@@ -367,7 +381,6 @@ public class RoomView extends MyScreen {
                     public void run() {
                         oldRiddle.remove();
                         answerField.setDisabled(false);
-                        answerButton.setDisabled(false);
                         if (currentRiddleCount == Vescape.TOTAL_RIDDLES_ROOM - 1) {
                             roomCompleted();
                         }

@@ -39,7 +39,7 @@ public class RoomButton extends SelectableButton {
         } else {
             setTouchable(Touchable.disabled);
             lock = new ImageActor(assetManager.get("map_lock.png", Texture.class), 100f);
-
+            roomIcon.setColor(0.7f, 0.7f, 0.7f, 1f);
             roomElements.addActor(lock);
         }
     }
@@ -131,6 +131,7 @@ public class RoomButton extends SelectableButton {
                                         @Override
                                         public void run() {
                                             setTex(roomData.getUnlockedTexture());
+                                            roomIcon.setColor(1, 1, 1, 1);
                                             setTouchable(Touchable.enabled);
                                             roomData.unlockAnimation = false;
                                             Stars s = new Stars(
