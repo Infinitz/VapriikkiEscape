@@ -342,6 +342,7 @@ public class RoomSelection extends MyScreen {
 
                                                         timeMachineButton.addAction(Actions.scaleTo(1, 1, 0.5f));
                                                         screenDarkener.enable(false);
+                                                        burgerButton.reAddElementsToStage();
                                                         for (int i = 0; i < roomButtons.size(); ++i) {
                                                             roomButtons.get(i).unlockAnimation();
                                                         }
