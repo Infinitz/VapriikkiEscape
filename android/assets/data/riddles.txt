@@ -135,7 +135,11 @@ en::What are the last three numbers in the car’s license plate?::408::The car 
 
 tutoriaali1.jpg
 fi::Tervetuloa Vapriikkiin! Mikähän on tämän aulasta löytyvän puodin nimi?::museokauppa::Puoti löytyy heti pääovien vierestä
-en::riddle::answer::hint;
+en::Welcome to museum Vapriikki! What is this shop called?::museokauppa::The shop can be found right next to the entrance.;
+
+tutorial2.jpg
+fi::Entäpä mikä näyttely on muiden tilojen puolella?::postimuseo::Tienviitat löytyvät aulan portaiden läheisyydestä.
+en::Next, which exhibition is on the left side with the business rooms?::postimuseo::The signs are near the straircase in the lobby.;
 
 &gameMuseum
 
