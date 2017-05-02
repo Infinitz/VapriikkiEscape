@@ -22,6 +22,7 @@ public class ImageActor extends Actor {
 
     public boolean renderEnabled = true;
     public float alpha = 1.0f;
+    public boolean originCenter = true;
 
     private ChangeListener listener;
 
@@ -30,6 +31,7 @@ public class ImageActor extends Actor {
 
     private float aspectRatio = 1.0f;
     private float size = 1.0f;
+
 
     public ImageActor(Texture texture) {
         this(texture, texture.getHeight());
@@ -123,9 +125,14 @@ public class ImageActor extends Actor {
             Color c = batch.getColor();
             batch.setColor(getColor().r * c.r, getColor().g * c.g, getColor().b * c.b,
                     getColor().a * c.a * this.alpha);
+            float oX = 0, oY = 0;
+            if (originCenter) {
+                oX = getSizeX() / 2;
+                oY = getSizeY() / 2;
+            }
             batch.draw(textureRegion, getX(), getY(),
-                    getSizeX() / 2,
-                    getSizeY() / 2,
+                    oX,
+                    oY,
                     getSizeX(), getSizeY(), getScaleX(), getScaleY(),
                     getRotation());
             batch.setColor(c.r, c.g, c.b, 1);

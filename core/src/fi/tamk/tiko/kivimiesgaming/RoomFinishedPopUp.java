@@ -95,12 +95,19 @@ public class RoomFinishedPopUp {
                 panelBG.getY() + offsetY);
         continueButton.setSize(buttonSize);
 
+
+        GameProgressBar progressBar = new GameProgressBar(0, 0, 140, screen.getAssetManager(),
+                screen.getGame());
+        progressBar.setX(Vescape.GUI_VIEWPORT_WIDTH / 2 - progressBar.getWidth() / 2);
+        progressBar.setY(panelBG.getY() - progressBar.getHeight() - 50);
+
+
         elements.addActor(panelBG);
         elements.addActor(replayButton);
         elements.addActor(continueButton);
         elements.addActor(roomName);
         elements.addActor(roomIcon);
-
+        elements.addActor(progressBar.getGroup());
 
         Vescape.setGroupOrigin(elements,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
@@ -113,6 +120,12 @@ public class RoomFinishedPopUp {
 
         elements.setScaleY(0);
         elements.addAction(Actions.scaleTo(1, 1, 0.4f, Interpolation.pow2));
+
+        if(data.latestScore > data.highscore) {
+            int temp = data.latestScore - data.highscore;
+            data.highscore = data.latestScore;
+            progressBar.animatedStepProgress(temp);
+        }
 
         screen.getStage().addActor(screenDarkener);
         screenDarkener.setTouchable(Touchable.enabled);

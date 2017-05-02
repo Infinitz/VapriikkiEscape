@@ -10,12 +10,16 @@ public class MachinePart {
     private int starsToUnlock;
     private String partImagePath;
     private String shipImagePath;
+    public float offsetX, offsetY;
 
-    public MachinePart(int starsToUnlock, int totalStars, String partImagePath, String shipImagePath) {
+    public MachinePart(int starsToUnlock, int totalStars, String partImagePath,
+                       String shipImagePath, float offsetX, float offsetY) {
         this.starsToUnlock = starsToUnlock;
         this.unlocked = starsToUnlock <= totalStars;
         this.partImagePath = partImagePath;
         this.shipImagePath = shipImagePath;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
     }
 
     public String getShipImagePath() {

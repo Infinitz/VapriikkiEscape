@@ -181,6 +181,21 @@ public class RoomView extends MyScreen {
         answerButton.setSize(Vescape.GUI_VIEWPORT_WIDTH / 2, 175);
         answerButton.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - answerButton.getWidth() / 2,
                 0);
+
+        // Just for testing
+        TextButton rightAnswerButton = new TextButton("",
+                getGame().getTextButtonStyle());
+        rightAnswerButton.setSize(Vescape.GUI_VIEWPORT_WIDTH / 4, 175);
+        rightAnswerButton.setPosition(0, 0);
+        rightAnswerButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                answer(currentRiddle.getRiddle(
+                        getGame().getMyBundle().getLocale().getLanguage()).getAnswer());
+            }
+        });
+
+
         answerField.setTextFieldListener(new TextField.TextFieldListener() {
             @Override
             public void keyTyped(TextField textField, char c) {
@@ -258,7 +273,7 @@ public class RoomView extends MyScreen {
         answerButton.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
 
 
-
+        stage.addActor(rightAnswerButton);
         stage.addActor(answerFieldBG);
         stage.addActor(answerButton);
         burgerButton = new BurgerButton(this);
@@ -603,9 +618,6 @@ public class RoomView extends MyScreen {
         float rawScore = (float) correctAnswerCount - hintsUsedCount * Vescape.HINT_PENALTY + 0.33f;
         int score = Math.round((rawScore / Vescape.TOTAL_RIDDLES_ROOM) * 3);
         roomData.latestScore = score;
-        if (roomData.latestScore > roomData.highscore) {
-            roomData.highscore = roomData.latestScore;
-        }
 
         new RoomFinishedPopUp(this, roomData);
         getGame().saveScores();

@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
@@ -13,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
@@ -29,6 +32,7 @@ public class RoomSelection extends MyScreen {
 
     private ArrayList<RoomButton> roomButtons;
 
+    private GameProgressBar progressBar;
     private ImageActor changeFloorButtonUp;
     private ImageActor changeFloorButtonDown;
     private boolean isDownStairs = true;
@@ -37,9 +41,7 @@ public class RoomSelection extends MyScreen {
     private RoomPopUp roomPopUp;
     private RoomButton selected;
     private BurgerButton burgerButton;
-
     private ArrayList<String> loadedShipMachineTextures;
-
 
     private int totalStars = 0;
 
@@ -50,13 +52,20 @@ public class RoomSelection extends MyScreen {
         assetManager.load("F2_postal.png", Texture.class);
         assetManager.load("map_lock.png", Texture.class);
         assetManager.load("map_lock_unlocked.png", Texture.class);
+        assetManager.load("proggbar_back.png", Texture.class);
+        assetManager.load("proggbar_border.png", Texture.class);
+        assetManager.load("proggbar_fill.png", Texture.class);
+        assetManager.load("proggbar_marker.png", Texture.class);
 
         assetManager.load("unlock_lock.wav", Sound.class);
 
+        totalStars = 0;
         for (RoomType t : RoomType.values()) {
             game.getRoomData(t).loadTextures();
             totalStars += game.getRoomData(t).highscore;
         }
+
+        Vescape.lastTotalStars = totalStars;
 
         for (RoomType t : RoomType.values()) {
             boolean locked = totalStars < game.getRoomData(t).starsToUnlock;
@@ -95,6 +104,10 @@ public class RoomSelection extends MyScreen {
 
         stage.addActor(bg);
 
+        progressBar = new GameProgressBar(0, 0, 140, getAssetManager(), getGame());
+        progressBar.setX(Vescape.GUI_VIEWPORT_WIDTH / 2 - progressBar.getWidth() / 2);
+        progressBar.setY(Vescape.GUI_VIEWPORT_HEIGHT - progressBar.getHeight() - 50);
+
         roomButtons = new ArrayList<RoomButton>();
         floor1 = createFloor1();
         stage.addActor(floor1);
@@ -103,78 +116,18 @@ public class RoomSelection extends MyScreen {
         floor2.setPosition(floor2.getX(), floor2.getY() + Vescape.GUI_VIEWPORT_HEIGHT);
         stage.addActor(floor2);
         createChangeFloorButtons();
+        stage.addActor(progressBar.getGroup());
         burgerButton = new BurgerButton(this);
+
+
 
         Vescape.setGroupOrigin(floor1,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
         Vescape.setGroupOrigin(floor2,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
 
-        float animationDelay = 0.25f;
-        float animDuration = 1f;
 
-        for (int i = 0; i < game.getMachineParts().length; ++i) {
-            if (totalStars < game.getMachineParts()[i].getStarsToUnlock()) {
-                break;
-            }
 
-            if (!game.getMachineParts()[i].unlocked) {
-                final MachinePart machinePart = game.getMachineParts()[i];
-                final ImageActor partActor = new ImageActor(
-                        assetManager.get(machinePart.getPartImagePath(), Texture.class),
-                        500);
-                partActor.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - partActor.getSizeX() / 2,
-                        Vescape.GUI_VIEWPORT_HEIGHT);
-                stage.addActor(partActor);
-                partActor.addAction(Actions.sequence(
-                        Actions.delay(animDuration * 1.1f),
-                        Actions.parallel(
-                                Actions.moveTo(
-                                        timeMachineButton.getX() - timeMachineButton.getSizeX() / 2,
-                                        timeMachineButton.getY() - timeMachineButton.getSizeY() / 2,
-                                        1.25f, Interpolation.bounceOut),
-                                Actions.scaleTo(0, 0, 1.5f, Interpolation.pow2)
-                        ),
-                        Actions.run(new Runnable() {
-                            @Override
-                            public void run() {
-                                partActor.remove();
-                                timeMachineButton.setTex(
-                                        assetManager.get(machinePart.getShipImagePath(),
-                                                Texture.class));
-                                for (int i = 0; i < roomButtons.size(); ++i) {
-                                    roomButtons.get(i).unlockAnimation();
-                                }
-                            }
-                        })
-                        ));
-
-                game.getMachineParts()[i].unlocked = true;
-                break;
-            }
-        }
-
-        floor1.setScale(0f);
-        floor2.setScale(0f);
-        timeMachineButton.setScale(0f);
-
-        bg.addAction(Actions.sequence(
-                Actions.delay(animationDelay),
-                Actions.scaleBy(0.25f, 0.25f,
-                        animDuration, Interpolation.pow2Out)));
-
-        floor1.addAction(Actions.sequence(
-                Actions.delay(animationDelay),
-                Actions.scaleTo(1f, 1f,
-                        animDuration, Interpolation.pow2Out)));
-        floor2.addAction(Actions.sequence(
-                Actions.delay(animationDelay),
-                Actions.scaleTo(1f, 1f,
-                        animDuration, Interpolation.pow2Out)));
-        timeMachineButton.addAction(Actions.sequence(
-                Actions.delay(animationDelay),
-                Actions.scaleTo(1f, 1f,
-                        animDuration, Interpolation.pow2Out)));
 
         InputProcessor inputProcessorOne = new SimpleDirectionGestureDetector(
                 new SimpleDirectionGestureDetector.DirectionListener() {
@@ -208,6 +161,10 @@ public class RoomSelection extends MyScreen {
         inputMultiplexer.addProcessor(stage);
         Gdx.input.setInputProcessor(inputMultiplexer);
 
+
+        if (!newMachinePart()) {
+            transition();
+        }
     }
 
     public void createChangeFloorButtons() {
@@ -299,6 +256,111 @@ public class RoomSelection extends MyScreen {
         if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
             game.setScreen(new MainMenu(game, assetManager));
         }
+    }
+
+    private void transition() {
+        float animationDelay = 0.25f;
+        float animDuration = 1f;
+
+        floor1.setScale(0f);
+        floor2.setScale(0f);
+        timeMachineButton.setScale(0f);
+
+        bg.addAction(Actions.sequence(
+                Actions.delay(animationDelay),
+                Actions.scaleBy(0.25f, 0.25f,
+                        animDuration, Interpolation.pow2Out)));
+
+        floor1.addAction(Actions.sequence(
+                Actions.delay(animationDelay),
+                Actions.scaleTo(1f, 1f,
+                        animDuration, Interpolation.pow2Out)));
+        floor2.addAction(Actions.sequence(
+                Actions.delay(animationDelay),
+                Actions.scaleTo(1f, 1f,
+                        animDuration, Interpolation.pow2Out)));
+        timeMachineButton.addAction(Actions.sequence(
+                Actions.delay(animationDelay),
+                Actions.scaleTo(1f, 1f,
+                        animDuration, Interpolation.pow2Out)));
+    }
+
+    //Check if new machinepart is awarded
+    private boolean newMachinePart() {
+        for (int i = 0; i < game.getMachineParts().length; ++i) {
+            if (totalStars < game.getMachineParts()[i].getStarsToUnlock()) {
+                break;
+            }
+
+            if (!game.getMachineParts()[i].unlocked) {
+                final ScreenDarkener screenDarkener = new ScreenDarkener(
+                        assetManager.get("black.png", Texture.class));
+                stage.addActor(screenDarkener);
+                screenDarkener.enable(true);
+
+                final MachinePart machinePart = game.getMachineParts()[i];
+                final ImageActor partActor = new ImageActor(
+                        assetManager.get(machinePart.getPartImagePath(), Texture.class),
+                        150);
+                partActor.originCenter = false;
+                partActor.setPosition(2 * Vescape.GUI_VIEWPORT_WIDTH / 3 - partActor.getSizeX() / 2,
+                        Vescape.GUI_VIEWPORT_HEIGHT / 4 - partActor.getSizeY() / 2);
+                timeMachineButton.remove();
+
+                stage.addActor(timeMachineButton);
+                stage.addActor(partActor);
+                timeMachineButton.originCenter = false;
+                timeMachineButton.addAction(Actions.sequence(
+                        Actions.scaleTo(2, 2, 0.5f, Interpolation.pow2),
+                        Actions.run(new Runnable() {
+                            @Override
+                            public void run() {
+                                screenDarkener.setClickListener(new ChangeListener() {
+                                    @Override
+                                    public void changed(ChangeEvent event, Actor actor) {
+                                        //Part To Machine Actions
+                                        partActor.addAction(Actions.sequence(
+                                                Actions.parallel(
+                                                        Actions.moveTo(
+                                                                timeMachineButton.getX() +
+                                                                        timeMachineButton.getTrueX() *
+                                                                                machinePart.offsetX * 2,
+                                                                timeMachineButton.getY() +
+                                                                        timeMachineButton.getTrueY() *
+                                                                                machinePart.offsetY * 2,
+                                                                1.25f, Interpolation.pow2),
+                                                        Actions.scaleTo(0.9f, 0.9f, 1f, Interpolation.pow2)
+                                                ),
+                                                Actions.run(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        partActor.remove();
+
+                                                        timeMachineButton.setTex(
+                                                                assetManager.get(machinePart.getShipImagePath(),
+                                                                        Texture.class));
+
+                                                        timeMachineButton.addAction(Actions.scaleTo(1, 1, 0.5f));
+                                                        screenDarkener.enable(false);
+                                                        for (int i = 0; i < roomButtons.size(); ++i) {
+                                                            roomButtons.get(i).unlockAnimation();
+                                                        }
+                                                    }
+                                                })
+                                        ));
+
+                                    }
+                                });
+                            }
+                        })
+
+                ));
+
+                game.getMachineParts()[i].unlocked = true;
+                return true;
+            }
+        }
+        return false;
     }
 
     private Group createFloor1() {

@@ -26,4 +26,8 @@ public class RiddleTexts {
         }
         return false;
     }
+
+    public String getAnswer() {
+        return answers[0];
+    }
 }
