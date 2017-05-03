@@ -59,7 +59,7 @@ public class GameProgressBar {
 
         starImage.setPosition(progressBar.getWidth(), 0);
 
-        starsToNextThresholdLabel = new Label(Integer.toString(starsToNextUnlock(0) -
+        starsToNextThresholdLabel = new Label(Integer.toString(starsToNextUnlock(0, true) -
                 Vescape.lastTotalStars),
                 new Label.LabelStyle(game.getFontBig(),
                         new Color(0.3f, 0.3f, 0.3f, 0.7f)));
@@ -77,7 +77,7 @@ public class GameProgressBar {
         if (progressBar.getFillAmount() >= thresholds.get(0).value) {
             reachedThreshold();
         }
-        starsToNextThresholdLabel.setText(Integer.toString(starsToNextUnlock(count) -
+        starsToNextThresholdLabel.setText(Integer.toString(starsToNextUnlock(count, false) -
                 Vescape.lastTotalStars - count));
     }
 
@@ -101,7 +101,7 @@ public class GameProgressBar {
         ));
     }
 
-    private int starsToNextUnlock(int additional) {
+    private int starsToNextUnlock(int additional, boolean addThresholds) {
         boolean first = true;
         int stars = 0;
         for (int i = 0; i < game.getMachineParts().length; ++i) {
@@ -110,9 +110,14 @@ public class GameProgressBar {
                     stars = game.getMachineParts()[i].getStarsToUnlock();
                     first = !first;
                 }
-                addTreshold((float)game.getMachineParts()[i].getStarsToUnlock() /
-                        game.getMaxStars());
+                if (addThresholds) {
+                    addTreshold((float)game.getMachineParts()[i].getStarsToUnlock() /
+                            game.getMaxStars());
+                }
             }
+        }
+        if (first) {
+            return game.getMaxStars();
         }
         return stars;
     }

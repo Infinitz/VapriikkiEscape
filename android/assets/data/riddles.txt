@@ -97,7 +97,7 @@ en::riddle::answer::hint;
 
 koski3.jpg
 fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen//Juice::Henkilö on jo edesmennyt suomalainen tunnettu muusikko
-en::Who is playing the guitar in the picture?::Juice Leskinen::The person was a famous finnish musician.;
+en::Who is playing the guitar in the picture?::Juice Leskinen//Juice::The person was a famous finnish musician.;
 
 koski4.jpg
 fi::Miltä vuodelta kuvassa näkyvä Josef Konsénin vaaka on?::1870::Etsi vaaka ja tutki ympäristöä tarkemmin!

@@ -319,6 +319,7 @@ public class RoomSelection extends MyScreen {
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {
+
                                 screenDarkener.setClickListener(new ChangeListener() {
                                     @Override
                                     public void changed(ChangeEvent event, Actor actor) {
@@ -326,12 +327,10 @@ public class RoomSelection extends MyScreen {
                                         partActor.addAction(Actions.sequence(
                                                 Actions.parallel(
                                                         Actions.moveTo(
-                                                                timeMachineButton.getX() +
-                                                                        timeMachineButton.getTrueX() *
-                                                                                machinePart.offsetX * 2,
-                                                                timeMachineButton.getY() +
-                                                                        timeMachineButton.getTrueY() *
-                                                                                machinePart.offsetY * 2,
+                                                                timeMachineButton.getTrueX() +
+                                                                        timeMachineButton.getSizeX() * machinePart.offsetX * 2,
+                                                                timeMachineButton.getTrueY() +
+                                                                        timeMachineButton.getSizeY() * machinePart.offsetY * 2,
                                                                 1.25f, Interpolation.pow2),
                                                         Actions.scaleTo(0.9f, 0.9f, 1f, Interpolation.pow2)
                                                 ),

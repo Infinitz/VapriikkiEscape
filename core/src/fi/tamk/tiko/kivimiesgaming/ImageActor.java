@@ -142,7 +142,7 @@ public class ImageActor extends Actor {
 
     public float getTrueX() {
         Actor temp = this;
-        float coordX = super.getX();
+        float coordX = getX();
         while (temp.getParent() != null) {
             coordX += temp.getParent().getX();
             temp = temp.getParent();
@@ -152,7 +152,7 @@ public class ImageActor extends Actor {
 
     public float getTrueY() {
         Actor temp = this;
-        float coordY = super.getY();
+        float coordY = getY();
         while (temp.getParent() != null) {
             coordY += temp.getParent().getY();
             temp = temp.getParent();

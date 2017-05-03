@@ -138,13 +138,14 @@ public class RoomFinishedPopUp {
                             @Override
                             public void run() {
                                 progressBar.animatedStepProgress(1);
+                                ++Vescape.lastTotalStars;
                             }
                         })
                 )));
             }
 
 
-            Vescape.lastTotalStars += temp;
+
         }
 
         screen.getStage().addActor(screenDarkener);
