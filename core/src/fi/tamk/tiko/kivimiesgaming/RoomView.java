@@ -401,7 +401,7 @@ public class RoomView extends MyScreen {
                     @Override
                     public void run() {
                         oldRiddle.remove();
-                        System.out.println(currentRiddleCount);
+
                         answerField.setDisabled(false);
                         if (currentRiddleCount == riddlesInRoom) {
                             roomCompleted();

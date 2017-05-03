@@ -101,7 +101,7 @@ public class RoomFinishedPopUp {
         continueButton.setSize(buttonSize);
 
 
-        GameProgressBar progressBar = new GameProgressBar(0, 0, 140, screen.getAssetManager(),
+        final GameProgressBar progressBar = new GameProgressBar(0, 0, 200, screen.getAssetManager(),
                 screen.getGame());
         progressBar.setX(Vescape.GUI_VIEWPORT_WIDTH / 2 - progressBar.getWidth() / 2);
         progressBar.setY(panelBG.getY() - progressBar.getHeight() - 50);
@@ -127,9 +127,23 @@ public class RoomFinishedPopUp {
         elements.addAction(Actions.scaleTo(1, 1, 0.4f, Interpolation.pow2));
 
         if(data.latestScore > data.highscore) {
-            int temp = data.latestScore - data.highscore;
+            final int temp = data.latestScore - data.highscore;
             data.highscore = data.latestScore;
-            progressBar.animatedStepProgress(temp);
+
+            float delay = 0.9f;
+            for (int i = 0; i < temp; ++i) {
+                elements.addAction(Actions.sequence(
+                        Actions.delay(delay * (i + 1) + 0.65f,
+                        Actions.run(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.animatedStepProgress(1);
+                            }
+                        })
+                )));
+            }
+
+
             Vescape.lastTotalStars += temp;
         }
 

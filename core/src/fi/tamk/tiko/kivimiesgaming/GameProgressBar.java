@@ -55,7 +55,7 @@ public class GameProgressBar {
         }
 
         starImage = new ImageActor(assets.get("star_full.png", Texture.class),
-                3 * progressBar.getHeight() / 4);
+                120);
 
         starImage.setPosition(progressBar.getWidth(), 0);
 
@@ -63,7 +63,7 @@ public class GameProgressBar {
                 Vescape.lastTotalStars),
                 new Label.LabelStyle(game.getFontBig(),
                         new Color(0.3f, 0.3f, 0.3f, 0.7f)));
-        starsToNextThresholdLabel.setPosition(progressBar.getWidth() + starImage.getSizeX() * 0.25f,
+        starsToNextThresholdLabel.setPosition(progressBar.getWidth() + starImage.getSizeX() * 0.3f,
                 0.1f * starImage.getSizeY());
 
         group.addActor(starImage);
@@ -77,8 +77,6 @@ public class GameProgressBar {
         if (progressBar.getFillAmount() >= thresholds.get(0).value) {
             reachedThreshold();
         }
-        System.out.println(starsToNextUnlock(count) -
-                Vescape.lastTotalStars);
         starsToNextThresholdLabel.setText(Integer.toString(starsToNextUnlock(count) -
                 Vescape.lastTotalStars - count));
     }
@@ -90,6 +88,7 @@ public class GameProgressBar {
         thresholdActor.setPosition(
                 MathUtils.lerp(0, progressBar.getWidth(), threshold),
                 0.05f * progressBar.getHeight());
+        thresholdActor.setX(thresholdActor.getX() - thresholdActor.getSizeX() / 2);
         thresholds.add(thresholdActor);
         group.addActor(thresholdActor);
     }
