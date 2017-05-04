@@ -277,7 +277,7 @@ public class RoomView extends MyScreen {
         answerButton.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
 
 
-        stage.addActor(rightAnswerButton);
+        //stage.addActor(rightAnswerButton);
         stage.addActor(answerFieldBG);
         stage.addActor(answerButton);
         burgerButton = new BurgerButton(this);
