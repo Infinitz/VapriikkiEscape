@@ -315,7 +315,6 @@ public class RoomSelection extends MyScreen {
                                 Actions.scaleTo(2, 2, 0.5f, Interpolation.pow2),
                                 Actions.moveBy(-150, -150, 0.5f, Interpolation.pow2)
                         ),
-
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {
