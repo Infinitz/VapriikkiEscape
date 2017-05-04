@@ -74,11 +74,16 @@ public class GameProgressBar {
 
     public void animatedStepProgress(int count) {
         progressBar.setFill(progressBar.getFillAmount() + count * stepInFill);
-        if (progressBar.getFillAmount() >= thresholds.get(0).value) {
-            reachedThreshold();
-        }
         starsToNextThresholdLabel.setText(Integer.toString(starsToNextUnlock(count, false) -
                 Vescape.lastTotalStars - count));
+
+        if (thresholds.isEmpty())
+            return;
+
+        if (progressBar.getFillAmount() >= thresholds.get(0).value ||
+                Math.abs(progressBar.getFillAmount() - thresholds.get(0).value) < 0.00001f) {
+            reachedThreshold();
+        }
     }
 
     public void addTreshold(float threshold) {
