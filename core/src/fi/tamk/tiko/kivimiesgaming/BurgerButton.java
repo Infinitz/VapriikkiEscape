@@ -43,7 +43,7 @@ public class BurgerButton {
 
 
         screenDarkener = new ScreenDarkener(screen.getAssetManager().
-                get("black.png", Texture.class));
+                get("black.png", Texture.class), false);
 
         screen.getStage().addActor(screenDarkener);
         screen.getStage().addActor(table);

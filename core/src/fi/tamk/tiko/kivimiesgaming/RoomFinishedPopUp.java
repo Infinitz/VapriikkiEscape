@@ -29,7 +29,7 @@ public class RoomFinishedPopUp {
                 "riddle_retry_active.png", Texture.class);
 
         screenDarkener =
-                new ScreenDarkener(screen.getAssetManager().get("black.png", Texture.class));
+                new ScreenDarkener(screen.getAssetManager().get("black.png", Texture.class), false);
         screenDarkener.enable(true);
 
         elements = new Group();

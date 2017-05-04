@@ -11,15 +11,20 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 public class ScreenDarkener extends ImageActor {
 
-    public ScreenDarkener(Texture texture) {
+    public ScreenDarkener(Texture texture, boolean enabled) {
         super(texture, Vescape.GUI_VIEWPORT_HEIGHT);
         setTouchable(Touchable.enabled);
         alpha = 0;
-
         setX(Vescape.GUI_VIEWPORT_WIDTH);
+        if (enabled) {
+            alpha = 0.8f;
+            setPosition(getX() - Vescape.GUI_VIEWPORT_WIDTH, 0);
+        }
+
     }
 
     public void enable(boolean enabled) {
+
         if (enabled) {
             setPosition(getX() - Vescape.GUI_VIEWPORT_WIDTH,
                     0);

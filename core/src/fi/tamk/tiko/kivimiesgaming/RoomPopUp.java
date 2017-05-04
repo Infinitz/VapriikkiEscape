@@ -23,7 +23,7 @@ public class RoomPopUp {
 
     public RoomPopUp(final MyScreen screen, final RoomData data) {
         screenDarkener =
-                new ScreenDarkener(screen.getAssetManager().get("black.png", Texture.class));
+                new ScreenDarkener(screen.getAssetManager().get("black.png", Texture.class), false);
         screenDarkener.enable(true);
         elements = new Group();
 

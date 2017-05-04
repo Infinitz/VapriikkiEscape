@@ -294,9 +294,8 @@ public class RoomSelection extends MyScreen {
 
             if (!game.getMachineParts()[i].unlocked) {
                 final ScreenDarkener screenDarkener = new ScreenDarkener(
-                        assetManager.get("black.png", Texture.class));
+                        assetManager.get("black.png", Texture.class), true);
                 stage.addActor(screenDarkener);
-                screenDarkener.enable(true);
 
                 final MachinePart machinePart = game.getMachineParts()[i];
                 final ImageActor partActor = new ImageActor(
@@ -322,6 +321,7 @@ public class RoomSelection extends MyScreen {
                                 screenDarkener.setClickListener(new ChangeListener() {
                                     @Override
                                     public void changed(ChangeEvent event, Actor actor) {
+                                        screenDarkener.setClickListener(null);
                                         //Part To Machine Actions
                                         partActor.addAction(Actions.sequence(
                                                 Actions.parallel(
