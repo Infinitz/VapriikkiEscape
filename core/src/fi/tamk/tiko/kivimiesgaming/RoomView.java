@@ -85,8 +85,6 @@ public class RoomView extends MyScreen {
         assetManager.load("star_hit.wav", Sound.class);
 
         assetManager.load("answer_perfect.wav", Sound.class);
-        //assetManager.load("answer_right.wav", Sound.class);
-        assetManager.load("answer_wrong.wav", Sound.class);
 
         assetManager.load("answer_result_hit.wav", Sound.class);
         roomData.loadRiddles(assetManager);
@@ -277,7 +275,7 @@ public class RoomView extends MyScreen {
         answerButton.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
 
 
-        //stage.addActor(rightAnswerButton);
+        stage.addActor(rightAnswerButton);
         stage.addActor(answerFieldBG);
         stage.addActor(answerButton);
         burgerButton = new BurgerButton(this);
@@ -319,7 +317,6 @@ public class RoomView extends MyScreen {
             return;
         } else {
             ++currentRiddleCount;
-            AudioManager.playSound("answer_wrong.wav");
             answerResults[currentRiddleCount - 1] =
                     new ImageActor(wrongAnswerTex, answerResultSlots[0].getSizeY());
         }
@@ -544,7 +541,6 @@ public class RoomView extends MyScreen {
 
         assetManager.unload("answer_perfect.wav");
         //assetManager.unload("answer_right.wav");
-        assetManager.unload("answer_wrong.wav");
 
         assetManager.unload("answer_result_hit.wav");
     }

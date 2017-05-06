@@ -11,7 +11,7 @@ import com.badlogic.gdx.audio.Sound;
 
 public class AudioManager {
     private static float soundVol = 1.0f;
-    private static float musicVol = 1.0f;
+    private static float musicVol = 0.7f;
     private static AssetManager assetManager;
     private static boolean SOUNDS_ENABLED = true;
     private static boolean MUSIC_ENABLED = true;
@@ -20,6 +20,7 @@ public class AudioManager {
 
     public AudioManager(AssetManager assetManager) {
         this.assetManager = assetManager;
+
     }
 
     public static void enableSounds(boolean enabled) {

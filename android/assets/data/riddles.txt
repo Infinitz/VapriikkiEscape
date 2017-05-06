@@ -145,15 +145,15 @@ en::Next, which exhibition is on the left side with the business rooms?::postimu
 
 peli1.jpg
 fi::Mikä pelistudio on luonut kyseisen pelihahmon?::Rovio Entertainment//Rovio::Studio on suomalainen, vaikka nimen toinen osa onkin englanninkielinen
-en::riddle::answer::hint;
+en::Which game company created this character?::Rovio Entertainment//Rovio::The company is Finnish albeit its name is partly in English;
 
 peli2.jpg
 fi::Mistä elokuvahahmosta tämä peli on tehty?::Uuno Turhapuro//Uuno//Turhapuro::Tämä peli on vuodelta 1986
-en::riddle::answer::hint;
+en::Which movie character this game is based on?::Uuno Turhapuro//Uuno//Turhapuro::This game was published in 1986;
 
 peli3.jpg
 fi::Mistä ensimmäiset pajatsot tuotiin Suomeen?::Saksa//Saksasta::Kyseinen maa löytyy Euroopasta
-en::riddle::answer::hint;
+en::Where the first pajatsos were imported from?::Germany::This country is european;
 
 peli4.jpg
 fi::Mikä on tämän pelin nimi?::sampo::S _ _ _ _
@@ -183,7 +183,7 @@ en::riddle::answer::hint;
 
 rup1.jpg
 fi::Koska ensimmäiset puhelinkioskit ilmestyivät Tampereelle?::1925::Ne yleistyivät 1900-luvun alussa, mutta Tampereelle ne tulivat pari vuosikymmentä myöhemmin…
-en::riddle::answer::hint;
+en::When did the first 	phone posts come to Tampere?::1925::The posts became common in 	1900 but they came few decades later to Tampere...;
 
 rup2.jpg
 fi::Mikä on tämän Nokian puhelimen mallinumero?::8210::Puhelin on vuodelta 1999
@@ -271,7 +271,7 @@ en::This animal is called metsäjänis in finnish. What is it called in english?
 
 nukke1.jpg
 fi::Mikä on tämän söpön pienen kahvilan nimi?::Jokilinna::J_ _ _L_ _ _A
-en::riddle::Jokilinna::hint;
+en::What is this cute little café called?::Jokilinna::The café is 	next to the entrance of exhibition.;
 
 nukke2.jpg
 fi::Gunvor Ekroosin rakas nukke on kadonnut. Mikä on nuken nimi?::Erik::Etsi kuvassa näkyvä puinen seinä
@@ -308,12 +308,12 @@ en::riddle::answer::hint;
 &iceHockeyMuseum
 
 jää1.jpg
-fi::Minkä entisen SM-liigajoukkueen logo tämä on?::Jokerit::Joukkue on kotoisin Helsingistä
-en::riddle::answer::hint;
+fi::Minkä entisen SM-liigajoukkueen logo tämä on?::Jokerit::Joukkue on kotoisin Helsingistä.
+en::Which former Finnish Championship team is represented by this logo?::Jokerit::The team comes from Helsinki.;
 
 jää2.jpg
 fi::Minkä SM-liigajoukkueen maalivahdin pelipaita 1940-luvulta komeilee kuvassa?::Ilves::Joukkue on kotoisin Tampereelta
-en::riddle::answer::hint;
+en::Which Finnish Championship team’s goalie had this shirt in 1940?::Ilves::This team comes from Tampere;
 
 jää3.jpg
 fi::Minkä niminen malja kuvassa on?::Aurora Borealis::Se on naisten SM-sarjan voittopokaali

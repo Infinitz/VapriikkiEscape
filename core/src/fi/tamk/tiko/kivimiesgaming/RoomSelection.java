@@ -1,5 +1,6 @@
 package fi.tamk.tiko.kivimiesgaming;
 
+import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
@@ -58,6 +59,8 @@ public class RoomSelection extends MyScreen {
         assetManager.load("proggbar_marker.png", Texture.class);
 
         assetManager.load("unlock_lock.wav", Sound.class);
+        assetManager.load("change_floor.wav", Sound.class);
+        assetManager.load("machine_part_insert.wav", Sound.class);
 
         totalStars = 0;
         for (RoomType t : RoomType.values()) {
@@ -190,6 +193,7 @@ public class RoomSelection extends MyScreen {
                 if (!isDownStairs) {
                     changeFloor(true);
                 }
+                AudioManager.playSound("button_toggle.wav");
             }
         });
 
@@ -202,6 +206,7 @@ public class RoomSelection extends MyScreen {
                 if (isDownStairs) {
                     changeFloor(false);
                 }
+                AudioManager.playSound("button_toggle.wav");
             }
         });
 
@@ -337,7 +342,7 @@ public class RoomSelection extends MyScreen {
                                                     @Override
                                                     public void run() {
                                                         partActor.remove();
-
+                                                        AudioManager.playSound("machine_part_insert.wav");
                                                         timeMachineButton.setTex(
                                                                 assetManager.get(machinePart.getShipImagePath(),
                                                                         Texture.class));
@@ -561,6 +566,7 @@ public class RoomSelection extends MyScreen {
     }
 
     private void changeFloor(boolean down) {
+        AudioManager.playSound("change_floor.wav");
         isDownStairs = down;
         int direction = down ? 1 : -1;
         float duration = 0.5f;
@@ -665,7 +671,10 @@ public class RoomSelection extends MyScreen {
 
         assetManager.unload("map_lock.png");
         assetManager.unload("map_lock_unlocked.png");
+
         assetManager.unload("unlock_lock.wav");
+        assetManager.unload("change_floor.wav");
+        assetManager.unload("machine_part_insert.wav");
 
         for (int i = 0; i < loadedShipMachineTextures.size(); ++i) {
             assetManager.unload(loadedShipMachineTextures.get(i));
