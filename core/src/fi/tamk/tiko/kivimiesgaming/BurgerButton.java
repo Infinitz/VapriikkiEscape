@@ -55,11 +55,11 @@ public class BurgerButton {
         burgerButton.setSelected(enabled);
         if (enabled) {
             menuPanel = new MenuPanel(screen);
-            screenDarkener.enable(true);
+            screenDarkener.enable(true, false);
 
         } else {
             menuPanel.dispose();
-            screenDarkener.enable(false);
+            screenDarkener.enable(false, true);
         }
 
     }

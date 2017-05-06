@@ -347,11 +347,19 @@ public class RoomSelection extends MyScreen {
                                                                 assetManager.get(machinePart.getShipImagePath(),
                                                                         Texture.class));
 
-                                                        timeMachineButton.addAction(Actions.parallel(
-                                                                Actions.scaleTo(1, 1, 0.5f, Interpolation.pow2),
-                                                                Actions.moveBy(150, 150, 0.5f, Interpolation.pow2)
+                                                        timeMachineButton.addAction(Actions.sequence(
+                                                                    Actions.parallel(
+                                                                    Actions.scaleTo(1, 1, 0.5f, Interpolation.pow2),
+                                                                    Actions.moveBy(150, 150, 0.5f, Interpolation.pow2)
+                                                                ),
+                                                                Actions.run(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        timeMachineButton.originCenter = true;
+                                                                    }
+                                                                })
                                                         ));
-                                                        screenDarkener.enable(false);
+                                                        screenDarkener.enable(false, true);
                                                         burgerButton.reAddElementsToStage();
                                                         for (int i = 0; i < roomButtons.size(); ++i) {
                                                             roomButtons.get(i).unlockAnimation();

@@ -30,7 +30,7 @@ public class RoomFinishedPopUp {
 
         screenDarkener =
                 new ScreenDarkener(screen.getAssetManager().get("black.png", Texture.class), false);
-        screenDarkener.enable(true);
+        screenDarkener.enable(true, true);
 
         elements = new Group();
 
@@ -153,26 +153,5 @@ public class RoomFinishedPopUp {
         screen.getStage().addActor(elements);
         AudioManager.playSound("panel_open.wav");
 
-    }
-
-    public void dispose() {
-        AudioManager.playSound("panel_close.wav");
-        elements.addAction(Actions.sequence(
-                Actions.parallel(
-                        Actions.scaleTo(1, 0, 0.3f, Interpolation.pow2),
-                        Actions.run(new Runnable() {
-                            @Override
-                            public void run() {
-                                screenDarkener.enable(false);
-                            }
-                        })),
-                Actions.run(new Runnable() {
-                    @Override
-                    public void run() {
-                        screenDarkener.remove();
-                        elements.remove();
-                    }
-                })
-        ));
     }
 }

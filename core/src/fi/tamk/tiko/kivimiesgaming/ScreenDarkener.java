@@ -23,34 +23,43 @@ public class ScreenDarkener extends ImageActor {
 
     }
 
-    public void enable(boolean enabled) {
-
-        if (enabled) {
-            setPosition(getX() - Vescape.GUI_VIEWPORT_WIDTH,
-                    0);
-            addAction(Actions.repeat(10, Actions.run(new Runnable() {
-                        @Override
-                        public void run() {
-                            alpha += 0.08f;
-                        }
-                    })
-            ));
+    public void enable(boolean enabled, boolean animate) {
+        if (animate) {
+            if (enabled) {
+                setPosition(getX() - Vescape.GUI_VIEWPORT_WIDTH, 0);
+                addAction(Actions.repeat(10, Actions.run(new Runnable() {
+                            @Override
+                            public void run() {
+                                alpha += 0.08f;
+                            }
+                        })
+                ));
+            } else {
+                addAction(Actions.sequence(
+                        Actions.repeat(10, Actions.run(new Runnable() {
+                            @Override
+                            public void run() {
+                                alpha -= 0.08f;
+                            }
+                        })),
+                        Actions.run(new Runnable() {
+                            @Override
+                            public void run() {
+                                setPosition(getX() + Vescape.GUI_VIEWPORT_WIDTH,
+                                        0);
+                            }
+                        })));
+            }
         } else {
-            addAction(Actions.sequence(
-                    Actions.repeat(10, Actions.run(new Runnable() {
-                        @Override
-                        public void run() {
-                            alpha -= 0.08f;
-                        }
-                    })),
-                    Actions.run(new Runnable() {
-                        @Override
-                        public void run() {
-                            setPosition(getX() + Vescape.GUI_VIEWPORT_WIDTH,
-                                    0);
-                        }
-                    })));
+            if (enabled) {
+                alpha = 0.8f;
+                setPosition(getX() - Vescape.GUI_VIEWPORT_WIDTH, 0);
+            } else {
+                alpha = 0f;
+                setPosition(getX() + Vescape.GUI_VIEWPORT_WIDTH, 0);
+            }
         }
+
 
     }
 }
