@@ -50,7 +50,7 @@ public class StoryStartScreen extends StoryScreen {
         storySequence.add(Actions.run(new Runnable() {
             @Override
             public void run() {
-                rossFace.setX(rossFace.getX() + 500f);
+                rossFace.setX(rossFace.getX() + rossFace.getSizeX() * 3);
                 Texture sheet = assetManager.get("arrival_animation.png", Texture.class);
                 TextureRegion[][] frames = TextureRegion.split(
                         sheet, sheet.getWidth() / 7, sheet.getHeight());
@@ -65,7 +65,7 @@ public class StoryStartScreen extends StoryScreen {
             public void run() {
                 ableToProgress = false;
                 rossFace.addAction(Actions.sequence(
-                        Actions.moveBy(-500f, 0, 0.5f, Interpolation.pow2),
+                        Actions.moveBy(-rossFace.getSizeX() * 3, 0, 0.5f, Interpolation.pow2),
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {

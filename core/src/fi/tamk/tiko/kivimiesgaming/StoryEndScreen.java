@@ -55,9 +55,9 @@ public class StoryEndScreen extends StoryScreen {
             @Override
             public void run() {
                 ableToProgress = false;
-                rossFace.setX(rossFace.getX() + 500f);
+                rossFace.setX(rossFace.getX() + rossFace.getSizeX() * 3);
                 rossFace.addAction(Actions.sequence(
-                        Actions.moveBy(-500f, 0, 0.5f, Interpolation.pow2),
+                        Actions.moveBy(-rossFace.getSizeX() * 3, 0, 0.5f, Interpolation.pow2),
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {

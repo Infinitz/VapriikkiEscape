@@ -74,8 +74,8 @@ public abstract class StoryScreen extends MyScreen {
         labelStyle = new Label.LabelStyle(getGame().getRiddleFont(),
                 Color.BLACK);
 
-        rossFace = new ImageActor(assetManager.get("story_ross_temp.png", Texture.class), 300);
-        rossFace.setPosition(Vescape.GUI_VIEWPORT_WIDTH - 2f * rossFace.getSizeX(), 0);
+        rossFace = new ImageActor(assetManager.get("story_ross_temp.png", Texture.class), 600);
+        rossFace.setPosition(Vescape.GUI_VIEWPORT_WIDTH - 1.25f * rossFace.getSizeX(), 75);
 
         stage.addActor(background);
         stage.addActor(rossFace);
@@ -141,7 +141,7 @@ public abstract class StoryScreen extends MyScreen {
             currentBubbleGroup = bubbleGroup;
         }
         bubbleGroup.setPosition(Vescape.GUI_VIEWPORT_WIDTH - bubble.getSizeX(),
-                Vescape.GUI_VIEWPORT_HEIGHT / 5);
+                Vescape.GUI_VIEWPORT_HEIGHT / 3 + 175f);
         stage.addActor(bubbleGroup);
     }
 
