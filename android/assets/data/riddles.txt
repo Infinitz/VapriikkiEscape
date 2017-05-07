@@ -5,43 +5,43 @@
 
 kivi1.jpg
 fi::Mikä on kuvassa olevan asian yleisnimitys?::Koralli::K_ _A_ _I
-en::riddle::answer::hint;
+en::What is this thing known as?::coral::C _ _ _ _;
 
 kivi2.jpg
-fi::Kuinka painava kuvassa oleva kivipallo on?::300kg//300::Painoa löytyy useita satoja kiloja
-en::riddle::answer::hint;
+fi::Kuinka monta kiloa kuvassa oleva kivipallo painaa?::300kg//300::Painoa löytyy useita satoja kiloja
+en::How heavy is the rock sphere in kilograms?::300kg//300::The answer is more than a hundred kilograms;
 
 kivi3.jpg
 fi::Mainitse yksi henkilö, jonka asteikkoa käytetään kiven kovuuden määrittämiseen.::Mohs//Rosiwal::Etsi kuvassa näkyvä kivi ja tutki ympäristöä tarkemmin!
-en::riddle::answer::hint;
+en::Name a person whose name is used to define rock toughness::Mohs//Rosiwal::Find the rock and study the surroundings;
 
 kivi4.jpg
-fi::Mistä kuvassa oleva Ammoniitti on löydetty?::Madagaskar::MA_ _G_ _ _A_
-en::riddle::answer::hint;
+fi::Mistä kuvassa oleva Ammoniitti on löydetty?::Madagaskar//Madagascar::MA_ _G_ _ _A_
+en::Where was this ammonite found?::Madagascar//Madagaskar::MA_ _G_ _ _A_;
 
 kivi5.jpg
 fi::Mikä on kuvassa näkyvä pörröisen näköinen kivi?::Okeniitti::Kivi on melko pieni, tutki näyttelyä tarkemmin!
-en::riddle::answer::hint;
+en::What is this fluffy-looking rock called?::okenite::The rock is fairly small, look harder!;
 
 kivi6.jpg
 fi::Mikä on Rikkikiisun toinen nimitys?::Pyriitti::P_ _ _ _TT_
-en::riddle::answer::hint;
+en::What is rikkikiisu also known as?::pyrite::P _ _ _ _ E;
 
 kivi7.jpg
 fi::Mistä kaupungista tämä kivi on peräisin?::Viitasaari::Vaikka kävellessä tuleekin katsoa eteensä, nyt kannattaa vilkuilla myös lattiaa
-en::riddle::answer::hint;
+en::From which city in Finland is this stone from?::Viitasaari::Now would be a good time to check the floor.;
 
 kivi8.jpg
 fi::Mikä kivi on kuvassa?::laavakivi::L _ _ _ _ K _ _ I
-en::riddle::answer::hint;
+en::What is this stone called in finnish?::laavakivi::L _ _ _ _ K _ _ I;
 
 kivi9.jpg
 fi::Mikä on tämä violetti kivi?::ametisti::A _ _ _ _ _ _ I
-en::riddle::answer::hint;
+en::what is this purple stone called in finnish?::ametisti::A _ _ _ _ _ _ I;
 
 kivi10.jpg
-fi::Tämä kivi on harmaa… mikä?::graniitti::Vaikka kävellessä tuleekin katsoa eteensä, nyt kannattaa vilkuilla myös lattiaa.
-en::riddle::answer::hint;
+fi::Tämä kivi on harmaa… mikä?::harmaagraniitti//graniitti::Vaikka kävellessä tuleekin katsoa eteensä, nyt kannattaa vilkuilla myös lattiaa.
+en::In finnish this stone is called harmaa... what?::harmaagraniitti//graniitti::Now would be a good time to check the floor.;
 
 &postalMuseum
 
@@ -92,8 +92,8 @@ fi::Mitä kuvan mies luettelee ensimmäisenä tarpeelliseksi asiaksi?::Miekka::E
 en::What word is missing from the picture?::Miekka::You will find the comic near the entrance to the exhibition.;
 
 koski2.jpg
-fi::Kuvassa näkyy kahden jääkiekkojoukkueen logot, Ilves ja… mikäs se toinen olikaan?::Tappara::Tämä tamperelaisjoukkue pelasi keväällä 2017 liigan finaalissa viidettä kertaa peräkkäin.
-en::riddle::answer::hint;
+fi::Kuvassa näkyy kahden jääkiekkojoukkueen logot, Ilves ja… mikäs se toinen olikaan?::Tappara::T _ _ _ _ R _
+en::Here are the logos of two ice-hockey teams from Tampere. The other one is Ilves... but what is the other one called?::Tappara::T _ _ _ _ R _;
 
 koski3.jpg
 fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen//Juice::Henkilö on jo edesmennyt suomalainen tunnettu muusikko
@@ -105,23 +105,23 @@ en::In what year was this Josef Konsén’s scale made?::1870::Find the scale an
 
 koski5.jpg
 fi::Mikä karannut eläin kuvassa olevan henkilön piti ottaa kiinni?::porsas//possu//sika//emakko//karju//potsi//imisä//orasa::vihjekuva on osa isompaa sarjakuvaa
-en::riddle::answer::hint;
+en::What animal was this person supposed to catch?::porsas//possu//sika//emakko//karju//potsi//imisä//orasa::The photo is a part of a big comic.;
 
 koski6.jpg
 fi::Mikä on kuvassa olevan henkilön nimi?::Väinö Hakkila//Väinö//Hakkila::Herran kuva on osana isompaa kuvakollaasia näyttelyn seinällä.
-en::riddle::answer::hint;
+en::Who is in the picture?::Väinö Hakkila//Väinö//Hakkila::His picture is a part of a big collage.;
 
 koski7.jpg
 fi::Minkä kauppakeskuksen pienoismalli on kuvassa?::Koskikeskus::Kyseinen kauppakeskus sijaitsee Tampereen keskustassa.
-en::riddle::answer::hint;
+en::Which shopping centre is this miniature of?::Koskikeskus::This shopping centre is located in central Tampere;
 
 koski8.jpg
 fi::Miltä vuodelta kuvassa oleva kartiohammaspyörän ratas on?::2009::Luitko rattaan päällä olevan tietoiskun varmasti huolella?
-en::riddle::answer::hint;
+en::What year is this spiral bevel gear from?::2009::Are you sure you read the text shown in the picture carefully?;
 
 koski9.jpg
 fi::Kuinka monta taloa on kuvan pienoismallissa?::3100::Kierrä pienoismallia kunnes löydät kuvassa näkyvän lapun.
-en::riddle::answer::hint;
+en::How many houses are in this miniature?::3100::Circle the miniature until you find the paper in the picture.;
 
 Pormestari.jpg
 fi::Missä virassa kuvan uniformua käytettiin?::Pormestari//Pormestarin::Fredrik Procopé käytti tätä 1860-luvulla
@@ -145,107 +145,107 @@ en::Next, which exhibition is on the left side with the business rooms?::postimu
 
 peli1.jpg
 fi::Mikä pelistudio on luonut kyseisen pelihahmon?::Rovio Entertainment//Rovio::Studio on suomalainen, vaikka nimen toinen osa onkin englanninkielinen
-en::Which game company created this character?::Rovio Entertainment//Rovio::The company is Finnish albeit its name is partly in English;
+en::Which game company created this character?::Rovio Entertainment//Rovio::The company is finnish albeit its name is partly in english;
 
 peli2.jpg
 fi::Mistä elokuvahahmosta tämä peli on tehty?::Uuno Turhapuro//Uuno//Turhapuro::Tämä peli on vuodelta 1986
-en::Which movie character this game is based on?::Uuno Turhapuro//Uuno//Turhapuro::This game was published in 1986;
+en::Which movie character is this game based on?::Uuno Turhapuro//Uuno//Turhapuro::This game was published in 1986;
 
 peli3.jpg
 fi::Mistä ensimmäiset pajatsot tuotiin Suomeen?::Saksa//Saksasta::Kyseinen maa löytyy Euroopasta
-en::Where the first pajatsos were imported from?::Germany::This country is european;
+en::Where the first pajatsos were imported from?::Germany::This country is in Europe;
 
 peli4.jpg
 fi::Mikä on tämän pelin nimi?::sampo::S _ _ _ _
-en::riddle::answer::hint;
+en::What is this game called?::sampo::S _ _ _ _;
 
 peli5.jpg
 fi::Mikä pelihahmo näkyy kuvassa?::Hugo::H _ _ _
-en::riddle::answer::hint;
+en::What is this character called?::Hugo::H _ _ _;
 
 peli6.jpg
 fi::Minkä nimisen pelisarjan toista osaa tämä juliste mainostaa?::Max Payne::Etsi kuvassa näkyvä vitriini.
-en::riddle::answer::hint;
+en::What is this video game series called?::Max Payne::Find this showcase;
 
 peli7.jpg
 fi::Minkä nimisen pelin suunnittelumateriaalia näkyy kuvassa?::Tower Bloxx::T _ _ _ R   B _ _ X X
-en::riddle::answer::hint;
+en::Which game's design material and concept art is shown in the picture?::Tower Bloxx::T _ _ _ R   B _ _ X X;
 
 peli8.jpg
 fi::Minkä nimiselle pelintekijälle kuvan palkinto on myönnetty?::Kloonigames::K _ _ _ _ I G _ _ _ S
-en::riddle::answer::hint;
+en::Which video game developer won this award?::Kloonigames::K _ _ _ _ I G _ _ _ S;
 
 peli9.jpg
 fi::Minkä pelin konseptitaidetta nämä ovat?::Badland::B _ _ L _ _ D
-en::riddle::answer::hint;
+en::Which game's concept art is shown in the picture?::Badland::B _ _ L _ _ D;
 
 &mediaMuseum
 
 rup1.jpg
 fi::Koska ensimmäiset puhelinkioskit ilmestyivät Tampereelle?::1925::Ne yleistyivät 1900-luvun alussa, mutta Tampereelle ne tulivat pari vuosikymmentä myöhemmin…
-en::When did the first 	phone posts come to Tampere?::1925::The posts became common in 	1900 but they came few decades later to Tampere...;
+en::When did the first phone posts appeared in Tampere?::1925::The posts became common in 1900 but they came a few decades later to Tampere;
 
 rup2.jpg
 fi::Mikä on tämän Nokian puhelimen mallinumero?::8210::Puhelin on vuodelta 1999
-en::riddle::answer::hint;
+en::What is the model of this Nokia phone?::8210::The phone is from 1999;
 
 rup3.jpg
 fi::A007, mitähän se mahtaa tarkoittaa...::Loppu//Loppua::Etsi Rupriikista koodiavain
-en::riddle::answer::hint;
+en::There is a cryptic code, A007.. what could it mean?::Loppu//End::The image is projected to the wall and there is a manual under it;
 
 rup4.jpg
 fi::Minkä niminen esine näkyy kuvassa?::vasaralävistin::V _ _ _ _ _ L _ _ _ _ _ _ N
-en::riddle::answer::hint;
+en::What is this object called?::perforator::P _ _ F _ _ A _ _ R;
 
 rup5.jpg
 fi::Mikä on tämä mikrofonin ja kaiuttimen yhdistävä esine?::voileimasinpuhelin::V _ _ L E _ _ _ _ _ N P _ _ _ _ _ N
-en::riddle::answer::hint;
+en::What is this object called?::butterstamp telephone::B _ T T _ _ S _ _ _ _ TELEPHONE;
 
 rup6.jpg
 fi::Mikä esine näkyy kuvassa?::polaroid land camera//polaroid//polaroid-kamera//polaroid kamera::Se on eräänlainen kamera
-en::riddle::answer::hint;
+en::What is this object called?::polaroid land camera//polaroid//polaroid-kamera//polaroid kamera::It's kind of a camera.;
 
 rup7.jpg
 fi::Minkä sarjan kirjoituskone tämä on?::Royal//royal 10//royal10::Nimi lukee myös kirjoituskoneen päällä
-en::riddle::answer::hint;
+en::What series does this typewriter belong to?::Royal//royal 10//royal10::The name is also on top of the typewriter.;
 
 rup8.jpg
 fi::Mikä on tämän pöytäpuhelimen nimi?::vääräsääri::englanniksi se on ”bandy-legs”
-en::riddle::answer::hint;
+en::What is this desktop telephone called?::bandy-legs::In finnish it's "vääräsääri";
 
 rup9.jpg
 fi::Mikä on tämän laitteen nimi?::kipinä::K _ _ _ _ Ä
-en::riddle::answer::hint;
+en::What is this device called?::kipinä//kipina::K _ _ _ _ Ä;
 
 rup10.jpg
 fi::Minkä merkkinen laite on kuvassa?::Vistacom::V _ _ _ _ C _ M
-en::riddle::answer::hint;
+en::What brand is this device?::Vistacom::V _ _ _ _ C _ M;
 
 &natureMuseum
 
 luonto1.jpg
 fi::Mikä kasvi tuoksuu näytteessä numero 4?::Suopursu::Vastauksen löydät tuoksupullojen läheisyydestä.
-en::riddle::answer::hint;
+en::What plant can you smell from the fourth example?::Suopursu//marsh labrador tea::The answer is right next to the odor bottles;
 
 luonto2.jpg
 fi::Mikä hurjan paljon suurennettu perhonen näkyy kuvassa?::Tummaverkkoperhonen::T_ _ _ _ v _ _ _ _ _perhonen
-en::riddle::answer::hint;
+en::Which enormously scaled butterfly can be seen here?::Melitae diamina::MELITAE D _ _ I _ _;
 
 luonto3.jpg
-fi::Mille linnulle kyseinen luuranko kuuluu?::Varis::??
-en::riddle::answer::hint;
+fi::Mille linnulle kyseinen luuranko kuuluu?::Varis::Luuranko hengailee kohtalotovereidensa kanssa
+en::Which bird's skeleton is this?::Crow::The skeleton is chilling with the other bones of animals;
 
-#luonto4.jpg
-#fi::Mikä on Pirkanmaan maakuntakalan latinankielinen nimi?::Aspius aspius::Kala on suomeksi Toutain
-#en::riddle::answer::hint;
+luonto4.jpg
+fi::Mikä on Pirkanmaan maakuntakalan latinankielinen nimi?::Aspius aspius::Kala on suomeksi Toutain
+en::What is the latin name for this Pirkanmaa regional fish?::Aspius aspius::In finnish it is called "Toutain";
 
 luonto6.jpg
 fi::Mikä on tämä puu?::Mänty::Tämä puu on Suomessakin luonnonvaraisena kasvava havupuu.
-en::riddle::answer::hint;
+en::What is this tree called in finnish?::mänty//manty::M Ä _ _ _;
 
 luonto7.jpg
 fi::Tämä pääkallo kuuluu karhulle. Mikä on karhun latinankielinen nimi?::Ursus arctos::U _ _ _ S   A _ _ _ _ S
-en::riddle::answer::hint;
+en::This skull belongs to brown bear. What is brown bear called in latin?::Ursus arctos::U _ _ _ S   A _ _ _ _ S;
 
 luonto8.jpg
 fi::Kuvan puu on rauduskoivu. Vaan miten se sanotaan englanniksi?::Silver birch::S _ _ _ _ r   b _ _ _ h
@@ -253,93 +253,92 @@ en::This tree is rauduskoivu, how do you say it in english?::Silver birch::S _ _
 
 luonto9.jpg
 fi::Mikä lintu on kuvassa?::Isokoskelo::I _ _ K _ _ _ _ _ O
-en::riddle::answer::hint;
+en::What is this bird called in finnish?::Isokoskelo::I _ _ K _ _ _ _ _ O;
 
 luonto10.jpg
 fi::Kuinka pitkä on harmaalokin siipiväli senttimetreinä?::130//130cm::Näyttelystä löytyy kuvassa näkyvä seinä, jossa on mainittu useiden eri lintujen siipivälejä.
-en::riddle::answer::hint;
+en::How long is the wingspan of harmaalokki (Larus argentatus) in centimeters?::130//130cm::In the exhibition there is a wall where some wingspans are mentioned.;
 
 luonto11.jpg
 fi::Kuvan eläin on metsäjänis. Mikä se on englanniksi?::Mountain hare::M _ _ _ T _ _ N   H _ _ E
 en::This animal is called metsäjänis in finnish. What is it called in english?::Mountain hare::M _ _ _ t _ _ n   h _ _ e;
 
-#luonto5.jpg
-#fi::Mikä on Pirkanmaan maakuntakivi?::Pallograniitti::Tämä kivi on karannut luonnontieteellisestä museosta ja se on viimeksi havaittu lähellä Rupriikin sisäänkäyntiä…
-#en::riddle::answer::hint@
+luonto5.jpg
+fi::Mikä on Pirkanmaan maakuntakivi?::Pallograniitti::Tämä kivi on karannut luonnontieteellisestä museosta ja se on viimeksi havaittu lähellä Rupriikin sisäänkäyntiä…
+en::What is the regional rock of Pirkanmaa::Pallograniitti::This rock has escaped from the natural exhibition to the border of media museum Rupriikki.@
 
 &dollMuseum
 
 nukke1.jpg
-fi::Mikä on tämän söpön pienen kahvilan nimi?::Jokilinna::J_ _ _L_ _ _A
-en::What is this cute little café called?::Jokilinna::The café is 	next to the entrance of exhibition.;
+fi::Mikä on tämän söpön pienen kahvilan nimi?::Jokilinna::Kahvila sijaitsee näyttelyn sisäänkäynnillä
+en::What is this cute little café called?::Jokilinna::The café is next to the entrance of the exhibition;
 
 nukke2.jpg
 fi::Gunvor Ekroosin rakas nukke on kadonnut. Mikä on nuken nimi?::Erik::Etsi kuvassa näkyvä puinen seinä
-en::riddle::answer::hint;
+en::Gunvor's dear doll has gone missing. What is the name of the doll?::Erik::Find the wooden wall seen in the picture;
 
 nukke3.jpg
 fi::Mikä on tämän nurkkauksen nimi?::nukkestudio::Täällä voit kuvata oman nukkesi!
-en::riddle::answer::hint;
+en::What is this corner called in the exhibition? (in finnish)::nukkestudio::N _ K K _ S _ _ _ _ O;
 
 nukke4.jpg
 fi::Mistä maasta nämä maailman pienimmät nuket ovat kotoisin?::Meksiko::Nämä miniatyyrinuket ovat 1960-luvulta.
-en::riddle::answer::hint;
+en::Where are these "smallest dolls in the world" from?::Mexico::These miniature dolls are from the 1960s.;
 
 nukke5.jpg
 fi::Mikä nukke tämä on?::räsynukke::R _ _ _ NUKKE
-en::riddle::answer::hint;
+en::What is this doll called?::rag doll::R _ _ DOLL;
 
 nukke6.jpg
 fi::Minä vuonna tämä nukke on löydetty?::1968::Tämä pannumyssynukke löydettiin Haiharan kartanon vintiltä.
-en::riddle::answer::hint;
+en::In what year was this doll found?::1968::1 9 6 _;
 
 nukke7.jpg
 fi::Mikä nimi tälle biskviiposliininukelle on annettu?::Mariann::M _ _ _ _ N N
-en::riddle::answer::hint;
+en::What is this bisque doll called?::Mariann::M _ _ _ _ N N;
 
 nukke8.jpg
 fi::Kuka on valmistanut nämä nuket?::Anneli Kuronen//anneli//kuronen::Nämä käsinuket ovat peräisin Haiharan nukketeatterista
-en::riddle::answer::hint;
+en::Who made these dolls?::Anneli Kuronen//anneli//kuronen::These hand puppets are from the Haihara puppet theatre;
 
 nukke9.jpg
 fi::Kuinka monta erilaista hahmoa kuuluu tähän näyttelyyn?::5000::Löydät vastauksen Nukkekekkerien toiselta sisäänkäynniltä
-en::riddle::answer::hint;
+en::How many objects are in this exhibition?::5000::You can find the answerin the entrance of the Doll Ball;
 
 &iceHockeyMuseum
 
 jää1.jpg
-fi::Minkä entisen SM-liigajoukkueen logo tämä on?::Jokerit::Joukkue on kotoisin Helsingistä.
-en::Which former Finnish Championship team is represented by this logo?::Jokerit::The team comes from Helsinki.;
+fi::Minkä entisen SM-liigajoukkueen logo tämä on?::Jokerit::Joukkue on kotoisin Helsingistä
+en::Which former Finnish Championship team is represented by this logo?::Jokerit::The team is from Helsinki;
 
 jää2.jpg
 fi::Minkä SM-liigajoukkueen maalivahdin pelipaita 1940-luvulta komeilee kuvassa?::Ilves::Joukkue on kotoisin Tampereelta
-en::Which Finnish Championship team’s goalie had this shirt in 1940?::Ilves::This team comes from Tampere;
+en::Which Finnish Championship team's goalie had this shirt in 1940?::Ilves::This team is from Tampere;
 
 jää3.jpg
 fi::Minkä niminen malja kuvassa on?::Aurora Borealis::Se on naisten SM-sarjan voittopokaali
-en::riddle::answer::hint;
+en::What is this trophy called?::Aurora Borealis::A _ _ _ R _  B _ _ E _ _ _ S;
 
 jää4.jpg
 fi::Mikä kirja on kuvassa?::sääntökirja::Kirja liittyy tuomarina toimimiseen
-en::riddle::answer::hint;
+en::What book is this?::rulebook::This book has something to do with being a referee.;
 
 jää5.jpg
 fi::Kenen muistokiekko tämä on?::Pekka Rautakallio//pekka//Rautakallio::Kyseessä on suomalainen jääkiekkoilija.
-en::riddle::answer::hint;
+en::This is a puck to commemorate someone's first NHL goal. Who is that person?::Pekka Rautakallio//pekka//Rautakallio::He is from Finland;
 
 jää6.jpg
 fi::Miltä vuodelta tämä mitali on?::2006::2 0 0 _
-en::riddle::answer::hint;
+en::What year is this silver medal from?::2006::2 0 0 _;
 
 jää7.jpg
 fi::Minkä vuoden maailmanmestaruusjoukkuetta näkyy kuvassa?::1995::Tänä vuonna Suomi voitti ensimmäisen jääkiekon maailmanmestaruuden
-en::riddle::answer::hint;
+en::In what year did this team play?::1995::Finland won IIHF World Championship for the first time this year.;
 
 jää8.jpg
 fi::Miltä vuodelta tämä palkinto on?::2008::2 0 0 _
-en::riddle::answer::hint;
+en::What year is this award from?::2008::2 0 0 _;
 
 jää9.jpg
 fi::Mikä jääkiekkojoukkue näkyy kuvassa?::Ässät//porin ässät::Tämä porilainen joukkue pelaa liigassa.
-en::riddle::answer::hint;
-
+en::Which Finnish ice-hockey team is in the picture?::Assat//Ässät//porin ässät::This team is from Pori;
