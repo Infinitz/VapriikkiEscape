@@ -69,10 +69,7 @@ public class RoomView extends MyScreen {
         this.roomData = roomData;
         assetManager.load("riddle_answer_box.jpg", Texture.class);
         assetManager.load("riddle_info_box.png", Texture.class);
-        /*
-        assetManager.load("riddle_info_box_fill.png", Texture.class);
-        assetManager.load("riddle_info_box_border.png", Texture.class);
-        */
+
         assetManager.load("riddle_slot_empty.png", Texture.class);
         assetManager.load("riddle_slot_nope.png", Texture.class);
         assetManager.load("riddle_slot_done.png", Texture.class);
@@ -150,8 +147,8 @@ public class RoomView extends MyScreen {
         });
         stage.setKeyboardFocus(answerField);
 
-        roomIcon = new ImageActor(roomData.getIconTexture(), 125f);
-        roomIcon.setPosition(0, game.GUI_VIEWPORT_HEIGHT - roomIcon.getSizeY());
+        roomIcon = new ImageActor(roomData.getIconTexture(), 150f);
+        roomIcon.setPosition(0, game.GUI_VIEWPORT_HEIGHT - roomIcon.getSizeY() - 25);
 
         answerResultSlots = new ImageActor[riddlesInRoom];
         answerResults = new ImageActor[riddlesInRoom];

@@ -62,6 +62,9 @@ public class ImageActor extends Actor {
     }
 
     public void setTex(Texture tex) {
+        if (tex == null)
+            return;
+
         this.tex = tex;
         setTextureRegion(new TextureRegion(tex));
     }

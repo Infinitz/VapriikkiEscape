@@ -314,6 +314,7 @@ public class RoomSelection extends MyScreen {
                 stage.addActor(timeMachineButton);
                 stage.addActor(partActor);
                 timeMachineButton.originCenter = false;
+                final boolean isLastPiece = i == game.getMachineParts().length - 1;
                 timeMachineButton.addAction(Actions.sequence(
                         Actions.parallel(
                                 Actions.scaleTo(2, 2, 0.5f, Interpolation.pow2),
@@ -322,7 +323,6 @@ public class RoomSelection extends MyScreen {
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {
-
                                 screenDarkener.setClickListener(new ChangeListener() {
                                     @Override
                                     public void changed(ChangeEvent event, Actor actor) {
@@ -363,6 +363,10 @@ public class RoomSelection extends MyScreen {
                                                         burgerButton.reAddElementsToStage();
                                                         for (int i = 0; i < roomButtons.size(); ++i) {
                                                             roomButtons.get(i).unlockAnimation();
+                                                        }
+
+                                                        if (isLastPiece) {
+                                                            getGame().setScreen(new StoryEndScreen(getGame(), assetManager));
                                                         }
                                                     }
                                                 })
