@@ -423,9 +423,9 @@ public class RoomView extends MyScreen {
         getStage().addActor(riddlePanel);
         hintGroup.remove();
         stage.addActor(hintGroup);
-        burgerButton.reAddElementsToStage();
         roomIcon.remove();
         stage.addActor(roomIcon);
+        burgerButton.reAddElementsToStage();
     }
 
     private void createNewRiddlePanel() {
