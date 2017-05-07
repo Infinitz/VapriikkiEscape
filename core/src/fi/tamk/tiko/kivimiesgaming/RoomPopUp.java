@@ -24,7 +24,7 @@ public class RoomPopUp {
     public RoomPopUp(final MyScreen screen, final RoomData data) {
         screenDarkener =
                 new ScreenDarkener(screen.getAssetManager().get("black.png", Texture.class), false);
-        screenDarkener.enable(true);
+        screenDarkener.enable(true, true);
         elements = new Group();
 
 
@@ -141,7 +141,7 @@ public class RoomPopUp {
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {
-                                screenDarkener.enable(false);
+                                screenDarkener.enable(false, true);
                             }
                         })),
                 Actions.run(new Runnable() {

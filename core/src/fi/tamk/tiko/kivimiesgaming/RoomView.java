@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
@@ -43,6 +44,7 @@ public class RoomView extends MyScreen {
     private ImageActor answerFieldBG;
     private ImageActor[] answerResultSlots;
     private ImageActor[] answerResults;
+    private ImageActor roomIcon;
 
     private Label.LabelStyle labelStyle;
     private Texture riddlePanelTexture;
@@ -85,8 +87,6 @@ public class RoomView extends MyScreen {
         assetManager.load("star_hit.wav", Sound.class);
 
         assetManager.load("answer_perfect.wav", Sound.class);
-        //assetManager.load("answer_right.wav", Sound.class);
-        assetManager.load("answer_wrong.wav", Sound.class);
 
         assetManager.load("answer_result_hit.wav", Sound.class);
         roomData.loadRiddles(assetManager);
@@ -150,6 +150,8 @@ public class RoomView extends MyScreen {
         });
         stage.setKeyboardFocus(answerField);
 
+        roomIcon = new ImageActor(roomData.getIconTexture(), 125f);
+        roomIcon.setPosition(0, game.GUI_VIEWPORT_HEIGHT - roomIcon.getSizeY());
 
         answerResultSlots = new ImageActor[riddlesInRoom];
         answerResults = new ImageActor[riddlesInRoom];
@@ -277,10 +279,12 @@ public class RoomView extends MyScreen {
         answerButton.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
 
 
-        //stage.addActor(rightAnswerButton);
+
+        stage.addActor(rightAnswerButton);
         stage.addActor(answerFieldBG);
         stage.addActor(answerButton);
         burgerButton = new BurgerButton(this);
+        stage.addActor(roomIcon);
         stage.addActor(answerField);
         stage.addActor(hintGroup);
         stage.addActor(touchDetector);
@@ -319,7 +323,6 @@ public class RoomView extends MyScreen {
             return;
         } else {
             ++currentRiddleCount;
-            AudioManager.playSound("answer_wrong.wav");
             answerResults[currentRiddleCount - 1] =
                     new ImageActor(wrongAnswerTex, answerResultSlots[0].getSizeY());
         }
@@ -424,6 +427,8 @@ public class RoomView extends MyScreen {
         hintGroup.remove();
         stage.addActor(hintGroup);
         burgerButton.reAddElementsToStage();
+        roomIcon.remove();
+        stage.addActor(roomIcon);
     }
 
     private void createNewRiddlePanel() {
@@ -541,11 +546,7 @@ public class RoomView extends MyScreen {
 
         assetManager.unload("star_enter.wav");
         assetManager.unload("star_hit.wav");
-
         assetManager.unload("answer_perfect.wav");
-        //assetManager.unload("answer_right.wav");
-        assetManager.unload("answer_wrong.wav");
-
         assetManager.unload("answer_result_hit.wav");
     }
 
