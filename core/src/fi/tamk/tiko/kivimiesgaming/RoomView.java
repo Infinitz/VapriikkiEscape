@@ -445,13 +445,56 @@ public class RoomView extends MyScreen {
         riddlePanelBg.setPosition((Vescape.GUI_VIEWPORT_WIDTH - riddlePanelBg.getSizeX()) / 2,
                 (Vescape.GUI_VIEWPORT_HEIGHT - riddlePanelBg.getSizeY()) - 130);
 
-        ImageActor riddleImage = new ImageActor(
+        final ImageActor riddleImage = new ImageActor(
                 assetManager.get(currentRiddle.imagePath, Texture.class),
                 2 * riddlePanelBg.getSizeX() / 3);
 
         riddleImage.setPosition(
                 riddlePanelBg.getX() + (riddlePanelBg.getSizeX() - riddleImage.getWidth()) / 2,
                 riddlePanelBg.getY() + riddlePanelBg.getSizeY() - riddleImage.getHeight() - 35);
+
+        riddleImage.setClickListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                riddleImage.remove();
+                final float animationDuration = 0.25f;
+                final ImageActor temp = new ImageActor(assetManager.get("black.png", Texture.class),
+                        Vescape.GUI_VIEWPORT_HEIGHT);
+                temp.alpha = 0f;
+                riddlePanel.addActor(riddleImage);
+                stage.addActor(temp);
+                riddleImage.addAction(
+                        Actions.parallel(
+                                Actions.scaleTo(
+                                    Vescape.GUI_VIEWPORT_WIDTH / riddleImage.getSizeX(),
+                                    Vescape.GUI_VIEWPORT_WIDTH / riddleImage.getSizeX(),
+                                    animationDuration,
+                                    Interpolation.pow2),
+                                Actions.moveBy(0, -200, animationDuration, Interpolation.pow2)
+                                ));
+
+                temp.setClickListener(new ChangeListener() {
+                    @Override
+                    public void changed(ChangeEvent event, Actor actor) {
+                        riddleImage.addAction(
+                                Actions.parallel(
+                                        Actions.scaleTo(
+                                            1,
+                                            1,
+                                            animationDuration,
+                                            Interpolation.pow2),
+                                        Actions.moveBy(
+                                                0,
+                                                200,
+                                                animationDuration,
+                                                Interpolation.pow2)
+                                        ));
+
+                        temp.remove();
+                    }
+                });
+            }
+        });
 
         riddleLabel = new Label(
                 currentRiddle.getRiddle(getGame().getMyBundle().getLocale().getLanguage()).riddle,
