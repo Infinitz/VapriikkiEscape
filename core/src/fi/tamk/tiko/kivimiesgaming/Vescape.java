@@ -32,7 +32,7 @@ public class Vescape extends Game {
     public static final float GUI_VIEWPORT_WIDTH = 900;
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
     public static final int MAX_CHARS_PER_LINE = 29;
-    public static final int MAX_CHARS_IN_ANSWER = 20;
+    public static final int MAX_CHARS_IN_ANSWER = 21;
     public static final int TOTAL_RIDDLES_ROOM = 5;
     public static final float HINT_PENALTY = 0.33f;
 
@@ -46,6 +46,7 @@ public class Vescape extends Game {
     public static final String RIDDLE_IMAGES_PATH = "riddle_images/";
 
     public static int lastTotalStars = 0;
+    public static boolean storyStartSeen = false;
 
     private Preferences settingsPref;
     private Preferences scoresPref;
@@ -73,8 +74,7 @@ public class Vescape extends Game {
         settingsPref = Gdx.app.getPreferences("settings");
         scoresPref = Gdx.app.getPreferences("scores");
         Gdx.input.setCatchBackKey(true);
-        scoresPref.putString("scores", "");
-        scoresPref.flush();
+
         String language = Locale.getDefault().getLanguage().equalsIgnoreCase("fi")
                 ? "finnish" : "english";
         if (settingsPref.getString("language", language).equalsIgnoreCase("finnish")) {
@@ -121,6 +121,14 @@ public class Vescape extends Game {
         }
         batch.dispose();
         assetManager.dispose();
+    }
+
+    public void resetScores() {
+        scoresPref.putString("scores", "");
+        scoresPref.putBoolean("storyStartSeen", false);
+        scoresPref.flush();
+
+        loadScores();
     }
 
     public int getMaxStars() {
@@ -180,6 +188,8 @@ public class Vescape extends Game {
 
     public void saveScores() {
         String scores = "";
+        scoresPref.putBoolean("storyStartSeen", storyStartSeen);
+
         for (RoomType key : roomData.keySet()) {
             scores += key.toString() + ":" + roomData.get(key).highscore + ";";
         }
@@ -214,7 +224,6 @@ public class Vescape extends Game {
         assetManager.load("MENU_sound_off.png", Texture.class);
         assetManager.load("MENU_music_on.png", Texture.class);
         assetManager.load("MENU_music_off.png", Texture.class);
-        assetManager.load("riddle_info_box_fill.png", Texture.class);
         assetManager.load("star_empty.png", Texture.class);
         assetManager.load("star_full.png", Texture.class);
         assetManager.load("black.png", Texture.class);
@@ -515,6 +524,7 @@ public class Vescape extends Game {
     }
 
     private void loadScores() {
+        storyStartSeen = scoresPref.getBoolean("storyStartSeen", false);
         String scores = scoresPref.getString("scores", "");
         if (scores.length() > 0) {
             String[] scoreArray = scores.split(";");
@@ -523,6 +533,10 @@ public class Vescape extends Game {
                 String name = temp[0];
                 int score = Integer.parseInt(temp[1]);
                 roomData.get(RoomType.typeFromString(name)).highscore = score;
+            }
+        } else {
+            for (RoomType t : roomData.keySet()) {
+                roomData.get(t).highscore = 0;
             }
         }
         int totalScore = 0;
@@ -533,7 +547,7 @@ public class Vescape extends Game {
         for (RoomType t : roomData.keySet()) {
             roomData.get(t).isLocked = totalScore < roomData.get(t).starsToUnlock;
         }
-
+        System.out.println(totalScore);
         machineParts = new MachinePart[5];
         machineParts[0] = new MachinePart(1, totalScore,
                 "time_machine_parts/time_machine_part_1.png",

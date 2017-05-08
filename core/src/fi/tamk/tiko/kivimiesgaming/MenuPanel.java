@@ -51,11 +51,11 @@ public class MenuPanel {
         menuTable.defaults()
                 .width(Vescape.GUI_VIEWPORT_WIDTH / 2)
                 .height(175)
-                .space(70);
+                .space(50);
         menuTable.add(playButton);
         menuTable.row();
         menuTable.add(exitButton);
-
+        menuTable.setY(menuTable.getY() - 100);
         screen.getStage().addActor(menuTable);
     }
 

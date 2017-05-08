@@ -43,10 +43,10 @@ public class MainMenu extends MyScreen {
         float movementY = 500;
         ImageActor title = new ImageActor(assetManager.get("menu_logo.png", Texture.class), 300);
         title.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - title.getSizeX() / 2,
-                Vescape.GUI_VIEWPORT_HEIGHT -  3 * title.getSizeY() / 2 + movementY);
+                Vescape.GUI_VIEWPORT_HEIGHT -  4 * title.getSizeY() / 3 + movementY);
         title.addAction(Actions.sequence(
                 Actions.delay(0.2f),
-                Actions.moveBy(0, -movementY, 1.25f, Interpolation.bounceOut)));
+                Actions.moveBy(0, -movementY, 1.5f, Interpolation.bounceOut)));
 
         stage.addActor(title);
     }
@@ -64,7 +64,8 @@ public class MainMenu extends MyScreen {
 
     @Override
     public TextButton getPanelButton1() {
-        String name = getGame().getMyBundle().get("playButton");
+        createNewGameButton();
+        String name = getGame().getMyBundle().get("newGameButton");
 
         TextButton button = new TextButton(name,
                 getGame().getTextButtonStyle());
@@ -73,8 +74,13 @@ public class MainMenu extends MyScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
-                getGame().setScreen(new StoryStartScreen(getGame(), assetManager));
-                //getGame().setScreen(new RoomSelection(getGame(), assetManager));
+                game.resetScores();
+                if (Vescape.storyStartSeen) {
+                    getGame().setScreen(new RoomSelection(getGame(), assetManager));
+                } else {
+                    getGame().setScreen(new StoryStartScreen(getGame(), assetManager));
+                    Vescape.storyStartSeen = true;
+                }
             }
         });
 
@@ -102,5 +108,39 @@ public class MainMenu extends MyScreen {
     public void dispose() {
         assetManager.unload("menu_logo.png");
         super.dispose();
+    }
+
+    private void createNewGameButton() {
+        String name = getGame().getMyBundle().get("playButton");
+
+        TextButton button = new TextButton(name,
+                getGame().getTextButtonStyle());
+
+        button.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
+                if (Vescape.storyStartSeen) {
+                    getGame().setScreen(new RoomSelection(getGame(), assetManager));
+                } else {
+                    getGame().setScreen(new StoryStartScreen(getGame(), assetManager));
+                    Vescape.storyStartSeen = true;
+                }
+            }
+        });
+
+        button.setSize(Vescape.GUI_VIEWPORT_WIDTH / 2, 175);
+
+        button.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - button.getWidth() / 2,
+                950);
+
+
+        if (Vescape.lastTotalStars == 0) {
+            button.setDisabled(true);
+            button.setColor(0.2f, 0f, 0.2f, 0.0f);
+        }
+
+        stage.addActor(button);
+
     }
 }

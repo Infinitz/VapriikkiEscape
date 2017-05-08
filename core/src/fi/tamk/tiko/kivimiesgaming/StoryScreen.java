@@ -21,8 +21,8 @@ import java.util.ArrayList;
 
 public abstract class StoryScreen extends MyScreen {
 
-    protected final int marksInLineBubble = 25;
-    protected final float bubbleSize = 800f;
+    protected final int marksInLineBubble = 21;
+    protected final float bubbleSize = 700f;
     protected final float transitionAnimDuration = 3f;
 
     protected ArrayList<RunnableAction> storySequence;
@@ -98,6 +98,20 @@ public abstract class StoryScreen extends MyScreen {
     protected void newBubble(String text, boolean talk) {
         ableToProgress = false;
         ImageActor bubble;
+        if (text.length() == 0) {
+            if (currentBubbleGroup != null) {
+                currentBubbleGroup.addAction(
+                        Actions.sequence(
+                                Actions.run(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        currentBubbleGroup.remove();
+                                    }
+                                })
+                        ));
+            }
+            return;
+        }
         if (talk) {
             bubble = new ImageActor(assetManager.get("talk_bubble.png", Texture.class), bubbleSize);
         } else {
@@ -107,7 +121,7 @@ public abstract class StoryScreen extends MyScreen {
 
         final Group bubbleGroup = new Group();
         bubbleText.setPosition(bubble.getSizeX() / 2 - bubbleText.getWidth() / 2,
-                bubble.getSizeY() / 2 - bubbleText.getHeight() / 2);
+                bubble.getSizeY() / 2 - bubbleText.getHeight() / 2 + bubble.getSizeY() / 9);
 
         bubbleGroup.addActor(bubble);
         bubbleGroup.addActor(bubbleText);
@@ -140,7 +154,7 @@ public abstract class StoryScreen extends MyScreen {
         if (currentBubbleGroup == null) {
             currentBubbleGroup = bubbleGroup;
         }
-        bubbleGroup.setPosition(Vescape.GUI_VIEWPORT_WIDTH - bubble.getSizeX(),
+        bubbleGroup.setPosition(Vescape.GUI_VIEWPORT_WIDTH - bubble.getSizeX() * 1.15f,
                 Vescape.GUI_VIEWPORT_HEIGHT / 3 + 175f);
         stage.addActor(bubbleGroup);
     }

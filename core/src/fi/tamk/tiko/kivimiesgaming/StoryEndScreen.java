@@ -99,7 +99,7 @@ public class StoryEndScreen extends StoryScreen {
             @Override
             public void run() {
                 ableToProgress = false;
-                rossFace.setTex(assetManager.get("story_ross_confuse.png", Texture.class));
+                rossFace.setTex(assetManager.get("story_ross_joy.png", Texture.class));
                 newBubble(game.getMyBundle().get("storyEnd_4"), true);
             }
         }));
@@ -108,8 +108,17 @@ public class StoryEndScreen extends StoryScreen {
             @Override
             public void run() {
                 ableToProgress = false;
+                rossFace.setTex(assetManager.get("story_ross_confuse.png", Texture.class));
+                newBubble(game.getMyBundle().get("storyEnd_5"), true);
+            }
+        }));
+
+        storySequence.add(Actions.run(new Runnable() {
+            @Override
+            public void run() {
+                ableToProgress = false;
                 rossFace.setTex(assetManager.get("story_ross_what.png", Texture.class));
-                newBubble(game.getMyBundle().get("storyEnd_5"), false);
+                newBubble(game.getMyBundle().get("storyEnd_6"), false);
 
                 /*
                 rossFace.addAction(Actions.sequence(
@@ -127,13 +136,16 @@ public class StoryEndScreen extends StoryScreen {
         storySequence.add(Actions.run(new Runnable() {
             @Override
             public void run() {
+                newBubble("", false);
+                rossFace.addAction(Actions.moveBy(1000f, -250, 1, Interpolation.pow2));
                 ableToProgress = false;
                 Texture sheet = assetManager.get("departure_animation.png", Texture.class);
                 TextureRegion[][] frames = TextureRegion.split(
                         sheet, sheet.getWidth() / 6, sheet.getHeight());
                 Animation<TextureRegion> animation = new Animation<TextureRegion>(1f / 10, frames[0]);
                 currentAnimation = new AnimatedImageActor(animation, Vescape.GUI_VIEWPORT_HEIGHT * 0.7f);
-                currentAnimation.setX(500);
+                currentAnimation.setX(250);
+                currentAnimation.setY(300);
                 stage.addActor(currentAnimation);
             }
         }));
@@ -147,7 +159,7 @@ public class StoryEndScreen extends StoryScreen {
                         sheet, sheet.getWidth() / 4, sheet.getHeight());
                 Animation<TextureRegion> animation = new Animation<TextureRegion>(1f / 10, frames[0]);
                 currentAnimation = new AnimatedImageActor(animation, 400);
-                currentAnimation.setPosition(250, 950);
+                currentAnimation.setPosition(0, 1250);
                 stage.addActor(currentAnimation);
             }
         }));

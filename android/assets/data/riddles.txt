@@ -123,9 +123,9 @@ koski9.jpg
 fi::Kuinka monta taloa on kuvan pienoismallissa?::3100::Kierrä pienoismallia kunnes löydät kuvassa näkyvän lapun.
 en::How many houses are in this miniature?::3100::Circle the miniature until you find the paper in the picture.;
 
-Pormestari.jpg
-fi::Missä virassa kuvan uniformua käytettiin?::Pormestari//Pormestarin::Fredrik Procopé käytti tätä 1860-luvulla
-en::In what position was the uniform used?::Mayor//The mayor::Fredrik Procopé used this in 1860s.;
+#Pormestari.jpg
+#fi::Missä virassa kuvan uniformua käytettiin?::Pormestari//Pormestarin::Fredrik Procopé käytti tätä 1860-luvulla
+#en::In what position was the uniform used?::Mayor//The mayor::Fredrik Procopé used this in 1860s.;
 
 koskiV.jpg
 fi::Mikä on kuvassa näkyvän auton rekisteritunnuksen kolme viimeistä numeroa?::408::Auto on kaahannut näyttelyn ulkopuolelle käytävään…

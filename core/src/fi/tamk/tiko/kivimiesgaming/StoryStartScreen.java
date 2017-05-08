@@ -55,7 +55,9 @@ public class StoryStartScreen extends StoryScreen {
                 TextureRegion[][] frames = TextureRegion.split(
                         sheet, sheet.getWidth() / 7, sheet.getHeight());
                 Animation<TextureRegion> animation = new Animation<TextureRegion>(1f / 10, frames[0]);
-                currentAnimation = new AnimatedImageActor(animation, Vescape.GUI_VIEWPORT_HEIGHT);
+                currentAnimation = new AnimatedImageActor(animation, 0.56f * Vescape.GUI_VIEWPORT_HEIGHT );
+                currentAnimation.setX(Vescape.GUI_VIEWPORT_WIDTH - currentAnimation.getSizeX());
+                currentAnimation.setY(250);
                 stage.addActor(currentAnimation);
             }
         }));
@@ -109,6 +111,15 @@ public class StoryStartScreen extends StoryScreen {
                 ableToProgress = false;
                 rossFace.setTex(assetManager.get("story_ross_sad.png", Texture.class));
                 newBubble(game.getMyBundle().get("storyStart_4"), true);
+            }
+        }));
+
+        storySequence.add(Actions.run(new Runnable() {
+            @Override
+            public void run() {
+                ableToProgress = false;
+                rossFace.setTex(assetManager.get("story_ross_temp.png", Texture.class));
+                newBubble(game.getMyBundle().get("storyStart_5"), true);
             }
         }));
 

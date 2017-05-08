@@ -47,7 +47,8 @@ public class RoomView extends MyScreen {
     private ImageActor roomIcon;
 
     private Label.LabelStyle labelStyle;
-    private Texture riddlePanelTexture;
+    private Texture riddlePanelTextureBg;
+    private Texture riddlePanelTextureFill;
 
     private Texture emptyAnswerTex;
     private Texture wrongAnswerTex;
@@ -68,7 +69,8 @@ public class RoomView extends MyScreen {
         super(game, assetManager);
         this.roomData = roomData;
         assetManager.load("riddle_answer_box.jpg", Texture.class);
-        assetManager.load("riddle_info_box.png", Texture.class);
+        assetManager.load("riddle_info_box_border.png", Texture.class);
+        assetManager.load("riddle_info_box_fill.png", Texture.class);
 
         assetManager.load("riddle_slot_empty.png", Texture.class);
         assetManager.load("riddle_slot_nope.png", Texture.class);
@@ -113,7 +115,8 @@ public class RoomView extends MyScreen {
             }
         });
 
-        riddlePanelTexture = assetManager.get("riddle_info_box.png", Texture.class);
+        riddlePanelTextureBg = assetManager.get("riddle_info_box_border.png", Texture.class);
+        riddlePanelTextureFill = assetManager.get("riddle_info_box_fill.png", Texture.class);
 
         emptyAnswerTex = assetManager.get("riddle_slot_empty.png", Texture.class);
         wrongAnswerTex = assetManager.get("riddle_slot_nope.png", Texture.class);
@@ -435,12 +438,16 @@ public class RoomView extends MyScreen {
             currentRiddle = roomData.getRandomRiddle();
         }
 
-        ImageActor riddlePanelBg = new ImageActor(riddlePanelTexture);
+        ImageActor riddlePanelBg = new ImageActor(riddlePanelTextureBg);
+        ImageActor riddlePanelFill = new ImageActor(riddlePanelTextureFill);
 
         float panelTargetW = Vescape.GUI_VIEWPORT_WIDTH - 50;
         riddlePanelBg.setSize(riddlePanelBg.getSizeY() * (panelTargetW / riddlePanelBg.getSizeX()));
         riddlePanelBg.setPosition((Vescape.GUI_VIEWPORT_WIDTH - riddlePanelBg.getSizeX()) / 2,
                 (Vescape.GUI_VIEWPORT_HEIGHT - riddlePanelBg.getSizeY()) - 130);
+        riddlePanelFill.setSize(riddlePanelBg.getSizeY());
+        riddlePanelFill.setPosition(riddlePanelBg.getX(), riddlePanelBg.getY());
+        riddlePanelFill.alpha = 0.8f;
 
         final ImageActor riddleImage = new ImageActor(
                 assetManager.get(currentRiddle.imagePath, Texture.class),
@@ -497,10 +504,11 @@ public class RoomView extends MyScreen {
                 currentRiddle.getRiddle(getGame().getMyBundle().getLocale().getLanguage()).riddle,
                 labelStyle);
         riddleLabel.setPosition(
-                riddlePanelBg.getX() + 30,
+                riddlePanelBg.getX() + 40,
                 riddleImage.getY() - riddleLabel.getHeight() - 30);
 
         Group g = new Group();
+        g.addActor(riddlePanelFill);
         g.addActor(riddlePanelBg);
         g.addActor(riddleImage);
         g.addActor(riddleLabel);
@@ -577,12 +585,13 @@ public class RoomView extends MyScreen {
     public void dispose() {
         super.dispose();
         roomData.unloadRiddleImages(assetManager);
-        assetManager.unload("riddle_info_box.png");
         assetManager.unload("riddle_slot_empty.png");
         assetManager.unload("riddle_slot_nope.png");
         assetManager.unload("riddle_slot_done.png");
         assetManager.unload("riddle_slot_done_golden.png");
         assetManager.unload("hint_glow.png");
+        assetManager.unload("riddle_info_box_border.png");
+        assetManager.unload("riddle_info_box_fill.png");
 
         assetManager.unload("star_enter.wav");
         assetManager.unload("star_hit.wav");
