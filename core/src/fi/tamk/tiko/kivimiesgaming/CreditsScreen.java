@@ -31,7 +31,7 @@ public class CreditsScreen extends MyScreen {
         float x = 50;
         float innerX = 150;
         float y = 0;
-        float space = 80f;
+        float space = 90f;
 
         ImageActor title = new ImageActor(assetManager.get("menu_logo.png", Texture.class), 300);
         title.setPosition(x, y);
@@ -88,6 +88,18 @@ public class CreditsScreen extends MyScreen {
         sofiaLabel.setPosition(innerX, y);
         y -= space * 2;
         creditsGroup.addActor(sofiaLabel);
+
+        Label musicLabel = new Label(game.getMyBundle().get("music"), labelStyleBig);
+        musicLabel.setPosition(x, y);
+        y -= space;
+        creditsGroup.addActor(musicLabel);
+
+        Label jayLabel = new Label("\"Magical Night\" by Jay Man\nwww.ourmusicbox.com", labelStyleSmall);
+        y -= jayLabel.getHeight() / 2;
+        jayLabel.setPosition(innerX, y);
+        y -= space * 2;
+        creditsGroup.addActor(jayLabel);
+
 
         Label specialThanksLabel = new Label(game.getMyBundle().get("specialThanks"), labelStyleBig);
         specialThanksLabel.setPosition(x, y);
