@@ -167,7 +167,7 @@ public class StoryEndScreen extends StoryScreen {
         storySequence.add(Actions.run(new Runnable() {
             @Override
             public void run() {
-                game.setScreen(new CreditsScreen(game, assetManager));
+                setNextScreen(new CreditsScreen(game, assetManager));
             }
         }));
     }

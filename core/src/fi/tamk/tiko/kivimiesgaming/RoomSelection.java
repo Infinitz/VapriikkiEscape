@@ -100,7 +100,7 @@ public class RoomSelection extends MyScreen {
     }
 
     @Override
-    protected void onAssetsLoaded() {
+    public void onStart() {
         bg = new ImageActor(assetManager.get("MENU_bg.jpg", Texture.class),
                 Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
@@ -244,7 +244,7 @@ public class RoomSelection extends MyScreen {
 
     @Override
     protected void update(float dt) {
-        if (!assetsLoaded)
+        if (nextScreen != null)
             return;
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
@@ -259,7 +259,7 @@ public class RoomSelection extends MyScreen {
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
-            game.setScreen(new MainMenu(game, assetManager));
+            setNextScreen(new MainMenu(game, assetManager));
         }
     }
 
@@ -366,7 +366,7 @@ public class RoomSelection extends MyScreen {
                                                         }
 
                                                         if (isLastPiece) {
-                                                            getGame().setScreen(new StoryEndScreen(getGame(), assetManager));
+                                                            setNextScreen(new StoryEndScreen(getGame(), assetManager));
                                                         }
                                                     }
                                                 })
@@ -667,7 +667,7 @@ public class RoomSelection extends MyScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
-                getGame().setScreen(new MainMenu(getGame(), assetManager));
+                setNextScreen(new MainMenu(getGame(), assetManager));
             }
         });
 

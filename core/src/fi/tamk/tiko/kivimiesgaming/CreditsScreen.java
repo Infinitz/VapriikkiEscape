@@ -1,5 +1,7 @@
 package fi.tamk.tiko.kivimiesgaming;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -20,7 +22,7 @@ public class CreditsScreen extends MyScreen {
     }
 
     @Override
-    protected void onAssetsLoaded() {
+    public void onStart() {
         ImageActor bg = new ImageActor(assetManager.get("MENU_bg.jpg", Texture.class),
                 Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
@@ -132,12 +134,22 @@ public class CreditsScreen extends MyScreen {
                 Actions.run(new Runnable() {
                     @Override
                     public void run() {
-                        game.setScreen(new MainMenu(game, assetManager));
+                        setNextScreen(new MainMenu(game, assetManager));
                     }
                 })
         ));
     }
 
+    @Override
+    protected void update(float dt) {
+        if (nextScreen != null)
+            return;
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
+                Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            setNextScreen(new MainMenu(game, assetManager));
+        }
+    }
     @Override
     public TextButton getPanelButton1() {
         return null;

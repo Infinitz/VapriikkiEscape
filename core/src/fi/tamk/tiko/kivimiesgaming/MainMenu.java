@@ -32,7 +32,7 @@ public class MainMenu extends MyScreen {
     }
 
     @Override
-    protected void onAssetsLoaded() {
+    public void onStart() {
         bg = new ImageActor(assetManager.get("MENU_bg.jpg", Texture.class),
                 Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
@@ -53,7 +53,7 @@ public class MainMenu extends MyScreen {
 
     @Override
     protected void update(float dt) {
-        if (!assetsLoaded)
+        if (nextScreen != null)
             return;
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
@@ -75,12 +75,8 @@ public class MainMenu extends MyScreen {
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
                 game.resetScores();
-                if (Vescape.storyStartSeen) {
-                    getGame().setScreen(new RoomSelection(getGame(), assetManager));
-                } else {
-                    getGame().setScreen(new StoryStartScreen(getGame(), assetManager));
-                    Vescape.storyStartSeen = true;
-                }
+                setNextScreen(new StoryStartScreen(getGame(), assetManager));
+                Vescape.storyStartSeen = true;
             }
         });
 
@@ -121,9 +117,9 @@ public class MainMenu extends MyScreen {
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
                 if (Vescape.storyStartSeen) {
-                    getGame().setScreen(new RoomSelection(getGame(), assetManager));
+                    setNextScreen(new RoomSelection(getGame(), assetManager));
                 } else {
-                    getGame().setScreen(new StoryStartScreen(getGame(), assetManager));
+                    setNextScreen(new StoryStartScreen(getGame(), assetManager));
                     Vescape.storyStartSeen = true;
                 }
             }
@@ -135,7 +131,7 @@ public class MainMenu extends MyScreen {
                 950);
 
 
-        if (Vescape.lastTotalStars == 0) {
+        if (Vescape.lastTotalStars == 0 && !Vescape.storyStartSeen) {
             createNewGameButton.setDisabled(true);
             createNewGameButton.setColor(0.2f, 0f, 0.2f, 0.0f);
         }

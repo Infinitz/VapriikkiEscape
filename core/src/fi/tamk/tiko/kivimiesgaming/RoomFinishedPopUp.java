@@ -67,7 +67,7 @@ public class RoomFinishedPopUp {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
-                screen.getGame().setScreen(new RoomSelection(
+                screen.setNextScreen(new RoomSelection(
                         screen.getGame(), screen.getAssetManager()));
             }
         });
@@ -79,10 +79,10 @@ public class RoomFinishedPopUp {
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
                 if (data.type == RoomType.TUTORIAL) {
-                    screen.getGame().setScreen(new TutorialRoomView(
+                    screen.setNextScreen(new TutorialRoomView(
                             screen.getGame(), data, screen.getAssetManager()));
                 } else {
-                    screen.getGame().setScreen(new RoomView(
+                    screen.setNextScreen(new RoomView(
                             screen.getGame(), data, screen.getAssetManager()));
                 }
             }

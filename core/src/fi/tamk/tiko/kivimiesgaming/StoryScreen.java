@@ -67,7 +67,7 @@ public abstract class StoryScreen extends MyScreen {
     }
 
     @Override
-    protected void onAssetsLoaded() {
+    public void onStart() {
         ImageActor background = new ImageActor(assetManager.get("story_bg.jpg", Texture.class),
                 Vescape.GUI_VIEWPORT_HEIGHT);
 

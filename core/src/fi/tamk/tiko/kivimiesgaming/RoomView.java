@@ -98,7 +98,7 @@ public class RoomView extends MyScreen {
     }
 
     @Override
-    protected void onAssetsLoaded() {
+    public void onStart() {
         touchDetector = new ImageActor(assetManager.get("black.png", Texture.class),
                 Vescape.GUI_VIEWPORT_HEIGHT);
         touchDetector.setPosition(Vescape.GUI_VIEWPORT_WIDTH, 0);
@@ -291,11 +291,6 @@ public class RoomView extends MyScreen {
         createNewPanelWithAnimation(animLength);
 
     }
-
-    @Override
-    public void onStart() {
-    }
-
 
     public void answer(String playerAnswer) {
         playerAnswer = playerAnswer.trim();
@@ -517,14 +512,14 @@ public class RoomView extends MyScreen {
 
     @Override
     protected void update(float dt) {
-        if (!assetsLoaded)
+        if (nextScreen != null)
             return;
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
                 Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 
             if (currentRiddleCount == riddlesInRoom) {
-                getGame().setScreen(new RoomSelection(
+                setNextScreen(new RoomSelection(
                         getGame(), assetManager));
             } else if (keyboardEnabled) {
                 enableKeyboard(false);
@@ -574,7 +569,7 @@ public class RoomView extends MyScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
-                getGame().setScreen(new RoomSelection(getGame(), assetManager));
+                setNextScreen(new RoomSelection(getGame(), assetManager));
             }
         });
 

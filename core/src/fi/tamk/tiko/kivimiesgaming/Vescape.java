@@ -63,7 +63,6 @@ public class Vescape extends Game {
     private MachinePart[] machineParts;
 
 
-
     private boolean initialAssetsLoaded = false;
 
     @Override
@@ -97,9 +96,10 @@ public class Vescape extends Game {
                 AudioManager.playMusic("music_bg.mp3");
                 AudioManager.enableMusic(settingsPref.getBoolean("musicEnabled", true));
                 AudioManager.enableSounds(settingsPref.getBoolean("soundEnabled", true));
-                setScreen(new MainMenu(this, assetManager));
+                setScreen(new StartScreen(this, assetManager));
             }
         }
+
         super.render();
     }
 
@@ -232,7 +232,7 @@ public class Vescape extends Game {
 
         assetManager.load("menurger.png", Texture.class);
         assetManager.load("menurger_pressed.png", Texture.class);
-
+        assetManager.load("loading.png", Texture.class);
 
         assetManager.load("music_bg.mp3", Music.class);
 

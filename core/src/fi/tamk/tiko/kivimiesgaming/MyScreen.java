@@ -5,8 +5,11 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
@@ -23,7 +26,7 @@ public abstract class MyScreen implements Screen {
     protected OrthographicCamera cam;
     protected AssetManager assetManager;
 
-    protected boolean assetsLoaded = false;
+    protected MyScreen nextScreen = null;
 
     public MyScreen(Vescape game, AssetManager assetManager) {
         this.game = game;
@@ -44,9 +47,11 @@ public abstract class MyScreen implements Screen {
     @Override
     public void render(float dt) {
 
-        if (assetManager.update() && !assetsLoaded) {
-            assetsLoaded = true;
-            onAssetsLoaded();
+        if (nextScreen != null) {
+            if (assetManager.update()) {
+                game.setScreen(nextScreen);
+                nextScreen = null;
+            }
         }
 
         update(dt);
@@ -84,9 +89,7 @@ public abstract class MyScreen implements Screen {
         stage.dispose();
     }
 
-    public void onStart() {
-
-    }
+    public abstract void onStart();
 
     public Stage getStage() {
         return stage;
@@ -108,5 +111,17 @@ public abstract class MyScreen implements Screen {
 
     }
 
-    protected abstract void onAssetsLoaded();
+    protected void setNextScreen(MyScreen nextScreen) {
+        ScreenDarkener sD = new ScreenDarkener(assetManager.get("black.png", Texture.class), true);
+        ImageActor loading = new ImageActor(assetManager.get("loading.png", Texture.class), 150);
+        loading.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - loading.getSizeX() / 2,
+                Vescape.GUI_VIEWPORT_HEIGHT / 4);
+
+        loading.addAction(Actions.forever(
+                Actions.rotateBy(360, 1)
+        ));
+        stage.addActor(sD);
+        stage.addActor(loading);
+        this.nextScreen = nextScreen;
+    }
 }

@@ -126,7 +126,7 @@ public class StoryStartScreen extends StoryScreen {
         storySequence.add(Actions.run(new Runnable() {
             @Override
             public void run() {
-                getGame().setScreen(new RoomSelection(getGame(), assetManager));
+                setNextScreen(new RoomSelection(getGame(), assetManager));
             }
         }));
     }
