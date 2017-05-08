@@ -553,7 +553,7 @@ public class Vescape extends Game {
         for (RoomType t : roomData.keySet()) {
             roomData.get(t).isLocked = totalScore < roomData.get(t).starsToUnlock;
         }
-        System.out.println(totalScore);
+
         machineParts = new MachinePart[5];
         machineParts[0] = new MachinePart(1, totalScore,
                 "time_machine_parts/time_machine_part_1.png",
