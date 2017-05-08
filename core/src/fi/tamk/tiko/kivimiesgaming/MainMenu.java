@@ -113,10 +113,10 @@ public class MainMenu extends MyScreen {
     private void createNewGameButton() {
         String name = getGame().getMyBundle().get("playButton");
 
-        TextButton button = new TextButton(name,
+        TextButton createNewGameButton = new TextButton(name,
                 getGame().getTextButtonStyle());
 
-        button.addListener(new ChangeListener() {
+        createNewGameButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
@@ -129,18 +129,17 @@ public class MainMenu extends MyScreen {
             }
         });
 
-        button.setSize(Vescape.GUI_VIEWPORT_WIDTH / 2, 175);
+        createNewGameButton.setSize(Vescape.GUI_VIEWPORT_WIDTH / 2, 175);
 
-        button.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - button.getWidth() / 2,
+        createNewGameButton.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - createNewGameButton.getWidth() / 2,
                 950);
 
 
         if (Vescape.lastTotalStars == 0) {
-            button.setDisabled(true);
-            button.setColor(0.2f, 0f, 0.2f, 0.0f);
+            createNewGameButton.setDisabled(true);
+            createNewGameButton.setColor(0.2f, 0f, 0.2f, 0.0f);
         }
-
-        stage.addActor(button);
+        stage.addActor(createNewGameButton);
 
     }
 }
