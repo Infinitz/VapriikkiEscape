@@ -81,7 +81,7 @@ public class Vescape extends Game {
         } else if (settingsPref.getString("language", language).equalsIgnoreCase("english")) {
             setEnglish();
         }
-        loadGlobalAssets();
+        loadInitialAssets();
     }
 
     @Override
@@ -96,6 +96,7 @@ public class Vescape extends Game {
                 AudioManager.playMusic("music_bg.mp3");
                 AudioManager.enableMusic(settingsPref.getBoolean("musicEnabled", true));
                 AudioManager.enableSounds(settingsPref.getBoolean("soundEnabled", true));
+                loadGlobalAssets();
                 setScreen(new StartScreen(this, assetManager));
             }
         }
@@ -215,9 +216,8 @@ public class Vescape extends Game {
     }
 
     private void loadGlobalAssets() {
-        assetManager.load("MENU_bg.jpg", Texture.class);
-        assetManager.load("MENU_button.png", Texture.class);
-        assetManager.load("MENU_button_pressed.png", Texture.class);
+
+
         assetManager.load("MENU_flag_fi.png", Texture.class);
         assetManager.load("MENU_flag_en.png", Texture.class);
         assetManager.load("MENU_sound_on.png", Texture.class);
@@ -226,15 +226,12 @@ public class Vescape extends Game {
         assetManager.load("MENU_music_off.png", Texture.class);
         assetManager.load("star_empty.png", Texture.class);
         assetManager.load("star_full.png", Texture.class);
-        assetManager.load("black.png", Texture.class);
+
         assetManager.load("map_room_info_box.png", Texture.class);
-        assetManager.load("indicator_line.jpg", Texture.class);
+
 
         assetManager.load("menurger.png", Texture.class);
         assetManager.load("menurger_pressed.png", Texture.class);
-        assetManager.load("loading.png", Texture.class);
-
-        assetManager.load("music_bg.mp3", Music.class);
 
         assetManager.load("button_press.wav", Sound.class);
         assetManager.load("button_toggle.wav", Sound.class);
@@ -243,6 +240,15 @@ public class Vescape extends Game {
 
     }
 
+    private void loadInitialAssets() {
+        assetManager.load("MENU_bg.jpg", Texture.class);
+        assetManager.load("loading.png", Texture.class);
+        assetManager.load("music_bg.mp3", Music.class);
+        assetManager.load("MENU_button.png", Texture.class);
+        assetManager.load("MENU_button_pressed.png", Texture.class);
+        assetManager.load("indicator_line.jpg", Texture.class);
+        assetManager.load("black.png", Texture.class);
+    }
     private void createStylesAndFonts() {
         FreeTypeFontGenerator fontGen =
                 new FreeTypeFontGenerator(Gdx.files.internal("fonts/GOTHICBI.TTF"));

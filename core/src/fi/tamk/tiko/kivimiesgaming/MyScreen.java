@@ -50,6 +50,7 @@ public abstract class MyScreen implements Screen {
         if (nextScreen != null) {
             if (assetManager.update()) {
                 game.setScreen(nextScreen);
+                nextScreen.transitionTo();
                 nextScreen = null;
             }
         }
@@ -123,5 +124,11 @@ public abstract class MyScreen implements Screen {
         stage.addActor(sD);
         stage.addActor(loading);
         this.nextScreen = nextScreen;
+    }
+
+    public void transitionTo() {
+        ScreenDarkener sD = new ScreenDarkener(assetManager.get("black.png", Texture.class), true);
+        sD.enable(false, true);
+        stage.addActor(sD);
     }
 }
