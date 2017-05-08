@@ -83,7 +83,7 @@ public class RoomButton extends SelectableButton {
     public void unlockAnimation() {
         if (roomData.unlockAnimation) {
             SequenceAction shakeAction = new SequenceAction();
-            float shakeTime = 1.1f;
+            float shakeTime = 0.7f;
             float moveTime = 0.033f;
             float maxMovement = 1f;
             float t = 0;

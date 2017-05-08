@@ -143,15 +143,11 @@ public class RoomFinishedPopUp {
                         })
                 )));
             }
-
-
-
         }
 
         screen.getStage().addActor(screenDarkener);
         screenDarkener.setTouchable(Touchable.enabled);
         screen.getStage().addActor(elements);
         AudioManager.playSound("panel_open.wav");
-
     }
 }
