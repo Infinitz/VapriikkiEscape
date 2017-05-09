@@ -4,36 +4,36 @@
 &rockMuseum
 
 kivi1.jpg
-fi::Mikä on kuvassa olevan asian yleisnimitys?::Koralli::K_ _A_ _I
-en::What is this thing known as?::coral::C _ _ _ _;
+fi::Mikä on kuvassa olevan asian yleisnimitys?::Koralli::Asia löytyy kiviveistosten vierestä
+en::What is this thing known as?::coral::It is located next to the showcase called "Kiviveistokset";
 
 kivi2.jpg
-fi::Kuinka monta kiloa kuvassa oleva kivipallo painaa?::300kg//300::Painoa löytyy useita satoja kiloja
-en::How heavy is the rock sphere in kilograms?::300kg//300::The answer is more than a hundred kilograms;
+fi::Kuinka monta kiloa kuvassa oleva kivipallo painaa?::300kg//300::Kivi on vesialtaassa
+en::How heavy is the rock sphere in kilograms?::300kg//300::The rock is in a tub;
 
-kivi3.jpg
-fi::Mainitse yksi henkilö, jonka asteikkoa käytetään kiven kovuuden määrittämiseen.::Mohs//Rosiwal::Etsi kuvassa näkyvä kivi ja tutki ympäristöä tarkemmin!
-en::Name a person whose name is used to define rock toughness::Mohs//Rosiwal::Find the rock and study the surroundings;
+#kivi3.jpg
+#fi::Mainitse yksi henkilö, jonka asteikkoa käytetään kiven kovuuden määrittämiseen.::Mohs//Rosiwal::Etsi kuvassa näkyvä kivi ja tutki ympäristöä tarkemmin!
+#en::Name a person whose name is used to define rock toughness::Mohs//Rosiwal::Find the rock and study the surroundings;
 
 kivi4.jpg
 fi::Mistä kuvassa oleva Ammoniitti on löydetty?::Madagaskar//Madagascar::MA_ _G_ _ _A_
 en::Where was this ammonite found?::Madagascar//Madagaskar::MA_ _G_ _ _A_;
 
 kivi5.jpg
-fi::Mikä on kuvassa näkyvä pörröisen näköinen kivi?::Okeniitti::Kivi on melko pieni, tutki näyttelyä tarkemmin!
-en::What is this fluffy-looking rock called?::okenite::The rock is fairly small, look harder!;
+fi::Mikä on kuvassa näkyvä pörröisen näköinen kivi?::Okeniitti::Tutki vitriiniä "muita kiviä".
+en::What is this fluffy-looking rock called?::okenite::Check the showcase "muita kiviä" (other rocks).;
 
 kivi6.jpg
-fi::Mikä on Rikkikiisun toinen nimitys?::Pyriitti::P_ _ _ _TT_
-en::What is rikkikiisu also known as?::pyrite::P _ _ _ _ E;
+fi::Mikä on Rikkikiisun toinen nimitys?::Pyriitti::Rikkikiisu on rautasulfidi
+en::What is rikkikiisu also known as?::pyrite::Rikkikiisu is in a showcase called "Rautasulfidi".;
 
 kivi7.jpg
 fi::Mistä kaupungista tämä kivi on peräisin?::Viitasaari::Vaikka kävellessä tuleekin katsoa eteensä, nyt kannattaa vilkuilla myös lattiaa
 en::From which city in Finland is this stone from?::Viitasaari::Now would be a good time to check the floor.;
 
 kivi8.jpg
-fi::Mikä kivi on kuvassa?::laavakivi::L _ _ _ _ K _ _ I
-en::What is this stone called in finnish?::laavakivi::L _ _ _ _ K _ _ I;
+fi::Mikä kivi on kuvassa?::laavakivi::Kivi on viimeisessä kulmassa "muita kiviä" vitriinin jälkeen.
+en::What is this stone called in finnish?::laavakivi::The stone is located in the last corner of the exhibition after "muita kiviä" showcase;
 
 kivi9.jpg
 fi::Mikä on tämä violetti kivi?::ametisti::A _ _ _ _ _ _ I
@@ -92,8 +92,8 @@ fi::Mitä kuvan mies luettelee ensimmäisenä tarpeelliseksi asiaksi?::Miekka::E
 en::What word is missing from the picture?::Miekka::You will find the comic near the entrance to the exhibition.;
 
 koski2.jpg
-fi::Kuvassa näkyy kahden jääkiekkojoukkueen logot, Ilves ja… mikäs se toinen olikaan?::Tappara::T _ _ _ _ R _
-en::Here are the logos of two ice-hockey teams from Tampere. The other one is Ilves... but what is the other one called?::Tappara::T _ _ _ _ R _;
+fi::Kuvassa näkyy kahden jääkiekkojoukkueen logot, Ilves ja… mikäs se toinen olikaan?::Tappara::Nuket löytyvät näyttelyn ovelta vitriinistä.
+en::Here are the logos of two ice-hockey teams from Tampere. The other one is Ilves... but what is the other one called?::Tappara::You can find the dolls next to the entrance to the exhibition;
 
 koski3.jpg
 fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen//Juice::Henkilö on jo edesmennyt suomalainen tunnettu muusikko
@@ -112,8 +112,8 @@ fi::Mikä on kuvassa olevan henkilön nimi?::Väinö Hakkila//Väinö//Hakkila::
 en::Who is in the picture?::Väinö Hakkila//Väinö//Hakkila::His picture is a part of a big collage.;
 
 koski7.jpg
-fi::Minkä kauppakeskuksen pienoismalli on kuvassa?::Koskikeskus::Kyseinen kauppakeskus sijaitsee Tampereen keskustassa.
-en::Which shopping centre is this miniature of?::Koskikeskus::This shopping centre is located in central Tampere;
+fi::Minkä kauppakeskuksen pienoismalli on kuvassa?::Koskikeskus::Pienoismalli on hyvin iso ja sijaitsee näyttelyn laidalla.
+en::Which shopping centre is this miniature of?::Koskikeskus::The miniature is large and is located on the other side of the exhibition;
 
 koski8.jpg
 fi::Miltä vuodelta kuvassa oleva kartiohammaspyörän ratas on?::2009::Luitko rattaan päällä olevan tietoiskun varmasti huolella?
@@ -148,28 +148,28 @@ fi::Mikä pelistudio on luonut kyseisen pelihahmon?::Rovio Entertainment//Rovio:
 en::Which game company created this character?::Rovio Entertainment//Rovio::The company is finnish albeit its name is partly in english;
 
 peli2.jpg
-fi::Mistä elokuvahahmosta tämä peli on tehty?::Uuno Turhapuro//Uuno//Turhapuro::Tämä peli on vuodelta 1986
-en::Which movie character is this game based on?::Uuno Turhapuro//Uuno//Turhapuro::This game was published in 1986;
+fi::Minä vuonna on tehty tämä Uuno Turhapuro peli?::1986::Näyttelystä löytyy osio 1980-luvulla tehtyjä pelejä.
+en::What year was this Uuno Turhapuro game made in?::1986::There is a part of the exhibiton where you can find games made in 1980s;
 
 peli3.jpg
-fi::Mistä ensimmäiset pajatsot tuotiin Suomeen?::Saksa//Saksasta::Kyseinen maa löytyy Euroopasta
-en::Where the first pajatsos were imported from?::Germany::This country is in Europe;
+fi::Minä vuonna tämä pajatso tehtiin?::1938::Se sijaitsee lähellä lautapelejä ja Rupriikkia
+en::What year was this pajatso made in?::1938::It is located next to the board games and media museum Rupriikki;
 
 peli4.jpg
-fi::Mikä on tämän pelin nimi?::sampo::S _ _ _ _
-en::What is this game called?::sampo::S _ _ _ _;
+fi::Mikä on tämän pelin nimi?::sampo::Kuvassa on lautapeli lähellä mediamuseo Rupriikkia
+en::What is this game called?::sampo::It is a board game next to media museum Rupriikki;
 
 peli5.jpg
 fi::Mikä pelihahmo näkyy kuvassa?::Hugo::H _ _ _
 en::What is this character called?::Hugo::H _ _ _;
 
 peli6.jpg
-fi::Minkä nimisen pelisarjan toista osaa tämä juliste mainostaa?::Max Payne::Etsi kuvassa näkyvä vitriini.
-en::What is this video game series called?::Max Payne::Find this showcase;
+fi::Minkä nimisen pelisarjan toista osaa tämä juliste mainostaa?::Max Payne::Vitriini sijaitsee pelimuseon pelikaupassa.
+en::What is this video game series called?::Max Payne::The showcase is located in the game store inside the exhibition;
 
 peli7.jpg
-fi::Minkä nimisen pelin suunnittelumateriaalia näkyy kuvassa?::Tower Bloxx::T _ _ _ R   B _ _ X X
-en::Which game's design material and concept art is shown in the picture?::Tower Bloxx::T _ _ _ R   B _ _ X X;
+fi::Minkä nimisen pelin suunnittelumateriaalia näkyy kuvassa?::Tower Bloxx::Konseptin vieressä voi pelata Wii-consolia takan ääressä
+en::Which game's design material and concept art is shown in the picture?::Tower Bloxx::Next to the concept art you can play Wii and warm up next to a fireplace;
 
 peli8.jpg
 fi::Minkä nimiselle pelintekijälle kuvan palkinto on myönnetty?::Kloonigames::K _ _ _ _ I G _ _ _ S
@@ -186,12 +186,12 @@ fi::Koska ensimmäiset puhelinkioskit ilmestyivät Tampereelle?::1925::Ne yleist
 en::When did the first phone posts appeared in Tampere?::1925::The posts became common in 1900 but they came a few decades later to Tampere;
 
 rup2.jpg
-fi::Mikä on tämän Nokian puhelimen mallinumero?::8210::Puhelin on vuodelta 1999
-en::What is the model of this Nokia phone?::8210::The phone is from 1999;
+fi::Mikä on tämän Nokian puhelimen mallinumero?::8210::Puhelin sijaitsee muiden matkapuhelimien kanssa seinällä
+en::What is the model of this Nokia phone?::8210::It is located on the wall next to other mobile phones;
 
 rup3.jpg
 fi::A007, mitähän se mahtaa tarkoittaa...::Loppu//Loppua::Kuva on heijastettu seinälle ja sen alta löytyy ohjekirja.
-en::There is a cryptic code, A007.. what could it mean?::Loppu//End::The image is projected to the wall and there is a manual under it.;
+en::There is a cryptic code, A007.. what could it mean?::Loppu//End//end communication::The image is projected to the wall and there is a manual under it.;
 
 rup4.jpg
 fi::Minkä niminen esine näkyy kuvassa?::vasaralävistin::V _ _ _ _ _ L _ _ _ _ _ _ N
@@ -202,15 +202,15 @@ fi::Mikä on tämä mikrofonin ja kaiuttimen yhdistävä esine?::voileimasinpuhe
 en::What is this object called?::butterstamp telephone::B _ T T _ _ S _ _ _ _ TELEPHONE;
 
 rup6.jpg
-fi::Mikä esine näkyy kuvassa?::polaroid land camera//polaroid//polaroid-kamera//polaroid kamera::Se on eräänlainen kamera
-en::What is this object called?::polaroid land camera//polaroid//polaroid-kamera//polaroid kamera::It's kind of a camera.;
+fi::Mikä esine näkyy kuvassa?::polaroid land camera//polaroid//polaroid-kamera//polaroid kamera::Kamera sijaitsee näyttelyn takaosassa
+en::What is this object called?::polaroid land camera//polaroid//polaroid-kamera//polaroid kamera::The camera is located at the back of the exhibition.;
 
 rup7.jpg
 fi::Minkä sarjan kirjoituskone tämä on?::Royal//royal 10//royal10::Nimi lukee myös kirjoituskoneen päällä
 en::What series does this typewriter belong to?::Royal//royal 10//royal10::The name is also on top of the typewriter.;
 
 rup8.jpg
-fi::Mikä on tämän pöytäpuhelimen nimi?::vääräsääri::englanniksi se on ”bandy-legs”
+fi::Mikä on tämän pöytäpuhelimen nimi?::vääräsääri::Puhelin sijaitsee seinällä muiden lankapuhelimien kanssa
 en::What is this desktop telephone called?::bandy-legs::In finnish it's "vääräsääri";
 
 rup9.jpg
@@ -224,8 +224,8 @@ en::What brand is this device?::Vistacom::V _ _ _ _ C _ M;
 &natureMuseum
 
 luonto1.jpg
-fi::Mikä kasvi tuoksuu näytteessä numero 4?::Suopursu::Vastauksen löydät tuoksupullojen läheisyydestä.
-en::What plant can you smell from the fourth example?::Suopursu//marsh labrador tea::The answer is right next to the odor bottles;
+fi::Mikä kasvi tuoksuu näytteessä numero 4?::Suopursu::Tilaan jossa näyte sijaitsee voi mennä joko ovesta tai ryömiä puun läpi.
+en::What plant can you smell from the fourth example?::Suopursu//marsh labrador tea::You can enter the room either through the door or crawl through a tree;
 
 luonto2.jpg
 fi::Mikä hurjan paljon suurennettu perhonen näkyy kuvassa?::Tummaverkkoperhonen::T_ _ _ _ v _ _ _ _ _perhonen
@@ -236,12 +236,12 @@ fi::Mille linnulle kyseinen luuranko kuuluu?::Varis::Luuranko hengailee kohtalot
 en::Which bird's skeleton is this?::Crow::The skeleton is chilling with its friends who suffered the same fate.;
 
 luonto4.jpg
-fi::Mikä on Pirkanmaan maakuntakalan latinankielinen nimi?::Aspius aspius::Kala on suomeksi Toutain
-en::What is the latin name for this Pirkanmaa regional fish?::Aspius aspius::In finnish it is called "Toutain";
+fi::Mikä on Pirkanmaan maakuntakalan latinankielinen nimi?::Aspius aspius::Kala on melko lähellä hirveä.
+en::What is the latin name for this Pirkanmaa regional fish?::Aspius aspius::The fish is quite close to the moose;
 
 luonto6.jpg
-fi::Mikä on tämä puu?::Mänty::Tämä puu on Suomessakin luonnonvaraisena kasvava havupuu.
-en::What is this tree called in finnish?::mänty//manty::M Ä _ _ _;
+fi::Mikä on tämä puu?::Mänty::Näyttelyn hirvi tarkkailee puuta hyvin läheltä.
+en::What is this tree called in finnish?::mänty//manty::The moose is looking at the tree very closely;
 
 luonto7.jpg
 fi::Tämä pääkallo kuuluu karhulle. Mikä on karhun latinankielinen nimi?::Ursus arctos::U _ _ _ S   A _ _ _ _ S
@@ -256,12 +256,12 @@ fi::Mikä lintu on kuvassa?::Isokoskelo::I _ _ K _ _ _ _ _ O
 en::What is this bird called in finnish?::Isokoskelo::I _ _ K _ _ _ _ _ O;
 
 luonto10.jpg
-fi::Kuinka pitkä on harmaalokin siipiväli senttimetreinä?::130//130cm::Näyttelystä löytyy kuvassa näkyvä seinä, jossa on mainittu useiden eri lintujen siipivälejä.
-en::How long is the wingspan of harmaalokki (Larus argentatus) in centimeters?::130//130cm::In the exhibition there is a wall where some wingspans are mentioned.;
+fi::Kuinka pitkä on harmaalokin siipiväli senttimetreinä?::130//130cm::Ehkä karhu osaa auttaa.
+en::How long is the wingspan of harmaalokki (Larus argentatus) in centimeters?::130//130cm::Maybe the bear could help.;
 
 luonto11.jpg
-fi::Kuvan eläin on metsäjänis. Mikä se on englanniksi?::Mountain hare::M _ _ _ T _ _ N   H _ _ E
-en::This animal is called metsäjänis in finnish. What is it called in english?::Mountain hare::M _ _ _ t _ _ n   h _ _ e;
+fi::Mikä jänis on kuvassa?::Metsäjänis::Jänis on vaarassa jäädä karhun ruuaksi
+en::What hare is in the picture?::Mountain hare::The hare might end up being eaten by the bear;
 
 luonto5.jpg
 fi::Mikä on Pirkanmaan maakuntakivi?::Pallograniitti::Tämä kivi on karannut luonnontieteellisestä museosta ja se on viimeksi havaittu lähellä Rupriikin sisäänkäyntiä…
@@ -308,12 +308,12 @@ en::How many objects are in this exhibition?::5000::You can find the answerin th
 &iceHockeyMuseum
 
 jää1.jpg
-fi::Minkä entisen SM-liigajoukkueen logo tämä on?::Jokerit::Joukkue on kotoisin Helsingistä
-en::Which former Finnish Championship team is represented by this logo?::Jokerit::The team is from Helsinki;
+fi::Tässä on vuoden 1969 jokereiden maskotin varusteet. Minkä niminen maskotti oli?::esa tikkanen//Esa//tikkanen::Varusteiden vieressä voit kuunnella Suomalaista kiekkomusiikkia
+en::Here are Jokerit's mascots clothing from 1969. What was the mascots name?::Jokerit::You can listen to Finnish ice hockey music next to the clothing;
 
 jää2.jpg
-fi::Minkä SM-liigajoukkueen maalivahdin pelipaita 1940-luvulta komeilee kuvassa?::Ilves::Joukkue on kotoisin Tampereelta
-en::Which Finnish Championship team's goalie had this shirt in 1940?::Ilves::This team is from Tampere;
+fi::Minkä SM-liigajoukkueen maalivahdin pelipaita 1940-luvulta komeilee kuvassa?::Ilves::Paidan viereisessä vitriinissä on 28 jääkiekkomailaa
+en::Which Finnish Championship team's goalie had this shirt in 1940?::Ilves::Next to the shirt in a showcase is 28 hockey sticks;
 
 jää3.jpg
 fi::Minkä niminen malja kuvassa on?::Aurora Borealis::A _ _ _ R _  B _ _ E _ _ _ S
@@ -324,8 +324,8 @@ fi::Mikä kirja on kuvassa?::sääntökirja::Kirja liittyy tuomarina toimimiseen
 en::What book is this?::rulebook::This book has something to do with being a referee.;
 
 jää5.jpg
-fi::Kenen muistokiekko tämä on?::Pekka Rautakallio//pekka//Rautakallio::Kyseessä on suomalainen jääkiekkoilija.
-en::This is a puck to commemorate someone's first NHL goal. Who is that person?::Pekka Rautakallio//pekka//Rautakallio::He is from Finland;
+fi::Kenen muistokiekko tämä on?::Pekka Rautakallio//pekka//Rautakallio::Muistokiekon vieressä voit harjoitella jääkiekon pelaamista.
+en::This is a puck to commemorate someone's first NHL goal. Who is that person?::Pekka Rautakallio//pekka//Rautakallio::You can play ice hockey next to the puck;
 
 jää6.jpg
 fi::Miltä vuodelta tämä mitali on?::2006::2 0 0 _
@@ -340,5 +340,5 @@ fi::Miltä vuodelta tämä palkinto on?::2008::2 0 0 _
 en::What year is this award from?::2008::2 0 0 _;
 
 jää9.jpg
-fi::Mikä jääkiekkojoukkue näkyy kuvassa?::Ässät//porin ässät::Tämä porilainen joukkue pelaa liigassa.
-en::Which Finnish ice-hockey team is in the picture?::Assat//Ässät//porin ässät::This team is from Pori;
+fi::Mikä jääkiekkojoukkue näkyy kuvassa?::Ässät//porin ässät::Varusteiden vieressä voit kuunnella Suomalaista kiekkomusiikkia.
+en::Which Finnish ice-hockey team is in the picture?::Assat//Ässät//porin ässät::You can listen to Finnish ice hockey music next to the picture;
