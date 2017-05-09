@@ -5,25 +5,30 @@ package fi.tamk.tiko.kivimiesgaming;
  */
 
 public enum RoomType {
-    ROCK("rockMuseum"),
-    POSTAL("postalMuseum"),
-    TAMMER("tammerMuseum"),
-    TUTORIAL("tutorialMuseum"),
-    GAME("gameMuseum"),
-    MEDIA("mediaMuseum"),
-    NATURE("natureMuseum"),
-    DOLL("dollMuseum"),
-    ICEHOCKEY("iceHockeyMuseum");
+    ROCK("rockMuseum", true),
+    POSTAL("postalMuseum", true),
+    TAMMER("tammerMuseum", true),
+    TUTORIAL("tutorialMuseum", true),
+    GAME("gameMuseum", false),
+    MEDIA("mediaMuseum", false),
+    NATURE("natureMuseum", false),
+    DOLL("dollMuseum", false),
+    ICEHOCKEY("iceHockeyMuseum", false);
 
     private String text;
-
-    RoomType(String text) {
+    private boolean bottomFloor;
+    RoomType(String text, boolean bottomFloor) {
         this.text = text;
+        this.bottomFloor = bottomFloor;
     }
 
     @Override
     public String toString() {
         return this.text;
+    }
+
+    public boolean isBottomFloor() {
+        return bottomFloor;
     }
 
     public static RoomType typeFromString(String enumAsString) {

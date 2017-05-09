@@ -75,8 +75,8 @@ public class MainMenu extends MyScreen {
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
                 game.resetScores();
-                setNextScreen(new StoryStartScreen(getGame(), assetManager));
                 Vescape.storyStartSeen = true;
+                setNextScreen(new StoryStartScreen(getGame(), assetManager));
             }
         });
 
@@ -117,10 +117,10 @@ public class MainMenu extends MyScreen {
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
                 if (Vescape.storyStartSeen) {
-                    setNextScreen(new RoomSelection(getGame(), assetManager));
+                    setNextScreen(new RoomSelection(getGame(), assetManager, true));
                 } else {
-                    setNextScreen(new StoryStartScreen(getGame(), assetManager));
                     Vescape.storyStartSeen = true;
+                    setNextScreen(new StoryStartScreen(getGame(), assetManager));
                 }
             }
         });
@@ -130,7 +130,7 @@ public class MainMenu extends MyScreen {
         createNewGameButton.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - createNewGameButton.getWidth() / 2,
                 950);
 
-
+        System.out.println(Vescape.storyStartSeen);
         if (Vescape.lastTotalStars == 0 && !Vescape.storyStartSeen) {
             createNewGameButton.setDisabled(true);
             createNewGameButton.setColor(0.2f, 0f, 0.2f, 0.0f);

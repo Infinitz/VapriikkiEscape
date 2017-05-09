@@ -520,7 +520,7 @@ public class RoomView extends MyScreen {
 
             if (currentRiddleCount == riddlesInRoom) {
                 setNextScreen(new RoomSelection(
-                        getGame(), assetManager));
+                        getGame(), assetManager, roomData.type.isBottomFloor()));
             } else if (keyboardEnabled) {
                 enableKeyboard(false);
             } else if (hintPanelEnabled) {
@@ -569,7 +569,8 @@ public class RoomView extends MyScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
-                setNextScreen(new RoomSelection(getGame(), assetManager));
+                setNextScreen(new RoomSelection(getGame(), assetManager,
+                        roomData.type.isBottomFloor()));
             }
         });
 

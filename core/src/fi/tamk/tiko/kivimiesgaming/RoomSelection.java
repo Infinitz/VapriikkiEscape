@@ -46,8 +46,9 @@ public class RoomSelection extends MyScreen {
 
     private int totalStars = 0;
 
-    public RoomSelection(Vescape game, AssetManager assetManager) {
+    public RoomSelection(Vescape game, AssetManager assetManager, boolean lowerFloor) {
         super(game, assetManager);
+        this.isDownStairs = lowerFloor;
         assetManager.load("floor_navi_up.png", Texture.class);
         assetManager.load("floor_navi_down.png", Texture.class);
         assetManager.load("F2_postal.png", Texture.class);
@@ -164,6 +165,9 @@ public class RoomSelection extends MyScreen {
         inputMultiplexer.addProcessor(stage);
         Gdx.input.setInputProcessor(inputMultiplexer);
 
+        if (!isDownStairs) {
+            changeFloorInstant(false);
+        }
 
         if (!newMachinePart()) {
             transition();
@@ -471,7 +475,6 @@ public class RoomSelection extends MyScreen {
 
     private Group createFloor2() {
         float baseSize = 250;
-
         float offsetX = 90;
         float offsetY = 300;
 
@@ -574,6 +577,7 @@ public class RoomSelection extends MyScreen {
 
         floor2.addActor(natureRoom.getRoomElements());
 
+        floor2.setOrigin(0, 1600);
         return floor2;
     }
 
@@ -622,6 +626,34 @@ public class RoomSelection extends MyScreen {
         }
 
         selectRoom(null);
+    }
+
+    private void changeFloorInstant(boolean down) {
+        isDownStairs = down;
+        int direction = down ? 1 : -1;
+        float duration = 0.5f;
+        final float movement = Vescape.GUI_VIEWPORT_HEIGHT * direction;
+        floor1.setY(floor1.getY() + movement);
+        floor2.setY(floor2.getY() + movement);
+
+
+        float delta = (bg.getHeight() * bg.getScaleY() - bg.getHeight()) / 2;
+
+        bg.setY(bg.getY() + direction * (bg.getHeight() * bg.getScaleY() -
+                Vescape.GUI_VIEWPORT_HEIGHT - delta));
+
+        if (down) {
+            changeFloorButtonDown.alpha = 0.5f;
+            changeFloorButtonUp.alpha = 1f;
+            changeFloorButtonDown.setTouchable(Touchable.disabled);
+            changeFloorButtonUp.setTouchable(Touchable.enabled);
+        } else {
+            changeFloorButtonUp.alpha = 0.5f;
+            changeFloorButtonDown.alpha = 1f;
+            changeFloorButtonDown.setTouchable(Touchable.enabled);
+            changeFloorButtonUp.setTouchable(Touchable.disabled);
+        }
+
     }
 
     protected void selectRoom(RoomButton room) {

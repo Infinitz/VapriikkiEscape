@@ -81,6 +81,7 @@ public abstract class StoryScreen extends MyScreen {
         stage.addActor(rossFace);
         createStorySequence();
         progressStory();
+        game.saveScores();
     }
 
     @Override

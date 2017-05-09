@@ -68,7 +68,7 @@ public class RoomFinishedPopUp {
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
                 screen.setNextScreen(new RoomSelection(
-                        screen.getGame(), screen.getAssetManager()));
+                        screen.getGame(), screen.getAssetManager(), data.type.isBottomFloor()));
             }
         });
 
