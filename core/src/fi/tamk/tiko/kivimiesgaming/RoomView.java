@@ -437,7 +437,7 @@ public class RoomView extends MyScreen {
         ImageActor riddlePanelBg = new ImageActor(riddlePanelTextureBg);
         ImageActor riddlePanelFill = new ImageActor(riddlePanelTextureFill);
 
-        float panelTargetW = Vescape.GUI_VIEWPORT_WIDTH - 50;
+        float panelTargetW = Vescape.GUI_VIEWPORT_WIDTH - 20;
         riddlePanelBg.setSize(riddlePanelBg.getSizeY() * (panelTargetW / riddlePanelBg.getSizeX()));
         riddlePanelBg.setPosition((Vescape.GUI_VIEWPORT_WIDTH - riddlePanelBg.getSizeX()) / 2,
                 (Vescape.GUI_VIEWPORT_HEIGHT - riddlePanelBg.getSizeY()) - 130);

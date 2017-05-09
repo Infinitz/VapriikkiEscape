@@ -534,7 +534,6 @@ public class Vescape extends Game {
 
     private void loadScores() {
         storyStartSeen = scoresPref.getBoolean("storyStartSeen", false);
-        System.out.println("Loaded: " + Vescape.storyStartSeen);
         String scores = scoresPref.getString("scores", "");
         if (scores.length() > 0) {
             String[] scoreArray = scores.split(";");

@@ -128,12 +128,14 @@ public class RoomFinishedPopUp {
 
         if(data.latestScore > data.highscore) {
             final int temp = data.latestScore - data.highscore;
+            final int highscore = data.highscore;
+
             data.highscore = data.latestScore;
 
             float delay = 0.9f;
             for (int i = 0; i < temp; ++i) {
                 elements.addAction(Actions.sequence(
-                        Actions.delay(delay * (i + 1) + 0.65f,
+                        Actions.delay(delay * (highscore + i + 1) + 0.65f),
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {
@@ -141,7 +143,7 @@ public class RoomFinishedPopUp {
                                 ++Vescape.lastTotalStars;
                             }
                         })
-                )));
+                ));
             }
         }
 

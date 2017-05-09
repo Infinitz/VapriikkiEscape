@@ -57,6 +57,7 @@ public class WarningPopUp {
         jaButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 if(buttonName.equalsIgnoreCase("newGameWarning")) {
                     screen.game.resetScores();
                     if (Vescape.storyStartSeen) {
@@ -77,6 +78,7 @@ public class WarningPopUp {
         neinButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 dispose();
             }
         });
@@ -84,6 +86,7 @@ public class WarningPopUp {
         exitButton.setClickListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 dispose();
             }
         });
@@ -114,7 +117,7 @@ public class WarningPopUp {
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
 
         elements.setScaleY(0);
-        elements.addAction(Actions.scaleTo(1, 1, 0.1f, Interpolation.pow2));
+        elements.addAction(Actions.scaleTo(1, 1, 0.2f, Interpolation.pow2));
 
         screen.getStage().addActor(screenDarkener);
         screen.stage.addActor(elements);
@@ -126,7 +129,7 @@ public class WarningPopUp {
         AudioManager.playSound("panel_close.wav");
         elements.addAction(Actions.sequence(
                 Actions.parallel(
-                        Actions.scaleTo(1, 0, 0.1f, Interpolation.pow2),
+                        Actions.scaleTo(1, 0, 0.2f, Interpolation.pow2),
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {

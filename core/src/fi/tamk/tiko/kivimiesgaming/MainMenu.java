@@ -97,6 +97,7 @@ public class MainMenu extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.playSound("button_press.wav");
                 warningPopUp = new WarningPopUp(MainMenu.this, "exitWarning");
             }
         });
@@ -134,7 +135,7 @@ public class MainMenu extends MyScreen {
         createNewGameButton.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - createNewGameButton.getWidth() / 2,
                 950);
 
-        System.out.println(Vescape.storyStartSeen);
+
         if (Vescape.lastTotalStars == 0 && !Vescape.storyStartSeen) {
             createNewGameButton.setDisabled(true);
             createNewGameButton.setColor(0.2f, 0f, 0.2f, 0.0f);
