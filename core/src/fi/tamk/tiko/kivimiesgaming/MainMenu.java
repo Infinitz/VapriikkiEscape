@@ -41,13 +41,22 @@ public class MainMenu extends MyScreen {
         stage.addActor(bg);
         new MenuPanel(this);
 
-        float movementY = 500;
+        float movementY = -200;
+        float movementX = 600;
         ImageActor title = new ImageActor(assetManager.get("menu_logo.png", Texture.class), 300);
-        title.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - title.getSizeX() / 2,
+        title.setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2 - title.getSizeX() / 2 + movementX,
                 Vescape.GUI_VIEWPORT_HEIGHT -  4 * title.getSizeY() / 3 + movementY);
-        title.addAction(Actions.sequence(
+        /*title.addAction(Actions.sequence(
                 Actions.delay(0.2f),
-                Actions.moveBy(0, -movementY, 1.5f, Interpolation.bounceOut)));
+                Actions.moveBy(0, -movementY, 1.5f, Interpolation.bounceOut)));*/
+
+        title.setColor(1, 1, 1, 0f);
+        title.setScale(0f);
+        float dur = 0.8f;
+        title.addAction(Actions.parallel(
+                Actions.scaleTo(1, 1, dur, Interpolation.pow2),
+                Actions.moveBy(-movementX, -movementY, dur, Interpolation.pow2),
+                Actions.fadeIn(dur)));
 
         stage.addActor(title);
     }

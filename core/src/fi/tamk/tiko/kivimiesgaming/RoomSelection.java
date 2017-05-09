@@ -69,8 +69,6 @@ public class RoomSelection extends MyScreen {
             totalStars += game.getRoomData(t).highscore;
         }
 
-        Vescape.lastTotalStars = totalStars;
-
         for (RoomType t : RoomType.values()) {
             boolean locked = totalStars < game.getRoomData(t).starsToUnlock;
             boolean unlockAnimation = game.getRoomData(t).isLocked != locked;
@@ -102,6 +100,7 @@ public class RoomSelection extends MyScreen {
 
     @Override
     public void onStart() {
+        Vescape.lastTotalStars = totalStars;
         bg = new ImageActor(assetManager.get("MENU_bg.jpg", Texture.class),
                 Vescape.GUI_VIEWPORT_HEIGHT);
         bg.setX((Vescape.GUI_VIEWPORT_WIDTH - bg.getSizeX()) / 2);
