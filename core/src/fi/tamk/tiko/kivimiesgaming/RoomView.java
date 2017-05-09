@@ -61,6 +61,7 @@ public class RoomView extends MyScreen {
     private int currentRiddleCount = 0;
     private int correctAnswerCount = 0;
     private int hintsUsedCount = 0;
+    private boolean roomFinished = false;
 
     private float hintButtonAnimMovement = 300f;
     private float hintPanelAnimMovement = 700f;
@@ -518,7 +519,7 @@ public class RoomView extends MyScreen {
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACK) ||
                 Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 
-            if (currentRiddleCount == riddlesInRoom) {
+            if (roomFinished) {
                 setNextScreen(new RoomSelection(
                         getGame(), assetManager, roomData.type.isBottomFloor()));
             } else if (keyboardEnabled) {
@@ -670,7 +671,7 @@ public class RoomView extends MyScreen {
         float rawScore = (float) correctAnswerCount - hintsUsedCount * Vescape.HINT_PENALTY + 0.33f;
         int score = Math.round((rawScore / riddlesInRoom) * 3);
         roomData.latestScore = score;
-
+        roomFinished = true;
         new RoomFinishedPopUp(this, roomData);
         getGame().saveScores();
     }
