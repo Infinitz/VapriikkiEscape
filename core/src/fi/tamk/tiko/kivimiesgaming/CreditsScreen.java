@@ -113,7 +113,7 @@ public class CreditsScreen extends MyScreen {
         y -= space;
         creditsGroup.addActor(vapriikkiLabel);
 
-        Label sallaLabel = new Label("Salla Angeria", labelStyleSmall);
+        Label sallaLabel = new Label("Sallamari Angeria", labelStyleSmall);
         sallaLabel.setPosition(innerX, y);
         y -= space;
         creditsGroup.addActor(sallaLabel);
