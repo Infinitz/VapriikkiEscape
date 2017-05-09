@@ -320,8 +320,8 @@ fi::Minkä niminen malja kuvassa on?::Aurora Borealis::A _ _ _ R _  B _ _ E _ _ 
 en::What is this trophy called?::Aurora Borealis::A _ _ _ R _  B _ _ E _ _ _ S;
 
 jää4.jpg
-fi::Mikä kirja on kuvassa?::sääntökirja::Kirja liittyy tuomarina toimimiseen
-en::What book is this?::rulebook::This book has something to do with being a referee.;
+fi::Mikä kirja on kuvassa?::sääntökirja//jääkiekko-säännöt//jääkiekkosäännöt::Kirja liittyy tuomarina toimimiseen
+en::What book is this?::rulebook//jaakiekko-saannöt//jaakiekkosaannot//jääkiekko-säännöt//jääkiekkosäännöt::This book has something to do with being a referee.;
 
 jää5.jpg
 fi::Kenen muistokiekko tämä on?::Pekka Rautakallio//pekka//Rautakallio::Muistokiekon vieressä voit harjoitella jääkiekon pelaamista.
