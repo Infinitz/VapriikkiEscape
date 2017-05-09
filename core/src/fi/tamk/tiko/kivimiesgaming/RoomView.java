@@ -58,7 +58,7 @@ public class RoomView extends MyScreen {
     private boolean hintUsed = false;
     private boolean keyboardEnabled = false;
     private boolean hintPanelEnabled = false;
-    private int currentRiddleCount = 0;
+    protected int currentRiddleCount = 0;
     private int correctAnswerCount = 0;
     private int hintsUsedCount = 0;
     private boolean roomFinished = false;
@@ -100,6 +100,15 @@ public class RoomView extends MyScreen {
 
     @Override
     public void onStart() {
+        //Refresh last total stars
+        int totalStars = 0;
+        for (RoomType t : RoomType.values()) {
+            game.getRoomData(t).loadTextures();
+            totalStars += game.getRoomData(t).highscore;
+        }
+        Vescape.lastTotalStars = totalStars;
+
+
         touchDetector = new ImageActor(assetManager.get("black.png", Texture.class),
                 Vescape.GUI_VIEWPORT_HEIGHT);
         touchDetector.setPosition(Vescape.GUI_VIEWPORT_WIDTH, 0);
@@ -290,7 +299,6 @@ public class RoomView extends MyScreen {
         stage.addActor(hintGroup);
         stage.addActor(touchDetector);
         createNewPanelWithAnimation(animLength);
-
     }
 
     public void answer(String playerAnswer) {
@@ -400,11 +408,10 @@ public class RoomView extends MyScreen {
                     @Override
                     public void run() {
                         oldRiddle.remove();
-
-                        answerField.setDisabled(false);
                         if (currentRiddleCount == riddlesInRoom) {
                             roomCompleted();
                         }
+                        answerField.setDisabled(false);
                     }
                 })
         ));
@@ -415,10 +422,20 @@ public class RoomView extends MyScreen {
         riddlePanel.setRotation(-45);
         riddlePanel.setScale(0.5f);
         riddlePanel.setX(1000);
-        riddlePanel.addAction(Actions.parallel(
-                Actions.scaleTo(1f, 1f, animLength, Interpolation.pow2),
-                Actions.rotateBy(45, animLength, Interpolation.pow2),
-                Actions.moveBy(-1000f, 0, animLength, Interpolation.pow2)));
+        riddlePanel.addAction(Actions.sequence(
+                Actions.parallel(
+                    Actions.scaleTo(1f, 1f, animLength, Interpolation.pow2),
+                    Actions.rotateBy(45, animLength, Interpolation.pow2),
+                    Actions.moveBy(-1000f, 0, animLength, Interpolation.pow2)
+                ),
+                Actions.run(new Runnable() {
+                    @Override
+                    public void run() {
+                        onNewRiddleStarted();
+                    }
+                })
+        ));
+
         getStage().addActor(riddlePanel);
         hintGroup.remove();
         stage.addActor(hintGroup);
@@ -702,4 +719,7 @@ public class RoomView extends MyScreen {
         enabledHintPanel(false);
     }
 
+    protected void onNewRiddleStarted() {
+
+    }
 }

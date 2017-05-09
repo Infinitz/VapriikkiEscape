@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
@@ -23,7 +24,6 @@ public abstract class StoryScreen extends MyScreen {
 
     protected final int marksInLineBubble = 21;
     protected final float bubbleSize = 700f;
-    protected final float transitionAnimDuration = 3f;
 
     protected ArrayList<RunnableAction> storySequence;
     protected AnimatedImageActor currentAnimation;
@@ -106,7 +106,19 @@ public abstract class StoryScreen extends MyScreen {
                                 Actions.run(new Runnable() {
                                     @Override
                                     public void run() {
-                                        currentBubbleGroup.remove();
+                                        for (Actor a : currentBubbleGroup.getChildren()) {
+                                            a.addAction(Actions.fadeOut(0.5f));
+                                        }
+                                        currentBubbleGroup.addAction(Actions.sequence(
+                                                Actions.fadeOut(0.5f),
+                                                Actions.run(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        currentBubbleGroup.remove();
+                                                        currentBubbleGroup = null;
+                                                    }
+                                                })
+                                        ));
                                     }
                                 })
                         ));
@@ -138,6 +150,8 @@ public abstract class StoryScreen extends MyScreen {
                                 }
                             })
                     ));
+        } else {
+            currentBubbleGroup = bubbleGroup;
         }
         bubbleGroup.addAction(
                 Actions.sequence(
@@ -152,9 +166,6 @@ public abstract class StoryScreen extends MyScreen {
                         })
                 )
         );
-        if (currentBubbleGroup == null) {
-            currentBubbleGroup = bubbleGroup;
-        }
         bubbleGroup.setPosition(Vescape.GUI_VIEWPORT_WIDTH - bubble.getSizeX() * 1.15f,
                 Vescape.GUI_VIEWPORT_HEIGHT / 3 + 175f);
         stage.addActor(bubbleGroup);
