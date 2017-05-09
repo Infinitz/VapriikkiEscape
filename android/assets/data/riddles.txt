@@ -190,8 +190,8 @@ fi::Mikä on tämän Nokian puhelimen mallinumero?::8210::Puhelin on vuodelta 19
 en::What is the model of this Nokia phone?::8210::The phone is from 1999;
 
 rup3.jpg
-fi::A007, mitähän se mahtaa tarkoittaa...::Loppu//Loppua::Etsi Rupriikista koodiavain
-en::There is a cryptic code, A007.. what could it mean?::Loppu//End::The image is projected to the wall and there is a manual under it;
+fi::A007, mitähän se mahtaa tarkoittaa...::Loppu//Loppua::Kuva on heijastettu seinälle ja sen alta löytyy ohjekirja.
+en::There is a cryptic code, A007.. what could it mean?::Loppu//End::The image is projected to the wall and there is a manual under it.;
 
 rup4.jpg
 fi::Minkä niminen esine näkyy kuvassa?::vasaralävistin::V _ _ _ _ _ L _ _ _ _ _ _ N
@@ -233,7 +233,7 @@ en::Which enormously scaled butterfly can be seen here?::Melitae diamina::MELITA
 
 luonto3.jpg
 fi::Mille linnulle kyseinen luuranko kuuluu?::Varis::Luuranko hengailee kohtalotovereidensa kanssa
-en::Which bird's skeleton is this?::Crow::The skeleton is chilling with the other bones of animals;
+en::Which bird's skeleton is this?::Crow::The skeleton is chilling with its friends who suffered the same fate.;
 
 luonto4.jpg
 fi::Mikä on Pirkanmaan maakuntakalan latinankielinen nimi?::Aspius aspius::Kala on suomeksi Toutain
@@ -316,7 +316,7 @@ fi::Minkä SM-liigajoukkueen maalivahdin pelipaita 1940-luvulta komeilee kuvassa
 en::Which Finnish Championship team's goalie had this shirt in 1940?::Ilves::This team is from Tampere;
 
 jää3.jpg
-fi::Minkä niminen malja kuvassa on?::Aurora Borealis::Se on naisten SM-sarjan voittopokaali
+fi::Minkä niminen malja kuvassa on?::Aurora Borealis::A _ _ _ R _  B _ _ E _ _ _ S
 en::What is this trophy called?::Aurora Borealis::A _ _ _ R _  B _ _ E _ _ _ S;
 
 jää4.jpg
@@ -333,7 +333,7 @@ en::What year is this silver medal from?::2006::2 0 0 _;
 
 jää7.jpg
 fi::Minkä vuoden maailmanmestaruusjoukkuetta näkyy kuvassa?::1995::Tänä vuonna Suomi voitti ensimmäisen jääkiekon maailmanmestaruuden
-en::In what year did this team play?::1995::Finland won IIHF World Championship for the first time this year.;
+en::In what year did this team play?::1995::Finland won the IIHF World Championship for the first time this year.;
 
 jää8.jpg
 fi::Miltä vuodelta tämä palkinto on?::2008::2 0 0 _

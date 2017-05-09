@@ -27,7 +27,7 @@ public class WarningPopUp {
 
 
         panelBG = new ImageActor(
-                screen.getAssetManager().get("riddle_info_box.png", Texture.class));
+                screen.getAssetManager().get("confirm_box.jpg", Texture.class));
         panelBG.alpha = 1f;
 
         float panelTargetW = Vescape.GUI_VIEWPORT_WIDTH;
@@ -93,7 +93,7 @@ public class WarningPopUp {
         exitButton.setSize(100);
 
         int offsetX = 100;
-        int offsetY = 100;
+        int offsetY = 50;
 
         jaButton.setPosition(panelBG.getSizeX() - jaButton.getSizeX() - offsetX,
                 panelBG.getTrueY() + offsetY);
@@ -102,7 +102,7 @@ public class WarningPopUp {
                 panelBG.getTrueY() + offsetY);
 
         exitButton.setPosition(panelBG.getSizeX() - exitButton.getSizeX(),
-                panelBG.getSizeY() + 225);
+                panelBG.getSizeY());
 
         elements.addActor(panelBG);
         elements.addActor(jaButton);

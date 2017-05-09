@@ -228,7 +228,7 @@ public class Vescape extends Game {
         assetManager.load("star_full.png", Texture.class);
 
         assetManager.load("map_room_info_box.png", Texture.class);
-        assetManager.load("riddle_info_box.png", Texture.class);
+        assetManager.load("confirm_box.jpg", Texture.class);
         assetManager.load("druckknopf_ja.png", Texture.class);
         assetManager.load("druckknopf_nein.png", Texture.class);
         assetManager.load("back_button.png", Texture.class);
