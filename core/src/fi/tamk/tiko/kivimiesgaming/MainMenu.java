@@ -25,7 +25,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class MainMenu extends MyScreen {
     ImageActor bg;
-    private WarningPopUp warningPopUp;
 
     public MainMenu(Vescape game, AssetManager assetManager) {
         super(game, assetManager);
@@ -85,7 +84,7 @@ public class MainMenu extends MyScreen {
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
                 if (Vescape.storyStartSeen) {
-                    warningPopUp = new WarningPopUp(MainMenu.this, "newGameWarning");
+                    new WarningPopUp(MainMenu.this, "newGameWarning");
                 } else {
                     setNextScreen(new StoryStartScreen(getGame(),
                             assetManager));
@@ -107,7 +106,7 @@ public class MainMenu extends MyScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
-                warningPopUp = new WarningPopUp(MainMenu.this, "exitWarning");
+                new WarningPopUp(MainMenu.this, "exitWarning");
             }
         });
 
