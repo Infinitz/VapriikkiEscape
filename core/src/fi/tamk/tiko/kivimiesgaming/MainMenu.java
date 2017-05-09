@@ -25,6 +25,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class MainMenu extends MyScreen {
     ImageActor bg;
+    private WarningPopUp warningPopUp;
 
     public MainMenu(Vescape game, AssetManager assetManager) {
         super(game, assetManager);
@@ -74,14 +75,17 @@ public class MainMenu extends MyScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
-                game.resetScores();
-                Vescape.storyStartSeen = true;
-                setNextScreen(new StoryStartScreen(getGame(), assetManager));
-            }
-        });
-
+                if (Vescape.storyStartSeen) {
+                    warningPopUp = new WarningPopUp(MainMenu.this, "newGameWarning");
+                } else {
+                    setNextScreen(new StoryStartScreen(getGame(),
+                            assetManager));
+                    Vescape.storyStartSeen = true;
+                }
+            }});
         return button;
     }
+
 
     @Override
     public TextButton getPanelButton2() {
@@ -93,7 +97,7 @@ public class MainMenu extends MyScreen {
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.exit();
+                warningPopUp = new WarningPopUp(MainMenu.this, "exitWarning");
             }
         });
 
