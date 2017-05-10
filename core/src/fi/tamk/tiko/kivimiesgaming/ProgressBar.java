@@ -3,15 +3,10 @@ package fi.tamk.tiko.kivimiesgaming;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-
-import java.util.ArrayList;
 
 /**
- * Created by atter on 18-Apr-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  */
 
 public class ProgressBar {

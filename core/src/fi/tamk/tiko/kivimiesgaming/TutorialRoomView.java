@@ -12,9 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
- * Created by atter on 02-May-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  */
-
 public class TutorialRoomView extends RoomView {
 
     private final int marksInLineBubble = 21;

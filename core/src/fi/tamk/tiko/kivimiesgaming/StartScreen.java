@@ -5,9 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 /**
- * Created by atter on 08-May-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  */
-
 public class StartScreen extends MyScreen {
     public StartScreen(Vescape game, AssetManager assetManager) {
         super(game, assetManager);

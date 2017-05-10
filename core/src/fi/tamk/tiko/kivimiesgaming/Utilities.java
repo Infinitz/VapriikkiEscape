@@ -1,9 +1,8 @@
 package fi.tamk.tiko.kivimiesgaming;
 
 /**
- * Created by atter on 05-Apr-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  */
-
 public class Utilities {
 
     public static String splitTextIntoLines(String str, int charsPerLine) {

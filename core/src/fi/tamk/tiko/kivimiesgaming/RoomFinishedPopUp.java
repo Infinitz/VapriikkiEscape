@@ -8,20 +8,42 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
- * Created by risto on 3.4.2017.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * This class builds the popup window after finishing a room.
  */
 
 public class RoomFinishedPopUp {
+    /**
+     * Darkens the rest of the screen during popup.
+     */
     private ScreenDarkener screenDarkener;
+    /**
+     * This is the background texture of the popup.
+     */
     private ImageActor panelBG;
+    /**
+     * All of the objects of the popup are grouped in elements.
+     */
     private Group elements;
+    /**
+     * Texture of continue button.
+     */
     private Texture continueButtonTexture;
+    /**
+     * Texture of replay button.
+     */
     private Texture replayButtonTexture;
 
+
+    /**
+     * Class constructor.
+     * @param screen Current screen of the game.
+     * @param data Data for the curren exhibition.
+     */
     public RoomFinishedPopUp(final MyScreen screen, final RoomData data) {
         continueButtonTexture = screen.getAssetManager().get(
                 "riddle_next_active.png", Texture.class);

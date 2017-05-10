@@ -1,12 +1,11 @@
 package fi.tamk.tiko.kivimiesgaming;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 /**
- * Created by atter on 11-Apr-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  */
 
 public class ScreenDarkener extends ImageActor {

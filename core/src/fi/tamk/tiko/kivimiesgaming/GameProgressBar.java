@@ -8,11 +8,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-
 import java.util.ArrayList;
 
 /**
- * Created by atter on 28-Apr-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  */
 
 public class GameProgressBar {

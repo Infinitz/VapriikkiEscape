@@ -1,7 +1,7 @@
 package fi.tamk.tiko.kivimiesgaming;
 
 /**
- * Created by atter on 28-Mar-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  */
 
 public class RiddleTexts {

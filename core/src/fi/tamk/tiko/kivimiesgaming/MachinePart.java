@@ -1,7 +1,7 @@
 package fi.tamk.tiko.kivimiesgaming;
 
 /**
- * Created by atter on 13-Apr-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  */
 
 public class MachinePart {
