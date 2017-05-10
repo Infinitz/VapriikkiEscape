@@ -33,29 +33,29 @@ en::From which city in Finland is this stone from?::Viitasaari::Now would be a g
 
 kivi8.jpg
 fi::Mikä kivi on kuvassa?::laavakivi::Kivi on viimeisessä kulmassa "muita kiviä" vitriinin jälkeen.
-en::What is this stone called in finnish?::laavakivi::The stone is located in the last corner of the exhibition after "muita kiviä" showcase;
+en::What is this stone called in Finnish?::laavakivi::The stone is located in the last corner of the exhibition after "muita kiviä" showcase;
 
 kivi9.jpg
 fi::Mikä on tämä violetti kivi?::ametisti::A _ _ _ _ _ _ I
-en::what is this purple stone called in finnish?::ametisti::A _ _ _ _ _ _ I;
+en::What is this purple stone called in Finnish?::ametisti::A _ _ _ _ _ _ I;
 
 kivi10.jpg
-fi::Tämä kivi on harmaa… mikä?::harmaagraniitti//graniitti::Vaikka kävellessä tuleekin katsoa eteensä, nyt kannattaa vilkuilla myös lattiaa.
-en::In finnish this stone is called harmaa... what?::harmaagraniitti//graniitti::Now would be a good time to check the floor.;
+fi::Tämä kivi on ”harmaa...” mikä?::harmaagraniitti//graniitti::Vaikka kävellessä tuleekin katsoa eteensä, nyt kannattaa vilkuilla myös lattiaa.
+en::In Finnish this stone is called “harmaa-” what?::harmaagraniitti//graniitti::Now would be a good time to check the floor.;
 
 &postalMuseum
 
 posti1.jpg
 fi::Kuka asuu täällä?::Akseli Gallen-Kallela//Akseli::Henkilön koti näytti tältä vuonna 1899.
-en::Who lives here?::Akseli Gallen-Kallela//Akseli::Their house looked like this in 1899.;
+en::Who lives here?::Akseli Gallen-Kallela//Akseli::His house looked like this in 1899.;
 
 posti2.jpg
 fi::Minkä merkkinen oli Suomen postin ensimmäinen auto?::Adler//Adler 1911::Auto on aika kookas.
 en::What model was the first postal car used in Finland?::Adler//Adler 1911::The car is quite large.;
 
 posti3.jpg
-fi::Monta postiljoonia oli Suomessa vuonna 1827?::46::Tällä postiljoonia on muutama kaveri rivissä.
-en::How many postmen were in Finland in 1827?::46::This postman has a couple of friends standing in a line.;
+fi::Monta postiljoonia oli Suomessa vuonna 1827?::46::Tämä postiljooni on rivissä muutaman kaverin kanssa.
+en::How many postmen were in Finland in 1827?::46::This postman is standing in a line with a couple of friends.;
 
 posti4.jpg
 fi::Kuinka monta kiloa hevonen jaksaa kantaa?::70//70kg::Hevosen kantokyky löytyy seinällä olevasta taulusta.
@@ -63,48 +63,48 @@ en::How much weight can the horse carry in kilograms?::70//70kg::You can find in
 
 posti5.jpg
 fi::Minkä merkkisellä ajoneuvolla postiljooni kulki vuonna 1956?::tunturi//tunturi-mopedi::Pyörän merkki lukee sen kyljessä.
-en::What model was this postman's vehicle in 1956?::tunturi//tunturi-mopedi::You can find the model on the side of his bike.;
+en::What model was this postman's bike in 1956?::tunturi//tunturi-mopedi::You can find the model on the side of his bike.;
 
 posti6.jpg
-fi::Minkä nimisessä huoneessa henkilö selvittää postin historiaa?::Postikino::Huoneen nimi lukee sen sisäänkäynnin yhteydessä.
-en::What is the name of this room where you can learn about the history of finnish post office::Postikino::You can find the name at the entrance to the room.;
+fi::Minkä nimisessä huoneessa kuvan henkilö selvittää postin historiaa?::Postikino::Huoneen nimi lukee sen sisäänkäynnin yhteydessä.
+en::What is the name of this room where you can learn about the history of Finnish post office::Postikino::You can find the name at the entrance to the room.;
 
 posti7.jpg
 fi::Kuka istuu ikkunan ääressä?::Edvard Neovius//Edvard//Neovius::Kuvassa on pienoismalli hänen kodistan vuonna 1899
-en::Who is sitting by the window?::Edvard Neovius//Edvard//Neovius::The picture is a miniature version of their home in 1899.;
+en::Who is sitting by the window?::Edvard Neovius//Edvard//Neovius::The picture is a miniature version of his home in 1899.;
 
 posti8.jpg
 fi::Minkä vuosisadan postireitti on kuvassa?::1700::Vastaus löytyy huoneen sisäänkäynnin yläpuolelta
-en::During which century was this post route used?::1700//1700s//18th century//18th::You can find the answer above the entrance to this little room.;
+en::During what century was this post route used?::1700//1700s//18th century//18th::You can find the answer above the entrance of this little room.;
 
 posti9.jpg
 fi::Millä nimellä jatkosodan aikana tehtyjä käsitöitä kutsuttiin?::puhdetyö//sota-ajan puhdetyö::Posti museosta löytyy osio sota-ajan postiesineille.
-en::What are these wartime hand crafted items called by?::handicraft//wartime handicraft::You can find these near other wartime artifacts.;
+en::What are these wartime hand crafted items called?::handicraft//wartime handicraft::You can find these near the other wartime artifacts.;
 
 posti10.jpg
-fi::Mitä välinettä postinkuljettajat käyttivät 1850-luvulta raipan ja aisakellon lisäksi?::pistooli//pistoolia::Nämä esineet sijaitsevat postinkuljettajien läheisyydessä.
+fi::Mitä välinettä postinkuljettajat käyttivät 1850-luvulla raipan ja aisakellon lisäksi?::pistooli//pistoolia::Nämä esineet sijaitsevat postinkuljettajien läheisyydessä.
 en::What equipment postmen used in the 1850s in addition to a whip and a bell?::pistols//pistol::You can find these items near the postmen.;
 
 &tammerMuseum
 
 koski1.jpg
-fi::Mitä kuvan mies luettelee ensimmäisenä tarpeelliseksi asiaksi?::Miekka::Etsi näyttelyn sisäänkäynnin läheltä sarjakuva, jossa kyseiset henkilöt esiintyvät.
+fi::Minkä kuvan mies luettelee ensimmäiseksi tarpeelliseksi asiaksi?::Miekka::Etsi näyttelyn sisäänkäynnin läheltä sarjakuva, jossa kyseiset henkilöt esiintyvät.
 en::What word is missing from the picture?::Miekka::You will find the comic near the entrance to the exhibition.;
 
 koski2.jpg
 fi::Kuvassa näkyy kahden jääkiekkojoukkueen logot, Ilves ja… mikäs se toinen olikaan?::Tappara::Nuket löytyvät näyttelyn ovelta vitriinistä.
-en::Here are the logos of two ice-hockey teams from Tampere. The other one is Ilves... but what is the other one called?::Tappara::You can find the dolls next to the entrance to the exhibition;
+en::Here are the logos of two ice hockey teams from Tampere. The other one is Ilves but what is the other one called?::Tappara::You can find the dolls next to the entrance to the exhibition.;
 
 koski3.jpg
-fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen//Juice::Henkilö on jo edesmennyt suomalainen tunnettu muusikko
-en::Who is playing the guitar in the picture?::Juice Leskinen//Juice::The person was a famous finnish musician.;
+fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen//Juice::Henkilö on jo edesmennyt suomalainen tunnettu muusikko.
+en::Who is playing the guitar in the picture?::Juice Leskinen//Juice::The person was a famous Finnish musician.;
 
 koski4.jpg
 fi::Miltä vuodelta kuvassa näkyvä Josef Konsénin vaaka on?::1870::Etsi vaaka ja tutki ympäristöä tarkemmin!
-en::In what year was this Josef Konsén’s scale made?::1870::Find the scale and study your surroundings!;
+en::In what year was this Josef Konsén’s scale made?::1870::Find the scale and study the surroundings!;
 
 koski5.jpg
-fi::Mikä karannut eläin kuvassa olevan henkilön piti ottaa kiinni?::porsas//possu//sika//emakko//karju//potsi//imisä//orasa::vihjekuva on osa isompaa sarjakuvaa
+fi::Mikä karannut eläin kuvan henkilön piti ottaa kiinni?::porsas//possu//sika//emakko//karju//potsi//imisä//orasa::Vihjekuva on osa isompaa sarjakuvaa.
 en::What animal was this person supposed to catch?::porsas//possu//sika//emakko//karju//potsi//imisä//orasa::The photo is a part of a big comic.;
 
 koski6.jpg
@@ -121,7 +121,7 @@ en::What year is this spiral bevel gear from?::2009::Are you sure you read the t
 
 koski9.jpg
 fi::Kuinka monta taloa on kuvan pienoismallissa?::3100::Kierrä pienoismallia kunnes löydät kuvassa näkyvän lapun.
-en::How many houses are in this miniature?::3100::Circle the miniature until you find the paper in the picture.;
+en::How many houses are in this miniature?::3100::Circle the miniature until you find the paper shown in the picture.;  
 
 #Pormestari.jpg
 #fi::Missä virassa kuvan uniformua käytettiin?::Pormestari//Pormestarin::Fredrik Procopé käytti tätä 1860-luvulla
@@ -145,7 +145,7 @@ en::Next, which exhibition is on the left side with the business rooms?::postimu
 
 peli1.jpg
 fi::Mikä pelistudio on luonut kyseisen pelihahmon?::Rovio Entertainment//Rovio::Studio on suomalainen, vaikka nimen toinen osa onkin englanninkielinen
-en::Which game company created this character?::Rovio Entertainment//Rovio::The company is finnish albeit its name is partly in english;
+en::Which game company created this character?::Rovio Entertainment//Rovio::The company is Finnish albeit its name is partly in English;
 
 peli2.jpg
 fi::Minä vuonna on tehty tämä Uuno Turhapuro peli?::1986::Näyttelystä löytyy osio 1980-luvulla tehtyjä pelejä.
@@ -153,11 +153,11 @@ en::What year was this Uuno Turhapuro game made in?::1986::There is a part of th
 
 peli3.jpg
 fi::Minä vuonna tämä pajatso tehtiin?::1938::Se sijaitsee lähellä lautapelejä ja Rupriikkia
-en::What year was this pajatso made in?::1938::It is located next to the board games and media museum Rupriikki;
+en::What year was this pajatso made in?::1938::It is located near the board games and media museum Rupriikki;
 
 peli4.jpg
-fi::Mikä on tämän pelin nimi?::sampo::Kuvassa on lautapeli lähellä mediamuseo Rupriikkia
-en::What is this game called?::sampo::It is a board game next to media museum Rupriikki;
+fi::Mikä on tämän pelin nimi?::sampo::Kuvassa on lautapeli lähellä mediamuseo Rupriikkia.
+en::What is this game called?::sampo::It is a board game next to media museum Rupriikki.;
 
 peli5.jpg
 fi::Mikä pelihahmo näkyy kuvassa?::Hugo::H _ _ _
@@ -207,7 +207,7 @@ en::What is this object called?::polaroid land camera//polaroid//polaroid-kamera
 
 rup7.jpg
 fi::Minkä sarjan kirjoituskone tämä on?::Royal//royal 10//royal10::Nimi lukee myös kirjoituskoneen päällä
-en::What series does this typewriter belong to?::Royal//royal 10//royal10::The name is also on top of the typewriter.;
+en::Which series does this typewriter belong to?::Royal//royal 10//royal10::The series name is also on top of the typewriter.;
 
 rup8.jpg
 fi::Mikä on tämän pöytäpuhelimen nimi?::vääräsääri::Puhelin sijaitsee seinällä muiden lankapuhelimien kanssa
@@ -224,8 +224,8 @@ en::What brand is this device?::Vistacom::V _ _ _ _ C _ M;
 &natureMuseum
 
 luonto1.jpg
-fi::Mikä kasvi tuoksuu näytteessä numero 4?::Suopursu::Tilaan jossa näyte sijaitsee voi mennä joko ovesta tai ryömiä puun läpi.
-en::What plant can you smell from the fourth example?::Suopursu//marsh labrador tea::You can enter the room either through the door or crawl through a tree;
+fi::Mikä kasvi tuoksuu näytteessä numero 4?::Suopursu::Tilaan, jossa näyte sijaitsee, voi mennä joko ovesta tai ryömiä puun läpi.
+en::What plant can you smell from the fourth example?::Suopursu//marsh labrador tea::You can enter the room either through the door or by crawling through a tree;
 
 luonto2.jpg
 fi::Mikä hurjan paljon suurennettu perhonen näkyy kuvassa?::Tummaverkkoperhonen::T_ _ _ _ v _ _ _ _ _perhonen
@@ -241,27 +241,27 @@ en::What is the latin name for this Pirkanmaa regional fish?::Aspius aspius::The
 
 luonto6.jpg
 fi::Mikä on tämä puu?::Mänty::Näyttelyn hirvi tarkkailee puuta hyvin läheltä.
-en::What is this tree called in finnish?::mänty//manty::The moose is looking at the tree very closely;
+en::What is this tree called in Finnish?::mänty//manty::The moose is looking at the tree very closely;
 
 luonto7.jpg
 fi::Tämä pääkallo kuuluu karhulle. Mikä on karhun latinankielinen nimi?::Ursus arctos::U _ _ _ S   A _ _ _ _ S
-en::This skull belongs to brown bear. What is brown bear called in latin?::Ursus arctos::U _ _ _ S   A _ _ _ _ S;
+en::This skull belongs to brown bear. What is brown bear called in Latin?::Ursus arctos::U _ _ _ S   A _ _ _ _ S;
 
 luonto8.jpg
 fi::Kuvan puu on rauduskoivu. Vaan miten se sanotaan englanniksi?::Silver birch::S _ _ _ _ r   b _ _ _ h
-en::This tree is rauduskoivu, how do you say it in english?::Silver birch::S _ _ _ _ r   b _ _ _ h;
+en::This tree is “rauduskoivu”, how do you say it in English?::Silver birch::S _ _ _ _ r   b _ _ _ h;
 
 luonto9.jpg
 fi::Mikä lintu on kuvassa?::Isokoskelo::I _ _ K _ _ _ _ _ O
-en::What is this bird called in finnish?::Isokoskelo::I _ _ K _ _ _ _ _ O;
+en::What is this bird called in Finnish?::Isokoskelo::I _ _ K _ _ _ _ _ O;
 
 luonto10.jpg
 fi::Kuinka pitkä on harmaalokin siipiväli senttimetreinä?::130//130cm::Ehkä karhu osaa auttaa.
 en::How long is the wingspan of harmaalokki (Larus argentatus) in centimeters?::130//130cm::Maybe the bear could help.;
 
 luonto11.jpg
-fi::Mikä jänis on kuvassa?::Metsäjänis::Jänis on vaarassa jäädä karhun ruuaksi
-en::What hare is in the picture?::Mountain hare::The hare might end up being eaten by the bear;
+fi::Mikä jänis on kuvassa?::Metsäjänis::Jänis on vaarassa jäädä karhun ruuaksi.
+en::What hare is in the picture?::Mountain hare::The hare might end up being eaten by the bear.;
 
 luonto5.jpg
 fi::Mikä on Pirkanmaan maakuntakivi?::Pallograniitti::Tämä kivi on karannut luonnontieteellisestä museosta ja se on viimeksi havaittu lähellä Rupriikin sisäänkäyntiä…
@@ -302,18 +302,18 @@ fi::Kuka on valmistanut nämä nuket?::Anneli Kuronen//anneli//kuronen::Nämä k
 en::Who made these dolls?::Anneli Kuronen//anneli//kuronen::These hand puppets are from the Haihara puppet theatre;
 
 nukke9.jpg
-fi::Kuinka monta erilaista hahmoa kuuluu tähän näyttelyyn?::5000::Löydät vastauksen Nukkekekkerien toiselta sisäänkäynniltä
-en::How many objects are in this exhibition?::5000::You can find the answerin the entrance of the Doll Ball;
+fi::Kuinka monta erilaista hahmoa kuuluu tähän näyttelyyn?::5000::Löydät vastauksen Nukkekekkerien toiselta sisäänkäynniltä.
+en::How many objects are in this exhibition?::5000::You can find the answer at the other entrance of the exhibition;
 
 &iceHockeyMuseum
 
 jää1.jpg
-fi::Tässä on vuoden 1969 jokereiden maskotin varusteet. Minkä niminen maskotti oli?::esa tikkanen//Esa//tikkanen::Varusteiden vieressä voit kuunnella Suomalaista kiekkomusiikkia
-en::Here are Jokerit's mascots clothing from 1969. What was the mascots name?::Jokerit::You can listen to Finnish ice hockey music next to the clothing;
+fi::Tässä on vuoden 1969 Jokereiden maskotin varusteet. Minkä niminen maskotti oli?::esa tikkanen//Esa//tikkanen::Varusteiden vieressä voit kuunnella Suomalaista kiekkomusiikkia.
+en::Here are Jokerit's mascots clothing from 1969. What was the mascot’s name?:: esa tikkanen//Esa//tikkanen::You can listen to Finnish ice hockey music next to the clothing.;
 
 jää2.jpg
 fi::Minkä SM-liigajoukkueen maalivahdin pelipaita 1940-luvulta komeilee kuvassa?::Ilves::Paidan viereisessä vitriinissä on 28 jääkiekkomailaa
-en::Which Finnish Championship team's goalie had this shirt in 1940?::Ilves::Next to the shirt in a showcase is 28 hockey sticks;
+en::Which Finnish Championship team's goalie had this shirt in 1940?::Ilves::Next to the shirt in a showcase are 28 hockey sticks;
 
 jää3.jpg
 fi::Minkä niminen malja kuvassa on?::Aurora Borealis::A _ _ _ R _  B _ _ E _ _ _ S
@@ -325,7 +325,7 @@ en::What book is this?::rulebook//jaakiekko-saannöt//jaakiekkosaannot//jääkie
 
 jää5.jpg
 fi::Kenen muistokiekko tämä on?::Pekka Rautakallio//pekka//Rautakallio::Muistokiekon vieressä voit harjoitella jääkiekon pelaamista.
-en::This is a puck to commemorate someone's first NHL goal. Who is that person?::Pekka Rautakallio//pekka//Rautakallio::You can play ice hockey next to the puck;
+en::This is the puck to commemorate someone's first NHL goal. Who is that person?::Pekka Rautakallio//pekka//Rautakallio::You can play ice hockey next to the puck.;
 
 jää6.jpg
 fi::Miltä vuodelta tämä mitali on?::2006::2 0 0 _
