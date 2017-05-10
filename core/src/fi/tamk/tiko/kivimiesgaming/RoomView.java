@@ -265,8 +265,6 @@ public class RoomView extends MyScreen {
                         ),
                         Actions.rotateBy(120, 2)
                 )
-
-
         ));
 
         float animLength = 0.85f;
