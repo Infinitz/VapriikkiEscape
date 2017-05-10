@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import java.util.ArrayList;
@@ -88,22 +90,23 @@ public class GameProgressBar {
 
     public void addTreshold(float threshold) {
 
-        Threshold thresholdActor = new Threshold(assets.get("proggbar_marker.png", Texture.class)
-                , progressBar.getHeight() * 1.2f, threshold);
+        Threshold thresholdActor = new Threshold(
+                assets.get("proggbar_marker_closed.png", Texture.class),
+                progressBar.getHeight(), threshold);
         thresholdActor.setPosition(
                 MathUtils.lerp(0, progressBar.getWidth(), threshold),
-                0.05f * progressBar.getHeight());
+                0);
         thresholdActor.setX(thresholdActor.getX() - thresholdActor.getSizeX() / 2);
         thresholds.add(thresholdActor);
         group.addActor(thresholdActor);
     }
 
     public void reachedThreshold() {
-        final ImageActor threshold = thresholds.remove(0);
-        threshold.addAction(Actions.sequence(
-                Actions.moveBy(0, -threshold.getSizeY() / 5, 0.25f, Interpolation.pow2),
-                Actions.moveBy(0, 3 * threshold.getSizeY() / 5, 1f, Interpolation.pow2)
-        ));
+        final Threshold threshold = thresholds.remove(0);
+
+        threshold.unlockAnimation(group,
+                assets.get("proggbar_marker_open_upper.png", Texture.class),
+                assets.get("proggbar_marker_open_lower.png", Texture.class));
     }
 
     private int starsToNextUnlock(int additional, boolean addThresholds) {
@@ -156,19 +159,52 @@ public class GameProgressBar {
         return progressBar.getHeight();
     }
 
+
     private class Threshold extends ImageActor{
         public float value;
-        public ImageActor actor;
 
-        public Threshold(Texture texture, float value) {
-            super(texture);
+        public Threshold(Texture tex, float size, float value) {
+            super(tex, size);
             this.value = value;
         }
 
-        public Threshold(Texture texture, float size, float value) {
-            super(texture, size);
-            this.value = value;
-        }
 
+        public void unlockAnimation(Group group, Texture top, Texture bottom) {
+            ImageActor topActor = new ImageActor(top,
+                    1.15f * getSizeY() / 2 * top.getHeight() / bottom.getHeight());
+
+            ImageActor bottomActor = new ImageActor(bottom,
+                    1.15f * getSizeY() / 2);
+
+            remove();
+
+            float xOffset = (bottomActor.getSizeX() - getSizeX()) / 2;
+            float yOffset = ((topActor.getSizeY() + bottomActor.getSizeY()) - getSizeY()) / 2;
+            bottomActor.setPosition(getX() - xOffset, getY() - yOffset);
+            topActor.setPosition(getX() - xOffset + bottomActor.getSizeX() / 4,
+                    bottomActor.getY() + bottomActor.getSizeY());
+
+
+            group.addActor(topActor);
+            group.addActor(bottomActor);
+
+            topActor.addAction(Actions.sequence(
+                   // Actions.moveBy(0, -getSizeY() / 50, 0.1f, Interpolation.pow2),
+                    Actions.parallel(
+                            Actions.moveBy(0, getSizeY() / 6, 0.7f, Interpolation.pow2)
+                            //, Actions.scaleTo(1.25f, 1.25f, 0.7f, Interpolation.pow2)
+                    )
+
+            ));
+            bottomActor.addAction(Actions.sequence(
+                   // Actions.moveBy(0, getSizeY() / 50, 0.1f, Interpolation.pow2),
+                    Actions.parallel(
+                            Actions.moveBy(0, -getSizeY() / 6, 0.7f, Interpolation.pow2)
+                            //, Actions.scaleTo(1.25f, 1.25f, 0.7f, Interpolation.pow2)
+                    )
+            ));
+
+
+        }
     }
 }

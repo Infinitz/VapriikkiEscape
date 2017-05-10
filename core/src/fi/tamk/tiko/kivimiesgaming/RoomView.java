@@ -199,6 +199,7 @@ public class RoomView extends MyScreen {
                 0);
 
         // Just for testing
+        /*
         TextButton rightAnswerButton = new TextButton("",
                 getGame().getTextButtonStyle());
         rightAnswerButton.setSize(Vescape.GUI_VIEWPORT_WIDTH / 4, 175);
@@ -210,7 +211,7 @@ public class RoomView extends MyScreen {
                         getGame().getMyBundle().getLocale().getLanguage()).getAnswer());
             }
         });
-
+*/
 
         answerField.setTextFieldListener(new TextField.TextFieldListener() {
             @Override
@@ -290,7 +291,7 @@ public class RoomView extends MyScreen {
 
 
 
-        stage.addActor(rightAnswerButton);
+        //stage.addActor(rightAnswerButton);
         stage.addActor(answerFieldBG);
         stage.addActor(answerButton);
         burgerButton = new BurgerButton(this);
