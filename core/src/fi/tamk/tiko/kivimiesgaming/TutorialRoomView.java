@@ -75,6 +75,96 @@ public class TutorialRoomView extends RoomView {
                 75);
     }
 
+    @Override
+    /**
+     * Checks what happens when the player answers.
+     *
+     * @param playerAnswer The player's answer as string.
+     */
+    public void answer(String playerAnswer) {
+        playerAnswer = playerAnswer.trim();
+        boolean correctAnswer = currentRiddle.getRiddle(
+                getGame().getMyBundle().getLocale().getLanguage()).isCorrectAnswer(playerAnswer);
+
+        if (correctAnswer) {
+            ++currentRiddleCount;
+            correctAnswerCount++;
+            if (hintUsed) {
+                hintsUsedCount++;
+                //AudioManager.playSound("answer_right.wav");
+                answerResults[currentRiddleCount - 1] =
+                        new ImageActor(correctAnswerTex, answerResultSlots[0].getSizeY());
+            } else {
+                AudioManager.playSound("answer_perfect.wav");
+                answerResults[currentRiddleCount - 1] =
+                        new ImageActor(perfectAnswerTex, answerResultSlots[0].getSizeY());
+            }
+        } else if (!hintUsed) {
+            if (currentRiddleCount != 1) {
+                hintGroup.addAction(
+                        Actions.moveBy(-hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
+            }
+            hintUsed = true;
+
+            return;
+        } else {
+            ++currentRiddleCount;
+            answerResults[currentRiddleCount - 1] =
+                    new ImageActor(wrongAnswerTex, answerResultSlots[0].getSizeY());
+        }
+
+        if (hintUsed) {
+            hintGroup.addAction(
+                    Actions.moveBy(hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
+        }
+
+
+        answerField.setDisabled(true);
+        answerField.setText("");
+
+        answerResults[currentRiddleCount - 1].setPosition(Vescape.GUI_VIEWPORT_WIDTH / 2,
+                3 * Vescape.GUI_VIEWPORT_HEIGHT / 2);
+        answerResults[currentRiddleCount - 1].setScale(10f);
+        getStage().addActor(answerResults[currentRiddleCount - 1]);
+        answerResults[currentRiddleCount - 1].addAction(Actions.sequence(
+                Actions.parallel(
+                        Actions.moveTo(
+                                Vescape.GUI_VIEWPORT_WIDTH / 2 -
+                                        answerResults[currentRiddleCount - 1].getSizeX() / 2,
+                                Vescape.GUI_VIEWPORT_HEIGHT / 2 -
+                                        answerResults[currentRiddleCount - 1].getSizeY() / 2, 0.3f,
+                                Interpolation.pow2),
+                        Actions.scaleTo(3.5f, 3.5f, 0.6f, Interpolation.bounceOut),
+                        Actions.rotateTo(((float) Math.random() - 0.5f) * 25f, 0.35f),
+                        Actions.sequence(
+                                Actions.delay(0.25f),
+                                Actions.run(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AudioManager.playSound("answer_result_hit.wav");
+                                    }
+                                })
+                        )
+                ),
+                Actions.delay(0.25f),
+
+                Actions.run(new Runnable() {
+                    @Override
+                    public void run() {
+                        nextRiddle();
+                    }
+                }),
+                Actions.parallel(
+                        Actions.moveTo(answerResultSlots[currentRiddleCount - 1].getX(),
+                                answerResultSlots[currentRiddleCount - 1].getY(),
+                                0.75f, Interpolation.pow2),
+                        Actions.scaleTo(1, 1, 0.5f),
+                        Actions.rotateTo(0, 0.5f)
+                )
+        ));
+
+    }
+
     /**
      * Checks which of the 2 riddles is in play and adds the text according to that.
      */
@@ -127,6 +217,11 @@ public class TutorialRoomView extends RoomView {
                                             @Override
                                             public void run() {
                                                 rossFace.remove();
+                                                if (currentRiddleCount == 1) {
+                                                    hintGroup.addAction(
+                                                            Actions.moveBy(-hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
+                                                }
+
                                             }
                                         })
                                 ));

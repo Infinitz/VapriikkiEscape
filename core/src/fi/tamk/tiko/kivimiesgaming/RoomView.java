@@ -37,7 +37,7 @@ public class RoomView extends MyScreen {
     /**
      * The current riddle.
      */
-    private Riddle currentRiddle;
+    protected Riddle currentRiddle;
 
     /**
      * Everything that is in riddle panel is grouped here.
@@ -67,7 +67,7 @@ public class RoomView extends MyScreen {
     /**
      * Contains the lightbulb and the shine effect.
      */
-    private Group hintGroup;
+    protected Group hintGroup;
 
     /**
      * The burger button.
@@ -82,7 +82,7 @@ public class RoomView extends MyScreen {
     /**
      * Answer field for answers.
      */
-    private TextField answerField;
+    protected TextField answerField;
 
     /**
      * Answer button.
@@ -102,12 +102,12 @@ public class RoomView extends MyScreen {
     /**
      * Contains answer result slots on the top of the screen.
      */
-    private ImageActor[] answerResultSlots;
+    protected ImageActor[] answerResultSlots;
 
     /**
      * Fills the answer slots with actual results.
      */
-    private ImageActor[] answerResults;
+    protected ImageActor[] answerResults;
 
     /**
      * The room icon for the specific room.
@@ -137,22 +137,22 @@ public class RoomView extends MyScreen {
     /**
      * Wrong answer texture in the results.
      */
-    private Texture wrongAnswerTex;
+    protected Texture wrongAnswerTex;
 
     /**
      * Correct answer texture in the results.
      */
-    private Texture correctAnswerTex;
+    protected Texture correctAnswerTex;
 
     /**
      * Perfect answer texture in the results.
      */
-    private Texture perfectAnswerTex;
+    protected Texture perfectAnswerTex;
 
     /**
      * Checks if the user used a hint.
      */
-    private boolean hintUsed = false;
+    protected boolean hintUsed = false;
 
     /**
      * Checks if phone has keyboard on.
@@ -172,12 +172,12 @@ public class RoomView extends MyScreen {
     /**
      * Keeps count how many answers were right.
      */
-    private int correctAnswerCount = 0;
+    protected int correctAnswerCount = 0;
 
     /**
      * Keeps count how many hints were used.
      */
-    private int hintsUsedCount = 0;
+    protected int hintsUsedCount = 0;
 
     /**
      * Checks when the room is finished.
@@ -187,7 +187,7 @@ public class RoomView extends MyScreen {
     /**
      * Controls hint button movement speed.
      */
-    private float hintButtonAnimMovement = 300f;
+    protected float hintButtonAnimMovement = 300f;
 
     /**
      * Controls hint panel movement speed.
@@ -527,7 +527,7 @@ public class RoomView extends MyScreen {
     /**
      * Moves on to the next riddle.
      */
-    private void nextRiddle() {
+    protected void nextRiddle() {
         hintUsed = false;
 
         final float animLength = 0.85f;
