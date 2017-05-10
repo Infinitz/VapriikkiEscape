@@ -113,7 +113,7 @@ public class WarningPopUp {
         //elements.addActor(exitButton);
         elements.addActor(warningText);
 
-        Vescape.setGroupOrigin(elements,
+        Utilities.setGroupOrigin(elements,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
 
         elements.setScaleY(0);
