@@ -53,7 +53,10 @@ public class RoomSelection extends MyScreen {
         assetManager.load("proggbar_back.png", Texture.class);
         assetManager.load("proggbar_border.png", Texture.class);
         assetManager.load("proggbar_fill.png", Texture.class);
-        assetManager.load("proggbar_marker.png", Texture.class);
+
+        assetManager.load("proggbar_marker_closed.png", Texture.class);
+        assetManager.load("proggbar_marker_open_lower.png", Texture.class);
+        assetManager.load("proggbar_marker_open_upper.png", Texture.class);
 
         assetManager.load("unlock_lock.wav", Sound.class);
         assetManager.load("change_floor.wav", Sound.class);
