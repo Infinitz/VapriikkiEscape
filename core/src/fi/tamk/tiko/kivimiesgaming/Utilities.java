@@ -1,5 +1,8 @@
 package fi.tamk.tiko.kivimiesgaming;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  *
@@ -55,5 +58,22 @@ public class Utilities {
             }
         }
         return splittedString;
+    }
+
+    /**
+     * Moves given groups origin to given coordinates without moving the actors
+     * inside the group
+     *
+     * @param g
+     * @param x
+     * @param y
+     */
+    public static void setGroupOrigin(Group g, float x, float y) {
+        float offsetX = g.getX() - x;
+        float offsetY = g.getY() - y;
+        g.setPosition(x, y);
+        for (Actor a : g.getChildren()) {
+            a.setPosition(a.getX() + offsetX, a.getY() + offsetY);
+        }
     }
 }

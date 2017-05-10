@@ -136,7 +136,7 @@ public class RoomFinishedPopUp {
         elements.addActor(roomIcon);
         elements.addActor(progressBar.getGroup());
 
-        Vescape.setGroupOrigin(elements,
+        Utilities.setGroupOrigin(elements,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
 
         int stars = data.latestScore;

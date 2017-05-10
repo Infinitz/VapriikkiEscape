@@ -123,9 +123,9 @@ public class RoomSelection extends MyScreen {
 
 
 
-        Vescape.setGroupOrigin(floor1,
+        Utilities.setGroupOrigin(floor1,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
-        Vescape.setGroupOrigin(floor2,
+        Utilities.setGroupOrigin(floor2,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
 
 

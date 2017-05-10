@@ -27,44 +27,166 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Locale;
 
+/**
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * Main class of the game
+ */
 public class Vescape extends Game {
 
+    /**
+     * Camera's viewport width
+     */
     public static final float GUI_VIEWPORT_WIDTH = 900;
+
+    /**
+     * Camera's viewport height
+     */
     public static final float GUI_VIEWPORT_HEIGHT = 1600;
+
+    /**
+     * Max amount of characters in line on the screen
+     */
     public static final int MAX_CHARS_PER_LINE = 29;
+
+    /**
+     * Max amount of characters in riddle answerfield
+     */
     public static final int MAX_CHARS_IN_ANSWER = 21;
+
+    /**
+     * Total riddles per one room
+     */
     public static final int TOTAL_RIDDLES_ROOM = 5;
+
+    /**
+     * Scoring penalty which is applied when hint is used
+     */
     public static final float HINT_PENALTY = 0.33f;
 
+    /**
+     * Mark which separates different rooms in text file
+     */
     public static final String ROOM_DATA_MARK = "&";
+
+    /**
+     * Mark which separates different answer alternatives in text file
+     */
     public static final String RIDDLE_ANSWER_SEPARATOR = "//";
+
+    /**
+     * Mark which separates language/riddle/answer/hint in text file
+     */
     public static final String RIDDLE_SEPARATOR = "::";
+
+    /**
+     * Mark which communicates that the riddle line has ended in text file
+     */
     public static final String RIDDLE_END = ";";
+
+    /**
+     * Mark which communicates that this riddle is used as last riddle in the room
+     */
     public static final String LAST_RIDDLE_END = "@";
+
+    /**
+     * Mark which communicates that this line is comments in text file
+     */
     public static final String RIDDLE_FILE_COMMENT_MARK = "#";
+
+    /**
+     * Path to text file where all the riddles are
+     */
     public static final String RIDDLE_FILE_PATH = "data/riddles.txt";
+
+    /**
+     * Path to folder where the riddle images are
+     */
     public static final String RIDDLE_IMAGES_PATH = "riddle_images/";
 
+    /**
+     * Result of previous score calculations
+     */
     public static int lastTotalStars = 0;
+
+    /**
+     * True if player has seen the story allready
+     */
     public static boolean storyStartSeen = false;
 
+    /**
+     * Setting preferences where all settings are saved
+     */
     private Preferences settingsPref;
+
+    /**
+     * Score preferences where all scores are saved
+     */
     private Preferences scoresPref;
+
+    /**
+     * Asset manager that is used to load image and audio files
+     */
     private AssetManager assetManager;
+
+    /**
+     * Batch that is used for drawing all the graphics
+     */
     private SpriteBatch batch;
+
+    /**
+     * Bundle that is used for localisation
+     */
     private I18NBundle myBundle;
+
+    /**
+     * Font of text buttons
+     */
     private BitmapFont buttonFont;
+
+    /**
+     * Bigger font that is used for headers etc
+     */
     private BitmapFont fontBig;
+
+    /**
+     * Smaller font that is used for riddles and story
+     */
     private BitmapFont riddleFont;
+
+    /**
+     * Medium sized font that is used for answer field
+     */
     private BitmapFont answerFieldFont;
+
+    /**
+     * Style that is used for all text buttons
+     */
     private TextButton.TextButtonStyle textButtonStyle;
+
+    /**
+     * Style that is used for text fields
+     */
     private TextField.TextFieldStyle textFieldStyle;
+
+    /**
+     * Hash map where all room data are stored. RoomType is used as a key.
+     */
     private HashMap<RoomType, RoomData> roomData;
+
+    /**
+     * All machine part data
+     */
     private MachinePart[] machineParts;
 
-
+    /**
+     * True if initial assets for loading screen are loaded
+     */
     private boolean initialAssetsLoaded = false;
 
+    /**
+     * This is called at start of the game. Initialize all the neccessary objects and start loading initial assets.
+     */
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -84,6 +206,9 @@ public class Vescape extends Game {
         loadInitialAssets();
     }
 
+    /**
+     * Is called on every frame
+     */
     @Override
     public void render() {
         if (!initialAssetsLoaded) {
@@ -104,6 +229,11 @@ public class Vescape extends Game {
         super.render();
     }
 
+    /**
+     * Changes current screen to given screen
+     *
+     * @param screen New screen which current oone is changed to
+     */
     @Override
     public void setScreen(Screen screen) {
         Screen temp = getScreen();
@@ -114,6 +244,9 @@ public class Vescape extends Game {
         ((MyScreen)screen).onStart();
     }
 
+    /**
+     * Dispose all the neccessary objects on closing the game
+     */
     @Override
     public void dispose() {
 
@@ -124,6 +257,9 @@ public class Vescape extends Game {
         assetManager.dispose();
     }
 
+    /**
+     * Reset saved scores
+     */
     public void resetScores() {
         scoresPref.putString("scores", "");
         scoresPref.putBoolean("storyStartSeen", false);
@@ -132,54 +268,114 @@ public class Vescape extends Game {
         loadScores();
     }
 
+    /**
+     * Returns maximum amount of stars
+     *
+     * @return Maximum amount of stars
+     */
     public int getMaxStars() {
         return roomData.keySet().size() * 3;
     }
 
+    /**
+     * Getter for batch
+     *
+     * @return batch
+     */
     public SpriteBatch getBatch() {
         return batch;
     }
 
+    /**
+     * Getter for buttonFont
+     *
+     * @return buttonFont
+     */
     public BitmapFont getButtonFont() {
         return buttonFont;
     }
 
+    /**
+     * Getter for fontBig
+     *
+     * @return fontBig
+     */
     public BitmapFont getFontBig() {
         return fontBig;
     }
 
+    /**
+     * Getter for riddleFont
+     *
+     * @return riddleFont
+     */
     public BitmapFont getRiddleFont() {
         return riddleFont;
     }
 
+    /**
+     * Getter for textButtonStyle
+     *
+     * @return textButtonStyle
+     */
     public TextButton.TextButtonStyle getTextButtonStyle() {
         return textButtonStyle;
     }
 
+    /**
+     * Getter for textFieldStyle
+     *
+     * @return textFieldStyle
+     */
     public TextField.TextFieldStyle getTextFieldStyle() {
         return textFieldStyle;
     }
 
+    /**
+     * Getter for myBundle
+     *
+     * @return myBundle
+     */
     public I18NBundle getMyBundle() {
         return myBundle;
     }
 
+    /**
+     * Returns data of room which has the given type
+     *
+     * @param type Type that determines which room data is returned
+     * @return Room data that has the given type
+     */
     public RoomData getRoomData(RoomType type) {
         return roomData.get(type);
     }
 
+    /**
+     * Getter for machineParts
+     *
+     * @return machineParts
+     */
     public MachinePart[] getMachineParts() {
         return machineParts;
     }
 
+    /**
+     * Set language to finnish
+     */
     public void setFinnish() {
         setLocale(new Locale("fi", "FI"));
     }
 
+    /**
+     * Set language to English
+     */
     public void setEnglish() {
         setLocale(new Locale("en", "US"));
     }
 
+    /**
+     * Save current settings to file
+     */
     public void saveSettings() {
         settingsPref.putBoolean("musicEnabled", AudioManager.isMusicEnabled());
         settingsPref.putBoolean("soundEnabled", AudioManager.isSoundsEnabled());
@@ -187,6 +383,9 @@ public class Vescape extends Game {
         settingsPref.flush();
     }
 
+    /**
+     * Save current scores to file
+     */
     public void saveScores() {
         String scores = "";
         scoresPref.putBoolean("storyStartSeen", storyStartSeen);
@@ -198,15 +397,11 @@ public class Vescape extends Game {
         scoresPref.flush();
     }
 
-    public static void setGroupOrigin(Group g, float x, float y) {
-        float offsetX = g.getX() - x;
-        float offsetY = g.getY() - y;
-        g.setPosition(x, y);
-        for (Actor a : g.getChildren()) {
-            a.setPosition(a.getX() + offsetX, a.getY() + offsetY);
-        }
-    }
-
+    /**
+     * Set bundles locale to given locale
+     *
+     * @param locale New locale that is set
+     */
     private void setLocale(Locale locale) {
         if (locale != null) {
             myBundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), locale);
@@ -215,6 +410,9 @@ public class Vescape extends Game {
         }
     }
 
+    /**
+     * Load all the assets that are needed in most of the screens
+     */
     private void loadGlobalAssets() {
 
 
@@ -243,6 +441,9 @@ public class Vescape extends Game {
 
     }
 
+    /**
+     * Load initial assets that are needed for loading screen
+     */
     private void loadInitialAssets() {
         assetManager.load("MENU_bg.jpg", Texture.class);
         assetManager.load("loading.png", Texture.class);
@@ -252,6 +453,10 @@ public class Vescape extends Game {
         assetManager.load("indicator_line.jpg", Texture.class);
         assetManager.load("black.png", Texture.class);
     }
+
+    /**
+     * Create all the styles and fonts
+     */
     private void createStylesAndFonts() {
         FreeTypeFontGenerator fontGen =
                 new FreeTypeFontGenerator(Gdx.files.internal("fonts/GOTHICBI.TTF"));
@@ -295,6 +500,9 @@ public class Vescape extends Game {
                 null);
     }
 
+    /**
+     * Initialize room data
+     */
     private void loadRoomData() {
         roomData = new HashMap<RoomType, RoomData>();
 
@@ -466,6 +674,9 @@ public class Vescape extends Game {
 
     }
 
+    /**
+     * Load the riddles from the text file
+     */
     private void loadRiddles() {
 
         int lineIndex = 0;
@@ -532,6 +743,9 @@ public class Vescape extends Game {
 
     }
 
+    /**
+     * Load the scores from the preferences
+     */
     private void loadScores() {
         storyStartSeen = scoresPref.getBoolean("storyStartSeen", false);
         String scores = scoresPref.getString("scores", "");
