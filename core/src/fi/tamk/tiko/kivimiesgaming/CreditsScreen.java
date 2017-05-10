@@ -12,14 +12,26 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * Screen that plays credits of the game
  */
 
 public class CreditsScreen extends MyScreen {
+
+    /**
+     * Constructor of the class
+     *
+     * @param game Reference to instance of the main classs of the game
+     * @param assetManager Asset manager for managing assets
+     */
     public CreditsScreen(Vescape game, AssetManager assetManager) {
         super(game, assetManager);
         assetManager.load("menu_logo.png", Texture.class);
     }
 
+    /**
+     * Credits group is created and moved with action
+     */
     @Override
     public void onStart() {
         ImageActor bg = new ImageActor(assetManager.get("MENU_bg.jpg", Texture.class),
@@ -139,6 +151,11 @@ public class CreditsScreen extends MyScreen {
         ));
     }
 
+    /**
+     * Catches input of the player so they can exit the credits
+     *
+     * @param dt Time between previous and current frame
+     */
     @Override
     protected void update(float dt) {
         if (nextScreen != null)
@@ -149,6 +166,16 @@ public class CreditsScreen extends MyScreen {
             setNextScreen(new MainMenu(game, assetManager));
         }
     }
+
+    /**
+     * Disposes used assets
+     */
+    @Override
+    public void dispose() {
+        assetManager.unload("menu_logo.png");
+        super.dispose();
+    }
+
     @Override
     public TextButton getPanelButton1() {
         return null;
@@ -158,11 +185,4 @@ public class CreditsScreen extends MyScreen {
     public TextButton getPanelButton2() {
         return null;
     }
-
-    @Override
-    public void dispose() {
-        assetManager.unload("menu_logo.png");
-        super.dispose();
-    }
-
 }

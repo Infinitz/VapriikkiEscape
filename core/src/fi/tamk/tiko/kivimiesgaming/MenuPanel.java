@@ -13,33 +13,85 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * Class for menu panel used in hamburger menus and main menu
  */
 
 public class MenuPanel {
+    /**
+     * Current screen
+     */
     private MyScreen screen;
 
+    /**
+     * Used for text buttons layout
+     */
     private Table menuTable;
+
+    /**
+     * Used for other buttons layout
+     */
     private Table motherTable;
 
+    /**
+     * Change language button
+     */
     private Button flagButton;
+
+    /**
+     * Button style for finnish
+     */
     private Button.ButtonStyle finnishStyle;
+
+    /**
+     * Button style for english
+     */
     private Button.ButtonStyle englishStyle;
 
+    /**
+     * Toggle sound button
+     */
     private Button soundButton;
+
+    /**
+     * Style for sound enabled
+     */
     private Button.ButtonStyle soundEnabledStyle;
+
+    /**
+     * Style for sound disabled
+     */
     private Button.ButtonStyle soundDisabledStyle;
 
+    /**
+     * Toggle music button
+     */
     private Button musicButton;
+
+    /**
+     * Style for music enabled
+     */
     private Button.ButtonStyle musicEnabledStyle;
+
+    /**
+     * Style for music disabled
+     */
     private Button.ButtonStyle musicDisabledStyle;
 
+    /**
+     * Constructor of the menu panel
+     *
+     * @param screen Current screen
+     */
     public MenuPanel(MyScreen screen) {
         this.screen = screen;
         createMenuButtons();
         createOtherButtons();
     }
 
-
+    /**
+     * Creates the menu buttons
+     */
     private void createMenuButtons() {
         menuTable = new Table();
 
@@ -58,6 +110,9 @@ public class MenuPanel {
         screen.getStage().addActor(menuTable);
     }
 
+    /**
+     * Creates settings buttons
+     */
     private void createOtherButtons() {
         AssetManager assets = screen.getAssetManager();
         TextureRegionDrawable finnishImage = new TextureRegionDrawable(
@@ -182,6 +237,9 @@ public class MenuPanel {
 
     }
 
+    /**
+     * Removes elements from stage
+     */
     public void dispose() {
         menuTable.remove();
         motherTable.remove();

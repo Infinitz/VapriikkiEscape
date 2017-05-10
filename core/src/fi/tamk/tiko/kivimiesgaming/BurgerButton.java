@@ -7,17 +7,42 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * Class which creates hamburger button
  */
 
 public class BurgerButton {
+
+    /**
+     * Current screen of the game
+     */
     private MyScreen screen;
+
+    /**
+     * Panel which has burger menu buttons
+     */
     private MenuPanel menuPanel;
+
+    /**
+     * Screen darkener that is used to darken the background
+     */
     private ScreenDarkener screenDarkener;
 
+    /**
+     * Table that is used for dining
+     */
     private Table table;
-    private SelectableButton burgerButton;
-    private boolean isOpen = false;
 
+    /**
+     * The actual hamburger button
+     */
+    private SelectableButton burgerButton;
+
+    /**
+     * Constructor of the class
+     *
+     * @param screen Current screen of the game
+     */
     public BurgerButton(final MyScreen screen) {
         this.screen = screen;
 
@@ -47,6 +72,9 @@ public class BurgerButton {
         screen.getStage().addActor(table);
     }
 
+    /**
+     * Toggles menu panel on/off depending on its current state
+     */
     public void togglePanel() {
         AudioManager.playSound("button_toggle.wav");
         boolean enabled = !burgerButton.isSelected();
@@ -62,10 +90,18 @@ public class BurgerButton {
 
     }
 
+    /**
+     * Returns true if panel is open
+     *
+     * @return true if panel is open
+     */
     public boolean isOpen() {
         return burgerButton.isSelected();
     }
 
+    /**
+     * Removes elements from the table and adds them back so they will be on top of the stage
+     */
     public void reAddElementsToStage() {
         screenDarkener.remove();
         table.remove();
