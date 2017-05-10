@@ -6,12 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  *
- * This class helps to split text into lines.
+ * This class has some utility methods
  */
 public class Utilities {
 
     /**
-     * Class constructor.
+     * Method that splits given string to lines
      * @param str The string that needs to be split.
      * @param charsPerLine How many characters are allowed for each line.
      * @return Returns the splitted string.
@@ -64,9 +64,9 @@ public class Utilities {
      * Moves given groups origin to given coordinates without moving the actors
      * inside the group
      *
-     * @param g
-     * @param x
-     * @param y
+     * @param g Group whiches origin is changed
+     * @param x Coordinate x of the new origin
+     * @param y Coordinate y of the new origin
      */
     public static void setGroupOrigin(Group g, float x, float y) {
         float offsetX = g.getX() - x;
