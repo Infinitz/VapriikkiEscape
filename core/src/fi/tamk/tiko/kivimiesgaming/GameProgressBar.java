@@ -14,23 +14,66 @@ import java.util.ArrayList;
 
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * Class for progress bar for the score system
  */
 
 public class GameProgressBar {
 
+    /**
+     * Asset manager for managing assets
+     */
     private AssetManager assets;
+
+    /**
+     * Reference to the instance of the main class
+     */
     private Vescape game;
+
+    /**
+     * Group where the elements of the progress bar are
+     */
     private Group group;
+
+    /**
+     * The actual progress bar of this progress bar
+     */
     private ProgressBar progressBar;
+
+    /**
+     * Stars count to next threshold label
+     */
     private Label starsToNextThresholdLabel;
+
+    /**
+     * Image of the star
+     */
     private ImageActor starImage;
 
+    /**
+     * List of all unreached thresholds
+     */
     private ArrayList<Threshold> thresholds;
 
+    /**
+     * Coordinates of this progres bars bottom left corner
+     */
     private float x, y;
 
+    /**
+     * How many percentages one star is from max stars
+     */
     private float stepInFill;
 
+    /**
+     * Constructor of the class
+     *
+     * @param x X coordinate of this element
+     * @param y Y coordinate of this element
+     * @param size Height of this element
+     * @param assets Asset manager for managing assets
+     * @param game Reference to the instance of the main class
+     */
     public GameProgressBar(float x, float y, float size, AssetManager assets, Vescape game) {
         this.assets = assets;
         this.game = game;
@@ -73,6 +116,11 @@ public class GameProgressBar {
         group.setPosition(x, y);
     }
 
+    /**
+     * Progresses the bar with given amount of stars with animation
+     *
+     * @param count How many steps is progressed
+     */
     public void animatedStepProgress(int count) {
         progressBar.setFill(progressBar.getFillAmount() + count * stepInFill);
         starsToNextThresholdLabel.setText(Integer.toString(starsToNextUnlock(count, false) -
@@ -87,6 +135,11 @@ public class GameProgressBar {
         }
     }
 
+    /**
+     * Adds new threshold to the progress bar
+     *
+     * @param threshold Value of the new threshold
+     */
     public void addTreshold(float threshold) {
 
         Threshold thresholdActor = new Threshold(
@@ -100,6 +153,9 @@ public class GameProgressBar {
         group.addActor(thresholdActor);
     }
 
+    /**
+     * Removes and animates first threshold in the list
+     */
     public void reachedThreshold() {
         final Threshold threshold = thresholds.remove(0);
 
@@ -108,6 +164,13 @@ public class GameProgressBar {
                 assets.get("proggbar_marker_open_lower.png", Texture.class));
     }
 
+    /**
+     * Returns the count of stars needed for next unlock
+     *
+     * @param additional Additional stars which are not yet saved to the scores
+     * @param addThresholds If true, the method will add thresholds to the bar
+     * @return Count of stars needed for next unlock
+     */
     private int starsToNextUnlock(int additional, boolean addThresholds) {
         boolean first = true;
         int stars = 0;
@@ -128,46 +191,101 @@ public class GameProgressBar {
         }
         return stars;
     }
+
+    /**
+     * Getter for group
+     *
+     * @return group
+     */
     public Group getGroup() {
         return group;
     }
 
+    /**
+     * Getter for x
+     *
+     * @return x
+     */
     public float getX() {
         return x;
     }
 
+    /**
+     * Getter for y
+     *
+     * @return y
+     */
     public float getY() {
         return y;
     }
 
+    /**
+     * Setter for x
+     *
+     * @param x
+     */
     public void setX(float x) {
         this.x = x;
         group.setX(x);
     }
 
+    /**
+     * Setter for y
+     *
+     * @param y
+     */
     public void setY(float y) {
         this.y = y;
         group.setY(y);
     }
 
+    /**
+     * Returns width of the progress bar
+     *
+     * @return Width of the progress bar
+     */
     public float getWidth() {
         return progressBar.getWidth();
     }
 
+    /**
+     * Returns height of the progress bar
+     *
+     * @return Height of the progress bar
+     */
     public float getHeight() {
         return progressBar.getHeight();
     }
 
-
+    /**
+     * Class for threshold in progress bar
+     */
     private class Threshold extends ImageActor{
+
+        /**
+         * Value of the threshold in range of [0, 1]
+         */
         public float value;
 
+        /**
+         * Constructor of the threshold
+         *
+         * @param tex Texture of the locked threshold
+         * @param size Height of the threshold
+         * @param value Value of the threshold in range of [0, 1]
+         */
         public Threshold(Texture tex, float size, float value) {
             super(tex, size);
             this.value = value;
         }
 
-
+        /**
+         * Plays unlock animation
+         *
+         * @param group Progres bar's element group
+         * @param top Texture of thresholds top part
+         * @param bottom Texture of thresholds bottom part
+         */
         public void unlockAnimation(Group group, Texture top, Texture bottom) {
             ImageActor topActor = new ImageActor(top,
                     1.15f * getSizeY() / 2 * top.getHeight() / bottom.getHeight());

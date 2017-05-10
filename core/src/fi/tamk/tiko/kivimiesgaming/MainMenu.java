@@ -12,16 +12,31 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * Class for main menu screen
  */
 
 public class MainMenu extends MyScreen {
+
+    /**
+     * Background image actor
+     */
     ImageActor bg;
 
+    /**
+     * Constuctor of the main menu
+     *
+     * @param game Reference to instance of the main classs of the game
+     * @param assetManager Asset manager for managing assets
+     */
     public MainMenu(Vescape game, AssetManager assetManager) {
         super(game, assetManager);
         assetManager.load("menu_logo.png", Texture.class);
     }
 
+    /**
+     * Initializes the mainmenu screen
+     */
     @Override
     public void onStart() {
         bg = new ImageActor(assetManager.get("MENU_bg.jpg", Texture.class),
@@ -51,6 +66,11 @@ public class MainMenu extends MyScreen {
         stage.addActor(title);
     }
 
+    /**
+     * Updates the mainmenu each frame
+     *
+     * @param dt Time between previous and current frame
+     */
     @Override
     protected void update(float dt) {
         if (nextScreen != null)
@@ -62,6 +82,11 @@ public class MainMenu extends MyScreen {
         }
     }
 
+    /**
+     * Create and return new game button
+     *
+     * @return new game button
+     */
     @Override
     public TextButton getPanelButton1() {
         createNewGameButton();
@@ -85,7 +110,11 @@ public class MainMenu extends MyScreen {
         return button;
     }
 
-
+    /**
+     * Create and return exit game button
+     *
+     * @return exit game button
+     */
     @Override
     public TextButton getPanelButton2() {
         String name = getGame().getMyBundle().get("exitButton");
@@ -104,12 +133,18 @@ public class MainMenu extends MyScreen {
         return button;
     }
 
+    /**
+     * Unload the unneeded assets
+     */
     @Override
     public void dispose() {
         assetManager.unload("menu_logo.png");
         super.dispose();
     }
 
+    /**
+     * Create continue button
+     */
     private void createNewGameButton() {
         String name = getGame().getMyBundle().get("playButton");
 

@@ -11,17 +11,44 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * Class for room buttons in room selection screen
  */
 
 public class RoomButton extends SelectableButton {
 
+    /**
+     * Asset manager for managing assetss
+     */
     private AssetManager assetManager;
+
+    /**
+     * Room's data
+     */
     private RoomData roomData;
+
+    /**
+     * Image actor for the room icon
+     */
     private ImageActor roomIcon;
+
+    /**
+     * Group for all the elements in this class
+     */
     private Group roomElements;
 
+    /**
+     * Image actor for the possible lock image
+     */
     private ImageActor lock;
 
+    /**
+     * Constructor of the RoomButton
+     *
+     * @param data Room's data
+     * @param assetManager Asset manager for managing assets
+     * @param size Asset manager for managing assets
+     */
     public RoomButton(RoomData data, AssetManager assetManager, float size) {
         super(data.getLockedTexture(), data.getUnlockedTexture(), size);
         this.assetManager = assetManager;
@@ -42,6 +69,11 @@ public class RoomButton extends SelectableButton {
         }
     }
 
+    /**
+     * Returns all the room elements
+     *
+     * @return all the room elements
+     */
     public Group getRoomElements() {
         roomIcon.setPosition(getX() + roomData.iconLocalPosX * getSizeX(),
                 getY() + roomData.iconLocalPosY  * getSizeY());
@@ -58,10 +90,20 @@ public class RoomButton extends SelectableButton {
         return roomElements;
     }
 
+    /**
+     * Getter for room data
+     *
+     * @return room data
+     */
     public RoomData getRoomData() {
         return roomData;
     }
 
+    /**
+     * Animate when selected or delected
+     *
+     * @param selected selected or delected
+     */
     @Override
     protected void onSelect(boolean selected) {
         if (selected) {
@@ -78,6 +120,9 @@ public class RoomButton extends SelectableButton {
         }
     }
 
+    /**
+     * Animation when the room is unlocked
+     */
     public void unlockAnimation() {
         if (roomData.unlockAnimation) {
             SequenceAction shakeAction = new SequenceAction();
