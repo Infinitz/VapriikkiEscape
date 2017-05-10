@@ -14,12 +14,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -241,7 +240,7 @@ public class Vescape extends Game {
             temp.dispose();
         }
         super.setScreen(screen);
-        ((MyScreen)screen).onStart();
+        ((MyScreen) screen).onStart();
     }
 
     /**
@@ -649,7 +648,7 @@ public class Vescape extends Game {
                 "F2_media_active.png",
                 "map_icons_media.png",
                 "bg_media.jpg",
-                        assetManager);
+                assetManager);
         temp.setIconLocalPosition(0.3f, 0.3f);
         roomData.put(RoomType.MEDIA, temp);
 
@@ -658,7 +657,7 @@ public class Vescape extends Game {
                 "F2_doll_active.png",
                 "map_icons_doll.png",
                 "bg_doll.jpg",
-                        assetManager);
+                assetManager);
         temp.setIconLocalPosition(-0.4f, 0.4f);
         roomData.put(RoomType.DOLL, temp);
 
@@ -667,7 +666,7 @@ public class Vescape extends Game {
                 "F2_nature_active.png",
                 "map_icons_nature.png",
                 "bg_nature.jpg",
-                        assetManager);
+                assetManager);
         temp.setIconLocalPosition(0.15f, 0.3f);
         roomData.put(RoomType.NATURE, temp);
 
@@ -716,7 +715,7 @@ public class Vescape extends Game {
                         currentLine = reader.readLine().trim();
                         boolean riddleEnd = currentLine.endsWith(RIDDLE_END);
                         boolean lastRiddle = currentLine.endsWith(LAST_RIDDLE_END);
-                        if (riddleEnd ||lastRiddle) {
+                        if (riddleEnd || lastRiddle) {
                             currentLine = currentLine.substring(0, currentLine.length() - 1);
                         }
                         String[] temp = currentLine.split(RIDDLE_SEPARATOR);
@@ -737,7 +736,7 @@ public class Vescape extends Game {
             reader.close();
         } catch (Exception e) {
             System.out.println("Unable to load file: " + RIDDLE_FILE_PATH + "\n" +
-            "Error in the line: " + lineIndex);
+                    "Error in the line: " + lineIndex);
             System.out.println(currentLine);
         }
 

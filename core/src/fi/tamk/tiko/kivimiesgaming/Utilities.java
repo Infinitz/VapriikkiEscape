@@ -12,8 +12,10 @@ public class Utilities {
 
     /**
      * Method that splits given string to lines
-     * @param str The string that needs to be split.
+     *
+     * @param str          The string that needs to be split.
      * @param charsPerLine How many characters are allowed for each line.
+     *
      * @return Returns the splitted string.
      */
     public static String splitTextIntoLines(String str, int charsPerLine) {
@@ -21,7 +23,7 @@ public class Utilities {
         String splittedString = "";
         while (true) {
 
-            int currentIndex =  currentLineStart + charsPerLine;
+            int currentIndex = currentLineStart + charsPerLine;
 
             if (currentIndex >= str.length()) {
                 currentIndex = str.length();

@@ -6,10 +6,18 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * This class makes the screen darkener.
  */
 
 public class ScreenDarkener extends ImageActor {
 
+    /**
+     * Class constructor.
+     *
+     * @param texture Texture for darkener.
+     * @param enabled If the darkener should be enabled.
+     */
     public ScreenDarkener(Texture texture, boolean enabled) {
         super(texture, Vescape.GUI_VIEWPORT_HEIGHT);
         setTouchable(Touchable.enabled);
@@ -22,6 +30,12 @@ public class ScreenDarkener extends ImageActor {
 
     }
 
+    /**
+     * Enables the darkener.
+     *
+     * @param enabled Tells if it should be enabled.
+     * @param animate Checks if it should be animated.
+     */
     public void enable(boolean enabled, boolean animate) {
         if (animate) {
             if (enabled) {
@@ -58,7 +72,5 @@ public class ScreenDarkener extends ImageActor {
                 setPosition(getX() + Vescape.GUI_VIEWPORT_WIDTH, 0);
             }
         }
-
-
     }
 }

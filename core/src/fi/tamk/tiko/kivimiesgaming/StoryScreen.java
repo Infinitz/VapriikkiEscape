@@ -10,29 +10,74 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+
 import java.util.ArrayList;
 
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * This class controls the story of the game.
  */
 
 public abstract class StoryScreen extends MyScreen {
 
+    /**
+     * Controls how many marks are allowed in a line in a bubble.
+     */
     protected final int marksInLineBubble = 21;
+
+    /**
+     * Controls the bubble size.
+     */
     protected final float bubbleSize = 700f;
 
+    /**
+     * Stores the story sequence.
+     */
     protected ArrayList<RunnableAction> storySequence;
+
+    /**
+     * This is the current animation for the story.
+     */
     protected AnimatedImageActor currentAnimation;
+
+    /**
+     * Controls when the user is allowed to move on to the next part of the story.
+     */
     protected boolean ableToProgress = false;
 
+    /**
+     * Texture for rossFace.
+     */
     protected ImageActor rossFace;
+
+    /**
+     * The current group containing the bubble and the text.
+     */
     protected Group currentBubbleGroup;
+
+    /**
+     * The style for the text.
+     */
     protected Label.LabelStyle labelStyle;
 
+
+    /**
+     * Class constructor.
+     *
+     * @param game         Main class of the game.
+     * @param assetManager AssetManager for loading and unloading.
+     */
     public StoryScreen(Vescape game, AssetManager assetManager) {
         super(game, assetManager);
     }
 
+
+    /**
+     * Controls the animation and checks for user input
+     *
+     * @param dt Deltatime
+     */
     @Override
     protected void update(float dt) {
         super.update(dt);
@@ -62,6 +107,9 @@ public abstract class StoryScreen extends MyScreen {
 
     }
 
+    /**
+     * When story starts this creates all the necessary things.
+     */
     @Override
     public void onStart() {
         ImageActor background = new ImageActor(assetManager.get("story_bg.jpg", Texture.class),
@@ -80,18 +128,37 @@ public abstract class StoryScreen extends MyScreen {
         game.saveScores();
     }
 
+    /**
+     * Getter for panelbutton1.
+     *
+     * @return panelbutton1
+     */
     @Override
     public TextButton getPanelButton1() {
         return null;
     }
 
+    /**
+     * Getter for panelbutton2.
+     *
+     * @return panelbutton2
+     */
     @Override
     public TextButton getPanelButton2() {
         return null;
     }
 
+    /**
+     * Initializes story sequence.
+     */
     abstract void createStorySequence();
 
+    /**
+     * Creates new bubble for story.
+     *
+     * @param text Text for the bubble.
+     * @param talk Controls bubble texture, if talking normal bubble, if false a yelling bubble.
+     */
     protected void newBubble(String text, boolean talk) {
         ableToProgress = false;
         ImageActor bubble;
@@ -167,6 +234,9 @@ public abstract class StoryScreen extends MyScreen {
         stage.addActor(bubbleGroup);
     }
 
+    /**
+     * Gets the next element from list.
+     */
     protected void progressStory() {
         if (!storySequence.isEmpty()) {
             storySequence.get(0).run();

@@ -7,14 +7,23 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
+
 import java.util.ArrayList;
 
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * This class controls the ending story.
  */
 
 public class StoryEndScreen extends StoryScreen {
 
+    /**
+     * Class constructor.
+     *
+     * @param game         Main class of the game.
+     * @param assetManager For loading and unloading assets.
+     */
     public StoryEndScreen(Vescape game, AssetManager assetManager) {
         super(game, assetManager);
         assetManager.load("story_bg.jpg", Texture.class);
@@ -30,6 +39,9 @@ public class StoryEndScreen extends StoryScreen {
         assetManager.load("shout_bubble.png", Texture.class);
     }
 
+    /**
+     * Disposes the story.
+     */
     @Override
     public void dispose() {
         super.dispose();
@@ -46,6 +58,9 @@ public class StoryEndScreen extends StoryScreen {
         assetManager.unload("shout_bubble.png");
     }
 
+    /**
+     * Creates the story sequence.
+     */
     @Override
     void createStorySequence() {
         storySequence = new ArrayList<RunnableAction>();

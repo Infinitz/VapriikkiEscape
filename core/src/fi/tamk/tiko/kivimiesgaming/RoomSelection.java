@@ -20,28 +20,89 @@ import java.util.ArrayList;
 
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * This class builds the room selection screen.
  */
 
 public class RoomSelection extends MyScreen {
 
+    /**
+     * Everything that is on the first floor.
+     */
     private Group floor1;
+
+    /**
+     * Everything that is on the second floor.
+     */
     private Group floor2;
 
+    /**
+     * List that contains room buttons.
+     */
     private ArrayList<RoomButton> roomButtons;
 
+    /**
+     * The game's progress bar which helps to count the stars needed.
+     */
     private GameProgressBar progressBar;
+
+    /**
+     * The button for going to the second floor.
+     */
     private ImageActor changeFloorButtonUp;
+
+    /**
+     * The button for returning to the first floor.
+     */
     private ImageActor changeFloorButtonDown;
+
+    /**
+     * Checks if the screen is on the first floor.
+     */
     private boolean isDownStairs = true;
+
+    /**
+     * The time machine button.
+     */
     private SelectableButton timeMachineButton;
+
+    /**
+     * Background texture for the screen.
+     */
     private ImageActor bg;
+
+    /**
+     * Room popup which opens when a room is clicked.
+     */
     private RoomPopUp roomPopUp;
+
+    /**
+     * The selected room button.
+     */
     private RoomButton selected;
+
+    /**
+     * The burger button.
+     */
     private BurgerButton burgerButton;
+
+    /**
+     * List of loaded time machine textures.
+     */
     private ArrayList<String> loadedShipMachineTextures;
 
+    /**
+     * Counts the total stars earned so far.
+     */
     private int totalStars = 0;
 
+    /**
+     * Class constructor.
+     *
+     * @param game         Main class of the game.
+     * @param assetManager For loading and unloading assets.
+     * @param lowerFloor   To check which floor the game is at.
+     */
     public RoomSelection(Vescape game, AssetManager assetManager, boolean lowerFloor) {
         super(game, assetManager);
         this.isDownStairs = lowerFloor;
@@ -97,6 +158,9 @@ public class RoomSelection extends MyScreen {
         }
     }
 
+    /**
+     * Creates all the necessary things on start.
+     */
     @Override
     public void onStart() {
         Vescape.lastTotalStars = totalStars;
@@ -122,13 +186,10 @@ public class RoomSelection extends MyScreen {
         burgerButton = new BurgerButton(this);
 
 
-
         Utilities.setGroupOrigin(floor1,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
         Utilities.setGroupOrigin(floor2,
                 Vescape.GUI_VIEWPORT_WIDTH / 2, Vescape.GUI_VIEWPORT_HEIGHT / 2);
-
-
 
 
         InputProcessor inputProcessorOne = new SimpleDirectionGestureDetector(
@@ -172,6 +233,9 @@ public class RoomSelection extends MyScreen {
         }
     }
 
+    /**
+     * Creates buttons used to change floors.
+     */
     public void createChangeFloorButtons() {
         changeFloorButtonUp = new ImageActor(assetManager.get("floor_navi_up.png",
                 Texture.class),
@@ -216,6 +280,9 @@ public class RoomSelection extends MyScreen {
         stage.addActor(changeFloorButtonUp);
     }
 
+    /**
+     * Creates time machine button.
+     */
     public void createTimeMachineButton() {
         String timeMachineTexPath = "";
         for (int i = 0; i < game.getMachineParts().length; ++i) {
@@ -244,6 +311,11 @@ public class RoomSelection extends MyScreen {
         stage.addActor(timeMachineButton);
     }
 
+    /**
+     * Constantly checks if something is pressed.
+     *
+     * @param dt Deltatime.
+     */
     @Override
     protected void update(float dt) {
         if (nextScreen != null)
@@ -265,6 +337,9 @@ public class RoomSelection extends MyScreen {
         }
     }
 
+    /**
+     * Transition from a floor to the other.
+     */
     private void transition() {
         float animationDelay = 0.25f;
         float animDuration = 1f;
@@ -292,7 +367,11 @@ public class RoomSelection extends MyScreen {
                         animDuration, Interpolation.pow2Out)));
     }
 
-    //Check if new machinepart is awarded
+    /**
+     * Checks if a new machine part is awarded and builds the machine according to that.
+     *
+     * @return Returns true if a part is awarded.
+     */
     private boolean newMachinePart() {
         for (int i = 0; i < game.getMachineParts().length; ++i) {
             if (totalStars < game.getMachineParts()[i].getStarsToUnlock()) {
@@ -350,9 +429,9 @@ public class RoomSelection extends MyScreen {
                                                                         Texture.class));
 
                                                         timeMachineButton.addAction(Actions.sequence(
-                                                                    Actions.parallel(
-                                                                    Actions.scaleTo(1, 1, 0.5f, Interpolation.pow2),
-                                                                    Actions.moveBy(150, 150, 0.5f, Interpolation.pow2)
+                                                                Actions.parallel(
+                                                                        Actions.scaleTo(1, 1, 0.5f, Interpolation.pow2),
+                                                                        Actions.moveBy(150, 150, 0.5f, Interpolation.pow2)
                                                                 ),
                                                                 Actions.run(new Runnable() {
                                                                     @Override
@@ -388,6 +467,11 @@ public class RoomSelection extends MyScreen {
         return false;
     }
 
+    /**
+     * Creates floor 1.
+     *
+     * @return Floor 1 objects as a group.
+     */
     private Group createFloor1() {
 
         float offsetX = 100;
@@ -471,6 +555,11 @@ public class RoomSelection extends MyScreen {
         return floor1;
     }
 
+    /**
+     * Creates floor2.
+     *
+     * @return Returns floor2 objects as a group.
+     */
     private Group createFloor2() {
         float baseSize = 250;
         float offsetX = 90;
@@ -579,6 +668,11 @@ public class RoomSelection extends MyScreen {
         return floor2;
     }
 
+    /**
+     * Changes the floor when button is pressed.
+     *
+     * @param down Checks which way it has to move.
+     */
     private void changeFloor(boolean down) {
         AudioManager.playSound("change_floor.wav");
         isDownStairs = down;
@@ -626,10 +720,14 @@ public class RoomSelection extends MyScreen {
         selectRoom(null);
     }
 
+    /**
+     * Changes floor without animation depending on where the player was last.
+     *
+     * @param down Checks which floor it has to go to.
+     */
     private void changeFloorInstant(boolean down) {
         isDownStairs = down;
         int direction = down ? 1 : -1;
-        float duration = 0.5f;
         final float movement = Vescape.GUI_VIEWPORT_HEIGHT * direction;
         floor1.setY(floor1.getY() + movement);
         floor2.setY(floor2.getY() + movement);
@@ -654,6 +752,11 @@ public class RoomSelection extends MyScreen {
 
     }
 
+    /**
+     * Selects a room and opens the popup.
+     *
+     * @param room Room information.
+     */
     protected void selectRoom(RoomButton room) {
 
         if (selected != null) {
@@ -668,6 +771,11 @@ public class RoomSelection extends MyScreen {
         }
     }
 
+    /**
+     * Creates continue button.
+     *
+     * @return Continue button.
+     */
     @Override
     public TextButton getPanelButton1() {
         String name = getGame().getMyBundle().get("continueButton");
@@ -686,6 +794,11 @@ public class RoomSelection extends MyScreen {
         return button;
     }
 
+    /**
+     * Creates main menu button.
+     *
+     * @return Main menu button.
+     */
     @Override
     public TextButton getPanelButton2() {
         String name = getGame().getMyBundle().get("toMainMenuButton");
@@ -705,7 +818,9 @@ public class RoomSelection extends MyScreen {
     }
 
 
-
+    /**
+     * Disposes RoomSelection.
+     */
     @Override
     public void dispose() {
         assetManager.unload("floor_navi_up.png");

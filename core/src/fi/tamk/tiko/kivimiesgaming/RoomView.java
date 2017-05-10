@@ -18,53 +18,189 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * This class controls the inside view of rooms.
  */
 
 public class RoomView extends MyScreen {
 
+    /**
+     * Controls how many riddles there are.
+     */
     protected int riddlesInRoom = 0;
 
+    /**
+     * Checks the room data to get the right room.
+     */
     private RoomData roomData;
+
+    /**
+     * The current riddle.
+     */
     private Riddle currentRiddle;
 
+    /**
+     * Everything that is in riddle panel is grouped here.
+     */
     private Group riddlePanel;
+
+    /**
+     * Controls the text of the riddle.
+     */
     private Label riddleLabel;
 
+    /**
+     * Contains text and hint background.
+     */
     private Group hintPanel;
+
+    /**
+     * Hint panel background texture.
+     */
     private ImageActor hintPanelBG;
+
+    /**
+     * Hint text label.
+     */
     private Label hintLabel;
+
+    /**
+     * Contains the lightbulb and the shine effect.
+     */
     private Group hintGroup;
 
+    /**
+     * The burger button.
+     */
     private BurgerButton burgerButton;
+
+    /**
+     * Background texture for the room.
+     */
     private ImageActor bg;
+
+    /**
+     * Answer field for answers.
+     */
     private TextField answerField;
+
+    /**
+     * Answer button.
+     */
     private TextButton answerButton;
+
+    /**
+     * Detects if something is touched.
+     */
     private ImageActor touchDetector;
+
+    /**
+     * Answer field's background.
+     */
     private ImageActor answerFieldBG;
+
+    /**
+     * Contains answer result slots on the top of the screen.
+     */
     private ImageActor[] answerResultSlots;
+
+    /**
+     * Fills the answer slots with actual results.
+     */
     private ImageActor[] answerResults;
+
+    /**
+     * The room icon for the specific room.
+     */
     private ImageActor roomIcon;
 
+    /**
+     * Style for the text.
+     */
     private Label.LabelStyle labelStyle;
+
+    /**
+     * Panel texture background.
+     */
     private Texture riddlePanelTextureBg;
+
+    /**
+     * Fill of the panel.
+     */
     private Texture riddlePanelTextureFill;
 
+    /**
+     * Empty answer box in the results.
+     */
     private Texture emptyAnswerTex;
+
+    /**
+     * Wrong answer texture in the results.
+     */
     private Texture wrongAnswerTex;
+
+    /**
+     * Correct answer texture in the results.
+     */
     private Texture correctAnswerTex;
+
+    /**
+     * Perfect answer texture in the results.
+     */
     private Texture perfectAnswerTex;
 
+    /**
+     * Checks if the user used a hint.
+     */
     private boolean hintUsed = false;
+
+    /**
+     * Checks if phone has keyboard on.
+     */
     private boolean keyboardEnabled = false;
+
+    /**
+     * Checks if the hint panel is enabled.
+     */
     private boolean hintPanelEnabled = false;
+
+    /**
+     * Checks how many riddles so far.
+     */
     protected int currentRiddleCount = 0;
+
+    /**
+     * Keeps count how many answers were right.
+     */
     private int correctAnswerCount = 0;
+
+    /**
+     * Keeps count how many hints were used.
+     */
     private int hintsUsedCount = 0;
+
+    /**
+     * Checks when the room is finished.
+     */
     private boolean roomFinished = false;
 
+    /**
+     * Controls hint button movement speed.
+     */
     private float hintButtonAnimMovement = 300f;
+
+    /**
+     * Controls hint panel movement speed.
+     */
     private float hintPanelAnimMovement = 700f;
 
+    /**
+     * Class constructor.
+     *
+     * @param game         Main class of the game.
+     * @param roomData     Data for the current room.
+     * @param assetManager For loading and unloading assets.
+     */
     public RoomView(Vescape game, RoomData roomData, AssetManager assetManager) {
         super(game, assetManager);
         this.roomData = roomData;
@@ -97,6 +233,9 @@ public class RoomView extends MyScreen {
         riddlesInRoom = Vescape.TOTAL_RIDDLES_ROOM;
     }
 
+    /**
+     * Sets up the screen when starting.
+     */
     @Override
     public void onStart() {
         //Refresh last total stars
@@ -251,7 +390,7 @@ public class RoomView extends MyScreen {
                 assetManager.get("hint_glow.png", Texture.class), hintButton.getSizeY() * 1.5f);
 
         hintGlow.setPosition(
-                hintButton.getX() - hintGlow.getSizeX() / 2  + hintButton.getSizeX() / 2,
+                hintButton.getX() - hintGlow.getSizeX() / 2 + hintButton.getSizeX() / 2,
                 hintButton.getY() - hintGlow.getSizeY() / 2 + hintButton.getSizeY() / 2 + 25
         );
 
@@ -287,7 +426,6 @@ public class RoomView extends MyScreen {
         answerButton.addAction(Actions.moveBy(0, deltaY, animLength, Interpolation.pow2));
 
 
-
         //stage.addActor(rightAnswerButton);
         stage.addActor(answerFieldBG);
         stage.addActor(answerButton);
@@ -299,6 +437,11 @@ public class RoomView extends MyScreen {
         createNewPanelWithAnimation(animLength);
     }
 
+    /**
+     * Checks what happens when the player answers.
+     *
+     * @param playerAnswer The player's answer as string.
+     */
     public void answer(String playerAnswer) {
         playerAnswer = playerAnswer.trim();
         boolean correctAnswer = currentRiddle.getRiddle(
@@ -317,7 +460,7 @@ public class RoomView extends MyScreen {
                 answerResults[currentRiddleCount - 1] =
                         new ImageActor(perfectAnswerTex, answerResultSlots[0].getSizeY());
             }
-        } else if (!hintUsed){
+        } else if (!hintUsed) {
             hintGroup.addAction(
                     Actions.moveBy(-hintButtonAnimMovement, 0, 0.5f, Interpolation.pow2));
             hintUsed = true;
@@ -351,7 +494,7 @@ public class RoomView extends MyScreen {
                                         answerResults[currentRiddleCount - 1].getSizeY() / 2, 0.3f,
                                 Interpolation.pow2),
                         Actions.scaleTo(3.5f, 3.5f, 0.6f, Interpolation.bounceOut),
-                        Actions.rotateTo(((float)Math.random() - 0.5f) * 25f, 0.35f),
+                        Actions.rotateTo(((float) Math.random() - 0.5f) * 25f, 0.35f),
                         Actions.sequence(
                                 Actions.delay(0.25f),
                                 Actions.run(new Runnable() {
@@ -360,7 +503,7 @@ public class RoomView extends MyScreen {
                                         AudioManager.playSound("answer_result_hit.wav");
                                     }
                                 })
-                                )
+                        )
                 ),
                 Actions.delay(0.25f),
 
@@ -381,6 +524,9 @@ public class RoomView extends MyScreen {
 
     }
 
+    /**
+     * Moves on to the next riddle.
+     */
     private void nextRiddle() {
         hintUsed = false;
 
@@ -415,6 +561,11 @@ public class RoomView extends MyScreen {
         ));
     }
 
+    /**
+     * Creates the new riddle panel with animation.
+     *
+     * @param animLength How long the animation is.
+     */
     private void createNewPanelWithAnimation(float animLength) {
         createNewRiddlePanel();
         riddlePanel.setRotation(-45);
@@ -422,9 +573,9 @@ public class RoomView extends MyScreen {
         riddlePanel.setX(1000);
         riddlePanel.addAction(Actions.sequence(
                 Actions.parallel(
-                    Actions.scaleTo(1f, 1f, animLength, Interpolation.pow2),
-                    Actions.rotateBy(45, animLength, Interpolation.pow2),
-                    Actions.moveBy(-1000f, 0, animLength, Interpolation.pow2)
+                        Actions.scaleTo(1f, 1f, animLength, Interpolation.pow2),
+                        Actions.rotateBy(45, animLength, Interpolation.pow2),
+                        Actions.moveBy(-1000f, 0, animLength, Interpolation.pow2)
                 ),
                 Actions.run(new Runnable() {
                     @Override
@@ -442,6 +593,9 @@ public class RoomView extends MyScreen {
         burgerButton.reAddElementsToStage();
     }
 
+    /**
+     * Creates a new riddle panel without the animation.
+     */
     private void createNewRiddlePanel() {
         if (currentRiddleCount == riddlesInRoom - 1 && roomData.lastRiddle != null) {
             currentRiddle = roomData.lastRiddle;
@@ -481,12 +635,12 @@ public class RoomView extends MyScreen {
                 riddleImage.addAction(
                         Actions.parallel(
                                 Actions.scaleTo(
-                                    Vescape.GUI_VIEWPORT_WIDTH / riddleImage.getSizeX(),
-                                    Vescape.GUI_VIEWPORT_WIDTH / riddleImage.getSizeX(),
-                                    animationDuration,
-                                    Interpolation.pow2),
+                                        Vescape.GUI_VIEWPORT_WIDTH / riddleImage.getSizeX(),
+                                        Vescape.GUI_VIEWPORT_WIDTH / riddleImage.getSizeX(),
+                                        animationDuration,
+                                        Interpolation.pow2),
                                 Actions.moveBy(0, -200, animationDuration, Interpolation.pow2)
-                                ));
+                        ));
 
                 temp.setClickListener(new ChangeListener() {
                     @Override
@@ -494,16 +648,16 @@ public class RoomView extends MyScreen {
                         riddleImage.addAction(
                                 Actions.parallel(
                                         Actions.scaleTo(
-                                            1,
-                                            1,
-                                            animationDuration,
-                                            Interpolation.pow2),
+                                                1,
+                                                1,
+                                                animationDuration,
+                                                Interpolation.pow2),
                                         Actions.moveBy(
                                                 0,
                                                 200,
                                                 animationDuration,
                                                 Interpolation.pow2)
-                                        ));
+                                ));
 
                         temp.remove();
                     }
@@ -526,6 +680,11 @@ public class RoomView extends MyScreen {
         riddlePanel = g;
     }
 
+    /**
+     * Checks if anything happens.
+     *
+     * @param dt Deltatime.
+     */
     @Override
     protected void update(float dt) {
         if (nextScreen != null)
@@ -546,7 +705,7 @@ public class RoomView extends MyScreen {
             }
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             enableKeyboard(false);
         }
 
@@ -556,6 +715,11 @@ public class RoomView extends MyScreen {
         answerField.setCursorPosition(answerField.getText().length());
     }
 
+    /**
+     * Getter for panelbutton1.
+     *
+     * @return panelbutton1.
+     */
     @Override
     public TextButton getPanelButton1() {
         String name = getGame().getMyBundle().get("continueButton");
@@ -574,6 +738,11 @@ public class RoomView extends MyScreen {
         return button;
     }
 
+    /**
+     * Getter for panelbutton2.
+     *
+     * @return panelbutton2.
+     */
     @Override
     public TextButton getPanelButton2() {
         String name = getGame().getMyBundle().get("exitRoomButton");
@@ -593,6 +762,9 @@ public class RoomView extends MyScreen {
         return button;
     }
 
+    /**
+     * Disposes Roomview
+     */
     @Override
     public void dispose() {
         super.dispose();
@@ -611,6 +783,11 @@ public class RoomView extends MyScreen {
         assetManager.unload("answer_result_hit.wav");
     }
 
+    /**
+     * Creates the hint panel when light bulb is pressed.
+     *
+     * @param enabled Checks if the light bulb is pressed.
+     */
     private void enabledHintPanel(boolean enabled) {
         hintPanelEnabled = enabled;
         if (enabled) {
@@ -638,6 +815,11 @@ public class RoomView extends MyScreen {
         }
     }
 
+    /**
+     * Opens device keyboard.
+     *
+     * @param enabled Checks if the answer field is enabled and keyboard needed.
+     */
     private void enableKeyboard(boolean enabled) {
         Gdx.input.setOnscreenKeyboardVisible(enabled);
 
@@ -682,6 +864,9 @@ public class RoomView extends MyScreen {
                 animTime, Interpolation.pow2));
     }
 
+    /**
+     * When the room is completed it checks and saves the score.
+     */
     private void roomCompleted() {
         float rawScore = (float) correctAnswerCount - hintsUsedCount * Vescape.HINT_PENALTY + 0.33f;
         int score = Math.round((rawScore / riddlesInRoom) * 3);
@@ -691,6 +876,9 @@ public class RoomView extends MyScreen {
         getGame().saveScores();
     }
 
+    /**
+     * Updates riddle texts depending on the language.
+     */
     private void updateTexts() {
         answerButton.setText(getGame().getMyBundle().get("answerButton"));
 
@@ -707,16 +895,22 @@ public class RoomView extends MyScreen {
             riddleLabel = new Label(updatedRiddleText, labelStyle);
             riddleLabel.setPosition(
                     oldX,
-                    oldY - riddleLabel.getHeight() + oldH );
+                    oldY - riddleLabel.getHeight() + oldH);
             riddlePanel.addActor(riddleLabel);
 
         }
     }
 
+    /**
+     * Closes hint panel.
+     */
     private void closeHintPanel() {
         enabledHintPanel(false);
     }
 
+    /**
+     * Is called when new riddle starts.
+     */
     protected void onNewRiddleStarted() {
 
     }

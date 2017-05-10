@@ -46,8 +46,9 @@ public class TutorialRoomView extends RoomView {
 
     /**
      * Class constructor.
-     * @param game Main class of the game.
-     * @param roomData Data of the room in question
+     *
+     * @param game         Main class of the game.
+     * @param roomData     Data of the room in question
      * @param assetManager AssetManager for loading the textures.
      */
     public TutorialRoomView(Vescape game, RoomData roomData, AssetManager assetManager) {
@@ -68,10 +69,10 @@ public class TutorialRoomView extends RoomView {
 
         rossFace = new ImageActor(assetManager.get("story_ross_temp.png", Texture.class), 600);
         rossFace.setPosition(
-                        Vescape.GUI_VIEWPORT_WIDTH -
+                Vescape.GUI_VIEWPORT_WIDTH -
                         1.25f * rossFace.getSizeX() +
                         rossFace.getSizeX() * 3,
-                        75);
+                75);
     }
 
     /**
@@ -81,7 +82,7 @@ public class TutorialRoomView extends RoomView {
     protected void onNewRiddleStarted() {
         if (currentRiddleCount == 0) {
             rossTalk(game.getMyBundle().get("tutorialText1"));
-        } else if(currentRiddleCount == 1) {
+        } else if (currentRiddleCount == 1) {
             rossTalk(game.getMyBundle().get("tutorialText2"));
         }
     }
@@ -98,6 +99,7 @@ public class TutorialRoomView extends RoomView {
 
     /**
      * Adds talking character to the screen.
+     *
      * @param text The text what the character says.
      */
     protected void rossTalk(final String text) {
@@ -137,6 +139,7 @@ public class TutorialRoomView extends RoomView {
 
     /**
      * Creates new bubble.
+     *
      * @param text The text what the bubble says.
      */
     protected void newBubble(String text) {

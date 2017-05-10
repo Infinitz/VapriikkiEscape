@@ -13,14 +13,33 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * This class opens the popup when a room is clicked in room selection.
  */
 
 public class RoomPopUp {
 
+    /**
+     * Screen darkener for darkening the screen during popup.
+     */
     private ScreenDarkener screenDarkener;
+
+    /**
+     * Background texture for popup window.
+     */
     private ImageActor panelBG;
+
+    /**
+     * Group containing necessary parts of the popup.
+     */
     private Group elements;
 
+    /**
+     * Class constructor.
+     *
+     * @param screen Current screen of the game.
+     * @param data The data for the room.
+     */
     public RoomPopUp(final MyScreen screen, final RoomData data) {
         screenDarkener =
                 new ScreenDarkener(screen.getAssetManager().get("black.png", Texture.class), false);
@@ -133,6 +152,9 @@ public class RoomPopUp {
         AudioManager.playSound("panel_open.wav");
     }
 
+    /**
+     * Disposes popup window.
+     */
     public void dispose() {
         AudioManager.playSound("panel_close.wav");
         elements.addAction(Actions.sequence(

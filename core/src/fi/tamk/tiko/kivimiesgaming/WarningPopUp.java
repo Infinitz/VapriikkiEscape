@@ -18,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class WarningPopUp {
     /**
-     *  Screen darkened is used to darken screen outside of popups.
+     * Screen darkened is used to darken screen outside of popups.
      */
     private ScreenDarkener screenDarkener;
     /**
@@ -72,7 +72,7 @@ public class WarningPopUp {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.playSound("button_press.wav");
-                if(buttonName.equalsIgnoreCase("newGameWarning")) {
+                if (buttonName.equalsIgnoreCase("newGameWarning")) {
                     screen.game.resetScores();
                     if (Vescape.storyStartSeen) {
                         screen.setNextScreen(new RoomSelection(screen.getGame(),
