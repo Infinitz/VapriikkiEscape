@@ -4,11 +4,18 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 
 /**
- * Created by atter on 05-Apr-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * This class helps to split text into lines.
  */
-
 public class Utilities {
 
+    /**
+     * Class constructor.
+     * @param str The string that needs to be split.
+     * @param charsPerLine How many characters are allowed for each line.
+     * @return Returns the splitted string.
+     */
     public static String splitTextIntoLines(String str, int charsPerLine) {
         int currentLineStart = 0;
         String splittedString = "";

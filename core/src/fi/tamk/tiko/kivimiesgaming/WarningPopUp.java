@@ -11,14 +11,28 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
- * Created by risto on 8.5.2017.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
+ *
+ * This class builds the warning popup when creating a new game or exiting the game.
  */
 
 public class WarningPopUp {
+    /**
+     *  Screen darkened is used to darken screen outside of popups.
+     */
     private ScreenDarkener screenDarkener;
+    /**
+     * panelBG is the background for popup.
+     */
     private ImageActor panelBG;
+    /**
+     * elements is a group consisting of all the objects in the popup.
+     */
     private Group elements;
 
+    /**
+     * Class constructor.
+     */
     public WarningPopUp(final MyScreen screen, final String buttonName) {
         screenDarkener =
                 new ScreenDarkener(screen.getAssetManager().get("black.png", Texture.class), false);
@@ -125,6 +139,9 @@ public class WarningPopUp {
         AudioManager.playSound("panel_open.wav");
     }
 
+    /**
+     * Disposes the panel
+     */
     public void dispose() {
         AudioManager.playSound("panel_close.wav");
         elements.addAction(Actions.sequence(

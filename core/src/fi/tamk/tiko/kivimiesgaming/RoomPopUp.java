@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
- * Created by atter on 16-Mar-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  */
 
 public class RoomPopUp {

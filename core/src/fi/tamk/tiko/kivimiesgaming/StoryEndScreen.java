@@ -7,11 +7,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
-
 import java.util.ArrayList;
 
 /**
- * Created by atter on 07-May-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  */
 
 public class StoryEndScreen extends StoryScreen {

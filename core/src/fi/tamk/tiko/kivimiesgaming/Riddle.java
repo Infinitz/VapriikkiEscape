@@ -1,11 +1,9 @@
 package fi.tamk.tiko.kivimiesgaming;
 
-import com.badlogic.gdx.graphics.Texture;
-
 import java.util.ArrayList;
 
 /**
- * Created by atter on 28-Mar-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  */
 
 public class Riddle {

@@ -3,16 +3,13 @@ package fi.tamk.tiko.kivimiesgaming;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-
 import java.util.ArrayList;
 
-
 /**
- * Created by atter on 21-Mar-17.
+ * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  */
 
 public class Stars {
