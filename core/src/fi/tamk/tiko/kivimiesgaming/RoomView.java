@@ -16,6 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 
+import java.util.ArrayList;
+
 /**
  * @author Atte-Petteri Ronkanen, Risto Pulkkinen
  *
@@ -194,6 +196,8 @@ public class RoomView extends MyScreen {
      */
     private float hintPanelAnimMovement = 700f;
 
+    private ArrayList<Riddle> roomRiddles;
+
     /**
      * Class constructor.
      *
@@ -224,7 +228,7 @@ public class RoomView extends MyScreen {
         assetManager.load("answer_perfect.wav", Sound.class);
 
         assetManager.load("answer_result_hit.wav", Sound.class);
-        roomData.loadRiddles(assetManager);
+        roomRiddles = roomData.loadRiddles(assetManager);
         roomData.loadTextures();
 
         labelStyle = new Label.LabelStyle(getGame().getRiddleFont(),
@@ -337,7 +341,7 @@ public class RoomView extends MyScreen {
                 0);
 
         // Just for testing
-        /*
+
         TextButton rightAnswerButton = new TextButton("",
                 getGame().getTextButtonStyle());
         rightAnswerButton.setSize(Vescape.GUI_VIEWPORT_WIDTH / 4, 175);
@@ -349,7 +353,7 @@ public class RoomView extends MyScreen {
                         getGame().getMyBundle().getLocale().getLanguage()).getAnswer());
             }
         });
-*/
+
 
         answerField.setTextFieldListener(new TextField.TextFieldListener() {
             @Override
@@ -597,11 +601,7 @@ public class RoomView extends MyScreen {
      * Creates a new riddle panel without the animation.
      */
     private void createNewRiddlePanel() {
-        if (currentRiddleCount == riddlesInRoom - 1 && roomData.lastRiddle != null) {
-            currentRiddle = roomData.lastRiddle;
-        } else {
-            currentRiddle = roomData.getRandomRiddle();
-        }
+        currentRiddle = roomRiddles.get(currentRiddleCount);
 
         ImageActor riddlePanelBg = new ImageActor(riddlePanelTextureBg);
         ImageActor riddlePanelFill = new ImageActor(riddlePanelTextureFill);
@@ -768,7 +768,9 @@ public class RoomView extends MyScreen {
     @Override
     public void dispose() {
         super.dispose();
-        roomData.unloadRiddleImages(assetManager);
+        for (Riddle r : roomRiddles) {
+            assetManager.unload(r.imagePath);
+        }
         assetManager.unload("riddle_slot_empty.png");
         assetManager.unload("riddle_slot_nope.png");
         assetManager.unload("riddle_slot_done.png");

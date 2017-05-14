@@ -88,6 +88,8 @@ public class RoomData {
      */
     public Riddle lastRiddle;
 
+    private int currentRiddleIndex = 0;
+
     /**
      * Class constructor.
      *
@@ -110,39 +112,6 @@ public class RoomData {
         this.iconTextureP = iconTextureP;
         this.backgroundP = backgroundP;
         riddles = new ArrayList<Riddle>();
-    }
-
-    /**
-     * Gets random riddle from the pool as long as it has not been used.
-     *
-     * @return Returns the riddle.
-     */
-    public Riddle getRandomRiddle() {
-        int index = (int) (Math.random() * riddles.size());
-        int tryCount = 0;
-        while (usedRiddle[index] && tryCount < 10) {
-            index = (int) (Math.random() * riddles.size());
-            ++tryCount;
-        }
-        if (tryCount > 10) {
-            boolean unUsedFound = false;
-            for (int i = 0; i < riddles.size(); ++i) {
-                if (!usedRiddle[i]) {
-                    index = i;
-                    unUsedFound = true;
-                    break;
-                }
-            }
-            if (!unUsedFound) {
-                for (int i = 0; i < riddles.size(); ++i) {
-                    usedRiddle[i] = false;
-                }
-                return getRandomRiddle();
-            }
-        }
-
-        usedRiddle[index] = true;
-        return riddles.get(index);
     }
 
     /**
@@ -170,29 +139,68 @@ public class RoomData {
      *
      * @param assets Used for loading.
      */
-    public void loadRiddles(AssetManager assets) {
+    public ArrayList<Riddle> loadRiddles(AssetManager assets) {
+        currentRiddleIndex = 0;
+        ArrayList<Riddle> roomRiddles = new ArrayList<Riddle>();
         usedRiddle = new boolean[riddles.size()];
+
         for (int i = 0; i < riddles.size(); ++i) {
-            assets.load(riddles.get(i).imagePath, Texture.class);
             usedRiddle[i] = false;
         }
+
+        int asd = lastRiddle != null ? 1 : 0;
+        if (type != RoomType.TUTORIAL) {
+            for (int i = 0; i < Vescape.TOTAL_RIDDLES_ROOM - asd; ++i) {
+                roomRiddles.add(getRandomRiddle());
+                assets.load(roomRiddles.get(i).imagePath, Texture.class);
+            }
+        } else {
+            for (int i = 0; i < 2 - asd; ++i) {
+                roomRiddles.add(getRandomRiddle());
+                assets.load(roomRiddles.get(i).imagePath, Texture.class);
+            }
+        }
+
         if (lastRiddle != null) {
+            roomRiddles.add(lastRiddle);
             assets.load(lastRiddle.imagePath, Texture.class);
         }
+
+        return roomRiddles;
     }
 
     /**
-     * Unloads riddle images.
+     * Gets random riddle from the pool as long as it has not been used.
      *
-     * @param assets Used for unloading.
+     * @return Returns the riddle.
      */
-    public void unloadRiddleImages(AssetManager assets) {
-        for (Riddle r : riddles) {
-            assets.unload(r.imagePath);
+    private Riddle getRandomRiddle() {
+        int index = (int) (Math.random() * riddles.size());
+        int tryCount = 0;
+        int maxTries = 10;
+        while (usedRiddle[index] && tryCount < 10) {
+            index = (int) (Math.random() * riddles.size());
+            ++tryCount;
         }
-        if (lastRiddle != null) {
-            assets.unload(lastRiddle.imagePath);
+        if (tryCount > maxTries) {
+            boolean unUsedFound = false;
+            for (int i = 0; i < riddles.size(); ++i) {
+                if (!usedRiddle[i]) {
+                    index = i;
+                    unUsedFound = true;
+                    break;
+                }
+            }
+            if (!unUsedFound) {
+                for (int i = 0; i < riddles.size(); ++i) {
+                    usedRiddle[i] = false;
+                }
+                return getRandomRiddle();
+            }
         }
+
+        usedRiddle[index] = true;
+        return riddles.get(index);
     }
 
     /**
