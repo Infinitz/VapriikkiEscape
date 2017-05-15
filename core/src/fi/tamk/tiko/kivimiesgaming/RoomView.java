@@ -853,7 +853,7 @@ public class RoomView extends MyScreen {
 
         int direction = enabled ? 1 : -1;
         float movement = direction * (
-                Vescape.GUI_VIEWPORT_HEIGHT / 2 - answerButton.getHeight() - 150);
+                Vescape.GUI_VIEWPORT_HEIGHT / 2 - answerButton.getHeight() - 35);
         float animTime = 0.3f;
 
         answerField.addAction(Actions.moveBy(0, movement,
