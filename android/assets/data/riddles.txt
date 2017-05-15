@@ -91,21 +91,21 @@ koski1.jpg
 fi::Minkä kuvan mies luettelee ensimmäiseksi tarpeelliseksi asiaksi?::Miekka::Etsi näyttelyn sisäänkäynnin läheltä sarjakuva, jossa kyseiset henkilöt esiintyvät.
 en::What word is missing from the picture?::Miekka::You will find the comic near the entrance to the exhibition.;
 
-koski2.jpg
-fi::Kuvassa näkyy kahden jääkiekkojoukkueen logot, Ilves ja… mikäs se toinen olikaan?::Tappara::Nuket löytyvät näyttelyn ovelta vitriinistä.
-en::Here are the logos of two ice hockey teams from Tampere. The other one is Ilves but what is the other one called?::Tappara::You can find the dolls next to the entrance to the exhibition.;
+#koski2.jpg
+#fi::Kuvassa näkyy kahden jääkiekkojoukkueen logot, Ilves ja… mikäs se toinen olikaan?::Tappara::Nuket löytyvät näyttelyn ovelta vitriinistä.
+#en::Here are the logos of two ice hockey teams from Tampere. The other one is Ilves but what is the other one called?::Tappara::You can find the dolls next to the entrance to the exhibition.;
 
-koski3.jpg
-fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen//Juice::Henkilö on jo edesmennyt suomalainen tunnettu muusikko.
-en::Who is playing the guitar in the picture?::Juice Leskinen//Juice::The person was a famous Finnish musician.;
+#koski3.jpg
+#fi::Kuka soittelee kitaraa kuvassa?::Juice Leskinen//Juice::Henkilö on jo edesmennyt suomalainen tunnettu muusikko.
+#en::Who is playing the guitar in the picture?::Juice Leskinen//Juice::The person was a famous Finnish musician.;
 
-koski4.jpg
-fi::Miltä vuodelta kuvassa näkyvä Josef Konsénin vaaka on?::1870::Etsi vaaka ja tutki ympäristöä tarkemmin!
-en::In what year was this Josef Konsén’s scale made?::1870::Find the scale and study the surroundings!;
+#koski4.jpg
+#fi::Miltä vuodelta kuvassa näkyvä Josef Konsénin vaaka on?::1870::Etsi vaaka ja tutki ympäristöä tarkemmin!
+#en::In what year was this Josef Konsén’s scale made?::1870::Find the scale and study the surroundings!;
 
-koski5.jpg
-fi::Mikä karannut eläin kuvan henkilön piti ottaa kiinni?::porsas//possu//sika//emakko//karju//potsi//imisä//orasa::Vihjekuva on osa isompaa sarjakuvaa.
-en::What animal was this person supposed to catch?::porsas//possu//sika//emakko//karju//potsi//imisä//orasa::The photo is a part of a big comic.;
+#koski5.jpg
+#fi::Mikä karannut eläin kuvan henkilön piti ottaa kiinni?::porsas//possu//sika//emakko//karju//potsi//imisä//orasa::Vihjekuva on osa isompaa sarjakuvaa.
+#en::What animal was this person supposed to catch?::porsas//possu//sika//emakko//karju//potsi//imisä//orasa::The photo is a part of a big comic.;
 
 koski6.jpg
 fi::Mikä on kuvassa olevan henkilön nimi?::Väinö Hakkila//Väinö//Hakkila::Herran kuva on osana isompaa kuvakollaasia näyttelyn seinällä.
@@ -115,9 +115,9 @@ koski7.jpg
 fi::Minkä kauppakeskuksen pienoismalli on kuvassa?::Koskikeskus::Pienoismalli on hyvin iso ja sijaitsee näyttelyn laidalla.
 en::Which shopping centre is this miniature of?::Koskikeskus::The miniature is large and is located on the other side of the exhibition;
 
-koski8.jpg
-fi::Miltä vuodelta kuvassa oleva kartiohammaspyörän ratas on?::2009::Luitko rattaan päällä olevan tietoiskun varmasti huolella?
-en::What year is this spiral bevel gear from?::2009::Are you sure you read the text shown in the picture carefully?;
+#koski8.jpg
+#fi::Miltä vuodelta kuvassa oleva kartiohammaspyörän ratas on?::2009::Luitko rattaan päällä olevan tietoiskun varmasti huolella?
+#en::What year is this spiral bevel gear from?::2009::Are you sure you read the text shown in the picture carefully?;
 
 koski9.jpg
 fi::Kuinka monta taloa on kuvan pienoismallissa?::3100::Kierrä pienoismallia kunnes löydät kuvassa näkyvän lapun.
